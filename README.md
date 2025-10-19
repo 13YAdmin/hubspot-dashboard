@@ -2,314 +2,335 @@
 
 Dashboard interactif **ultra-enrichi** pour analyser les performances commerciales directement depuis HubSpot avec cross-référencement complet des données.
 
-## ✨ Nouveautés Version PRO
+🌐 **Dashboard Live**: https://13yadmin.github.io/hubspot-dashboard/
 
-### 🔥 Enrichissement Automatique
-- ✅ **Deals** avec 17+ propriétés (montant, dates, probabilité, source...)
-- ✅ **Entreprises** complètes (industrie, ville, pays, CA annuel, effectifs...)
-- ✅ **Contacts** associés (décideurs avec email, titre, téléphone...)
-- ✅ **Account Managers** (owners avec noms complets)
-- ✅ **Métriques avancées** (par owner, pipeline, source, mois...)
+## ✨ Fonctionnalités
 
-### 📊 Données Disponibles (27+ Champs)
+### 🔥 Enrichissement Automatique Complet
+- ✅ **TOUTES les notes** analysées (sentiment, keywords, contenu)
+- ✅ **Engagement history** complet (emails, calls, meetings)
+- ✅ **Health Score** calculé (0-100) basé sur notes + engagement + CA
+- ✅ **Détection de segments** intelligente (Stratégique, Clé, Dormant, etc.)
+- ✅ **Cross-référencement** total : Deals → Companies → Contacts → Notes
+
+### 📊 Données Enrichies (40+ Champs par Deal)
+
 | Catégorie | Champs |
 |-----------|--------|
-| **Deal** | ID, Nom, Montant, Phase, Pipeline, Date création, Date fermeture, Type, Probabilité, Jours pour closer, Nombre de contacts, Nombre de notes, Source |
-| **Entreprise** | Nom, Domaine, Industrie, Ville, Pays, Nombre d'employés, CA Annuel |
-| **Contact** | Nom complet, Email, Titre, Téléphone |
-| **Owner** | Nom AM, Email AM |
+| **Deal** | ID, Nom, Montant, Stage, Pipeline, Dates, Probabilité |
+| **Entreprise** | Nom, Domaine, Industrie, CA Annuel, Effectifs, Owner |
+| **Notes** | Nombre total, Longueur moyenne, Sentiment, Keywords (positif/négatif/action), Dernière note |
+| **Engagement** | Emails, Calls, Meetings, Dernière activité |
+| **Analysis** | Health Score (0-100), Segment, Raison du segment, Priorité |
 
-## 🚀 Fonctionnalités
+### 🤖 Architecture Automatisée
+- 📦 **GitHub Actions** : Fetch automatique des données HubSpot toutes les 6 heures
+- 🌍 **GitHub Pages** : Hébergement gratuit et automatique
+- 🔄 **Chargement automatique** : Données fraîches à chaque ouverture du dashboard
+- 🏗️ **Architecture modulaire** : Code organisé en modules réutilisables
 
-### 🔌 API Endpoints
+## 🚀 Installation
 
-#### `GET /api/deals`
-Récupère tous les deals avec enrichissement complet :
-```json
-{
-  "success": true,
-  "count": 250,
-  "data": [...], // Tableau de deals enrichis
-  "metrics": {
-    "total_deals": 250,
-    "total_revenue": 1250000,
-    "won_deals": 180,
-    "won_revenue": 980000,
-    "avg_deal_size": 5000,
-    "avg_days_to_close": 45,
-    "companies_count": 120,
-    "contacts_count": 340,
-    "deals_by_owner": {...},
-    "deals_by_pipeline": {...},
-    "deals_by_source": {...}
-  }
-}
-```
-
-#### `GET /api/metrics`
-Récupère uniquement les métriques globales (plus rapide) :
-```json
-{
-  "success": true,
-  "metrics": {
-    "total_deals": 250,
-    "total_revenue": 1250000,
-    "deals_by_stage": {...},
-    "deals_by_owner": {...},
-    "deals_by_month": {...},
-    "win_rate": 72.5
-  }
-}
-```
-
-### 📈 Analyses Stratégiques
-- Chiffre d'affaires par client avec tendances
-- Segmentation intelligente (Stratégique, Clé, Régulier, À Risque, Dormant)
-- Scoring clients basé sur CA, tendance, récence, et engagement
-- Performance par Account Manager
-- ROI par source d'acquisition
-- Timeline et évolution temporelle
-
-### 🎨 Visualisations
-- Graphiques interactifs (Chart.js)
-- Tooltips détaillés avec drill-down
-- Filtres dynamiques (année, pipeline, owner, source)
-- Export PDF professionnel
-- Export CSV enrichi (27+ colonnes)
-
-## 📦 Installation
-
-### 1. Cloner le projet
+### 1. Fork ou Clone le projet
 
 ```bash
 git clone https://github.com/13YAdmin/hubspot-dashboard.git
 cd hubspot-dashboard
 ```
 
-### 2. Installer les dépendances
+### 2. Configurer HubSpot Private App
 
-```bash
-npm install
-```
-
-### 3. Configurer HubSpot Private App
-
-**Créer une Private App dans HubSpot avec toutes les permissions CRM :**
+**Créer une Private App dans HubSpot :**
 
 1. Va dans **HubSpot** → **Settings** (⚙️) → **Integrations** → **Private Apps**
 2. Clique sur **"Create a private app"**
 3. Nom : `Dashboard Account Manager PRO`
-4. Onglet **"Scopes"** - Coche ces permissions :
+4. Onglet **"Scopes"** - Coche TOUTES les permissions CRM :
 
 **CRM (Lecture)** :
 - ✅ `crm.objects.deals.read`
 - ✅ `crm.objects.companies.read`
 - ✅ `crm.objects.contacts.read`
 - ✅ `crm.objects.owners.read`
+- ✅ `crm.objects.notes.read`
 - ✅ `crm.schemas.deals.read`
 - ✅ `crm.schemas.companies.read`
 - ✅ `crm.schemas.contacts.read`
+- ✅ `crm.associations.deals.read`
+- ✅ `crm.associations.companies.read`
 
 5. Clique sur **"Create app"**
 6. **COPIE LE TOKEN** (commence par `pat-...`)
 
-### 4. Configurer les variables d'environnement
+### 3. Configurer GitHub Repository
 
-Créer un fichier `.env.local` à la racine :
+#### Configurer le Secret GitHub
 
-```env
-HUBSPOT_ACCESS_TOKEN=pat-eu1-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+1. Va dans ton repo GitHub → **Settings** → **Secrets and variables** → **Actions**
+2. Clique sur **"New repository secret"**
+3. Nom : `HUBSPOT_ACCESS_TOKEN`
+4. Valeur : Ton token HubSpot (commence par `pat-...`)
+5. Clique **"Add secret"**
+
+#### Activer GitHub Pages
+
+1. Va dans **Settings** → **Pages**
+2. Source : **Deploy from a branch**
+3. Branch : **gh-pages** / **/ (root)**
+4. Clique **Save**
+
+### 4. Lancer le Premier Fetch
+
+Le workflow GitHub Actions se lance automatiquement :
+- ✅ Au premier push
+- ✅ Toutes les 6 heures
+- ✅ Manuellement depuis l'onglet "Actions"
+
+Pour lancer manuellement :
+1. Va dans **Actions** → **Fetch HubSpot Data**
+2. Clique **"Run workflow"** → **"Run workflow"**
+
+### 5. Accéder au Dashboard
+
+Ton dashboard sera disponible sur :
+```
+https://[TON-USERNAME].github.io/hubspot-dashboard/
 ```
 
-⚠️ **Important** : Ne partage JAMAIS ce token publiquement !
-
-### 5. Lancer en local
-
-```bash
-npm run dev
-```
-
-Ouvre http://localhost:3000
-
-## 🌐 Déploiement sur Vercel
-
-### Option 1 : Via GitHub (Recommandé - Déploiement Automatique)
-
-1. **Push ton code sur GitHub** :
-```bash
-git add .
-git commit -m "Update dashboard"
-git push
-```
-
-2. **Connecte-toi à Vercel** : https://vercel.com
-
-3. **Import Project** :
-   - Clique "Add New..." → "Project"
-   - Sélectionne ton repo GitHub
-   - Clique "Import"
-
-4. **Configure** :
-   - Framework Preset : `Other`
-   - Root Directory : `.`
-   - Build Command : (laisse vide)
-   - Output Directory : `public`
-
-5. **Ajoute la variable d'environnement** :
-   - Nom : `HUBSPOT_ACCESS_TOKEN`
-   - Valeur : Ton token HubSpot (commence par `pat-...`)
-
-6. **Deploy** !
-
-🎉 **Chaque push sur GitHub redéploie automatiquement !**
-
-### Option 2 : Via CLI Vercel
-
-```bash
-npm install -g vercel
-vercel login
-vercel --prod
-```
-
-Puis ajoute le token dans les settings Vercel.
+🎉 **C'est tout ! Le dashboard se met à jour automatiquement !**
 
 ## 📂 Structure du Projet
 
 ```
 hubspot-dashboard/
-├── 📁 api/
-│   ├── deals.js              # API enrichie (deals + companies + contacts + owners)
-│   └── metrics.js            # API métriques rapides
+├── 📁 .github/
+│   ├── 📁 workflows/
+│   │   └── fetch-hubspot-data.yml    # GitHub Actions workflow
+│   └── 📁 scripts/
+│       ├── fetch-hubspot.js          # Script principal d'enrichissement
+│       └── 📁 lib/
+│           ├── api.js                # Fonctions API HubSpot
+│           ├── notes-analyzer.js     # Analyse de contenu des notes
+│           ├── health-score.js       # Calcul du health score
+│           └── segment-detector.js   # Détection de segments
 │
 ├── 📁 public/
-│   └── index.html            # Dashboard complet (HTML + CSS + JS)
+│   ├── index.html                    # Dashboard (se charge automatiquement)
+│   └── data.json                     # Données générées (auto-update)
 │
-├── 📄 README.md              # Documentation technique (ce fichier)
-├── 📄 DEPLOYMENT.md          # Guide de déploiement pas à pas
-├── 📄 QUICKSTART.md          # Guide de démarrage rapide
-├── 📄 GIT-CHEATSHEET.md      # Aide-mémoire Git
-│
-├── 📄 .env.example           # Template variables d'environnement
-├── 📄 .gitignore             # Fichiers à ignorer
-├── 📄 package.json           # Configuration Node.js
-└── 📄 vercel.json            # Configuration Vercel
+├── 📄 README.md                      # Documentation (ce fichier)
+├── 📄 DEPLOYMENT.md                  # Guide de déploiement
+├── 📄 QUICKSTART.md                  # Guide rapide
+└── 📄 GIT-CHEATSHEET.md              # Aide-mémoire Git
 ```
 
-## 🔒 Sécurité
+## 🔧 Architecture Modulaire
 
-- ✅ Le token HubSpot n'est **jamais** exposé côté client
-- ✅ Toutes les requêtes API passent par les fonctions serverless Vercel
-- ✅ Variables d'environnement chiffrées sur Vercel
-- ✅ CORS configuré pour autoriser uniquement ton domaine
-- ✅ `.gitignore` empêche de commit le `.env.local`
+Le code est organisé en modules pour faciliter la maintenance :
 
-## 🛠️ Développement
+### `.github/scripts/lib/api.js`
+Gestion des appels HubSpot API :
+- `fetchHubSpot()` - Appel API générique
+- `fetchAllPaginated()` - Récupération paginée
+- `fetchAllNotes()` - Toutes les notes d'un objet
+- `fetchEngagementHistory()` - Historique complet
 
-### Modifier le dashboard
+### `.github/scripts/lib/notes-analyzer.js`
+Analyse de contenu des notes :
+- Détection de sentiment (positif/négatif/neutre)
+- Extraction de keywords
+- Calcul de métriques (longueur moyenne, récence)
 
-Édite `public/index.html` - tout le HTML, CSS et JavaScript est dans ce fichier.
+### `.github/scripts/lib/health-score.js`
+Calcul du Health Score (0-100) :
+- **40 pts** : Notes (quantité, qualité, sentiment)
+- **30 pts** : Engagement (emails, calls, meetings)
+- **10 pts** : Keywords d'action
+- **20 pts** : CA
 
-### Modifier les fonctions API
+### `.github/scripts/lib/segment-detector.js`
+Détection intelligente de segments :
+- **Dormant** : Pas d'activité >12 mois + no notes récentes + health<40
+- **À Risque** : Sentiment négatif OU baisse CA + health<50
+- **Stratégique** : CA>100k + health>70 + notes>10
+- **Clé** : CA>50k + health>60
+- **Régulier** : CA>10k + health>40
+- **Prospect** : Nouveau ou petit client
 
-- **`api/deals.js`** : Logique d'enrichissement des deals
-- **`api/metrics.js`** : Calcul des métriques rapides
+## ⚙️ Configuration
 
-### Tester les API en local
+### Modifier la Fréquence de Mise à Jour
 
-```bash
-# Lance le serveur de dev
-npm run dev
+Édite `.github/workflows/fetch-hubspot-data.yml` :
 
-# Teste les endpoints
-curl http://localhost:3000/api/deals
-curl http://localhost:3000/api/metrics
+```yaml
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Toutes les 6 heures
+    # - cron: '0 */3 * * *'  # Toutes les 3 heures
+    # - cron: '0 0 * * *'    # Une fois par jour à minuit
 ```
 
-### Ajouter de nouvelles propriétés HubSpot
+### Ajouter de Nouvelles Propriétés HubSpot
 
-Édite `api/deals.js` ligne 128-148 et ajoute les propriétés dans le tableau :
+Édite `.github/scripts/fetch-hubspot.js` ligne 86-95 :
 
 ```javascript
-url.searchParams.append('properties', [
+const dealsData = await fetchAllPaginated('/crm/v3/objects/deals', [
   'dealname',
   'amount',
-  // ... propriétés existantes ...
-  'ta_nouvelle_propriete_custom'  // ← Ajoute ici
-].join(','));
+  'closedate',
+  'createdate',
+  'ta_propriete_custom'  // ← Ajoute ici
+]);
 ```
 
 ## 📊 Méthodologie
 
-### Score Client (0-100)
-- **40 pts** : CA Total (1pt par 2 500€, max 40)
-- **30 pts** : Tendance d'évolution (croissance/baisse)
-- **20 pts** : Récence d'activité (dernier deal)
-- **10 pts** : Nombre de deals
+### Health Score (0-100)
+```
+Score = Notes (40) + Engagement (30) + Keywords (10) + Revenue (20)
+```
+
+**Détails** :
+- **Notes** (40 pts max) :
+  - +2 pts par note (max 20)
+  - +10 pts si longueur >200 chars
+  - +10 pts si note récente (<90 jours)
+  - +15 pts si sentiment positif / -15 si négatif
+
+- **Engagement** (30 pts max) :
+  - +0.5 pt par email (max 10)
+  - +2 pts par call (max 10)
+  - +3 pts par meeting (max 10)
+
+- **Keywords** (10 pts max) :
+  - +5 pts si >5 mots d'action
+  - +5 pts si >3 mentions meeting
+
+- **Revenue** (20 pts max) :
+  - >100k = 20 pts
+  - >50k = 15 pts
+  - >20k = 10 pts
+  - >10k = 5 pts
 
 ### Segments
-- **Stratégique** : CA > 100k€ + croissance positive
-- **Clé** : CA > 50k€ + stable
-- **Régulier** : CA > 10k€
-- **À Risque** : Tendance < -20%
-- **Dormant** : Inactif en 2023-2024
 
-### Tendance
-Comparaison intelligente des 2 dernières années actives, ajustée par l'écart temporel et bonus de récence pour 2024.
+| Segment | Critères |
+|---------|----------|
+| **Dormant** | Inactivité >12 mois + Pas de notes récentes + Health <40 |
+| **À Risque** | Sentiment négatif OU (Baisse CA + Health <50) |
+| **Stratégique** | CA >100k€ + Health >70 + Notes >10 |
+| **Clé** | CA >50k€ + Health >60 |
+| **Régulier** | CA >10k€ + Health >40 |
+| **Prospect** | Nouveau ou petit client |
 
-### Métriques Enrichies
-- **Deals par Owner** : Performance des Account Managers
-- **Deals par Pipeline** : Répartition par année/type
-- **Deals par Source** : ROI des canaux d'acquisition
-- **Win Rate** : Taux de conversion global
-- **Avg Days to Close** : Temps moyen de conversion
+## 🛠️ Développement
+
+### Tester Localement le Script
+
+```bash
+# Créer .env.local avec ton token
+echo "HUBSPOT_ACCESS_TOKEN=pat-eu1-xxx" > .env.local
+
+# Installer Node.js si pas déjà fait
+# puis :
+export $(cat .env.local | xargs)
+node .github/scripts/fetch-hubspot.js
+```
+
+Le fichier `public/data.json` sera généré localement.
+
+### Modifier le Dashboard
+
+Édite `public/index.html` - tout le HTML, CSS et JavaScript est dans ce fichier.
+
+Le dashboard se charge automatiquement au démarrage grâce à :
+```javascript
+window.addEventListener('DOMContentLoaded', () => {
+  loadHubSpotData();  // Charge data.json automatiquement
+});
+```
+
+## 🔒 Sécurité
+
+- ✅ Token HubSpot stocké dans GitHub Secrets (chiffré)
+- ✅ Jamais exposé dans le code ou les logs
+- ✅ GitHub Actions s'exécute dans un environnement isolé
+- ✅ Données publiques sur GitHub Pages (pas de données sensibles)
+- ✅ `.gitignore` empêche le commit du `.env.local`
 
 ## 🔧 Troubleshooting
 
-### Erreur : "HUBSPOT_ACCESS_TOKEN non configuré"
-→ Vérifie que tu as bien ajouté la variable d'environnement dans Vercel
+### Workflow échoue avec "HUBSPOT_ACCESS_TOKEN non défini"
+→ Vérifie que tu as bien ajouté le secret dans **Settings** → **Secrets and variables** → **Actions**
 
-### Erreur : "HubSpot API error: 401"
-→ Ton token est invalide ou expiré. Génère-en un nouveau dans HubSpot
+### Workflow échoue avec "HubSpot API error: 401"
+→ Ton token est invalide ou expiré. Génère-en un nouveau dans HubSpot et mets à jour le secret GitHub
 
-### Erreur : "HubSpot API error: 403"
-→ Ton Private App n'a pas toutes les permissions. Vérifie les scopes dans HubSpot
+### Workflow échoue avec "HubSpot API error: 403"
+→ Ton Private App n'a pas toutes les permissions. Vérifie les scopes dans HubSpot (surtout `notes.read` et `associations`)
 
-### Le bouton "Charger les Deals" ne fait rien
-→ Ouvre la Console du navigateur (F12) pour voir les erreurs détaillées
+### Dashboard affiche "Erreur: Impossible de charger les données"
+→ Le workflow n'a pas encore généré `data.json`. Va dans **Actions** et lance le workflow manuellement
 
-### L'API est lente (> 30 secondes)
-→ Normal si tu as beaucoup de deals (>500). L'enrichissement prend du temps. Utilise `/api/metrics` pour un aperçu rapide.
+### Le dashboard affiche des données anciennes
+→ Fais un hard refresh (CTRL+SHIFT+R ou CMD+SHIFT+R sur Mac) pour vider le cache du navigateur
+
+### Les clients dormants ne sont pas détectés
+→ Vérifie que le script récupère bien les notes avec `fetchAllNotes()` dans `lib/api.js`
 
 ## 📈 Performance
 
-### Limites Vercel Free Tier
+### GitHub Actions Free Tier
 | Ressource | Limite Gratuite | Usage Estimé |
 |-----------|----------------|--------------|
-| Exécutions | 100k/mois | ~5k-10k (5-10%) |
-| Bande passante | 100 GB | ~1-2 GB (1-2%) |
-| Temps d'exécution | 10s max | ~3-8s par call |
+| Minutes | 2000/mois | ~100-200 (5-10%) |
+| Stockage | 500 MB | ~1-5 MB (<1%) |
+| Bande passante | Illimitée | N/A |
 
-✅ **Le plan gratuit est largement suffisant pour un usage normal !**
+✅ **Le plan gratuit GitHub est largement suffisant !**
+
+### GitHub Pages
+- 🌍 Hébergement gratuit
+- ⚡ CDN mondial
+- 📦 Limite : 1 GB de stockage
+- 🔄 Limite : 100 GB/mois de bande passante
 
 ### Optimisations
-- Utilise `/api/metrics` pour les métriques rapides (pas d'enrichissement)
-- L'API met en cache les owners pour éviter les appels répétés
-- Les requêtes sont parallélisées quand possible (Promise.all)
-- Limite à 5 contacts par deal pour éviter les timeouts
+- Architecture modulaire pour maintenabilité
+- Pagination automatique des requêtes HubSpot
+- Cache des owners pour éviter appels répétés
+- Chargement automatique du dashboard (pas de bouton)
 
 ## 🎓 Pour Aller Plus Loin
 
-### Ajouter des filtres personnalisés
-Édite `public/index.html` et ajoute des filtres dans la section "Filtres" (ligne ~700)
+### Ajouter un Nouveau Module d'Analyse
 
-### Créer de nouveaux segments
-Modifie la fonction `assignSegment()` dans `public/index.html` (ligne ~1050)
+Crée un fichier dans `.github/scripts/lib/` :
 
-### Personnaliser les graphiques
-Utilise Chart.js - Documentation : https://www.chartjs.org/docs/
+```javascript
+// .github/scripts/lib/mon-module.js
+function monAnalyse(data) {
+  // Ta logique ici
+  return result;
+}
 
-### Ajouter d'autres objets HubSpot
-Crée de nouveaux endpoints API (ex: `api/tickets.js`, `api/products.js`)
+module.exports = { monAnalyse };
+```
+
+Puis importe-le dans `fetch-hubspot.js` :
+```javascript
+const { monAnalyse } = require('./lib/mon-module');
+```
+
+### Personnaliser les Graphiques
+
+Le dashboard utilise Chart.js - Documentation : https://www.chartjs.org/docs/
+
+### Créer un Rapport PDF Personnalisé
+
+Ajoute des sections dans `public/index.html` et utilise la fonction d'export PDF intégrée.
 
 ## 🤝 Support
 
@@ -326,4 +347,4 @@ MIT
 
 **Made with ❤️ for Account Managers**
 
-🚀 Version PRO - Enrichissement complet avec cross-référencement HubSpot
+🚀 Version PRO - Architecture modulaire avec enrichissement complet HubSpot
