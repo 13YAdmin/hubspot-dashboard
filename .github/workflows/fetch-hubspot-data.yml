@@ -1,9 +1,9 @@
 name: Fetch HubSpot Data
 
-# Déclenche le workflow automatiquement toutes les 6 heures + manuellement
+# Déclenche le workflow automatiquement toutes les 2 heures + manuellement
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Toutes les 6 heures
+    - cron: '0 */2 * * *'  # Toutes les 2 heures
   workflow_dispatch:  # Permet de lancer manuellement depuis GitHub
   push:
     branches:
