@@ -742,12 +742,13 @@ details[open] summary {
               <th data-sort="rank">Rang</th>
               <th data-sort="name">Client</th>
               <th data-sort="segment" title="Catégorie client" style="font-size: 11px;">Cat.</th>
-              <th data-sort="healthScore">Health Score</th>
+              <th data-sort="healthScore">Score Santé</th>
               <th data-sort="total">CA Total</th>
-              <th data-sort="2022" style="font-size: 11px;">2022</th>
-              <th data-sort="2023" style="font-size: 11px;">2023</th>
-              <th data-sort="2024" style="font-size: 11px;">2024</th>
-              <th data-sort="2025" style="font-size: 11px;">2025</th>
+              <th data-sort="2022" style="font-size: 11px;" class="year-col year-2022">2022</th>
+              <th data-sort="2023" style="font-size: 11px;" class="year-col year-2023">2023</th>
+              <th data-sort="2024" style="font-size: 11px;" class="year-col year-2024">2024</th>
+              <th data-sort="2025" style="font-size: 11px;" class="year-col year-2025">2025</th>
+              <th data-sort="globalTrend" class="global-trend-col" style="font-size: 11px;">Tendance</th>
               <th data-sort="sentiment">Sentiment</th>
               <th data-sort="contacts">Contacts</th>
               <th>Action</th>
@@ -845,7 +846,7 @@ let processedData = [];
 let currentFilters = {
   year: 'all'
 };
-let sortColumn = 'rank';
+let sortColumn = 'name'; // Tri alphabétique par défaut
 let sortDirection = 'asc';
 
 // ============================================================================
@@ -873,7 +874,7 @@ async function loadHubSpotData() {
       currentFilters = {
         year: 'all'
       };
-      sortColumn = 'rank';
+      sortColumn = 'name'; // Tri alphabétique par défaut
       sortDirection = 'asc';
 
       console.log('Données chargées:', result.data.length, 'deals');
@@ -2638,12 +2639,15 @@ function renderSegmentationTable() {
           }
 
           return `
-            <td style="text-align: right; font-size: 11px;">
+            <td class="year-col year-${year}" style="text-align: right; font-size: 11px;">
               <div style="font-weight: 600;">${revenue > 0 ? formatCurrency(revenue) : '-'}</div>
               ${yearTrend ? `<small style="color: ${yearTrendColor}; font-size: 9px;">${yearTrend}</small>` : ''}
             </td>
           `;
         }).join('')}
+        <td class="global-trend-col" style="text-align: center;">
+          <div style="font-size: 14px; font-weight: 700; color: ${trendColor};">${trendDisplay}</div>
+        </td>
         <td style="text-align: center;">
           <div style="font-weight: 700; color: ${sentimentColor}; font-size: 13px;">${sentimentText}</div>
           <small style="color: var(--text-muted); font-size: 9px;">${sentimentScore}</small>
@@ -3145,6 +3149,28 @@ function initFilters() {
 
       // Re-render table with new filters
       renderSegmentationTable();
+
+      // Gérer affichage/masquage colonnes années
+      if (filterType === 'year') {
+        const allYearCols = document.querySelectorAll('.year-col');
+        const globalTrendCol = document.querySelectorAll('.global-trend-col');
+
+        if (filterValue === 'all') {
+          // Mode "toutes" : afficher toutes les années + tendance globale
+          allYearCols.forEach(col => col.style.display = '');
+          globalTrendCol.forEach(col => col.style.display = '');
+        } else {
+          // Mode année spécifique : afficher que cette année, masquer tendance
+          allYearCols.forEach(col => {
+            if (col.classList.contains(`year-${filterValue}`)) {
+              col.style.display = '';
+            } else {
+              col.style.display = 'none';
+            }
+          });
+          globalTrendCol.forEach(col => col.style.display = 'none');
+        }
+      }
     });
   });
 
