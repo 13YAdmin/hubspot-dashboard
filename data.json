@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-19T14:44:07.954Z",
+  "timestamp": "2025-10-19T15:01:44.604Z",
   "count": 73,
   "data": [
     {
@@ -2431,7 +2431,7 @@
       "pipeline": "2522471620",
       "probability": "1",
       "companyId": 262216855790,
-      "companyName": "Dior Parfums",
+      "companyName": "Dior",
       "companyDomain": "dior.com",
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 2000000000,
