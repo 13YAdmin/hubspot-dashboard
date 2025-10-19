@@ -968,9 +968,16 @@ async function loadHubSpotData() {
       document.getElementById('dashboardContent').classList.add('hidden');
       document.getElementById('exportSection').classList.add('hidden');
 
-      setTimeout(() => {
+      // Afficher IMMÉDIATEMENT sans timeout
+      console.log('📊 Données chargées:', result.data.length, 'deals');
+
+      try {
         processData();
+        console.log('✅ Données traitées:', processedData.length, 'clients');
+
         renderDashboard();
+        console.log('✅ Dashboard rendu');
+
         document.getElementById('loadingState').classList.add('hidden');
         document.getElementById('dashboardContent').classList.remove('hidden');
         document.getElementById('exportSection').classList.remove('hidden');
@@ -987,7 +994,11 @@ async function loadHubSpotData() {
             🕐 Mis à jour: ${updateTime}
           </small>`;
         statusEl.style.color = '#4CAF50';
-      }, 500);
+      } catch (error) {
+        console.error('❌ ERREUR lors du traitement:', error);
+        statusEl.innerHTML = `❌ Erreur lors du traitement des données:<br>${error.message}`;
+        statusEl.style.color = '#f44336';
+      }
     } else {
       throw new Error('Format de données invalide');
     }
@@ -1022,18 +1033,28 @@ window.addEventListener('DOMContentLoaded', () => {
 function processData() {
   const clientStats = {};
 
-  // Process all won deals
+  // Process ALL deals (Account Management Dashboard)
   dealsData.forEach(deal => {
     const phase = deal['Phase de la transaction'];
-    if (phase !== 'Fermé gagné') return;
-
     const companyName = deal['Associated Company (Primary)'] || 'Inconnu';
     const montant = parseFloat(deal['Montant']) || 0;
     const pipeline = deal['Pipeline'] || 'Non défini';
     const closeDate = deal['Date de fermeture'];
+    const createDate = deal['Date de création'];
 
-    const yearMatch = pipeline.match(/(\d{4})/);
-    const year = yearMatch ? yearMatch[1] : 'Autre';
+    // Extraire l'année depuis la date de fermeture ou de création
+    let year = 'Autre';
+    if (closeDate) {
+      const closeDateObj = new Date(closeDate);
+      year = closeDateObj.getFullYear().toString();
+    } else if (createDate) {
+      const createDateObj = new Date(createDate);
+      year = createDateObj.getFullYear().toString();
+    } else {
+      // Fallback: essayer d'extraire du pipeline si c'est un nombre à 4 chiffres
+      const yearMatch = pipeline.match(/(\d{4})/);
+      year = yearMatch ? yearMatch[1] : 'Autre';
+    }
 
     if (!clientStats[companyName]) {
       clientStats[companyName] = {
