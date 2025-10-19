@@ -951,42 +951,42 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================================
-// Data Processing
+// Data Processing - NOUVEAU FORMAT ENRICHI
 // ============================================================================
 function processData() {
   const clientStats = {};
 
-  // Process ALL deals (Account Management Dashboard)
+  // Les données sont déjà enrichies avec health scores et segments!
   dealsData.forEach(deal => {
-    const phase = deal['Phase de la transaction'];
-    const companyName = deal['Associated Company (Primary)'] || 'Inconnu';
-    const montant = parseFloat(deal['Montant']) || 0;
-    const pipeline = deal['Pipeline'] || 'Non défini';
-    const closeDate = deal['Date de fermeture'];
-    const createDate = deal['Date de création'];
-
-    // Extraire l'année depuis la date de fermeture ou de création
-    let year = 'Autre';
-    if (closeDate) {
-      const closeDateObj = new Date(closeDate);
-      year = closeDateObj.getFullYear().toString();
-    } else if (createDate) {
-      const createDateObj = new Date(createDate);
-      year = createDateObj.getFullYear().toString();
-    } else {
-      // Fallback: essayer d'extraire du pipeline si c'est un nombre à 4 chiffres
-      const yearMatch = pipeline.match(/(\d{4})/);
-      year = yearMatch ? yearMatch[1] : 'Autre';
-    }
+    const companyName = deal.companyName || 'Inconnu';
+    const montant = parseFloat(deal.amount) || 0;
+    const year = deal.year || new Date(deal.closeDate || deal.createDate).getFullYear();
 
     if (!clientStats[companyName]) {
       clientStats[companyName] = {
         name: companyName,
+        companyId: deal.companyId,
+        domain: deal.companyDomain,
+        industry: deal.companyIndustry,
         totalRevenue: 0,
         years: { '2022': 0, '2023': 0, '2024': 0, '2025': 0 },
         deals: [],
         dealCount: 0,
-        lastDealDate: null
+        lastDealDate: null,
+        // Données enrichies
+        avgHealthScore: 0,
+        healthScores: [],
+        segment: deal.segment || 'Régulier',
+        segmentColor: deal.segmentColor || '#2ecc71',
+        segmentReason: deal.segmentReason || '',
+        totalNotes: deal.totalNotes || 0,
+        notesSentiment: deal.notesSentiment || 'neutral',
+        engagementEmails: deal.engagementEmails || 0,
+        engagementCalls: deal.engagementCalls || 0,
+        engagementMeetings: deal.engagementMeetings || 0,
+        latestNoteBody: deal.latestNoteBody || '',
+        latestNoteDate: deal.latestNoteDate || '',
+        owner: deal.ownerName || 'Non assigné'
       };
     }
 
@@ -994,29 +994,45 @@ function processData() {
     if (clientStats[companyName].years[year] !== undefined) {
       clientStats[companyName].years[year] += montant;
     }
-    clientStats[companyName].deals.push({ year, montant, closeDate });
+    clientStats[companyName].deals.push({
+      year,
+      montant,
+      closeDate: deal.closeDate,
+      dealName: deal.dealName,
+      healthScore: deal.healthScore
+    });
     clientStats[companyName].dealCount++;
+    clientStats[companyName].healthScores.push(deal.healthScore || 0);
 
-    if (closeDate) {
-      const date = new Date(closeDate);
+    if (deal.closeDate) {
+      const date = new Date(deal.closeDate);
       if (!clientStats[companyName].lastDealDate || date > clientStats[companyName].lastDealDate) {
         clientStats[companyName].lastDealDate = date;
       }
     }
   });
 
-  // Calculate trends and scores
+  // Finaliser les stats par client
   Object.values(clientStats).forEach(client => {
+    // Health score moyen
+    client.avgHealthScore = Math.round(
+      client.healthScores.reduce((sum, s) => sum + s, 0) / client.healthScores.length
+    );
+
+    // Calculer les tendances
     client.trend = calculateTrend(client);
-    client.yearlyTrends = calculateYearlyTrends(client); // Tendances année par année
-    client.score = calculateScore(client);
-    client.segment = getSegment(client);
+    client.yearlyTrends = calculateYearlyTrends(client);
+
+    // Score basé sur le health score ET le CA
+    client.score = Math.round((client.avgHealthScore * 0.6) + Math.min((client.totalRevenue / 100000) * 40, 40));
+
+    // Recommandation basée sur le segment
     client.recommendation = getRecommendation(client);
-    client.priority = getPriority(client);
+    client.priority = client.avgHealthScore > 70 ? 'high' : client.avgHealthScore > 40 ? 'medium' : 'low';
   });
 
-  processedData = Object.values(clientStats).sort((a, b) => b.score - a.score);
-  console.log('Données traitées:', processedData);
+  processedData = Object.values(clientStats).sort((a, b) => b.avgHealthScore - a.avgHealthScore);
+  console.log('✅ Données enrichies traitées:', processedData);
 }
 
 function calculateTrend(client) {
@@ -1182,15 +1198,8 @@ function calculateScore(client) {
 }
 
 function getSegment(client) {
-  const avgYearly = client.totalRevenue / 4;
-
-  if (avgYearly > 100000 && client.trend > 0) return 'Stratégique';
-  if (avgYearly > 50000 && client.trend >= -10) return 'Clé';
-  if (avgYearly > 10000) return 'Régulier';
-  if (client.trend < -20) return 'À Risque';
-  if (client.years['2024'] === 0 && client.years['2023'] === 0) return 'Dormant';
-
-  return 'Régulier';
+  // Le segment est déjà calculé côté serveur avec l'algo enrichi!
+  return client.segment || 'Régulier';
 }
 
 function getRecommendation(client) {
