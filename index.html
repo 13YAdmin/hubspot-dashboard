@@ -717,6 +717,38 @@ details[open] summary {
       <div class="legend" id="legendClientEvolution"></div>
     </div>
 
+    <!-- Graphique Donut - Répartition par Segment -->
+    <div class="chart-section">
+      <h3>Répartition du CA par Segment Client</h3>
+      <div class="chart-container" style="height: 400px; display: flex; align-items: center; justify-content: center;">
+        <svg id="chartSegmentDonut" width="100%" height="400" viewBox="0 0 600 400"></svg>
+      </div>
+    </div>
+
+    <!-- Graphique Radar - Top 5 Clients (Multi-critères) -->
+    <div class="chart-section">
+      <h3>Analyse Multi-critères - Top 5 Clients</h3>
+      <div class="chart-container" style="height: 450px;">
+        <svg id="chartRadar" width="100%" height="450" viewBox="0 0 700 450"></svg>
+      </div>
+    </div>
+
+    <!-- Graphique Aires Empilées - CA par Segment au fil du temps -->
+    <div class="chart-section">
+      <h3>Évolution du CA par Segment (2022-2025)</h3>
+      <div class="chart-container" style="height: 350px;">
+        <svg id="chartStackedArea" width="100%" height="350" viewBox="0 0 800 350"></svg>
+      </div>
+    </div>
+
+    <!-- Graphique Lignes - Tendances Health Score -->
+    <div class="chart-section">
+      <h3>Évolution des Health Scores - Top 10 Clients</h3>
+      <div class="chart-container" style="height: 350px;">
+        <svg id="chartHealthTrends" width="100%" height="350" viewBox="0 0 800 350"></svg>
+      </div>
+    </div>
+
     <!-- Segmentation Clients -->
     <div class="chart-section">
       <h3>Segmentation & Scoring Clients</h3>
@@ -1266,6 +1298,10 @@ function renderDashboard() {
   renderKPIs();
   renderRevenueGlobalChart();
   renderClientEvolutionChart();
+  renderSegmentDonutChart();
+  renderRadarChart();
+  renderStackedAreaChart();
+  renderHealthTrendsChart();
   renderSegmentationTable();
   renderRecommendations();
   renderAnalysis();
@@ -1946,6 +1982,498 @@ function renderClientEvolutionChart() {
       <span>${client.name}</span>
     </div>
   `).join('');
+}
+
+// ============================================================================
+// Donut Chart - Répartition CA par Segment
+// ============================================================================
+function renderSegmentDonutChart() {
+  const svg = document.getElementById('chartSegmentDonut');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  // Agrég données par segment
+  const segmentData = {};
+  processedData.forEach(client => {
+    const segment = client.segment || 'Autre';
+    if (!segmentData[segment]) {
+      segmentData[segment] = { total: 0, color: client.segmentColor || '#94a3b8' };
+    }
+    segmentData[segment].total += client.totalRevenue;
+  });
+
+  const segments = Object.entries(segmentData)
+    .map(([name, data]) => ({ name, ...data }))
+    .filter(s => s.total > 0)
+    .sort((a, b) => b.total - a.total);
+
+  const total = segments.reduce((sum, s) => sum + s.total, 0);
+
+  // Dimensions
+  const cx = 300;
+  const cy = 200;
+  const radius = 120;
+  const holeRadius = 70;
+
+  let currentAngle = -Math.PI / 2;
+
+  // Dessiner les segments
+  segments.forEach((segment, i) => {
+    const percentage = (segment.total / total) * 100;
+    const angle = (segment.total / total) * 2 * Math.PI;
+    const endAngle = currentAngle + angle;
+
+    // Calculer les points du segment
+    const x1 = cx + Math.cos(currentAngle) * holeRadius;
+    const y1 = cy + Math.sin(currentAngle) * holeRadius;
+    const x2 = cx + Math.cos(currentAngle) * radius;
+    const y2 = cy + Math.sin(currentAngle) * radius;
+    const x3 = cx + Math.cos(endAngle) * radius;
+    const y3 = cy + Math.sin(endAngle) * radius;
+    const x4 = cx + Math.cos(endAngle) * holeRadius;
+    const y4 = cy + Math.sin(endAngle) * holeRadius;
+
+    const largeArc = angle > Math.PI ? 1 : 0;
+
+    const pathData = [
+      `M ${x1} ${y1}`,
+      `L ${x2} ${y2}`,
+      `A ${radius} ${radius} 0 ${largeArc} 1 ${x3} ${y3}`,
+      `L ${x4} ${y4}`,
+      `A ${holeRadius} ${holeRadius} 0 ${largeArc} 0 ${x1} ${y1}`,
+      'Z'
+    ].join(' ');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', pathData);
+    path.setAttribute('fill', segment.color);
+    path.setAttribute('stroke', '#0f172a');
+    path.setAttribute('stroke-width', '2');
+    path.style.cursor = 'pointer';
+    path.style.transition = 'transform 0.2s';
+
+    path.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.05)';
+      this.style.transformOrigin = `${cx}px ${cy}px`;
+    });
+    path.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+    });
+
+    svg.appendChild(path);
+
+    // Label
+    const midAngle = currentAngle + angle / 2;
+    const labelRadius = radius + 35;
+    const labelX = cx + Math.cos(midAngle) * labelRadius;
+    const labelY = cy + Math.sin(midAngle) * labelRadius;
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', labelX);
+    text.setAttribute('y', labelY);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '12');
+    text.setAttribute('font-weight', '600');
+    text.textContent = `${segment.name} (${percentage.toFixed(1)}%)`;
+    svg.appendChild(text);
+
+    currentAngle = endAngle;
+  });
+
+  // Centre - afficher le total
+  const centerText1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  centerText1.setAttribute('x', cx);
+  centerText1.setAttribute('y', cy - 10);
+  centerText1.setAttribute('text-anchor', 'middle');
+  centerText1.setAttribute('fill', 'var(--accent)');
+  centerText1.setAttribute('font-size', '16');
+  centerText1.setAttribute('font-weight', '700');
+  centerText1.textContent = 'CA Total';
+  svg.appendChild(centerText1);
+
+  const centerText2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  centerText2.setAttribute('x', cx);
+  centerText2.setAttribute('y', cy + 15);
+  centerText2.setAttribute('text-anchor', 'middle');
+  centerText2.setAttribute('fill', 'var(--text)');
+  centerText2.setAttribute('font-size', '18');
+  centerText2.setAttribute('font-weight', '800');
+  centerText2.textContent = formatCurrency(total);
+  svg.appendChild(centerText2);
+}
+
+// ============================================================================
+// Radar Chart - Top 5 Clients Multi-critères
+// ============================================================================
+function renderRadarChart() {
+  const svg = document.getElementById('chartRadar');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  const topClients = processedData.slice(0, 5);
+  const criteria = ['CA Total', 'Health Score', 'Notes', 'Engagement', 'Tendance'];
+
+  const cx = 350;
+  const cy = 225;
+  const maxRadius = 150;
+  const numCriteria = criteria.length;
+
+  // Normaliser les données (0-100)
+  const normalize = (value, max) => Math.min(value / max * 100, 100);
+
+  const normalized = topClients.map(client => ({
+    name: client.name,
+    color: ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6'][processedData.indexOf(client) % 5],
+    values: [
+      normalize(client.totalRevenue, 200000), // CA max 200k
+      client.avgHealthScore, // déjà sur 100
+      normalize(client.totalNotes, 50), // max 50 notes
+      normalize((client.engagementEmails + client.engagementCalls * 2 + client.engagementMeetings * 3), 100), // engagement
+      normalize(client.trend + 50, 100) // tendance centrée à 0
+    ]
+  }));
+
+  // Grilles concentriques
+  [0.2, 0.4, 0.6, 0.8, 1].forEach(ratio => {
+    const points = [];
+    for (let i = 0; i < numCriteria; i++) {
+      const angle = (i / numCriteria) * 2 * Math.PI - Math.PI / 2;
+      const x = cx + Math.cos(angle) * maxRadius * ratio;
+      const y = cy + Math.sin(angle) * maxRadius * ratio;
+      points.push(`${x},${y}`);
+    }
+    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('points', points.join(' '));
+    polygon.setAttribute('fill', 'none');
+    polygon.setAttribute('stroke', 'rgba(148, 163, 184, 0.2)');
+    polygon.setAttribute('stroke-width', '1');
+    svg.appendChild(polygon);
+  });
+
+  // Axes
+  for (let i = 0; i < numCriteria; i++) {
+    const angle = (i / numCriteria) * 2 * Math.PI - Math.PI / 2;
+    const x = cx + Math.cos(angle) * maxRadius;
+    const y = cy + Math.sin(angle) * maxRadius;
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', x);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', 'rgba(148, 163, 184, 0.3)');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+
+    // Labels
+    const labelX = cx + Math.cos(angle) * (maxRadius + 30);
+    const labelY = cy + Math.sin(angle) * (maxRadius + 30);
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', labelX);
+    text.setAttribute('y', labelY);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '11');
+    text.setAttribute('font-weight', '600');
+    text.textContent = criteria[i];
+    svg.appendChild(text);
+  }
+
+  // Polygones clients
+  normalized.forEach(client => {
+    const points = [];
+    for (let i = 0; i < numCriteria; i++) {
+      const angle = (i / numCriteria) * 2 * Math.PI - Math.PI / 2;
+      const radius = (client.values[i] / 100) * maxRadius;
+      const x = cx + Math.cos(angle) * radius;
+      const y = cy + Math.sin(angle) * radius;
+      points.push(`${x},${y}`);
+    }
+
+    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('points', points.join(' '));
+    polygon.setAttribute('fill', client.color);
+    polygon.setAttribute('fill-opacity', '0.2');
+    polygon.setAttribute('stroke', client.color);
+    polygon.setAttribute('stroke-width', '2');
+    polygon.style.cursor = 'pointer';
+    svg.appendChild(polygon);
+  });
+
+  // Légende
+  normalized.forEach((client, i) => {
+    const legendY = 30 + i * 20;
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', 20);
+    rect.setAttribute('y', legendY);
+    rect.setAttribute('width', 15);
+    rect.setAttribute('height', 15);
+    rect.setAttribute('fill', client.color);
+    svg.appendChild(rect);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', 40);
+    text.setAttribute('y', legendY + 12);
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '12');
+    text.textContent = client.name;
+    svg.appendChild(text);
+  });
+}
+
+// ============================================================================
+// Stacked Area Chart - Évolution CA par Segment
+// ============================================================================
+function renderStackedAreaChart() {
+  const svg = document.getElementById('chartStackedArea');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  const years = ['2022', '2023', '2024', '2025'];
+  const segments = [...new Set(processedData.map(c => c.segment))].filter(Boolean);
+
+  // Données par segment et année
+  const data = years.map(year => {
+    const yearData = { year };
+    let cumulative = 0;
+    segments.forEach(segment => {
+      const total = processedData
+        .filter(c => c.segment === segment)
+        .reduce((sum, c) => sum + (c.years[year] || 0), 0);
+      cumulative += total;
+      yearData[segment] = cumulative;
+      yearData[`${segment}_base`] = cumulative - total;
+    });
+    return yearData;
+  });
+
+  const width = 800;
+  const height = 350;
+  const padding = 60;
+  const chartWidth = width - 2 * padding;
+  const chartHeight = height - 2 * padding - 40;
+
+  const maxValue = Math.max(...data.map(d =>
+    Math.max(...segments.map(s => d[s] || 0))
+  ), 1);
+
+  const segmentColors = {
+    'Stratégique': '#6366f1',
+    'Clé': '#22c55e',
+    'Régulier': '#f59e0b',
+    'À Risque': '#ef4444',
+    'Dormant': '#94a3b8',
+    'Prospect': '#8b5cf6'
+  };
+
+  // Grille
+  [0, 0.25, 0.5, 0.75, 1].forEach(ratio => {
+    const y = padding + chartHeight - ratio * chartHeight;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', padding);
+    line.setAttribute('y1', y);
+    line.setAttribute('x2', width - padding);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', 'rgba(148, 163, 184, 0.2)');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', padding - 10);
+    text.setAttribute('y', y + 4);
+    text.setAttribute('text-anchor', 'end');
+    text.setAttribute('fill', 'var(--text-muted)');
+    text.setAttribute('font-size', '10');
+    text.textContent = `${(maxValue * ratio / 1000).toFixed(0)}k€`;
+    svg.appendChild(text);
+  });
+
+  // Aires empilées
+  segments.reverse().forEach(segment => {
+    const points = [];
+
+    // Points supérieurs
+    data.forEach((d, i) => {
+      const x = padding + (i / (years.length - 1)) * chartWidth;
+      const y = padding + chartHeight - ((d[segment] || 0) / maxValue) * chartHeight;
+      points.push(`${x},${y}`);
+    });
+
+    // Points inférieurs (inversés)
+    for (let i = data.length - 1; i >= 0; i--) {
+      const d = data[i];
+      const x = padding + (i / (years.length - 1)) * chartWidth;
+      const y = padding + chartHeight - ((d[`${segment}_base`] || 0) / maxValue) * chartHeight;
+      points.push(`${x},${y}`);
+    }
+
+    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('points', points.join(' '));
+    polygon.setAttribute('fill', segmentColors[segment] || '#94a3b8');
+    polygon.setAttribute('fill-opacity', '0.7');
+    polygon.setAttribute('stroke', segmentColors[segment] || '#94a3b8');
+    polygon.setAttribute('stroke-width', '2');
+    svg.appendChild(polygon);
+  });
+
+  // Labels années
+  years.forEach((year, i) => {
+    const x = padding + (i / (years.length - 1)) * chartWidth;
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', x);
+    text.setAttribute('y', padding + chartHeight + 25);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '12');
+    text.setAttribute('font-weight', '600');
+    text.textContent = year;
+    svg.appendChild(text);
+  });
+
+  // Légende
+  segments.reverse().forEach((segment, i) => {
+    const legendX = 50 + Math.floor(i / 2) * 150;
+    const legendY = height - 25 + (i % 2) * 20;
+
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', legendX);
+    rect.setAttribute('y', legendY);
+    rect.setAttribute('width', 15);
+    rect.setAttribute('height', 15);
+    rect.setAttribute('fill', segmentColors[segment] || '#94a3b8');
+    svg.appendChild(rect);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', legendX + 20);
+    text.setAttribute('y', legendY + 12);
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '11');
+    text.textContent = segment;
+    svg.appendChild(text);
+  });
+}
+
+// ============================================================================
+// Health Trends Line Chart - Évolution Health Scores
+// ============================================================================
+function renderHealthTrendsChart() {
+  const svg = document.getElementById('chartHealthTrends');
+  if (!svg) return;
+  svg.innerHTML = '';
+
+  // Simuler évolution health score (données fictives basées sur tendances)
+  const topClients = processedData.slice(0, 10);
+  const years = ['2022', '2023', '2024', '2025'];
+
+  const width = 800;
+  const height = 350;
+  const padding = 60;
+  const chartWidth = width - 2 * padding;
+  const chartHeight = height - 2 * padding - 40;
+
+  // Grille
+  [0, 25, 50, 75, 100].forEach(value => {
+    const y = padding + chartHeight - (value / 100) * chartHeight;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', padding);
+    line.setAttribute('y1', y);
+    line.setAttribute('x2', width - padding);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', 'rgba(148, 163, 184, 0.2)');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', padding - 10);
+    text.setAttribute('y', y + 4);
+    text.setAttribute('text-anchor', 'end');
+    text.setAttribute('fill', 'var(--text-muted)');
+    text.setAttribute('font-size', '10');
+    text.textContent = value;
+    svg.appendChild(text);
+  });
+
+  const colors = ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899', '#f97316', '#84cc16', '#a855f7'];
+
+  // Lignes pour chaque client
+  topClients.forEach((client, clientIdx) => {
+    const points = [];
+
+    years.forEach((year, i) => {
+      // Simuler score basé sur CA et tendance
+      const revenue = client.years[year] || 0;
+      const baseScore = client.avgHealthScore;
+      const variation = (revenue > 0 ? Math.random() * 20 - 10 : -20);
+      const score = Math.max(0, Math.min(100, baseScore + variation));
+
+      const x = padding + (i / (years.length - 1)) * chartWidth;
+      const y = padding + chartHeight - (score / 100) * chartHeight;
+      points.push({ x, y, score, year });
+    });
+
+    // Ligne
+    const pathData = points.map((p, i) =>
+      `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`
+    ).join(' ');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', pathData);
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', colors[clientIdx]);
+    path.setAttribute('stroke-width', '2');
+    path.style.cursor = 'pointer';
+    svg.appendChild(path);
+
+    // Points
+    points.forEach(p => {
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', p.x);
+      circle.setAttribute('cy', p.y);
+      circle.setAttribute('r', '4');
+      circle.setAttribute('fill', colors[clientIdx]);
+      circle.setAttribute('stroke', '#0f172a');
+      circle.setAttribute('stroke-width', '2');
+      circle.style.cursor = 'pointer';
+      svg.appendChild(circle);
+    });
+  });
+
+  // Labels années
+  years.forEach((year, i) => {
+    const x = padding + (i / (years.length - 1)) * chartWidth;
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', x);
+    text.setAttribute('y', padding + chartHeight + 25);
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '12');
+    text.setAttribute('font-weight', '600');
+    text.textContent = year;
+    svg.appendChild(text);
+  });
+
+  // Légende
+  topClients.forEach((client, i) => {
+    const legendX = 60 + Math.floor(i / 2) * 150;
+    const legendY = height - 30 + (i % 2) * 18;
+
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', legendX);
+    rect.setAttribute('y', legendY);
+    rect.setAttribute('width', 12);
+    rect.setAttribute('height', 12);
+    rect.setAttribute('fill', colors[i]);
+    svg.appendChild(rect);
+
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', legendX + 18);
+    text.setAttribute('y', legendY + 10);
+    text.setAttribute('fill', 'var(--text)');
+    text.setAttribute('font-size', '10');
+    text.textContent = client.name;
+    svg.appendChild(text);
+  });
 }
 
 // ============================================================================
