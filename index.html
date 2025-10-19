@@ -717,38 +717,6 @@ details[open] summary {
       <div class="legend" id="legendClientEvolution"></div>
     </div>
 
-    <!-- Graphique Donut - Répartition par Segment -->
-    <div class="chart-section">
-      <h3>Répartition du CA par Segment Client</h3>
-      <div class="chart-container" style="height: 400px; display: flex; align-items: center; justify-content: center;">
-        <svg id="chartSegmentDonut" width="100%" height="400" viewBox="0 0 600 400"></svg>
-      </div>
-    </div>
-
-    <!-- Graphique Radar - Top 5 Clients (Multi-critères) -->
-    <div class="chart-section">
-      <h3>Analyse Multi-critères - Top 5 Clients</h3>
-      <div class="chart-container" style="height: 450px;">
-        <svg id="chartRadar" width="100%" height="450" viewBox="0 0 700 450"></svg>
-      </div>
-    </div>
-
-    <!-- Graphique Aires Empilées - CA par Segment au fil du temps -->
-    <div class="chart-section">
-      <h3>Évolution du CA par Segment (2022-2025)</h3>
-      <div class="chart-container" style="height: 350px;">
-        <svg id="chartStackedArea" width="100%" height="350" viewBox="0 0 800 350"></svg>
-      </div>
-    </div>
-
-    <!-- Graphique Lignes - Tendances Health Score -->
-    <div class="chart-section">
-      <h3>Évolution des Health Scores - Top 10 Clients</h3>
-      <div class="chart-container" style="height: 350px;">
-        <svg id="chartHealthTrends" width="100%" height="350" viewBox="0 0 800 350"></svg>
-      </div>
-    </div>
-
     <!-- Segmentation Clients -->
     <div class="chart-section">
       <h3>Segmentation & Scoring Clients</h3>
@@ -773,11 +741,14 @@ details[open] summary {
             <tr>
               <th data-sort="rank">Rang</th>
               <th data-sort="name">Client</th>
-              <th data-sort="segment">Segment</th>
+              <th data-sort="segment" title="Catégorie client" style="font-size: 11px;">Cat.</th>
               <th data-sort="healthScore">Health Score</th>
               <th data-sort="total">CA Total</th>
-              <th data-sort="sentiment">Sentiment Relationnel</th>
-              <th data-sort="trend">Tendance</th>
+              <th data-sort="2022" style="font-size: 11px;">2022</th>
+              <th data-sort="2023" style="font-size: 11px;">2023</th>
+              <th data-sort="2024" style="font-size: 11px;">2024</th>
+              <th data-sort="2025" style="font-size: 11px;">2025</th>
+              <th data-sort="sentiment">Sentiment</th>
               <th data-sort="contacts">Contacts</th>
               <th>Action</th>
             </tr>
@@ -1298,10 +1269,6 @@ function renderDashboard() {
   renderKPIs();
   renderRevenueGlobalChart();
   renderClientEvolutionChart();
-  renderSegmentDonutChart();
-  renderRadarChart();
-  renderStackedAreaChart();
-  renderHealthTrendsChart();
   renderSegmentationTable();
   renderRecommendations();
   renderAnalysis();
@@ -2539,12 +2506,38 @@ function renderSegmentationTable() {
   });
 
   tbody.innerHTML = filteredData.map((client, idx) => {
-    // Extraire les contacts depuis les notes HTML
+    // Extraire les contacts depuis les notes HTML - Version intelligente
     let contacts = 'N/A';
     if (client.latestNoteBody) {
-      const contactMatch = client.latestNoteBody.match(/<strong>Contact\s*:\s*<\/strong>(.*?)<\/p>/i);
+      // Chercher pattern "Contact: ..."
+      let contactMatch = client.latestNoteBody.match(/<strong>Contact\s*:\s*<\/strong>(.*?)<\/p>/i);
       if (contactMatch) {
         contacts = contactMatch[1].replace(/<[^>]*>/g, '').trim();
+      } else {
+        // Chercher patterns de noms (M./Mme Prénom NOM, ou juste Prénom NOM)
+        const namePatterns = [
+          /\b(M\.|Mme|Monsieur|Madame)\s+([A-ZÀ-Ü][a-zà-ü]+)\s+([A-ZÀ-Ü]{2,})\b/g,
+          /\b([A-ZÀ-Ü][a-zà-ü]+)\s+([A-ZÀ-Ü]{2,})\b/g
+        ];
+
+        const foundNames = new Set();
+        const plainText = client.latestNoteBody.replace(/<[^>]*>/g, ' ');
+
+        for (const pattern of namePatterns) {
+          let match;
+          while ((match = pattern.exec(plainText)) !== null && foundNames.size < 3) {
+            const name = match[0].trim();
+            // Éviter les mots communs qui ne sont pas des noms
+            if (!['Dans', 'Pour', 'Selon', 'Client', 'Société'].includes(name.split(' ')[0])) {
+              foundNames.add(name);
+            }
+          }
+          if (foundNames.size > 0) break;
+        }
+
+        if (foundNames.size > 0) {
+          contacts = Array.from(foundNames).join(', ');
+        }
       }
     }
 
@@ -2552,44 +2545,53 @@ function renderSegmentationTable() {
     const healthColor = client.avgHealthScore >= 70 ? 'var(--green)' :
                        client.avgHealthScore >= 40 ? 'var(--orange)' : 'var(--red)';
 
-    // Analyse sentimentale granulaire basée sur keywords
-    const positiveScore = client.notesPositiveKeywords || 0;
-    const negativeScore = client.notesNegativeKeywords || 0;
-    const actionScore = client.notesActionKeywords || 0;
-    const meetingScore = client.notesMeetingKeywords || 0;
+    // Analyse sentimentale granulaire
+    const baseSentiment = client.notesSentiment || 'neutral';
+    const notesCount = client.totalNotes || 0;
+    const engagement = (client.engagementEmails || 0) +
+                      (client.engagementCalls || 0) * 2 +
+                      (client.engagementMeetings || 0) * 3;
+    const healthScore = client.avgHealthScore || 0;
 
     let sentimentText = 'Non évalué';
     let sentimentColor = '#94a3b8';
 
-    // Calcul du sentiment net
-    const sentimentNet = positiveScore - negativeScore;
-    const engagementLevel = actionScore + meetingScore;
-
-    if (sentimentNet >= 10 && engagementLevel >= 8) {
-      sentimentText = 'Excellent';
-      sentimentColor = '#10b981'; // vert foncé
-    } else if (sentimentNet >= 5 && engagementLevel >= 5) {
-      sentimentText = 'Très positif';
-      sentimentColor = '#22c55e'; // vert
-    } else if (sentimentNet >= 3) {
-      sentimentText = 'Positif';
-      sentimentColor = '#4ade80'; // vert clair
-    } else if (sentimentNet >= 0 && sentimentNet < 3) {
-      sentimentText = 'Neutre favorable';
-      sentimentColor = '#a3e635'; // vert-jaune
-    } else if (sentimentNet > -3 && sentimentNet < 0) {
-      sentimentText = 'Neutre';
-      sentimentColor = '#fbbf24'; // jaune
-    } else if (sentimentNet > -5) {
-      sentimentText = 'Préoccupant';
-      sentimentColor = '#fb923c'; // orange
-    } else if (sentimentNet > -10) {
-      sentimentText = 'Négatif';
-      sentimentColor = '#f87171'; // rouge clair
+    if (baseSentiment === 'positive') {
+      // Positif avec granularité
+      if (notesCount >= 10 && engagement >= 20 && healthScore >= 80) {
+        sentimentText = 'Excellent';
+        sentimentColor = '#10b981';
+      } else if (notesCount >= 5 && engagement >= 10) {
+        sentimentText = 'Très positif';
+        sentimentColor = '#22c55e';
+      } else {
+        sentimentText = 'Positif';
+        sentimentColor = '#4ade80';
+      }
+    } else if (baseSentiment === 'negative') {
+      // Négatif avec granularité
+      if (notesCount >= 5 || healthScore < 30) {
+        sentimentText = 'Très négatif';
+        sentimentColor = '#ef4444';
+      } else {
+        sentimentText = 'Négatif';
+        sentimentColor = '#f87171';
+      }
     } else {
-      sentimentText = 'Très négatif';
-      sentimentColor = '#ef4444'; // rouge
+      // Neutre avec granularité
+      if (engagement >= 15 && notesCount >= 5) {
+        sentimentText = 'Neutre favorable';
+        sentimentColor = '#a3e635';
+      } else if (healthScore < 40 || notesCount < 3) {
+        sentimentText = 'Préoccupant';
+        sentimentColor = '#fb923c';
+      } else {
+        sentimentText = 'Neutre';
+        sentimentColor = '#fbbf24';
+      }
     }
+
+    const sentimentScore = `(${notesCount} notes, ${engagement} eng.)`;
 
     // Calcul tendance intelligente (année sur année)
     const years = ['2022', '2023', '2024', '2025'];
@@ -2613,21 +2615,38 @@ function renderSegmentationTable() {
           <strong>${client.name}</strong>
           ${client.domain ? `<br><small style="color: var(--text-muted);">${client.domain}</small>` : ''}
         </td>
-        <td>
-          <div style="font-size: 11px; font-weight: 600; color: ${client.segmentColor || '#94a3b8'};">${client.segment}</div>
-          <small style="color: var(--text-muted); font-size: 9px;">${client.segmentReason}</small>
+        <td style="text-align: center;">
+          <div style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: ${client.segmentColor || '#94a3b8'};" title="${client.segment}: ${client.segmentReason}"></div>
         </td>
         <td>
           <div style="font-size: 18px; font-weight: 800; color: ${healthColor};">${client.avgHealthScore}</div>
           <small style="color: var(--text-muted); font-size: 10px;">/100</small>
         </td>
         <td style="font-weight: 700; color: #6366f1;">${formatCurrency(client.totalRevenue)}</td>
+        ${years.map((year, idx) => {
+          const revenue = client.years[year] || 0;
+          let yearTrend = '';
+          let yearTrendColor = '#94a3b8';
+
+          if (idx > 0) {
+            const prevRevenue = client.years[years[idx - 1]] || 0;
+            if (prevRevenue > 0 && revenue > 0) {
+              const change = ((revenue - prevRevenue) / prevRevenue * 100).toFixed(1);
+              yearTrend = (change > 0 ? '+' : '') + change + '%';
+              yearTrendColor = change > 0 ? '#22c55e' : change < 0 ? '#ef4444' : '#94a3b8';
+            }
+          }
+
+          return `
+            <td style="text-align: right; font-size: 11px;">
+              <div style="font-weight: 600;">${revenue > 0 ? formatCurrency(revenue) : '-'}</div>
+              ${yearTrend ? `<small style="color: ${yearTrendColor}; font-size: 9px;">${yearTrend}</small>` : ''}
+            </td>
+          `;
+        }).join('')}
         <td style="text-align: center;">
           <div style="font-weight: 700; color: ${sentimentColor}; font-size: 13px;">${sentimentText}</div>
-          <small style="color: var(--text-muted); font-size: 9px;">Score: ${positiveScore - negativeScore}</small>
-        </td>
-        <td style="text-align: center;">
-          <div style="font-size: 14px; font-weight: 700; color: ${trendColor};">${trendDisplay}</div>
+          <small style="color: var(--text-muted); font-size: 9px;">${sentimentScore}</small>
         </td>
         <td>
           <div style="font-size: 11px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${contacts}">
