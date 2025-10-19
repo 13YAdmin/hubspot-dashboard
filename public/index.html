@@ -968,9 +968,16 @@ async function loadHubSpotData() {
       document.getElementById('dashboardContent').classList.add('hidden');
       document.getElementById('exportSection').classList.add('hidden');
 
-      setTimeout(() => {
+      // Afficher IMMÉDIATEMENT sans timeout
+      console.log('📊 Données chargées:', result.data.length, 'deals');
+
+      try {
         processData();
+        console.log('✅ Données traitées:', processedData.length, 'clients');
+
         renderDashboard();
+        console.log('✅ Dashboard rendu');
+
         document.getElementById('loadingState').classList.add('hidden');
         document.getElementById('dashboardContent').classList.remove('hidden');
         document.getElementById('exportSection').classList.remove('hidden');
@@ -987,7 +994,11 @@ async function loadHubSpotData() {
             🕐 Mis à jour: ${updateTime}
           </small>`;
         statusEl.style.color = '#4CAF50';
-      }, 500);
+      } catch (error) {
+        console.error('❌ ERREUR lors du traitement:', error);
+        statusEl.innerHTML = `❌ Erreur lors du traitement des données:<br>${error.message}`;
+        statusEl.style.color = '#f44336';
+      }
     } else {
       throw new Error('Format de données invalide');
     }
