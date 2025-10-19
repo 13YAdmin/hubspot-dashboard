@@ -1,7 +1,7 @@
 {
   "success": true,
-  "timestamp": "2025-10-19T18:45:26.688Z",
-  "count": 73,
+  "timestamp": "2025-10-19T19:12:12.205Z",
+  "count": 72,
   "data": [
     {
       "dealId": "297066470643",
@@ -317,7 +317,7 @@
     },
     {
       "dealId": "297442385104",
-      "dealName": "ARCELORMITTAL",
+      "dealName": "Arcelormittal",
       "amount": 6100,
       "closeDate": "2024-12-30T23:00:00Z",
       "createDate": "2025-08-28T08:17:45.550Z",
@@ -859,45 +859,6 @@
       "segmentColor": "#3498db",
       "segmentPriority": 2,
       "segmentReason": "CA 116k€, relation stable",
-      "year": 2023
-    },
-    {
-      "dealId": "330494527715",
-      "dealName": "Colgate",
-      "amount": 30000,
-      "closeDate": "2023-12-31T15:16:42.376Z",
-      "createDate": "2025-10-13T14:46:27.642Z",
-      "stage": "3442211051",
-      "pipeline": "2496239810",
-      "probability": "1",
-      "companyId": 260128816334,
-      "companyName": "Colgate",
-      "companyDomain": "colgate.com",
-      "companyIndustry": "CONSUMER_GOODS",
-      "companyRevenue": 17421000000,
-      "companyEmployees": 34000,
-      "ownerId": "30088765",
-      "ownerName": "Ilies Bahari",
-      "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 1,
-      "notesAvgLength": 277,
-      "notesHasRecent": true,
-      "notesSentiment": "neutral",
-      "notesPositiveKeywords": 0,
-      "notesNegativeKeywords": 0,
-      "notesActionKeywords": 0,
-      "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-16T09:45:09.409Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Faux projet, une fille de chez eux qui voulait peut-être faire un peu de zelle et présenter quelque chose mais rien de véritable derrière.</p><ul><li><p style=\"margin:0;\">Ne pas recontacter</p></li></ul></div>",
-      "engagementEmails": 0,
-      "engagementCalls": 0,
-      "engagementMeetings": 0,
-      "engagementLastActivity": "",
-      "healthScore": 82,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
       "year": 2023
     },
     {
@@ -2854,7 +2815,7 @@
   "metadata": {
     "totalOwners": 11,
     "totalCompanies": 1959,
-    "totalDeals": 73,
+    "totalDeals": 72,
     "enrichmentComplete": true,
     "features": [
       "All notes analyzed",
