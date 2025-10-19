@@ -681,19 +681,10 @@ details[open] summary {
     <p>Analyses stratégiques et recommandations pour la gestion de portefeuille clients</p>
   </div>
 
-  <!-- Load from HubSpot -->
-  <div class="upload-section">
-    <h3>🔄 Dashboard Account Manager</h3>
-    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 8px;">
-      📊 Données mises à jour automatiquement toutes les 6 heures depuis HubSpot
-    </p>
-    <p style="color: var(--green); font-size: 12px; margin-bottom: 16px;">
-      ✅ Enrichies avec notes, relations clients, et scoring Account Management
-    </p>
-    <button id="loadHubSpotBtn" style="padding: 12px 32px; background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%); border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);">
-      🚀 Charger le Dashboard
-    </button>
-    <div id="loadStatus" style="margin-top: 12px; font-size: 13px; color: var(--text-muted);"></div>
+  <!-- Loading indicator -->
+  <div id="loadStatus" style="text-align: center; padding: 20px; color: var(--text-muted);">
+    <div style="font-size: 18px; margin-bottom: 8px;">🔄 Chargement des données...</div>
+    <p style="font-size: 13px;">Récupération des données enrichies depuis HubSpot</p>
   </div>
 
 
@@ -860,14 +851,9 @@ let sortDirection = 'asc';
 // Load data from data.json (auto-updated by GitHub Actions)
 // ============================================================================
 async function loadHubSpotData() {
-  const btn = document.getElementById('loadHubSpotBtn');
   const statusEl = document.getElementById('loadStatus');
 
-  // Disable button and show loading
-  btn.disabled = true;
-  btn.textContent = '⏳ Chargement...';
-  statusEl.textContent = '🔄 Chargement des données HubSpot...';
-  statusEl.style.color = '#00D4FF';
+  statusEl.innerHTML = '<div style="font-size: 18px; margin-bottom: 8px;">🔄 Chargement...</div><p style="font-size: 13px;">Récupération des données enrichies</p>';
 
   try {
     // Charger data.json (généré par GitHub Actions)
@@ -889,65 +875,34 @@ async function loadHubSpotData() {
       sortColumn = 'rank';
       sortDirection = 'asc';
 
-      document.getElementById('loadingState').classList.remove('hidden');
-      document.getElementById('dashboardContent').classList.add('hidden');
-
-      // Afficher IMMÉDIATEMENT sans timeout
       console.log('📊 Données chargées:', result.data.length, 'deals');
 
-      try {
-        processData();
-        console.log('✅ Données traitées:', processedData.length, 'clients');
+      processData();
+      console.log('✅ Données traitées:', processedData.length, 'clients');
 
-        renderDashboard();
-        console.log('✅ Dashboard rendu');
+      renderDashboard();
+      console.log('✅ Dashboard rendu');
 
-        document.getElementById('loadingState').classList.add('hidden');
-        document.getElementById('dashboardContent').classList.remove('hidden');
-
-        // Afficher les infos de mise à jour
-        const updateTime = new Date(result.timestamp).toLocaleString('fr-FR');
-        const avgScore = result.metadata?.avg_relationship_score || 0;
-        const notesCount = result.metadata?.notes_total || 0;
-
-        statusEl.innerHTML = `✅ ${result.count} deals chargés !<br>
-          <small style="color: var(--text-muted);">
-            📊 Score relation moyen: ${avgScore}/100 |
-            📝 ${notesCount} notes |
-            🕐 Mis à jour: ${updateTime}
-          </small>`;
-        statusEl.style.color = '#4CAF50';
-      } catch (error) {
-        console.error('❌ ERREUR lors du traitement:', error);
-        statusEl.innerHTML = `❌ Erreur lors du traitement des données:<br>${error.message}`;
-        statusEl.style.color = '#f44336';
-      }
+      // Hide loading, show dashboard
+      statusEl.style.display = 'none';
+      document.getElementById('loadingState').classList.add('hidden');
+      document.getElementById('dashboardContent').classList.remove('hidden');
     } else {
       throw new Error('Format de données invalide');
     }
   } catch (error) {
-    console.error('Erreur:', error);
-    statusEl.innerHTML = `❌ Erreur: ${error.message}<br>
-      <small style="color: var(--text-muted);">
-        Les données n'ont pas encore été générées. Attends quelques minutes que GitHub Actions s'exécute.
-      </small>`;
-    statusEl.style.color = '#f44336';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '🚀 Charger le Dashboard';
+    console.error('❌ Erreur:', error);
+    statusEl.innerHTML = `<div style="color: var(--red); font-size: 16px;">❌ Erreur: ${error.message}</div>
+      <p style="font-size: 13px; margin-top: 8px; color: var(--text-muted);">
+        Impossible de charger les données. Vérifie que le workflow GitHub Actions s'est exécuté.
+      </p>`;
   }
 }
 
-// Event listener sur le bouton
-document.getElementById('loadHubSpotBtn').addEventListener('click', loadHubSpotData);
-
-// Chargement automatique au démarrage de la page
+// Chargement automatique immédiat au démarrage de la page
 window.addEventListener('DOMContentLoaded', () => {
-  // Attendre 1 seconde puis charger automatiquement
-  setTimeout(() => {
-    console.log('🔄 Chargement automatique des données...');
-    loadHubSpotData();
-  }, 1000);
+  console.log('🔄 Chargement automatique des données...');
+  loadHubSpotData();
 });
 
 // ============================================================================
