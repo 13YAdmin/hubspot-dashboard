@@ -98,10 +98,6 @@ body {
   transform: scale(1.05);
 }
 
-#exportBtn:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5) !important;
-}
 
 /* KPI Grid */
 .kpi-grid {
@@ -700,22 +696,6 @@ details[open] summary {
     <div id="loadStatus" style="margin-top: 12px; font-size: 13px; color: var(--text-muted);"></div>
   </div>
 
-  <!-- Export Button -->
-  <div id="exportSection" class="hidden" style="text-align: center; margin-bottom: 20px;">
-    <button id="exportBtn" style="padding: 12px 24px; background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%); border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: 600; font-size: 14px; transition: all 0.3s ease; box-shadow: 0 4px 16px rgba(34, 197, 94, 0.4);">
-      📥 Exporter le Rapport (HTML Interactif)
-    </button>
-  </div>
-
-  <!-- Manual CSV Upload (fallback) -->
-  <details style="margin-bottom: 20px; padding: 16px; background: var(--bg-card); border-radius: 10px; border: 1px solid var(--border);">
-    <summary style="cursor: pointer; font-size: 14px; color: var(--text-muted); font-weight: 600;">
-      📂 Alternative : Charger un fichier CSV manuellement
-    </summary>
-    <div style="margin-top: 16px; text-align: center;">
-      <input type="file" id="dealsFile" accept=".csv" style="padding: 10px 20px; background: var(--accent); border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: 600;"/>
-    </div>
-  </details>
 
   <!-- Loading -->
   <div id="loadingState" class="loading hidden">
@@ -877,63 +857,8 @@ let sortColumn = 'rank';
 let sortDirection = 'asc';
 
 // ============================================================================
-// CSV Parsing
-// ============================================================================
-function parseCSV(csvText) {
-  const lines = csvText.trim().split('\n');
-  const headers = lines[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-  const cleanHeaders = headers.map(h => h.replace(/^"|"$/g, '').trim());
-
-  const data = [];
-  for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-    const row = {};
-    cleanHeaders.forEach((header, idx) => {
-      row[header] = values[idx] ? values[idx].replace(/^"|"$/g, '').trim() : '';
-    });
-    data.push(row);
-  }
-  return data;
-}
-
-// ============================================================================
-// File Upload
-// ============================================================================
-document.getElementById('dealsFile').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  // Clear cache to avoid data mixing
-  dealsData = [];
-  processedData = [];
-  currentFilters = {
-    year: 'all'
-  };
-  sortColumn = 'rank';
-  sortDirection = 'asc';
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    dealsData = parseCSV(e.target.result);
-
-    if (dealsData.length > 0) {
-      document.getElementById('loadingState').classList.remove('hidden');
-      document.getElementById('dashboardContent').classList.add('hidden');
-      document.getElementById('exportSection').classList.add('hidden');
-
-      setTimeout(() => {
-        processData();
-        renderDashboard();
-        document.getElementById('loadingState').classList.add('hidden');
-        document.getElementById('dashboardContent').classList.remove('hidden');
-        document.getElementById('exportSection').classList.remove('hidden');
-      }, 500);
-    }
-  };
-  reader.readAsText(file);
-});
-
 // Load data from data.json (auto-updated by GitHub Actions)
+// ============================================================================
 async function loadHubSpotData() {
   const btn = document.getElementById('loadHubSpotBtn');
   const statusEl = document.getElementById('loadStatus');
@@ -966,7 +891,6 @@ async function loadHubSpotData() {
 
       document.getElementById('loadingState').classList.remove('hidden');
       document.getElementById('dashboardContent').classList.add('hidden');
-      document.getElementById('exportSection').classList.add('hidden');
 
       // Afficher IMMÉDIATEMENT sans timeout
       console.log('📊 Données chargées:', result.data.length, 'deals');
@@ -980,7 +904,6 @@ async function loadHubSpotData() {
 
         document.getElementById('loadingState').classList.add('hidden');
         document.getElementById('dashboardContent').classList.remove('hidden');
-        document.getElementById('exportSection').classList.remove('hidden');
 
         // Afficher les infos de mise à jour
         const updateTime = new Date(result.timestamp).toLocaleString('fr-FR');
@@ -2438,81 +2361,6 @@ function initFilters() {
     th.style.cursor = 'pointer';
   });
 }
-
-// ============================================================================
-// Export Functionality
-// ============================================================================
-document.getElementById('exportBtn').addEventListener('click', function() {
-  // Clone the current document
-  const docClone = document.documentElement.cloneNode(true);
-
-  // Hide upload section in export
-  const uploadSection = docClone.querySelector('.upload-section');
-  if (uploadSection) uploadSection.style.display = 'none';
-
-  // Hide export button in export
-  const exportSection = docClone.querySelector('#exportSection');
-  if (exportSection) exportSection.style.display = 'none';
-
-  // Hide loading state
-  const loadingState = docClone.querySelector('#loadingState');
-  if (loadingState) loadingState.classList.add('hidden');
-
-  // Show dashboard content
-  const dashboardContent = docClone.querySelector('#dashboardContent');
-  if (dashboardContent) dashboardContent.classList.remove('hidden');
-
-  // Embed data directly in script
-  const scriptTag = docClone.querySelector('script');
-  if (scriptTag) {
-    const embeddedData = `
-// ============================================================================
-// EMBEDDED DATA (Pre-loaded)
-// ============================================================================
-let dealsData = ${JSON.stringify(dealsData)};
-let processedData = ${JSON.stringify(processedData)};
-let currentFilters = {
-  year: 'all'
-};
-let sortColumn = 'rank';
-let sortDirection = 'asc';
-
-// Auto-render on load
-window.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('loadingState').classList.add('hidden');
-  document.getElementById('dashboardContent').classList.remove('hidden');
-  renderDashboard();
-});
-`;
-    scriptTag.textContent = embeddedData + '\n\n' + scriptTag.textContent.replace(/\/\/ ={50,}\n\/\/ Global State[\s\S]*?let sortDirection = 'asc';/m, '');
-  }
-
-  // Generate filename with timestamp
-  const timestamp = new Date().toISOString().slice(0, 10);
-  const filename = `hubspot-rapport-${timestamp}.html`;
-
-  // Create blob and download
-  const htmlContent = '<!DOCTYPE html>\n' + docClone.outerHTML;
-  const blob = new Blob([htmlContent], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
-
-  URL.revokeObjectURL(url);
-
-  // Show success message
-  const btn = document.getElementById('exportBtn');
-  const originalText = btn.textContent;
-  btn.textContent = '✅ Rapport exporté !';
-  btn.style.background = 'linear-gradient(135deg, #22c55e 0%, #4ade80 100%)';
-  setTimeout(() => {
-    btn.textContent = originalText;
-    btn.style.background = 'linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%)';
-  }, 2000);
-});
 
 // ============================================================================
 // Info Panel Functions
