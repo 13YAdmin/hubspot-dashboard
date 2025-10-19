@@ -1,0 +1,54 @@
+name: Fetch HubSpot Data
+
+# Déclenche le workflow automatiquement toutes les 6 heures + manuellement
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Toutes les 6 heures
+  workflow_dispatch:  # Permet de lancer manuellement depuis GitHub
+  push:
+    branches:
+      - main  # Lance aussi à chaque push sur main
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permet de push sur le repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch HubSpot Data
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+        run: |
+          node .github/scripts/fetch-hubspot.js
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Créer ou update gh-pages branch
+          git fetch origin gh-pages || git checkout --orphan gh-pages || git checkout gh-pages
+
+          # Copier le contenu de public/ vers la racine
+          cp -r public/* .
+
+          # Ajouter et commit
+          git add index.html data.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Auto-update dashboard and data [skip ci]"
+
+          # Push vers gh-pages
+          git push -f origin gh-pages
+
+          # Retourner sur main
+          git checkout main
