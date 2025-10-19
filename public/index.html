@@ -742,14 +742,13 @@ details[open] summary {
               <th data-sort="rank">Rang</th>
               <th data-sort="name">Client</th>
               <th data-sort="segment">Segment</th>
+              <th data-sort="healthScore">Health Score</th>
               <th data-sort="total">CA Total</th>
-              <th data-sort="2022">2022</th>
-              <th data-sort="2023">2023</th>
-              <th data-sort="2024">2024</th>
-              <th data-sort="2025">2025</th>
-              <th data-sort="trend">Tendance</th>
-              <th data-sort="score">Score</th>
-              <th>Action Recommandée</th>
+              <th data-sort="notes">Notes</th>
+              <th data-sort="sentiment">Sentiment</th>
+              <th data-sort="engagement">Engagement</th>
+              <th data-sort="contacts">Contacts</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody id="segmentationBody"></tbody>
@@ -1931,66 +1930,83 @@ function renderSegmentationTable() {
   });
 
   tbody.innerHTML = filteredData.map((client, idx) => {
-    const trendIcon = client.trend > 10 ? '↗' : client.trend < -10 ? '↘' : '→';
-    const trendColor = client.trend > 10 ? 'color: var(--green)' : client.trend < -10 ? 'color: var(--red)' : 'color: var(--text-muted)';
-
-    // Fonctions helpers pour les cellules d'années
-    const renderYearCell = (year) => {
-      const revenue = client.years[year];
-      const trend = client.yearlyTrends[year];
-
-      if (revenue === 0) {
-        return `<span style="color: var(--text-muted);">-</span>`;
+    // Extraire les contacts depuis les notes HTML
+    let contacts = 'N/A';
+    if (client.latestNoteBody) {
+      const contactMatch = client.latestNoteBody.match(/<strong>Contact\s*:\s*<\/strong>(.*?)<\/p>/i);
+      if (contactMatch) {
+        contacts = contactMatch[1].replace(/<[^>]*>/g, '').trim();
       }
+    }
 
-      let trendColor = 'var(--text-muted)';
-      if (trend.value !== null && trend.value !== 0) {
-        if (trend.value > 20) trendColor = 'var(--green)';
-        else if (trend.value > 0) trendColor = 'var(--green-light)';
-        else if (trend.value < -20) trendColor = 'var(--red)';
-        else if (trend.value < 0) trendColor = 'var(--orange)';
-      }
+    // Couleur du health score
+    const healthColor = client.avgHealthScore >= 70 ? 'var(--green)' :
+                       client.avgHealthScore >= 40 ? 'var(--orange)' : 'var(--red)';
 
-      // Tooltip avec description complète
-      let tooltipText = trend.description;
-      if (trend.currentRevenue && trend.previousRevenue) {
-        tooltipText = `${trend.description}: ${formatCurrency(trend.previousRevenue)} → ${formatCurrency(trend.currentRevenue)}`;
-      } else if (trend.currentRevenue && !trend.previousRevenue) {
-        tooltipText = `${trend.description}: ${formatCurrency(trend.currentRevenue)}`;
-      }
+    // Icône sentiment
+    const sentimentIcon = client.notesSentiment === 'positive' ? '😊' :
+                         client.notesSentiment === 'negative' ? '😟' : '😐';
+    const sentimentColor = client.notesSentiment === 'positive' ? 'var(--green)' :
+                          client.notesSentiment === 'negative' ? 'var(--red)' : 'var(--text-muted)';
 
-      return `
-        <div title="${tooltipText}">
-          <div style="font-weight: 600;">${formatCurrency(revenue)}</div>
-          <div style="font-size: 11px; color: ${trendColor}; margin-top: 2px;">
-            ${trend.label}
-          </div>
-        </div>
-      `;
-    };
+    // Engagement total
+    const totalEngagement = client.engagementEmails + client.engagementCalls + client.engagementMeetings;
 
     return `
-      <tr onclick='showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})'>
+      <tr onclick='showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})' style="cursor: pointer;">
         <td><strong>${idx + 1}</strong></td>
-        <td><strong>${client.name}</strong></td>
-        <td><span class="badge ${client.segment.toLowerCase().replace(' ', '-')}">${client.segment}</span></td>
+        <td>
+          <strong>${client.name}</strong>
+          ${client.domain ? `<br><small style="color: var(--text-muted);">${client.domain}</small>` : ''}
+        </td>
+        <td>
+          <span class="badge ${client.segment.toLowerCase().replace(/[àâäéèêëïîôùûüç\s]/g, c => ({
+            'à':'a','â':'a','ä':'a','é':'e','è':'e','ê':'e','ë':'e',
+            'ï':'i','î':'i','ô':'o','ù':'u','û':'u','ü':'u','ç':'c',' ':'-'
+          })[c] || c)}">${client.segment}</span>
+          <br><small style="color: var(--text-muted); font-size: 10px;">${client.segmentReason}</small>
+        </td>
+        <td>
+          <div style="font-size: 18px; font-weight: 800; color: ${healthColor};">${client.avgHealthScore}/100</div>
+          <small style="color: var(--text-muted);">Score</small>
+        </td>
         <td style="color: var(--green); font-weight: 700;">${formatCurrency(client.totalRevenue)}</td>
-        <td>${renderYearCell('2022')}</td>
-        <td>${renderYearCell('2023')}</td>
-        <td>${renderYearCell('2024')}</td>
-        <td>${renderYearCell('2025')}</td>
-        <td style="${trendColor}"><strong>${trendIcon} ${client.trend.toFixed(1)}%</strong></td>
-        <td><strong class="priority-${client.priority}">${client.score}/100</strong></td>
-        <td style="font-size: 12px;">${client.recommendation}</td>
+        <td>
+          <strong>${client.totalNotes}</strong> note${client.totalNotes > 1 ? 's' : ''}
+          <br><small style="color: var(--text-muted);">${client.notesAvgLength} chars/note</small>
+        </td>
+        <td style="text-align: center;">
+          <span style="font-size: 24px;" title="${client.notesSentiment}">${sentimentIcon}</span>
+          <br><small style="color: ${sentimentColor};">${client.notesSentiment}</small>
+        </td>
+        <td>
+          <div style="font-size: 11px;">
+            📧 ${client.engagementEmails} | 📞 ${client.engagementCalls} | 🤝 ${client.engagementMeetings}
+          </div>
+          <small style="color: var(--text-muted);">Total: ${totalEngagement}</small>
+        </td>
+        <td>
+          <div style="font-size: 11px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${contacts}">
+            ${contacts}
+          </div>
+        </td>
+        <td>
+          <button onclick='event.stopPropagation(); showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})'
+                  style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 11px;">
+            📋 Voir détails
+          </button>
+        </td>
       </tr>
     `;
   }).join('');
 }
 
 // ============================================================================
-// Show Client Details
+// Show Client Details - VERSION ENRICHIE
 // ============================================================================
 function showClientDetails(client) {
+  console.log('📋 Affichage détails client:', client);
+
   const years = ['2022', '2023', '2024', '2025'];
   const activeYears = years.filter(y => client.years[y] > 0);
 
@@ -2011,16 +2027,93 @@ function showClientDetails(client) {
 
   const scoreDeals = Math.min(client.dealCount * 2, 10);
 
+  // Extraire le contenu HTML des notes (nettoyer le HTML)
+  let notesContent = 'Aucune note disponible';
+  if (client.latestNoteBody) {
+    // Convertir le HTML en texte lisible
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = client.latestNoteBody;
+    notesContent = tempDiv.innerHTML; // Garder le HTML pour le formatage
+  }
+
+  // Couleur health score
+  const healthColor = client.avgHealthScore >= 70 ? 'var(--green)' :
+                     client.avgHealthScore >= 40 ? 'var(--orange)' : 'var(--red)';
+
+  const sentimentIcon = client.notesSentiment === 'positive' ? '😊 Positif' :
+                       client.notesSentiment === 'negative' ? '😟 Négatif' : '😐 Neutre';
+  const sentimentColor = client.notesSentiment === 'positive' ? 'var(--green)' :
+                        client.notesSentiment === 'negative' ? 'var(--red)' : 'var(--text-muted)';
+
   const infoContent = `
+    <!-- Header -->
     <div class="info-highlight">
-      <div style="font-size: 20px; font-weight: 800; color: var(--accent); margin-bottom: 8px;">
+      <div style="font-size: 24px; font-weight: 800; color: var(--accent); margin-bottom: 12px;">
         ${client.name}
       </div>
-      <div style="display: flex; gap: 8px; margin-top: 8px;">
-        <span class="badge ${client.segment.toLowerCase().replace(' ', '-')}">${client.segment}</span>
-        <span class="badge" style="background: rgba(99, 102, 241, 0.2); color: var(--accent);">
-          Score: ${client.score}/100
+      ${client.domain ? `<div style="color: var(--text-muted); margin-bottom: 12px;">🌐 ${client.domain}</div>` : ''}
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="badge ${client.segment.toLowerCase().replace(/[àâäéèêëïîôùûüç\s]/g, c => ({
+          'à':'a','â':'a','ä':'a','é':'e','è':'e','ê':'e','ë':'e',
+          'ï':'i','î':'i','ô':'o','ù':'u','û':'u','ü':'u','ç':'c',' ':'-'
+        })[c] || c)}">${client.segment}</span>
+        <span class="badge" style="background: ${healthColor}; color: white;">
+          Health Score: ${client.avgHealthScore}/100
         </span>
+        <span class="badge" style="background: ${sentimentColor}; color: white;">
+          ${sentimentIcon}
+        </span>
+      </div>
+      <div style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">
+        ${client.segmentReason}
+      </div>
+    </div>
+
+    <!-- NOTES COMPLÈTES - LE PLUS IMPORTANT! -->
+    <div style="margin-top: 24px; padding: 20px; background: rgba(99, 102, 241, 0.05); border-radius: 12px; border-left: 4px solid var(--accent);">
+      <div style="font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+        📝 Notes et Informations Client (${client.totalNotes} note${client.totalNotes > 1 ? 's' : ''})
+      </div>
+      <div style="background: var(--bg-card); padding: 16px; border-radius: 8px; line-height: 1.8; color: var(--text);">
+        ${notesContent}
+      </div>
+      ${client.latestNoteDate ? `
+      <div style="margin-top: 12px; font-size: 11px; color: var(--text-muted);">
+        📅 Dernière mise à jour: ${new Date(client.latestNoteDate).toLocaleString('fr-FR')}
+      </div>
+      ` : ''}
+    </div>
+
+    <!-- Engagement & Relationnel -->
+    <div style="margin-top: 20px; padding: 16px; background: var(--bg-card); border-radius: 10px;">
+      <div style="font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 12px;">
+        📊 Engagement & Relationnel
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+        <div style="text-align: center; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <div style="font-size: 24px;">📧</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--accent);">${client.engagementEmails}</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Emails</div>
+        </div>
+        <div style="text-align: center; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <div style="font-size: 24px;">📞</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--accent);">${client.engagementCalls}</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Calls</div>
+        </div>
+        <div style="text-align: center; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+          <div style="font-size: 24px;">🤝</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--accent);">${client.engagementMeetings}</div>
+          <div style="font-size: 11px; color: var(--text-muted);">Meetings</div>
+        </div>
+      </div>
+      <div style="margin-top: 12px; padding: 12px; background: rgba(99, 102, 241, 0.05); border-radius: 6px;">
+        <div style="font-size: 12px; color: var(--text-muted);">Analyse des notes:</div>
+        <div style="font-size: 11px; margin-top: 6px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <span>✅ Positif: ${client.notesPositiveKeywords}</span>
+          <span>❌ Négatif: ${client.notesNegativeKeywords}</span>
+          <span>🎯 Action: ${client.notesActionKeywords}</span>
+          <span>📅 Meeting: ${client.notesMeetingKeywords}</span>
+        </div>
       </div>
     </div>
 
