@@ -12,6 +12,8 @@ on:
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permet de push sur le repo
 
     steps:
       - name: Checkout repository
