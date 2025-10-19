@@ -744,10 +744,8 @@ details[open] summary {
               <th data-sort="segment">Segment</th>
               <th data-sort="healthScore">Health Score</th>
               <th data-sort="total">CA Total</th>
-              <th data-sort="notes">Notes</th>
-              <th data-sort="sentiment">Sentiment</th>
-              <th data-sort="lastActivity">Dernière Activité</th>
-              <th data-sort="lastNote">Dernière Note</th>
+              <th data-sort="sentiment">Sentiment Relationnel</th>
+              <th data-sort="trend">Tendance</th>
               <th data-sort="contacts">Contacts</th>
               <th>Action</th>
             </tr>
@@ -779,14 +777,14 @@ details[open] summary {
       <div class="action-grid">
         <!-- Score Client -->
         <div class="action-card low" onclick="showMethodologyDetails('score')">
-          <h4>🎯 Score Client (0-100)</h4>
+          <h4>Score Client (0-100)</h4>
           <p>Comment le score de chaque client est calculé</p>
           <span class="action-tag">Cliquez pour détails</span>
         </div>
 
         <!-- Tendance -->
         <div class="action-card low" onclick="showMethodologyDetails('tendance')">
-          <h4>📈 Tendance (%)</h4>
+          <h4>Tendance (%)</h4>
           <p>Calcul de l'évolution de l'activité client</p>
           <span class="action-tag">Cliquez pour détails</span>
         </div>
@@ -800,7 +798,7 @@ details[open] summary {
 
         <!-- Priorités -->
         <div class="action-card low" onclick="showMethodologyDetails('priorites')">
-          <h4>⚡ Niveaux de Priorité</h4>
+          <h4>Niveaux de Priorité</h4>
           <p>Haute, Moyenne, Basse - comment c'est défini</p>
           <span class="action-tag">Cliquez pour détails</span>
         </div>
@@ -814,7 +812,7 @@ details[open] summary {
 
         <!-- KPIs -->
         <div class="action-card low" onclick="showMethodologyDetails('kpis')">
-          <h4>📊 KPIs Principaux</h4>
+          <h4>KPIs Principaux</h4>
           <p>Définition des indicateurs clés de performance</p>
           <span class="action-tag">Cliquez pour détails</span>
         </div>
@@ -875,7 +873,7 @@ async function loadHubSpotData() {
       sortColumn = 'rank';
       sortDirection = 'asc';
 
-      console.log('📊 Données chargées:', result.data.length, 'deals');
+      console.log('Données chargées:', result.data.length, 'deals');
 
       processData();
       console.log('✅ Données traitées:', processedData.length, 'clients');
@@ -2026,14 +2024,59 @@ function renderSegmentationTable() {
     const healthColor = client.avgHealthScore >= 70 ? 'var(--green)' :
                        client.avgHealthScore >= 40 ? 'var(--orange)' : 'var(--red)';
 
-    // Icône sentiment
-    const sentimentIcon = client.notesSentiment === 'positive' ? '😊' :
-                         client.notesSentiment === 'negative' ? '😟' : '😐';
-    const sentimentColor = client.notesSentiment === 'positive' ? 'var(--green)' :
-                          client.notesSentiment === 'negative' ? 'var(--red)' : 'var(--text-muted)';
+    // Analyse sentimentale granulaire basée sur keywords
+    const positiveScore = client.notesPositiveKeywords || 0;
+    const negativeScore = client.notesNegativeKeywords || 0;
+    const actionScore = client.notesActionKeywords || 0;
+    const meetingScore = client.notesMeetingKeywords || 0;
 
-    // Engagement total
-    const totalEngagement = client.engagementEmails + client.engagementCalls + client.engagementMeetings;
+    let sentimentText = 'Non évalué';
+    let sentimentColor = '#94a3b8';
+
+    // Calcul du sentiment net
+    const sentimentNet = positiveScore - negativeScore;
+    const engagementLevel = actionScore + meetingScore;
+
+    if (sentimentNet >= 10 && engagementLevel >= 8) {
+      sentimentText = 'Excellent';
+      sentimentColor = '#10b981'; // vert foncé
+    } else if (sentimentNet >= 5 && engagementLevel >= 5) {
+      sentimentText = 'Très positif';
+      sentimentColor = '#22c55e'; // vert
+    } else if (sentimentNet >= 3) {
+      sentimentText = 'Positif';
+      sentimentColor = '#4ade80'; // vert clair
+    } else if (sentimentNet >= 0 && sentimentNet < 3) {
+      sentimentText = 'Neutre favorable';
+      sentimentColor = '#a3e635'; // vert-jaune
+    } else if (sentimentNet > -3 && sentimentNet < 0) {
+      sentimentText = 'Neutre';
+      sentimentColor = '#fbbf24'; // jaune
+    } else if (sentimentNet > -5) {
+      sentimentText = 'Préoccupant';
+      sentimentColor = '#fb923c'; // orange
+    } else if (sentimentNet > -10) {
+      sentimentText = 'Négatif';
+      sentimentColor = '#f87171'; // rouge clair
+    } else {
+      sentimentText = 'Très négatif';
+      sentimentColor = '#ef4444'; // rouge
+    }
+
+    // Calcul tendance intelligente (année sur année)
+    const years = ['2022', '2023', '2024', '2025'];
+    const yearlyRevenues = years.map(y => client.years[y] || 0);
+    const nonZeroYears = yearlyRevenues.filter(r => r > 0);
+
+    let trendDisplay = '-';
+    let trendColor = '#94a3b8';
+    if (nonZeroYears.length >= 2) {
+      const lastYear = nonZeroYears[nonZeroYears.length - 1];
+      const previousYear = nonZeroYears[nonZeroYears.length - 2];
+      const trendPercent = ((lastYear - previousYear) / previousYear * 100).toFixed(1);
+      trendDisplay = (trendPercent > 0 ? '+' : '') + trendPercent + '%';
+      trendColor = trendPercent > 0 ? '#22c55e' : trendPercent < 0 ? '#ef4444' : '#94a3b8';
+    }
 
     return `
       <tr onclick='showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})' style="cursor: pointer;">
@@ -2043,36 +2086,20 @@ function renderSegmentationTable() {
           ${client.domain ? `<br><small style="color: var(--text-muted);">${client.domain}</small>` : ''}
         </td>
         <td>
-          <span class="badge ${client.segment.toLowerCase().replace(/[àâäéèêëïîôùûüç\s]/g, c => ({
-            'à':'a','â':'a','ä':'a','é':'e','è':'e','ê':'e','ë':'e',
-            'ï':'i','î':'i','ô':'o','ù':'u','û':'u','ü':'u','ç':'c',' ':'-'
-          })[c] || c)}">${client.segment}</span>
-          <br><small style="color: var(--text-muted); font-size: 10px;">${client.segmentReason}</small>
+          <div style="font-size: 11px; font-weight: 600; color: ${client.segmentColor || '#94a3b8'};">${client.segment}</div>
+          <small style="color: var(--text-muted); font-size: 9px;">${client.segmentReason}</small>
         </td>
         <td>
-          <div style="font-size: 18px; font-weight: 800; color: ${healthColor};">${client.avgHealthScore}/100</div>
-          <small style="color: var(--text-muted);">Score</small>
+          <div style="font-size: 18px; font-weight: 800; color: ${healthColor};">${client.avgHealthScore}</div>
+          <small style="color: var(--text-muted); font-size: 10px;">/100</small>
         </td>
-        <td style="color: var(--green); font-weight: 700;">${formatCurrency(client.totalRevenue)}</td>
-        <td>
-          <strong>${client.totalNotes}</strong> note${client.totalNotes > 1 ? 's' : ''}
-          <br><small style="color: var(--text-muted);">${client.notesAvgLength} chars/note</small>
+        <td style="font-weight: 700; color: #6366f1;">${formatCurrency(client.totalRevenue)}</td>
+        <td style="text-align: center;">
+          <div style="font-weight: 700; color: ${sentimentColor}; font-size: 13px;">${sentimentText}</div>
+          <small style="color: var(--text-muted); font-size: 9px;">Score: ${positiveScore - negativeScore}</small>
         </td>
         <td style="text-align: center;">
-          <span style="font-size: 24px;" title="${client.notesSentiment}">${sentimentIcon}</span>
-          <br><small style="color: ${sentimentColor};">${client.notesSentiment}</small>
-        </td>
-        <td>
-          <div style="font-size: 12px; font-weight: 600;">
-            ${client.lastDealDate ? new Date(client.lastDealDate).toLocaleDateString('fr-FR') : '-'}
-          </div>
-          <small style="color: var(--text-muted);">Dernier deal</small>
-        </td>
-        <td>
-          <div style="font-size: 12px; font-weight: 600;">
-            ${client.latestNoteDate ? new Date(client.latestNoteDate).toLocaleDateString('fr-FR') : '-'}
-          </div>
-          <small style="color: var(--text-muted);">Dernière note</small>
+          <div style="font-size: 14px; font-weight: 700; color: ${trendColor};">${trendDisplay}</div>
         </td>
         <td>
           <div style="font-size: 11px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${contacts}">
@@ -2082,7 +2109,7 @@ function renderSegmentationTable() {
         <td>
           <button onclick='event.stopPropagation(); showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})'
                   style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 11px;">
-            📋 Voir détails
+            Voir détails
           </button>
         </td>
       </tr>
@@ -2094,7 +2121,7 @@ function renderSegmentationTable() {
 // Show Client Details - VERSION ENRICHIE
 // ============================================================================
 function showClientDetails(client) {
-  console.log('📋 Affichage détails client:', client);
+  console.log('Affichage détails client:', client);
 
   const years = ['2022', '2023', '2024', '2025'];
   const activeYears = years.filter(y => client.years[y] > 0);
@@ -2129,10 +2156,10 @@ function showClientDetails(client) {
   const healthColor = client.avgHealthScore >= 70 ? 'var(--green)' :
                      client.avgHealthScore >= 40 ? 'var(--orange)' : 'var(--red)';
 
-  const sentimentIcon = client.notesSentiment === 'positive' ? '😊 Positif' :
-                       client.notesSentiment === 'negative' ? '😟 Négatif' : '😐 Neutre';
-  const sentimentColor = client.notesSentiment === 'positive' ? 'var(--green)' :
-                        client.notesSentiment === 'negative' ? 'var(--red)' : 'var(--text-muted)';
+  const sentimentText = client.notesSentiment === 'positive' ? 'Positif' :
+                       client.notesSentiment === 'negative' ? 'Négatif' : 'Neutre';
+  const sentimentColor = client.notesSentiment === 'positive' ? '#22c55e' :
+                        client.notesSentiment === 'negative' ? '#ef4444' : '#94a3b8';
 
   const infoContent = `
     <!-- Header -->
@@ -2150,7 +2177,7 @@ function showClientDetails(client) {
           Health Score: ${client.avgHealthScore}/100
         </span>
         <span class="badge" style="background: ${sentimentColor}; color: white;">
-          ${sentimentIcon}
+          Sentiment: ${sentimentText}
         </span>
       </div>
       <div style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">
@@ -2176,21 +2203,18 @@ function showClientDetails(client) {
     <!-- Engagement & Relationnel -->
     <div style="margin-top: 20px; padding: 16px; background: var(--bg-card); border-radius: 10px;">
       <div style="font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 12px;">
-        📊 Engagement & Relationnel
+        Engagement & Relationnel
       </div>
       <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
         <div style="text-align: center; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-          <div style="font-size: 24px;">📧</div>
           <div style="font-size: 20px; font-weight: 700; color: var(--accent);">${client.engagementEmails}</div>
           <div style="font-size: 11px; color: var(--text-muted);">Emails</div>
         </div>
         <div style="text-align: center; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-          <div style="font-size: 24px;">📞</div>
           <div style="font-size: 20px; font-weight: 700; color: var(--accent);">${client.engagementCalls}</div>
           <div style="font-size: 11px; color: var(--text-muted);">Calls</div>
         </div>
         <div style="text-align: center; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-          <div style="font-size: 24px;">🤝</div>
           <div style="font-size: 20px; font-weight: 700; color: var(--accent);">${client.engagementMeetings}</div>
           <div style="font-size: 11px; color: var(--text-muted);">Meetings</div>
         </div>
@@ -2198,12 +2222,108 @@ function showClientDetails(client) {
       <div style="margin-top: 12px; padding: 12px; background: rgba(99, 102, 241, 0.05); border-radius: 6px;">
         <div style="font-size: 12px; color: var(--text-muted);">Analyse des notes:</div>
         <div style="font-size: 11px; margin-top: 6px; display: flex; gap: 12px; flex-wrap: wrap;">
-          <span>✅ Positif: ${client.notesPositiveKeywords}</span>
-          <span>❌ Négatif: ${client.notesNegativeKeywords}</span>
-          <span>🎯 Action: ${client.notesActionKeywords}</span>
-          <span>📅 Meeting: ${client.notesMeetingKeywords}</span>
+          <span style="color: #22c55e;">Positif: ${client.notesPositiveKeywords}</span>
+          <span style="color: #ef4444;">Négatif: ${client.notesNegativeKeywords}</span>
+          <span style="color: #6366f1;">Action: ${client.notesActionKeywords}</span>
+          <span style="color: #8b5cf6;">Meeting: ${client.notesMeetingKeywords}</span>
         </div>
       </div>
+    </div>
+
+    <!-- Graphique d'évolution du CA -->
+    <div style="margin-top: 20px; padding: 16px; background: var(--bg-card); border-radius: 10px;">
+      <div style="font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 16px;">
+        Évolution du Chiffre d'Affaires
+      </div>
+      ${(() => {
+        const chartYears = ['2022', '2023', '2024', '2025'];
+        const chartValues = chartYears.map(y => client.years[y] || 0);
+        const maxValue = Math.max(...chartValues, 1);
+        const chartHeight = 200;
+        const chartWidth = 600;
+        const barWidth = 80;
+        const gap = 60;
+        const padding = 40;
+
+        return `
+          <svg width="100%" height="${chartHeight + 60}" viewBox="0 0 ${chartWidth} ${chartHeight + 60}" style="max-width: 100%;">
+            <!-- Grille horizontale -->
+            ${[0, 0.25, 0.5, 0.75, 1].map(ratio => `
+              <line
+                x1="${padding}"
+                y1="${chartHeight - ratio * chartHeight + 20}"
+                x2="${chartWidth - 20}"
+                y2="${chartHeight - ratio * chartHeight + 20}"
+                stroke="rgba(148, 163, 184, 0.2)"
+                stroke-width="1"
+              />
+              <text
+                x="${padding - 10}"
+                y="${chartHeight - ratio * chartHeight + 24}"
+                fill="var(--text-muted)"
+                font-size="10"
+                text-anchor="end"
+              >
+                ${(maxValue * ratio / 1000).toFixed(0)}k€
+              </text>
+            `).join('')}
+
+            <!-- Barres -->
+            ${chartYears.map((year, i) => {
+              const value = chartValues[i];
+              const barHeight = maxValue > 0 ? (value / maxValue) * (chartHeight - 40) : 0;
+              const x = padding + i * (barWidth + gap);
+              const y = chartHeight - barHeight + 20;
+
+              // Couleur basée sur la tendance
+              let barColor = '#6366f1';
+              if (i > 0 && chartValues[i-1] > 0) {
+                const change = ((value - chartValues[i-1]) / chartValues[i-1]) * 100;
+                if (change > 10) barColor = '#22c55e';
+                else if (change > 0) barColor = '#4ade80';
+                else if (change < -10) barColor = '#ef4444';
+                else if (change < 0) barColor = '#fb923c';
+              }
+
+              return `
+                <rect
+                  x="${x}"
+                  y="${y}"
+                  width="${barWidth}"
+                  height="${barHeight}"
+                  fill="${barColor}"
+                  rx="4"
+                  opacity="0.9"
+                >
+                  <title>${year}: ${(value / 1000).toFixed(1)}k€</title>
+                </rect>
+                <text
+                  x="${x + barWidth/2}"
+                  y="${chartHeight + 35}"
+                  fill="var(--text)"
+                  font-size="12"
+                  font-weight="600"
+                  text-anchor="middle"
+                >
+                  ${year}
+                </text>
+                ${value > 0 ? `
+                <text
+                  x="${x + barWidth/2}"
+                  y="${y - 6}"
+                  fill="${barColor}"
+                  font-size="11"
+                  font-weight="700"
+                  text-anchor="middle"
+                >
+                  ${(value / 1000).toFixed(0)}k
+                </text>
+                ` : ''}
+              `;
+            }).join('')}
+          </svg>
+        `;
+      })()}
     </div>
 
     <div class="info-row">
@@ -2532,7 +2652,7 @@ function showMethodologyDetails(type) {
 
   switch(type) {
     case 'score':
-      title = '🎯 Calcul du Score Client (0-100)';
+      title = 'Calcul du Score Client (0-100)';
       content = `
         <div style="color: var(--text); line-height: 1.8;">
           <p style="margin-bottom: 16px;">
@@ -2604,7 +2724,7 @@ function showMethodologyDetails(type) {
       break;
 
     case 'tendance':
-      title = '📈 Calcul de la Tendance d\'Activité';
+      title = 'Calcul de la Tendance d\'Activité';
       content = `
         <div style="color: var(--text); line-height: 1.8;">
           <p style="margin-bottom: 16px;">
@@ -2791,7 +2911,7 @@ function showMethodologyDetails(type) {
       break;
 
     case 'priorites':
-      title = '⚡ Niveaux de Priorité';
+      title = 'Niveaux de Priorité';
       content = `
         <div style="color: var(--text); line-height: 1.8;">
           <p style="margin-bottom: 20px;">
@@ -2950,7 +3070,7 @@ function showMethodologyDetails(type) {
       break;
 
     case 'kpis':
-      title = '📊 KPIs Principaux - Définitions';
+      title = 'KPIs Principaux - Définitions';
       content = `
         <div style="color: var(--text); line-height: 1.8;">
           <p style="margin-bottom: 20px;">
@@ -2971,7 +3091,7 @@ function showMethodologyDetails(type) {
 
           <div style="margin-bottom: 16px; padding: 14px; background: var(--bg-card); border-radius: 8px;">
             <div style="font-weight: 700; margin-bottom: 6px; font-size: 15px;">
-              📈 CA 2024
+              CA 2024
             </div>
             <div style="font-size: 14px; color: var(--text-muted);">
               <strong>Définition :</strong> Total des deals fermés en 2024 avec % de croissance vs 2023<br>
@@ -2993,7 +3113,7 @@ function showMethodologyDetails(type) {
 
           <div style="margin-bottom: 16px; padding: 14px; background: var(--bg-card); border-radius: 8px;">
             <div style="font-weight: 700; margin-bottom: 6px; font-size: 15px;">
-              🎯 Ticket Moyen
+              Ticket Moyen
             </div>
             <div style="font-size: 14px; color: var(--text-muted);">
               <strong>Définition :</strong> CA Total ÷ Nombre total de deals<br>
