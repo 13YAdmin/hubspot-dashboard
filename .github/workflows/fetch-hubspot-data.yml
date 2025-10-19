@@ -30,10 +30,23 @@ jobs:
         run: |
           node .github/scripts/fetch-hubspot.js
 
-      - name: Commit and push data
+      - name: Deploy to GitHub Pages
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/data.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Auto-update HubSpot data [skip ci]"
-          git push
+
+          # Créer ou update gh-pages branch
+          git fetch origin gh-pages || git checkout --orphan gh-pages || git checkout gh-pages
+
+          # Copier le contenu de public/ vers la racine
+          cp -r public/* .
+
+          # Ajouter et commit
+          git add index.html data.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🔄 Auto-update dashboard and data [skip ci]"
+
+          # Push vers gh-pages
+          git push -f origin gh-pages
+
+          # Retourner sur main
+          git checkout main
