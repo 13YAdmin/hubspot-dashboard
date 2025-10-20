@@ -847,17 +847,7 @@ details[open] summary {
 
     <!-- Répartition Secteurs d'Activité -->
     <div class="chart-section">
-      <h3>Répartition par Secteur d'Activité (par CA)</h3>
-      <!-- Filtres année pour le graphique -->
-      <div style="margin-bottom: 16px;">
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <button class="filter-btn" data-industry-year="all" onclick="filterIndustryChart('all')" style="background: var(--accent); color: white;">Toutes</button>
-          <button class="filter-btn" data-industry-year="2022" onclick="filterIndustryChart('2022')">2022</button>
-          <button class="filter-btn" data-industry-year="2023" onclick="filterIndustryChart('2023')">2023</button>
-          <button class="filter-btn" data-industry-year="2024" onclick="filterIndustryChart('2024')">2024</button>
-          <button class="filter-btn" data-industry-year="2025" onclick="filterIndustryChart('2025')">2025</button>
-        </div>
-      </div>
+      <h3>Répartition par Secteur d'Activité</h3>
       <div class="chart-container" style="height: 400px;">
         <svg id="chartIndustryPie"></svg>
       </div>
@@ -1002,7 +992,6 @@ let dealsData = [];
 let processedData = [];
 let groupedData = []; // Données avec structure parent/filiales
 let currentDisplayedClients = []; // Pour stocker les clients actuellement affichés
-let groupExpandedStates = {}; // Stocker l'état expand/collapse par groupId
 let currentFilters = {
   year: 'all'
 };
@@ -1303,7 +1292,7 @@ function processGroupedData() {
         type: 'group',
         groupId: client.companyId,
         groupName: client.name,
-        isExpanded: groupExpandedStates[client.companyId] || false,  // Restaurer l'état si existant
+        isExpanded: false,  // Par défaut fermé
 
         // Données du parent
         parentData: client,
@@ -1454,11 +1443,10 @@ function toggleGroup(groupIndex) {
     return;
   }
 
-  // Inverser l'état dans le global state (pour persistance)
-  const newState = !groupExpandedStates[group.groupId];
-  groupExpandedStates[group.groupId] = newState;
+  // Inverser l'état
+  group.isExpanded = !group.isExpanded;
 
-  console.log(`${newState ? '▼' : '▶'} Groupe ${group.groupName} ${newState ? 'ouvert' : 'fermé'}`);
+  console.log(`${group.isExpanded ? '▼' : '▶'} Groupe ${group.groupName} ${group.isExpanded ? 'ouvert' : 'fermé'}`);
 
   // Re-render le tableau pour afficher/masquer les enfants
   renderSegmentationTable();
@@ -2920,16 +2908,7 @@ function renderHealthTrendsChart() {
 // ============================================================================
 // Industry Pie Chart - Répartition par secteur d'activité
 // ============================================================================
-// Variable globale pour stocker le filtre année du graphique
-let industryChartYear = 'all';
-
-function renderIndustryPieChart(filterYear = 'all') {
-  // Filtrer les données par année si nécessaire
-  let dataToUse = processedData;
-  if (filterYear !== 'all') {
-    dataToUse = processedData.filter(client => client.years[filterYear] > 0);
-  }
-
+function renderIndustryPieChart() {
   // Mapping COMPLET EN→FR des industries HubSpot standards
   const industryMapping = {
     // Tech & IT
@@ -3163,42 +3142,37 @@ function renderIndustryPieChart(filterYear = 'all') {
 
   // DEBUG: Logger toutes les industries trouvées
   const allIndustries = new Set();
-  dataToUse.forEach(client => {
+  processedData.forEach(client => {
     if (client.companyIndustry) {
       allIndustries.add(client.companyIndustry);
     }
   });
-  console.log('🔍 Industries EN trouvées (année: ' + filterYear + '):', Array.from(allIndustries).sort());
+  console.log('🔍 Industries EN trouvées:', Array.from(allIndustries).sort());
 
   // Regrouper par secteur avec mapping EN→FR
   const industryCounts = {};
   const industryRevenues = {};
 
-  dataToUse.forEach(client => {
-    // Utiliser le CA de l'année filtrée si spécifiée
-    const revenue = filterYear === 'all' ? client.totalRevenue : (client.years[filterYear] || 0);
+  processedData.forEach(client => {
     const rawIndustry = client.companyIndustry || 'Non spécifié';
     // Utiliser le mapping, sinon garder la valeur originale
     const frenchIndustry = industryMapping[rawIndustry] || rawIndustry;
 
     industryCounts[frenchIndustry] = (industryCounts[frenchIndustry] || 0) + 1;
-    industryRevenues[frenchIndustry] = (industryRevenues[frenchIndustry] || 0) + revenue; // FIX: Utiliser revenue filtré
+    industryRevenues[frenchIndustry] = (industryRevenues[frenchIndustry] || 0) + client.totalRevenue;
   });
 
   console.log('📊 Industries FR après mapping:', Object.keys(industryCounts).sort());
 
-  // Calculer le CA total pour les pourcentages
-  const totalRevenue = Object.values(industryRevenues).reduce((sum, rev) => sum + rev, 0);
-
-  // Convertir en array et trier par CA (revenue)
+  // Convertir en array et trier par nombre de clients
   const industries = Object.keys(industryCounts)
     .map(name => ({
       name,
       count: industryCounts[name],
       revenue: industryRevenues[name],
-      percentage: totalRevenue > 0 ? (industryRevenues[name] / totalRevenue * 100).toFixed(1) : 0
+      percentage: (industryCounts[name] / processedData.length * 100).toFixed(1)
     }))
-    .sort((a, b) => b.revenue - a.revenue); // Tri par CA, pas par nombre de clients
+    .sort((a, b) => b.count - a.count);
 
   // Palette de couleurs
   const colors = [
@@ -3252,7 +3226,7 @@ function renderIndustryPieChart(filterYear = 'all') {
   let startAngle = -Math.PI / 2; // Commence en haut
 
   industries.forEach((industry, idx) => {
-    const sliceAngle = (industry.revenue / totalRevenue) * 2 * Math.PI;
+    const sliceAngle = (industry.count / processedData.length) * 2 * Math.PI;
     const endAngle = startAngle + sliceAngle;
     const midAngle = startAngle + sliceAngle / 2;
 
@@ -3284,7 +3258,7 @@ function renderIndustryPieChart(filterYear = 'all') {
       this.setAttribute('transform', `translate(${Math.cos(midAngle) * 10}, ${Math.sin(midAngle) * 10})`);
 
       tooltip.style.opacity = '1';
-      tooltipText.textContent = `${industry.name}: ${formatCurrency(industry.revenue)} (${industry.percentage}% du CA)`;
+      tooltipText.textContent = `${industry.name}: ${industry.count} clients (${industry.percentage}%)`;
 
       const textBBox = tooltipText.getBBox();
       const tooltipWidth = textBBox.width + 20;
@@ -3339,35 +3313,6 @@ function renderIndustryPieChart(filterYear = 'all') {
     </div>
   `).join('');
 }
-
-// Fonction de filtrage par année pour le graphique des secteurs
-function filterIndustryChart(year) {
-  console.log(`📊 Filtrage graphique secteurs par année: ${year}`);
-
-  // Mettre à jour les styles des boutons
-  const buttons = document.querySelectorAll('[data-industry-year]');
-  buttons.forEach(btn => {
-    const btnYear = btn.getAttribute('data-industry-year');
-    if (btnYear === year) {
-      btn.style.background = 'var(--accent)';
-      btn.style.color = 'white';
-      btn.style.fontWeight = '600';
-    } else {
-      btn.style.background = 'rgba(99, 102, 241, 0.1)';
-      btn.style.color = 'var(--text)';
-      btn.style.fontWeight = '400';
-    }
-  });
-
-  // Stocker le filtre actuel
-  industryChartYear = year;
-
-  // Re-render le graphique avec le filtre
-  renderIndustryPieChart(year);
-}
-
-// Exposer globalement pour les onclick HTML
-window.filterIndustryChart = filterIndustryChart;
 
 // ============================================================================
 // Company Relationships Tree - Organigramme des relations (CROSS-SELL)
