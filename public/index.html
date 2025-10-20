@@ -1140,51 +1140,62 @@ function processData() {
 }
 
 function calculateTrend(client) {
-  // Tendance globale: depuis la PREMIÈRE année d'activité jusqu'à la DERNIÈRE
+  /**
+   * TENDANCE GLOBALE SIMPLE
+   *
+   * Calcul: (CA dernière année - CA première année) / CA première année × 100
+   *
+   * Exemples:
+   * - 2022: 100k€, 2025: 150k€ → Tendance = +50%
+   * - 2023: 200k€, 2025: 180k€ → Tendance = -10%
+   * - 2024: 50k€, 2025: 50k€  → Tendance = 0%
+   *
+   * Pas d'annualisation, pas de bonus, juste la vraie croissance totale.
+   */
+
   const years = ['2022', '2023', '2024', '2025'];
-  const revenues = years.map(y => client.years[y]);
+  const revenues = years.map(y => client.years[y] || 0);
 
-  // Si aucune activité, tendance = 0
-  if (revenues.every(r => r === 0)) return 0;
-
-  // Trouver la PREMIÈRE et la DERNIÈRE année avec activité
-  let firstActiveIndex = -1;
-  let lastActiveIndex = -1;
-  let firstActiveRevenue = 0;
-  let lastActiveRevenue = 0;
-
-  for (let i = 0; i < revenues.length; i++) {
-    if (revenues[i] > 0) {
-      if (firstActiveIndex === -1) {
-        // Première année active trouvée
-        firstActiveIndex = i;
-        firstActiveRevenue = revenues[i];
-      }
-      // Toujours mettre à jour la dernière année active
-      lastActiveIndex = i;
-      lastActiveRevenue = revenues[i];
-    }
-  }
-
-  // Si une seule année active
-  if (firstActiveIndex === lastActiveIndex) {
-    // Nouveau client récent (2024-2025)
-    if (lastActiveIndex >= 2) return 100;
-    // Client ancien avec une seule année
+  // Aucune activité = pas de tendance
+  if (revenues.every(r => r === 0)) {
     return 0;
   }
 
-  // Calculer la tendance globale (première année → dernière année)
-  const yearsDiff = lastActiveIndex - firstActiveIndex;
-  const totalGrowth = ((lastActiveRevenue - firstActiveRevenue) / firstActiveRevenue) * 100;
+  // Trouver la PREMIÈRE année active
+  let firstActiveYear = null;
+  let firstActiveRevenue = 0;
 
-  // Annualiser la croissance si plusieurs années se sont écoulées
-  const annualizedGrowth = yearsDiff > 0 ? totalGrowth / yearsDiff : totalGrowth;
+  for (let i = 0; i < years.length; i++) {
+    if (revenues[i] > 0) {
+      firstActiveYear = years[i];
+      firstActiveRevenue = revenues[i];
+      break; // Première trouvée, on arrête
+    }
+  }
 
-  // Bonus léger si client actif récemment
-  const recencyBonus = lastActiveIndex >= 2 ? 1.1 : 0.9;
+  // Trouver la DERNIÈRE année active
+  let lastActiveYear = null;
+  let lastActiveRevenue = 0;
 
-  return Math.round(annualizedGrowth * recencyBonus);
+  for (let i = years.length - 1; i >= 0; i--) {
+    if (revenues[i] > 0) {
+      lastActiveYear = years[i];
+      lastActiveRevenue = revenues[i];
+      break; // Dernière trouvée, on arrête
+    }
+  }
+
+  // Si une seule année active = pas de tendance
+  if (firstActiveYear === lastActiveYear) {
+    return 0;
+  }
+
+  // Calcul de la tendance GLOBALE (%)
+  // Formule: ((Dernière - Première) / Première) × 100
+  const trendPercent = ((lastActiveRevenue - firstActiveRevenue) / firstActiveRevenue) * 100;
+
+  // Retourner arrondi à 1 décimale
+  return Math.round(trendPercent * 10) / 10;
 }
 
 function calculateYearlyTrends(client) {
@@ -3576,7 +3587,8 @@ function showClientDetails(clientIndex) {
             Calcul de la Tendance Globale (${client.trend.toFixed(1)}%)
           </div>
           <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6;">
-            Méthode: Comparaison des 2 dernières années actives, ajustée par l'écart temporel et bonus de récence (×1.2 si 2024-2025, ×0.8 si 2022-2023).
+            Méthode: % de croissance entre la PREMIÈRE année active et la DERNIÈRE année active.<br>
+            Formule: ((CA Dernière - CA Première) / CA Première) × 100
           </div>
         </div>
       </div>
