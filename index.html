@@ -3027,7 +3027,7 @@ function renderCompanyTree() {
 
   console.log(`🔗 ${components.length} groupes d'entreprises liées détectés (sans doublons)`);
 
-  // 3. Pour chaque composante, construire la hiérarchie
+  // 3. Pour chaque composante, construire UN SEUL arbre (élimine vraiment les doublons)
   const companyGroups = [];
   let opportunitiesCount = 0;
 
@@ -3035,10 +3035,8 @@ function renderCompanyTree() {
     const companyIds = Array.from(component);
     console.log(`📊 Groupe ${idx + 1}: ${companyIds.length} entreprises`);
 
-    // Trouver les racines (companies sans parent DANS ce groupe)
-    const roots = [];
+    // Trouver la VRAIE racine (company sans aucun parent dans le groupe)
     const allChildren = new Set();
-
     companyIds.forEach(id => {
       const company = window.hubspotCompanies[id];
       if (company && company.childCompanyIds) {
@@ -3050,70 +3048,83 @@ function renderCompanyTree() {
       }
     });
 
-    // Les racines sont celles qui ne sont enfants de personne
-    companyIds.forEach(id => {
-      if (!allChildren.has(id)) {
-        roots.push(id);
-      }
-    });
+    // La vraie racine = pas enfant de personne dans ce groupe
+    const trueRoots = companyIds.filter(id => !allChildren.has(id));
+    console.log(`  Racines ultimes: ${trueRoots.length}`);
 
-    console.log(`  Racines: ${roots.length}, Enfants: ${allChildren.size}`);
+    // Si plusieurs racines, prendre la première qui est cliente (sinon la première tout court)
+    const rootId = trueRoots.find(id => companyIdToClient[id]) || trueRoots[0];
+    if (!rootId) return;
 
-    // Pour chaque racine, construire un arbre
-    roots.forEach(rootId => {
-      const rootCompany = window.hubspotCompanies[rootId];
-      if (!rootCompany) return;
+    const rootCompany = window.hubspotCompanies[rootId];
+    if (!rootCompany) return;
 
-      // Nœud racine
-      let rootNode;
-      if (companyIdToClient[rootId]) {
-        rootNode = companyIdToClient[rootId];
-      } else {
-        rootNode = createProspectFromCompany(rootId);
-        if (rootNode) opportunitiesCount++;
-      }
+    // Construire le nœud racine
+    let centerNode;
+    if (companyIdToClient[rootId]) {
+      centerNode = companyIdToClient[rootId];
+    } else {
+      centerNode = createProspectFromCompany(rootId);
+      if (centerNode) opportunitiesCount++;
+    }
 
-      if (!rootNode) return;
+    if (!centerNode) return;
 
-      // Récupérer les enfants directs
+    // Construire récursivement TOUS les enfants de cette racine
+    function buildChildren(parentId, visited = new Set()) {
+      if (visited.has(parentId)) return []; // Éviter boucles infinies
+      visited.add(parentId);
+
       const children = [];
-      if (rootCompany.childCompanyIds) {
-        rootCompany.childCompanyIds.forEach(childId => {
-          if (!component.has(childId)) return; // Seulement dans ce groupe
+      const parent = window.hubspotCompanies[parentId];
+      if (!parent || !parent.childCompanyIds) return children;
 
-          let childNode;
-          if (companyIdToClient[childId]) {
-            childNode = companyIdToClient[childId];
-          } else {
-            childNode = createProspectFromCompany(childId);
-            if (childNode) opportunitiesCount++;
-          }
-          if (childNode) children.push(childNode);
-        });
-      }
+      parent.childCompanyIds.forEach(childId => {
+        if (!component.has(childId)) return; // Seulement dans ce groupe
 
-      // Récupérer les parents (si pas racine absolue)
-      const parents = [];
-      if (rootCompany.parentCompanyIds) {
-        rootCompany.parentCompanyIds.forEach(parentId => {
-          if (!component.has(parentId)) return; // Seulement dans ce groupe
+        let childNode;
+        if (companyIdToClient[childId]) {
+          childNode = companyIdToClient[childId];
+        } else {
+          childNode = createProspectFromCompany(childId);
+          if (childNode) opportunitiesCount++;
+        }
 
-          let parentNode;
-          if (companyIdToClient[parentId]) {
-            parentNode = companyIdToClient[parentId];
-          } else {
-            parentNode = createProspectFromCompany(parentId);
-            if (parentNode) opportunitiesCount++;
-          }
-          if (parentNode) parents.push(parentNode);
-        });
-      }
-
-      companyGroups.push({
-        center: rootNode,
-        parents: parents,
-        children: children
+        if (childNode) {
+          // Ajouter aussi les petits-enfants récursivement
+          childNode.subChildren = buildChildren(childId, visited);
+          children.push(childNode);
+        }
       });
+
+      return children;
+    }
+
+    const rootChildren = buildChildren(rootId);
+
+    // Récupérer les parents (si la racine en a, ce qui ne devrait pas arriver)
+    const parents = [];
+    if (rootCompany.parentCompanyIds) {
+      rootCompany.parentCompanyIds.forEach(parentId => {
+        if (!component.has(parentId)) return;
+
+        let parentNode;
+        if (companyIdToClient[parentId]) {
+          parentNode = companyIdToClient[parentId];
+        } else {
+          parentNode = createProspectFromCompany(parentId);
+          if (parentNode) opportunitiesCount++;
+        }
+        if (parentNode) parents.push(parentNode);
+      });
+    }
+
+    // Créer UN SEUL groupe pour toute cette composante
+    companyGroups.push({
+      center: centerNode,
+      parents: parents,
+      children: rootChildren,
+      componentSize: companyIds.length // Pour le debug
     });
   });
 
@@ -3121,6 +3132,13 @@ function renderCompanyTree() {
 
   const svg = document.getElementById('chartCompanyTree');
   svg.innerHTML = '';
+
+  // FOND NOIR pour dark mode
+  const background = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  background.setAttribute('width', '100%');
+  background.setAttribute('height', '100%');
+  background.setAttribute('fill', '#0f172a'); // Slate-900 dark
+  svg.insertBefore(background, svg.firstChild);
 
   if (companyGroups.length === 0) {
     // Message si aucune relation détectée
@@ -3287,13 +3305,33 @@ function renderCompanyTree() {
     return g;
   }
 
-  // Dimensions
-  const groupSpacing = 350;
+  // Dimensions - PLUS D'ESPACE entre les groupes
+  const groupSpacing = 600; // Augmenté de 350 à 600
   const nodeWidth = 220;
   const nodeHeight = 80;
-  const verticalSpacing = 130;
-  const width = Math.max(1400, companyGroups.length * groupSpacing);
-  const height = Math.max(500, 200 + verticalSpacing * 2);
+  const verticalSpacing = 140;
+
+  // Calculer profondeur max pour déterminer la hauteur
+  let maxDepth = 2; // Au minimum parents + center + children
+  companyGroups.forEach(group => {
+    function getDepth(children, currentDepth = 1) {
+      if (!children || children.length === 0) return currentDepth;
+      let maxChildDepth = currentDepth;
+      children.forEach(child => {
+        if (child.subChildren) {
+          const childDepth = getDepth(child.subChildren, currentDepth + 1);
+          maxChildDepth = Math.max(maxChildDepth, childDepth);
+        }
+      });
+      return maxChildDepth;
+    }
+    const groupDepth = 1 + getDepth(group.children);
+    if (group.parents.length > 0) groupDepth++;
+    maxDepth = Math.max(maxDepth, groupDepth);
+  });
+
+  const width = Math.max(1600, companyGroups.length * groupSpacing + 200);
+  const height = Math.max(600, 200 + verticalSpacing * maxDepth);
 
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
@@ -3301,12 +3339,35 @@ function renderCompanyTree() {
     const baseX = 100 + groupIdx * groupSpacing;
     const centerY = 200; // Position verticale du nœud central
 
+    // RECTANGLE DE FOND pour séparer visuellement chaque groupe
+    const groupBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    groupBg.setAttribute('x', baseX - 50);
+    groupBg.setAttribute('y', centerY - verticalSpacing - 100);
+    groupBg.setAttribute('width', groupSpacing - 100);
+    groupBg.setAttribute('height', height - 100);
+    groupBg.setAttribute('fill', 'rgba(30, 41, 59, 0.3)'); // Slate-800 avec transparence
+    groupBg.setAttribute('stroke', 'rgba(71, 85, 105, 0.4)'); // Slate-600
+    groupBg.setAttribute('stroke-width', 2);
+    groupBg.setAttribute('rx', 20);
+    svg.appendChild(groupBg);
+
+    // Titre du groupe
+    const groupTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    groupTitle.setAttribute('x', baseX + (groupSpacing - 100) / 2 - 50);
+    groupTitle.setAttribute('y', centerY - verticalSpacing - 70);
+    groupTitle.setAttribute('text-anchor', 'middle');
+    groupTitle.setAttribute('fill', '#cbd5e1'); // Slate-300
+    groupTitle.setAttribute('font-size', '14');
+    groupTitle.setAttribute('font-weight', '700');
+    groupTitle.textContent = `Groupe ${groupIdx + 1} (${group.componentSize} entreprises)`;
+    svg.appendChild(groupTitle);
+
     // Parents nodes (au-dessus du center)
     group.parents.forEach((parent, idx) => {
       const parentX = baseX - (group.parents.length - 1) * 60 + idx * 120;
       const parentY = centerY - verticalSpacing;
 
-      // Line from parent to center (gradient coloré)
+      // Line from parent to center
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', parentX + nodeWidth / 2);
       line.setAttribute('y1', parentY + nodeHeight);
@@ -3326,26 +3387,37 @@ function renderCompanyTree() {
     const centerNode = drawNode(baseX, centerY, group.center, 'CLIENT', 'center');
     svg.appendChild(centerNode);
 
-    // Children nodes (en-dessous du center)
-    group.children.forEach((child, idx) => {
-      const childX = baseX - (group.children.length - 1) * 60 + idx * 120;
-      const childY = centerY + verticalSpacing;
+    // Children nodes RÉCURSIFS (en-dessous du center)
+    function drawChildren(children, parentX, parentY, level = 1) {
+      if (!children || children.length === 0) return;
 
-      // Line from center to child (gradient coloré)
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', baseX + nodeWidth / 2);
-      line.setAttribute('y1', centerY + nodeHeight);
-      line.setAttribute('x2', childX + nodeWidth / 2);
-      line.setAttribute('y2', childY);
-      line.setAttribute('stroke', '#8b5cf6');
-      line.setAttribute('stroke-width', 3);
-      line.setAttribute('stroke-dasharray', '8,4');
-      line.setAttribute('opacity', '0.6');
-      svg.appendChild(line);
+      children.forEach((child, idx) => {
+        const childX = parentX - (children.length - 1) * 60 + idx * 120;
+        const childY = parentY + verticalSpacing;
 
-      const childNode = drawNode(childX, childY, child, 'FILIALE', 'child');
-      svg.appendChild(childNode);
-    });
+        // Line from parent to child
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', parentX + nodeWidth / 2);
+        line.setAttribute('y1', parentY + nodeHeight);
+        line.setAttribute('x2', childX + nodeWidth / 2);
+        line.setAttribute('y2', childY);
+        line.setAttribute('stroke', '#8b5cf6');
+        line.setAttribute('stroke-width', 3);
+        line.setAttribute('stroke-dasharray', '8,4');
+        line.setAttribute('opacity', '0.6');
+        svg.appendChild(line);
+
+        const childNode = drawNode(childX, childY, child, 'FILIALE', 'child');
+        svg.appendChild(childNode);
+
+        // Dessiner récursivement les sous-enfants
+        if (child.subChildren && child.subChildren.length > 0) {
+          drawChildren(child.subChildren, childX, childY, level + 1);
+        }
+      });
+    }
+
+    drawChildren(group.children, baseX, centerY);
   });
 
   // Initialiser le zoom/pan sur le SVG
