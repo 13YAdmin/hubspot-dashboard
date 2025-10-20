@@ -798,14 +798,22 @@ details[open] summary {
         Visualisation des groupes d'entreprises basée sur les associations HubSpot (société mère / filiales)
       </p>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <div style="display: flex; gap: 20px; font-size: 12px;">
+        <div style="display: flex; gap: 16px; font-size: 12px; flex-wrap: wrap;">
           <div style="display: flex; align-items: center; gap: 6px;">
-            <div style="width: 16px; height: 16px; background: #6366f1; border-radius: 3px;"></div>
-            <span style="color: var(--text-muted);">Client actuel</span>
+            <div style="width: 18px; height: 18px; background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 4px; border: 2px solid #818cf8;"></div>
+            <span style="color: var(--text); font-weight: 600;">Société Mère</span>
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
-            <div style="width: 16px; height: 16px; background: #f97316; border-radius: 3px;"></div>
-            <span style="color: var(--text-muted);">🎯 Opportunité cross-sell (pas encore client)</span>
+            <div style="width: 18px; height: 18px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 4px; border: 2px solid #a5b4fc;"></div>
+            <span style="color: var(--text); font-weight: 600;">Client</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="width: 18px; height: 18px; background: linear-gradient(135deg, #818cf8, #a78bfa); border-radius: 4px; border: 2px solid #a78bfa;"></div>
+            <span style="color: var(--text); font-weight: 600;">Filiale</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="width: 18px; height: 18px; background: linear-gradient(135deg, #f97316, #ec4899); border-radius: 4px; border: 2px solid #fb923c;"></div>
+            <span style="color: #f97316; font-weight: 600;">🎯 Opportunité Cross-Sell</span>
           </div>
         </div>
         <!-- Contrôles de navigation -->
@@ -2949,99 +2957,167 @@ function renderCompanyTree() {
     };
   }
 
-  // Construire les groupes en incluant les opportunités cross-sell
-  const companyGroups = [];
-  const processed = new Set();
-  let opportunitiesCount = 0;
-  let totalRelationsChecked = 0;
-
+  // NOUVEAU: Construire composantes connexes pour éliminer doublons
   console.log(`📊 Début analyse: ${Object.keys(window.hubspotCompanies).length} companies HubSpot, ${processedData.length} clients`);
 
-  // Parcourir TOUTES les companies HubSpot (pas seulement les clients)
+  // 1. Construire un graphe de toutes les relations
+  const graph = {}; // companyId → Set(companyIds liés)
   Object.values(window.hubspotCompanies).forEach(company => {
-    if (processed.has(company.id)) return;
+    if (!graph[company.id]) graph[company.id] = new Set();
 
-    const isClient = !!companyIdToClient[company.id];
-    const hasChildren = company.childCompanyIds && company.childCompanyIds.length > 0;
-    const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
+    // Ajouter les enfants
+    if (company.childCompanyIds) {
+      company.childCompanyIds.forEach(childId => {
+        graph[company.id].add(childId);
+        if (!graph[childId]) graph[childId] = new Set();
+        graph[childId].add(company.id); // Relation bidirectionnelle
+      });
+    }
 
-    // Si cette company a des relations (parent OU child)
-    if (hasChildren || hasParent) {
-      totalRelationsChecked++;
+    // Ajouter les parents
+    if (company.parentCompanyIds) {
+      company.parentCompanyIds.forEach(parentId => {
+        graph[company.id].add(parentId);
+        if (!graph[parentId]) graph[parentId] = new Set();
+        graph[parentId].add(company.id); // Relation bidirectionnelle
+      });
+    }
+  });
 
-      // Vérifier si cette company OU une de ses relations est cliente
-      const childrenAreClients = hasChildren && company.childCompanyIds.some(id => companyIdToClient[id]);
-      const parentsAreClients = hasParent && company.parentCompanyIds.some(id => companyIdToClient[id]);
+  // 2. Trouver les composantes connexes (groupes d'entreprises liées)
+  const visited = new Set();
+  const components = []; // Chaque composante = Set(companyIds)
 
-      // Critère: afficher SI cette company OU au moins une relation est cliente
-      if (isClient || childrenAreClients || parentsAreClients) {
+  function findComponent(startId) {
+    const component = new Set();
+    const queue = [startId];
 
-        console.log(`🔗 Groupe détecté: ${company.name} (client: ${isClient}, parents: ${company.parentCompanyIds?.length || 0}, children: ${company.childCompanyIds?.length || 0})`);
+    while (queue.length > 0) {
+      const id = queue.shift();
+      if (visited.has(id)) continue;
 
-        // Nœud central
-        let centerNode;
-        if (isClient) {
-          centerNode = companyIdToClient[company.id];
-        } else {
-          centerNode = createProspectFromCompany(company.id);
-          if (centerNode) opportunitiesCount++;
-        }
+      visited.add(id);
+      component.add(id);
 
-        if (!centerNode) {
-          console.warn(`  ⚠️ Impossible de créer centerNode pour ${company.name}`);
-          return;
-        }
-
-        // Parents nodes
-        const parents = [];
-        if (hasParent) {
-          company.parentCompanyIds.forEach(parentId => {
-            let parentNode;
-            if (companyIdToClient[parentId]) {
-              parentNode = companyIdToClient[parentId];
-            } else {
-              parentNode = createProspectFromCompany(parentId);
-              if (parentNode) opportunitiesCount++;
-            }
-            if (parentNode) {
-              parents.push(parentNode);
-              processed.add(parentId);
-            }
-          });
-        }
-
-        // Children nodes
-        const children = [];
-        if (hasChildren) {
-          company.childCompanyIds.forEach(childId => {
-            let childNode;
-            if (companyIdToClient[childId]) {
-              childNode = companyIdToClient[childId];
-            } else {
-              childNode = createProspectFromCompany(childId);
-              if (childNode) opportunitiesCount++;
-            }
-            if (childNode) {
-              children.push(childNode);
-              processed.add(childId);
-            }
-          });
-        }
-
-        // Créer le groupe même si pas de parents/children (pour debug)
-        companyGroups.push({
-          center: centerNode,
-          parents: parents,
-          children: children
+      // Ajouter tous les voisins non visités
+      if (graph[id]) {
+        graph[id].forEach(neighborId => {
+          if (!visited.has(neighborId)) {
+            queue.push(neighborId);
+          }
         });
-        processed.add(company.id);
+      }
+    }
 
-        console.log(`  ✓ Groupe créé: ${parents.length} parents, ${children.length} children`);
+    return component;
+  }
+
+  // Trouver toutes les composantes
+  Object.keys(graph).forEach(companyId => {
+    if (!visited.has(companyId) && graph[companyId].size > 0) {
+      const component = findComponent(companyId);
+
+      // Ne garder que si au moins UNE entreprise est cliente
+      const hasClient = Array.from(component).some(id => companyIdToClient[id]);
+      if (hasClient) {
+        components.push(component);
       }
     }
   });
 
-  console.log(`✅ Analyse terminée: ${companyGroups.length} groupes affichés, ${opportunitiesCount} opportunités cross-sell, ${totalRelationsChecked} relations vérifiées`);
+  console.log(`🔗 ${components.length} groupes d'entreprises liées détectés (sans doublons)`);
+
+  // 3. Pour chaque composante, construire la hiérarchie
+  const companyGroups = [];
+  let opportunitiesCount = 0;
+
+  components.forEach((component, idx) => {
+    const companyIds = Array.from(component);
+    console.log(`📊 Groupe ${idx + 1}: ${companyIds.length} entreprises`);
+
+    // Trouver les racines (companies sans parent DANS ce groupe)
+    const roots = [];
+    const allChildren = new Set();
+
+    companyIds.forEach(id => {
+      const company = window.hubspotCompanies[id];
+      if (company && company.childCompanyIds) {
+        company.childCompanyIds.forEach(childId => {
+          if (component.has(childId)) {
+            allChildren.add(childId);
+          }
+        });
+      }
+    });
+
+    // Les racines sont celles qui ne sont enfants de personne
+    companyIds.forEach(id => {
+      if (!allChildren.has(id)) {
+        roots.push(id);
+      }
+    });
+
+    console.log(`  Racines: ${roots.length}, Enfants: ${allChildren.size}`);
+
+    // Pour chaque racine, construire un arbre
+    roots.forEach(rootId => {
+      const rootCompany = window.hubspotCompanies[rootId];
+      if (!rootCompany) return;
+
+      // Nœud racine
+      let rootNode;
+      if (companyIdToClient[rootId]) {
+        rootNode = companyIdToClient[rootId];
+      } else {
+        rootNode = createProspectFromCompany(rootId);
+        if (rootNode) opportunitiesCount++;
+      }
+
+      if (!rootNode) return;
+
+      // Récupérer les enfants directs
+      const children = [];
+      if (rootCompany.childCompanyIds) {
+        rootCompany.childCompanyIds.forEach(childId => {
+          if (!component.has(childId)) return; // Seulement dans ce groupe
+
+          let childNode;
+          if (companyIdToClient[childId]) {
+            childNode = companyIdToClient[childId];
+          } else {
+            childNode = createProspectFromCompany(childId);
+            if (childNode) opportunitiesCount++;
+          }
+          if (childNode) children.push(childNode);
+        });
+      }
+
+      // Récupérer les parents (si pas racine absolue)
+      const parents = [];
+      if (rootCompany.parentCompanyIds) {
+        rootCompany.parentCompanyIds.forEach(parentId => {
+          if (!component.has(parentId)) return; // Seulement dans ce groupe
+
+          let parentNode;
+          if (companyIdToClient[parentId]) {
+            parentNode = companyIdToClient[parentId];
+          } else {
+            parentNode = createProspectFromCompany(parentId);
+            if (parentNode) opportunitiesCount++;
+          }
+          if (parentNode) parents.push(parentNode);
+        });
+      }
+
+      companyGroups.push({
+        center: rootNode,
+        parents: parents,
+        children: children
+      });
+    });
+  });
+
+  console.log(`✅ ${companyGroups.length} arbres générés, ${opportunitiesCount} opportunités cross-sell détectées`);
 
   const svg = document.getElementById('chartCompanyTree');
   svg.innerHTML = '';
@@ -3060,70 +3136,152 @@ function renderCompanyTree() {
     return;
   }
 
-  // Helper pour dessiner un nœud
-  function drawNode(x, y, nodeData, label) {
+  // Créer les dégradés SVG (plus sexy!)
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+  // Gradient bleu-violet pour clients
+  const gradientClient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  gradientClient.setAttribute('id', 'gradientClient');
+  gradientClient.setAttribute('x1', '0%');
+  gradientClient.setAttribute('y1', '0%');
+  gradientClient.setAttribute('x2', '100%');
+  gradientClient.setAttribute('y2', '100%');
+  gradientClient.innerHTML = `
+    <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+  `;
+  defs.appendChild(gradientClient);
+
+  // Gradient orange-rose pour prospects
+  const gradientProspect = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  gradientProspect.setAttribute('id', 'gradientProspect');
+  gradientProspect.setAttribute('x1', '0%');
+  gradientProspect.setAttribute('y1', '0%');
+  gradientProspect.setAttribute('x2', '100%');
+  gradientProspect.setAttribute('y2', '100%');
+  gradientProspect.innerHTML = `
+    <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+  `;
+  defs.appendChild(gradientProspect);
+
+  // Gradient parent (plus foncé)
+  const gradientParent = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  gradientParent.setAttribute('id', 'gradientParent');
+  gradientParent.setAttribute('x1', '0%');
+  gradientParent.setAttribute('y1', '0%');
+  gradientParent.setAttribute('x2', '100%');
+  gradientParent.setAttribute('y2', '100%');
+  gradientParent.innerHTML = `
+    <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+  `;
+  defs.appendChild(gradientParent);
+
+  // Gradient enfant (plus clair)
+  const gradientChild = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  gradientChild.setAttribute('id', 'gradientChild');
+  gradientChild.setAttribute('x1', '0%');
+  gradientChild.setAttribute('y1', '0%');
+  gradientChild.setAttribute('x2', '100%');
+  gradientChild.setAttribute('y2', '100%');
+  gradientChild.innerHTML = `
+    <stop offset="0%" style="stop-color:#818cf8;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+  `;
+  defs.appendChild(gradientChild);
+
+  svg.appendChild(defs);
+
+  // Helper pour dessiner un nœud SEXY avec gradients
+  function drawNode(x, y, nodeData, label, nodeType = 'center') {
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.style.cursor = 'pointer';
     g.style.transition = 'all 0.2s ease';
 
-    // Couleur selon statut client/prospect
-    const color = nodeData.isProspect ? '#f97316' : '#6366f1'; // Orange = prospect, Bleu = client
+    // Choisir le gradient selon le type et le statut
+    let gradientId;
+    let strokeColor;
+
+    if (nodeData.isProspect) {
+      gradientId = 'gradientProspect';
+      strokeColor = '#fb923c'; // Orange clair
+    } else {
+      // Client
+      if (nodeType === 'parent') {
+        gradientId = 'gradientParent';
+        strokeColor = '#818cf8'; // Bleu clair
+      } else if (nodeType === 'child') {
+        gradientId = 'gradientChild';
+        strokeColor = '#a78bfa'; // Violet clair
+      } else {
+        gradientId = 'gradientClient';
+        strokeColor = '#a5b4fc'; // Indigo clair
+      }
+    }
 
     // Rendre le nœud cliquable
     g.addEventListener('click', (e) => {
-      e.stopPropagation(); // Empêcher le drag
+      e.stopPropagation();
       showCompanyDetails(nodeData);
     });
 
     // Effet hover
     g.addEventListener('mouseenter', () => {
-      g.style.transform = 'scale(1.05)';
-      g.style.filter = 'brightness(1.1)';
+      g.style.transform = 'scale(1.08)';
+      g.style.filter = 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))';
     });
     g.addEventListener('mouseleave', () => {
       g.style.transform = 'scale(1)';
-      g.style.filter = 'brightness(1)';
+      g.style.filter = 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))';
     });
 
+    // Rectangle avec gradient
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', x);
     rect.setAttribute('y', y);
     rect.setAttribute('width', 220);
     rect.setAttribute('height', 80);
-    rect.setAttribute('rx', 8);
-    rect.setAttribute('fill', color);
-    rect.setAttribute('stroke', '#ffffff');
-    rect.setAttribute('stroke-width', 2);
+    rect.setAttribute('rx', 12); // Plus arrondi
+    rect.setAttribute('fill', `url(#${gradientId})`);
+    rect.setAttribute('stroke', strokeColor);
+    rect.setAttribute('stroke-width', 3);
+    rect.setAttribute('filter', 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))');
     g.appendChild(rect);
 
+    // Nom
     const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     name.setAttribute('x', x + 110);
-    name.setAttribute('y', y + 25);
+    name.setAttribute('y', y + 28);
     name.setAttribute('text-anchor', 'middle');
     name.setAttribute('fill', 'white');
-    name.setAttribute('font-size', '12');
-    name.setAttribute('font-weight', '700');
+    name.setAttribute('font-size', '13');
+    name.setAttribute('font-weight', '800');
     const nameText = nodeData.name.length > 25 ? nodeData.name.substring(0, 22) + '...' : nodeData.name;
     name.textContent = nameText;
     g.appendChild(name);
 
+    // CA
     const ca = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     ca.setAttribute('x', x + 110);
-    ca.setAttribute('y', y + 45);
+    ca.setAttribute('y', y + 48);
     ca.setAttribute('text-anchor', 'middle');
-    ca.setAttribute('fill', 'white');
+    ca.setAttribute('fill', 'rgba(255,255,255,0.95)');
     ca.setAttribute('font-size', '11');
-    ca.textContent = nodeData.isProspect ? 'CA: Prospect' : `CA: ${formatCurrency(nodeData.totalRevenue)}`;
+    ca.setAttribute('font-weight', '600');
+    ca.textContent = nodeData.isProspect ? 'Prospect' : formatCurrency(nodeData.totalRevenue);
     g.appendChild(ca);
 
+    // Badge
     const badge = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     badge.setAttribute('x', x + 110);
-    badge.setAttribute('y', y + 63);
+    badge.setAttribute('y', y + 66);
     badge.setAttribute('text-anchor', 'middle');
-    badge.setAttribute('fill', 'white');
+    badge.setAttribute('fill', 'rgba(255,255,255,0.9)');
     badge.setAttribute('font-size', '9');
-    badge.setAttribute('font-weight', '600');
-    badge.textContent = nodeData.isProspect ? '🎯 OPPORTUNITÉ CROSS-SELL' : label;
+    badge.setAttribute('font-weight', '700');
+    badge.setAttribute('letter-spacing', '0.5');
+    badge.textContent = nodeData.isProspect ? '🎯 CROSS-SELL' : label;
     g.appendChild(badge);
 
     return g;
@@ -3148,23 +3306,24 @@ function renderCompanyTree() {
       const parentX = baseX - (group.parents.length - 1) * 60 + idx * 120;
       const parentY = centerY - verticalSpacing;
 
-      // Line from parent to center
+      // Line from parent to center (gradient coloré)
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', parentX + nodeWidth / 2);
       line.setAttribute('y1', parentY + nodeHeight);
       line.setAttribute('x2', baseX + nodeWidth / 2);
       line.setAttribute('y2', centerY);
-      line.setAttribute('stroke', '#475569');
-      line.setAttribute('stroke-width', 2);
-      line.setAttribute('stroke-dasharray', '5,5');
+      line.setAttribute('stroke', '#6366f1');
+      line.setAttribute('stroke-width', 3);
+      line.setAttribute('stroke-dasharray', '8,4');
+      line.setAttribute('opacity', '0.6');
       svg.appendChild(line);
 
-      const parentNode = drawNode(parentX, parentY, parent, 'SOCIÉTÉ MÈRE');
+      const parentNode = drawNode(parentX, parentY, parent, 'SOCIÉTÉ MÈRE', 'parent');
       svg.appendChild(parentNode);
     });
 
     // Center node
-    const centerNode = drawNode(baseX, centerY, group.center, 'CLIENT');
+    const centerNode = drawNode(baseX, centerY, group.center, 'CLIENT', 'center');
     svg.appendChild(centerNode);
 
     // Children nodes (en-dessous du center)
@@ -3172,18 +3331,19 @@ function renderCompanyTree() {
       const childX = baseX - (group.children.length - 1) * 60 + idx * 120;
       const childY = centerY + verticalSpacing;
 
-      // Line from center to child
+      // Line from center to child (gradient coloré)
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', baseX + nodeWidth / 2);
       line.setAttribute('y1', centerY + nodeHeight);
       line.setAttribute('x2', childX + nodeWidth / 2);
       line.setAttribute('y2', childY);
-      line.setAttribute('stroke', '#475569');
-      line.setAttribute('stroke-width', 2);
-      line.setAttribute('stroke-dasharray', '5,5');
+      line.setAttribute('stroke', '#8b5cf6');
+      line.setAttribute('stroke-width', 3);
+      line.setAttribute('stroke-dasharray', '8,4');
+      line.setAttribute('opacity', '0.6');
       svg.appendChild(line);
 
-      const childNode = drawNode(childX, childY, child, 'FILIALE');
+      const childNode = drawNode(childX, childY, child, 'FILIALE', 'child');
       svg.appendChild(childNode);
     });
   });
