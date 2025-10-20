@@ -3469,7 +3469,7 @@ function initCompanyTreeZoom() {
 
     // Ajuster la translation pour zoomer sur le point de la souris
     const oldScale = companyTreeZoom.scale;
-    const newScale = Math.min(Math.max(companyTreeZoom.scale * delta, 0.1), 5);
+    const newScale = Math.min(Math.max(companyTreeZoom.scale * delta, 1.0), 5); // Bloquer zoom out à 1.0 (vue initiale)
 
     companyTreeZoom.translateX = mouseX - (mouseX - companyTreeZoom.translateX) * (newScale / oldScale);
     companyTreeZoom.translateY = mouseY - (mouseY - companyTreeZoom.translateY) * (newScale / oldScale);
