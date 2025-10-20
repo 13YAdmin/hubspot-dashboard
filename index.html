@@ -797,19 +797,36 @@ details[open] summary {
       <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 8px;">
         Visualisation des groupes d'entreprises basée sur les associations HubSpot (société mère / filiales)
       </p>
-      <div style="display: flex; gap: 20px; margin-bottom: 16px; font-size: 12px;">
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <div style="width: 16px; height: 16px; background: #6366f1; border-radius: 3px;"></div>
-          <span style="color: var(--text-muted);">Client actuel</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div style="display: flex; gap: 20px; font-size: 12px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="width: 16px; height: 16px; background: #6366f1; border-radius: 3px;"></div>
+            <span style="color: var(--text-muted);">Client actuel</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="width: 16px; height: 16px; background: #f97316; border-radius: 3px;"></div>
+            <span style="color: var(--text-muted);">🎯 Opportunité cross-sell (pas encore client)</span>
+          </div>
         </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <div style="width: 16px; height: 16px; background: #f97316; border-radius: 3px;"></div>
-          <span style="color: var(--text-muted);">🎯 Opportunité cross-sell (pas encore client)</span>
+        <!-- Contrôles de navigation -->
+        <div style="display: flex; gap: 8px;">
+          <button onclick="zoomCompanyTree(1.2)" style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">
+            🔍 Zoom +
+          </button>
+          <button onclick="zoomCompanyTree(0.8)" style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">
+            🔍 Zoom −
+          </button>
+          <button onclick="resetCompanyTreeZoom()" style="padding: 6px 12px; background: var(--purple); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600;">
+            ↻ Reset
+          </button>
         </div>
       </div>
-      <div class="chart-container" style="height: 600px; overflow: scroll; border: 1px solid var(--border); border-radius: 8px; background: #f8fafc;">
-        <svg id="chartCompanyTree" style="min-width: 100%; min-height: 100%;"></svg>
+      <div id="companyTreeContainer" class="chart-container" style="position: relative; height: 600px; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: #f8fafc; cursor: grab;">
+        <svg id="chartCompanyTree" style="width: 100%; height: 100%;"></svg>
       </div>
+      <p style="color: var(--text-muted); font-size: 11px; margin-top: 8px; font-style: italic;">
+        💡 Utilisez la molette de la souris pour zoomer, cliquez-glissez pour vous déplacer, cliquez sur une entreprise pour voir les détails
+      </p>
     </div>
 
     <!-- Detailed Analysis -->
@@ -3047,9 +3064,26 @@ function renderCompanyTree() {
   function drawNode(x, y, nodeData, label) {
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.style.cursor = 'pointer';
+    g.style.transition = 'all 0.2s ease';
 
     // Couleur selon statut client/prospect
     const color = nodeData.isProspect ? '#f97316' : '#6366f1'; // Orange = prospect, Bleu = client
+
+    // Rendre le nœud cliquable
+    g.addEventListener('click', (e) => {
+      e.stopPropagation(); // Empêcher le drag
+      showCompanyDetails(nodeData);
+    });
+
+    // Effet hover
+    g.addEventListener('mouseenter', () => {
+      g.style.transform = 'scale(1.05)';
+      g.style.filter = 'brightness(1.1)';
+    });
+    g.addEventListener('mouseleave', () => {
+      g.style.transform = 'scale(1)';
+      g.style.filter = 'brightness(1)';
+    });
 
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', x);
@@ -3153,6 +3187,193 @@ function renderCompanyTree() {
       svg.appendChild(childNode);
     });
   });
+
+  // Initialiser le zoom/pan sur le SVG
+  initCompanyTreeZoom();
+}
+
+// ============================================================================
+// Navigation interactive pour la cartographie (Zoom/Pan)
+// ============================================================================
+
+let companyTreeZoom = {
+  scale: 1,
+  translateX: 0,
+  translateY: 0,
+  isDragging: false,
+  startX: 0,
+  startY: 0
+};
+
+function initCompanyTreeZoom() {
+  const container = document.getElementById('companyTreeContainer');
+  const svg = document.getElementById('chartCompanyTree');
+
+  if (!container || !svg) return;
+
+  // Appliquer le transform initial
+  updateCompanyTreeTransform();
+
+  // Mouse wheel pour zoom
+  container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+
+    // Calculer le point de zoom (position de la souris)
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    // Ajuster la translation pour zoomer sur le point de la souris
+    const oldScale = companyTreeZoom.scale;
+    const newScale = Math.min(Math.max(companyTreeZoom.scale * delta, 0.1), 5);
+
+    companyTreeZoom.translateX = mouseX - (mouseX - companyTreeZoom.translateX) * (newScale / oldScale);
+    companyTreeZoom.translateY = mouseY - (mouseY - companyTreeZoom.translateY) * (newScale / oldScale);
+    companyTreeZoom.scale = newScale;
+
+    updateCompanyTreeTransform();
+  });
+
+  // Mouse down pour démarrer le drag
+  container.addEventListener('mousedown', (e) => {
+    if (e.target === container || e.target === svg) {
+      companyTreeZoom.isDragging = true;
+      companyTreeZoom.startX = e.clientX - companyTreeZoom.translateX;
+      companyTreeZoom.startY = e.clientY - companyTreeZoom.translateY;
+      container.style.cursor = 'grabbing';
+    }
+  });
+
+  // Mouse move pour drag
+  container.addEventListener('mousemove', (e) => {
+    if (companyTreeZoom.isDragging) {
+      e.preventDefault();
+      companyTreeZoom.translateX = e.clientX - companyTreeZoom.startX;
+      companyTreeZoom.translateY = e.clientY - companyTreeZoom.startY;
+      updateCompanyTreeTransform();
+    }
+  });
+
+  // Mouse up pour arrêter le drag
+  container.addEventListener('mouseup', () => {
+    companyTreeZoom.isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  container.addEventListener('mouseleave', () => {
+    companyTreeZoom.isDragging = false;
+    container.style.cursor = 'grab';
+  });
+}
+
+function updateCompanyTreeTransform() {
+  const svg = document.getElementById('chartCompanyTree');
+  if (!svg) return;
+
+  svg.style.transform = `translate(${companyTreeZoom.translateX}px, ${companyTreeZoom.translateY}px) scale(${companyTreeZoom.scale})`;
+  svg.style.transformOrigin = '0 0';
+}
+
+function zoomCompanyTree(factor) {
+  companyTreeZoom.scale = Math.min(Math.max(companyTreeZoom.scale * factor, 0.1), 5);
+  updateCompanyTreeTransform();
+}
+
+function resetCompanyTreeZoom() {
+  companyTreeZoom.scale = 1;
+  companyTreeZoom.translateX = 0;
+  companyTreeZoom.translateY = 0;
+  updateCompanyTreeTransform();
+}
+
+// ============================================================================
+// Modal détails company
+// ============================================================================
+
+function showCompanyDetails(nodeData) {
+  const isClient = !nodeData.isProspect;
+  const HUBSPOT_PORTAL_ID = '146716340';
+
+  let content = `
+    <div class="info-highlight">
+      <div style="font-size: 20px; font-weight: 700; color: ${isClient ? 'var(--accent)' : '#f97316'}; margin-bottom: 8px;">
+        ${nodeData.name}
+      </div>
+      <div style="font-size: 13px; color: var(--text-muted);">
+        ${isClient ? '✅ Client actuel' : '🎯 Opportunité cross-sell (pas encore client)'}
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <div class="info-row">
+        <span class="info-label">Statut</span>
+        <span class="info-value" style="color: ${isClient ? 'var(--green)' : '#f97316'};">
+          ${isClient ? 'CLIENT' : 'PROSPECT'}
+        </span>
+      </div>
+
+      ${isClient ? `
+        <div class="info-row">
+          <span class="info-label">CA Total</span>
+          <span class="info-value" style="color: var(--accent);">${formatCurrency(nodeData.totalRevenue)}</span>
+        </div>
+      ` : ''}
+
+      ${nodeData.domain ? `
+        <div class="info-row">
+          <span class="info-label">Domaine</span>
+          <span class="info-value">${nodeData.domain}</span>
+        </div>
+      ` : ''}
+
+      ${nodeData.companyIndustry ? `
+        <div class="info-row">
+          <span class="info-label">Secteur d'activité</span>
+          <span class="info-value">${nodeData.companyIndustry}</span>
+        </div>
+      ` : ''}
+    </div>
+
+    ${nodeData.companyId ? `
+      <div style="margin-top: 24px; padding: 16px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 4px solid var(--accent);">
+        <div style="font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 12px;">
+          🔗 Liens HubSpot
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${nodeData.companyId}"
+             target="_blank"
+             style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--accent); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 13px; transition: all 0.2s;">
+            📊 Voir dans HubSpot →
+          </a>
+        </div>
+      </div>
+    ` : ''}
+
+    ${!isClient ? `
+      <div style="margin-top: 20px; padding: 16px; background: rgba(249, 115, 22, 0.1); border-radius: 8px; border-left: 4px solid #f97316;">
+        <div style="font-size: 13px; font-weight: 600; color: #f97316; margin-bottom: 8px;">
+          🎯 Opportunité de cross-sell
+        </div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Cette entreprise est reliée à un de vos clients actuels. C'est une opportunité de cross-sell à explorer !
+        </div>
+      </div>
+    ` : ''}
+
+    ${isClient && nodeData.avgHealthScore ? `
+      <div style="margin-top: 20px;">
+        <div class="info-row">
+          <span class="info-label">Score Santé</span>
+          <span class="info-value" style="color: ${nodeData.avgHealthScore > 70 ? 'var(--green)' : nodeData.avgHealthScore > 40 ? '#fbbf24' : 'var(--red)'};">
+            ${nodeData.avgHealthScore}/100
+          </span>
+        </div>
+      </div>
+    ` : ''}
+  `;
+
+  openInfoPanel(`Détails Entreprise`, content);
 }
 
 // ============================================================================
