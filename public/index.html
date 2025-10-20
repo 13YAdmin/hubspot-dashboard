@@ -669,6 +669,75 @@ details[open] summary {
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================
+   GROUPES PARENT/FILIALES
+   ======================================== */
+
+/* Ligne de groupe parent */
+.group-row {
+  background: rgba(99, 102, 241, 0.08) !important;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.group-row:hover {
+  background: rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Ligne d'enfant (filiale) */
+.child-row {
+  background: rgba(30, 41, 59, 0.25) !important;
+  font-size: 13px;
+}
+
+.child-row:hover {
+  background: rgba(30, 41, 59, 0.35) !important;
+}
+
+/* Icône expand/collapse */
+.expand-icon {
+  display: inline-block;
+  width: 16px;
+  margin-right: 8px;
+  font-size: 14px;
+  transition: transform 0.2s ease;
+  color: var(--accent);
+}
+
+.group-row.expanded .expand-icon {
+  transform: rotate(90deg);
+}
+
+/* Indicateur de filiale (└─) */
+.child-indicator {
+  color: #94a3b8;
+  margin-right: 6px;
+  font-weight: 400;
+}
+
+/* Badge nombre de filiales */
+.badge-subsidiaries {
+  background: var(--accent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* Nom du groupe en gras */
+.group-name {
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* Indentation pour les filiales */
+.child-cell-indent {
+  padding-left: 40px !important;
+}
 </style>
 </head>
 
@@ -920,6 +989,7 @@ const HUBSPOT_PORTAL_ID = '146716340'; // Portal ID HubSpot
 // ============================================================================
 let dealsData = [];
 let processedData = [];
+let groupedData = []; // Données avec structure parent/filiales
 let currentDisplayedClients = []; // Pour stocker les clients actuellement affichés
 let currentFilters = {
   year: 'all'
@@ -1174,6 +1244,210 @@ function processData() {
 
   processedData = sortedByHealthScore;
   console.log('✅ Données enrichies traitées:', processedData);
+}
+
+// ============================================================================
+// Process Grouped Data - Gestion des groupes parent/filiales
+// ============================================================================
+function processGroupedData() {
+  if (!window.hubspotCompanies) {
+    console.warn('⚠️ Pas de données companies disponibles, retour aux données non groupées');
+    return processedData.map(client => ({
+      type: 'standalone',
+      ...client
+    }));
+  }
+
+  const grouped = [];
+  const processedClientNames = new Set();
+
+  console.log('🏢 Début processing des groupes parent/filiales...');
+
+  // Parcourir tous les clients traités
+  processedData.forEach(client => {
+    // Si déjà traité (était une filiale d'un parent), skip
+    if (processedClientNames.has(client.name)) {
+      return;
+    }
+
+    const company = window.hubspotCompanies[client.companyId];
+    if (!company) {
+      // Pas de données company HubSpot, traiter comme standalone
+      grouped.push({
+        type: 'standalone',
+        ...client
+      });
+      processedClientNames.add(client.name);
+      return;
+    }
+
+    // Vérifier si c'est un parent (a des filiales)
+    if (company.childCompanyIds && company.childCompanyIds.length > 0) {
+      console.log(`👪 Groupe parent détecté: ${client.name} avec ${company.childCompanyIds.length} filiale(s)`);
+
+      // C'est un groupe parent
+      const group = {
+        type: 'group',
+        groupId: client.companyId,
+        groupName: client.name,
+        isExpanded: false,  // Par défaut fermé
+
+        // Données du parent
+        parentData: client,
+        parentRevenue: client.totalRevenue,
+
+        // Données agrégées (seront calculées)
+        totalGroupRevenue: client.totalRevenue,
+        childrenCount: 0,
+        childrenRevenue: 0,
+
+        // Métadonnées du parent
+        segment: client.segment,
+        segmentColor: client.segmentColor,
+        segmentReason: client.segmentReason,
+        avgHealthScore: client.avgHealthScore,
+        years: { ...client.years },
+        trend: client.trend,
+        notesSentiment: client.notesSentiment,
+        totalNotes: client.totalNotes,
+        owner: client.owner,
+
+        // Filiales
+        children: []
+      };
+
+      // Récupérer les deals des filiales
+      company.childCompanyIds.forEach(childId => {
+        // Trouver le client correspondant dans processedData
+        const childClient = processedData.find(c => c.companyId === childId);
+
+        if (childClient) {
+          console.log(`  └─ Filiale trouvée: ${childClient.name} (CA: ${formatCurrency(childClient.totalRevenue)})`);
+
+          group.children.push({
+            type: 'child',
+            parentGroupId: client.companyId,
+            ...childClient
+          });
+
+          // Agréger les revenus
+          group.totalGroupRevenue += childClient.totalRevenue;
+          group.childrenRevenue += childClient.totalRevenue;
+
+          // Agréger les années
+          Object.keys(group.years).forEach(year => {
+            group.years[year] += (childClient.years[year] || 0);
+          });
+
+          // Marquer comme traité
+          processedClientNames.add(childClient.name);
+        } else {
+          // La filiale existe dans HubSpot mais n'a pas de deals
+          const childCompany = window.hubspotCompanies[childId];
+          if (childCompany) {
+            console.log(`  └─ Filiale sans deals: ${childCompany.name}`);
+            group.children.push({
+              type: 'child',
+              parentGroupId: client.companyId,
+              name: childCompany.name,
+              companyId: childId,
+              domain: childCompany.domain || '',
+              industry: childCompany.industry || '',
+              totalRevenue: 0,
+              years: { '2022': 0, '2023': 0, '2024': 0, '2025': 0 },
+              avgHealthScore: 0,
+              segment: 'Prospect',
+              segmentColor: '#64748b',
+              isProspect: true
+            });
+          }
+        }
+      });
+
+      group.childrenCount = group.children.length;
+
+      // Recalculer le health score du groupe (moyenne pondérée par CA)
+      if (group.totalGroupRevenue > 0) {
+        let weightedHealthScore = client.avgHealthScore * client.totalRevenue;
+
+        group.children.forEach(child => {
+          if (!child.isProspect) {
+            weightedHealthScore += (child.avgHealthScore || 0) * (child.totalRevenue || 0);
+          }
+        });
+
+        group.avgHealthScore = Math.round(weightedHealthScore / group.totalGroupRevenue);
+      }
+
+      // Recalculer la tendance globale du groupe
+      group.trend = calculateTrend(group);
+
+      // Déterminer le segment du groupe (le plus prioritaire)
+      const segmentPriority = {
+        'Stratégique': 1,
+        'Clé': 2,
+        'Régulier': 3,
+        'À Risque': 4,
+        'Dormant': 5,
+        'Prospect': 6
+      };
+
+      let bestSegment = client.segment;
+      let bestPriority = segmentPriority[client.segment] || 999;
+      let bestColor = client.segmentColor;
+
+      group.children.forEach(child => {
+        const childPriority = segmentPriority[child.segment] || 999;
+        if (childPriority < bestPriority) {
+          bestSegment = child.segment;
+          bestPriority = childPriority;
+          bestColor = child.segmentColor;
+        }
+      });
+
+      group.segment = bestSegment;
+      group.segmentColor = bestColor;
+
+      console.log(`✅ Groupe ${client.name}: CA total ${formatCurrency(group.totalGroupRevenue)} (parent: ${formatCurrency(group.parentRevenue)}, filiales: ${formatCurrency(group.childrenRevenue)})`);
+
+      grouped.push(group);
+      processedClientNames.add(client.name);
+
+    } else if (!company.parentCompanyIds || company.parentCompanyIds.length === 0) {
+      // Pas de parent ni d'enfants = standalone
+      grouped.push({
+        type: 'standalone',
+        ...client
+      });
+      processedClientNames.add(client.name);
+    }
+    // Sinon, c'est une filiale qui sera traitée par son parent (déjà skippée au début)
+  });
+
+  console.log(`✅ Groupes créés: ${grouped.filter(g => g.type === 'group').length} groupes, ${grouped.filter(g => g.type === 'standalone').length} standalone`);
+
+  return grouped;
+}
+
+// ============================================================================
+// Toggle Group - Expand/Collapse des groupes parent/filiales
+// ============================================================================
+function toggleGroup(groupIndex) {
+  // Trouver le groupe dans les données affichées
+  const group = currentDisplayedClients[groupIndex];
+
+  if (!group || group.type !== 'group') {
+    console.warn('Impossible de toggle: pas un groupe ou index invalide', groupIndex);
+    return;
+  }
+
+  // Inverser l'état
+  group.isExpanded = !group.isExpanded;
+
+  console.log(`${group.isExpanded ? '▼' : '▶'} Groupe ${group.groupName} ${group.isExpanded ? 'ouvert' : 'fermé'}`);
+
+  // Re-render le tableau pour afficher/masquer les enfants
+  renderSegmentationTable();
 }
 
 function calculateTrend(client) {
