@@ -3325,7 +3325,7 @@ function renderCompanyTree() {
       });
       return maxChildDepth;
     }
-    const groupDepth = 1 + getDepth(group.children);
+    let groupDepth = 1 + getDepth(group.children);
     if (group.parents.length > 0) groupDepth++;
     maxDepth = Math.max(maxDepth, groupDepth);
   });
