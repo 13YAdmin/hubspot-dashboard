@@ -1662,6 +1662,10 @@ function getPriority(client) {
 // Dashboard Rendering
 // ============================================================================
 function renderDashboard() {
+  console.log('🚀 [v3.0 EVENT DELEGATION] Rendering dashboard...');
+  console.log('📊 Filtres année secteurs: ACTIVÉS');
+  console.log('🔄 Event delegation expand/collapse: ACTIVÉ');
+
   renderKPIs();
   renderRevenueGlobalChart();
   renderClientEvolutionChart();
@@ -1671,6 +1675,19 @@ function renderDashboard() {
   renderCompanyTree();
   renderAnalysis();
   initFilters();
+
+  // Vérifier que les boutons de filtre année sont bien présents
+  setTimeout(() => {
+    const filterButtons = document.querySelectorAll('[data-industry-year]');
+    console.log(`🔍 Vérification boutons filtre année: ${filterButtons.length} boutons trouvés`);
+    if (filterButtons.length === 0) {
+      console.error('❌ ERREUR: Aucun bouton de filtre année trouvé dans le DOM!');
+    } else {
+      console.log('   → Boutons:', Array.from(filterButtons).map(b => b.getAttribute('data-industry-year')));
+    }
+  }, 500);
+
+  console.log('✅ Dashboard rendu complet');
 }
 
 // ============================================================================
@@ -2926,10 +2943,14 @@ function renderHealthTrendsChart() {
 let industryChartYear = 'all';
 
 function renderIndustryPieChart(filterYear = 'all') {
+  console.log(`📊 renderIndustryPieChart appelée avec filterYear: ${filterYear}`);
+
   // Filtrer les données par année si nécessaire
   let dataToUse = processedData;
   if (filterYear !== 'all') {
+    console.log(`   → Filtrage par année ${filterYear}`);
     dataToUse = processedData.filter(client => client.years[filterYear] > 0);
+    console.log(`   → ${dataToUse.length} clients après filtrage`);
   }
 
   // Mapping COMPLET EN→FR des industries HubSpot standards
@@ -3344,7 +3365,8 @@ function renderIndustryPieChart(filterYear = 'all') {
 
 // Fonction de filtrage par année pour le graphique des secteurs
 function filterIndustryChart(year) {
-  console.log(`📊 Filtrage graphique secteurs par année: ${year}`);
+  console.log(`🎯 filterIndustryChart APPELÉE avec année: ${year}`);
+  console.log(`   → Type de year: ${typeof year}`);
 
   // Mettre à jour les styles des boutons
   const buttons = document.querySelectorAll('[data-industry-year]');
@@ -3370,6 +3392,7 @@ function filterIndustryChart(year) {
 
 // Exposer globalement pour les onclick HTML
 window.filterIndustryChart = filterIndustryChart;
+console.log('✅ window.filterIndustryChart exposée globalement');
 
 // ============================================================================
 // Company Relationships Tree - Organigramme des relations (CROSS-SELL)
@@ -4459,42 +4482,36 @@ function renderSegmentationTable() {
   }).join('');
 
   // ========================================================================
-  // ÉTAPE 3: Ajouter event delegation pour les clics sur les lignes
+  // ÉTAPE 3: Attacher les event listeners après le rendering
   // ========================================================================
-  // Retirer l'ancien listener s'il existe
-  tbody.removeEventListener('click', handleTableRowClick);
+  console.log(`🔗 Attachement event listeners sur ${flattenedForDisplay.length} lignes`);
 
-  // Ajouter le nouveau listener
-  tbody.addEventListener('click', handleTableRowClick);
-}
+  // Récupérer toutes les lignes TR
+  const allRows = tbody.querySelectorAll('tr[data-row-index]');
+  console.log(`   → ${allRows.length} lignes trouvées dans le DOM`);
 
-// Handler pour les clics sur les lignes du tableau (avec event delegation)
-function handleTableRowClick(event) {
-  // Si c'est un bouton, laisser le bouton gérer le clic
-  if (event.target.tagName === 'BUTTON') {
-    return;
-  }
+  allRows.forEach((row, idx) => {
+    const rowIndex = parseInt(row.getAttribute('data-row-index'));
+    const rowType = row.getAttribute('data-row-type');
 
-  // Trouver la ligne TR cliquée (peut être un enfant qui a reçu le clic)
-  const row = event.target.closest('tr');
-  if (!row) return;
+    // Attacher un listener de clic sur chaque ligne
+    row.addEventListener('click', function(event) {
+      // Ignorer si c'est un bouton
+      if (event.target.tagName === 'BUTTON') return;
 
-  const rowIndex = parseInt(row.getAttribute('data-row-index'));
-  const rowType = row.getAttribute('data-row-type');
+      console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
 
-  if (isNaN(rowIndex)) return;
+      if (rowType === 'group') {
+        console.log(`🔄 TOGGLE groupe ${rowIndex}`);
+        toggleGroup(rowIndex);
+      } else {
+        console.log(`📋 Détails client ${rowIndex}`);
+        showClientDetails(rowIndex);
+      }
+    });
+  });
 
-  console.log(`🖱️ Clic détecté: ligne ${rowIndex}, type: ${rowType}`);
-
-  if (rowType === 'group') {
-    // C'est un groupe → toggle
-    console.log(`🔄 Toggle groupe ${rowIndex}`);
-    toggleGroup(rowIndex);
-  } else {
-    // C'est un child ou standalone → afficher détails
-    console.log(`📋 Afficher détails client ${rowIndex}`);
-    showClientDetails(rowIndex);
-  }
+  console.log(`✅ Event listeners attachés sur toutes les lignes`);
 }
 
 // ============================================================================
