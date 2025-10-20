@@ -1,67 +1,72 @@
 /**
- * Health Score Calculator - Calculate 0-100 health score (VERSION SÉVÈRE)
+ * Health Score Calculator - Calculate 0-100 health score (VERSION ÉQUILIBRÉE)
  */
 
 function calculateHealthScore(companyData, notesAnalysis, engagement) {
-  let score = 0; // Base à 0, pas de cadeau
+  let score = 20; // Base 20 - petit bonus de départ
 
-  // 1. Notes (35 points max) - SÉVÈRE
+  // 1. Notes (35 points max) - ÉQUILIBRÉ
   if (notesAnalysis.totalNotes > 0) {
-    // Faut BEAUCOUP de notes pour des points
-    if (notesAnalysis.totalNotes >= 20) score += 15;
-    else if (notesAnalysis.totalNotes >= 10) score += 8;
-    else if (notesAnalysis.totalNotes >= 5) score += 4;
-    else score += 1; // Très peu si moins de 5 notes
+    // Récompense progressive pour les notes
+    if (notesAnalysis.totalNotes >= 15) score += 18;
+    else if (notesAnalysis.totalNotes >= 10) score += 12;
+    else if (notesAnalysis.totalNotes >= 5) score += 7;
+    else score += 3; // Au moins quelques points pour effort
 
-    // Qualité
-    if (notesAnalysis.avgLength > 300) score += 8;
-    else if (notesAnalysis.avgLength > 150) score += 3;
+    // Qualité des notes
+    if (notesAnalysis.avgLength > 250) score += 7;
+    else if (notesAnalysis.avgLength > 120) score += 4;
+    else if (notesAnalysis.avgLength > 50) score += 1;
 
-    // Récence - OBLIGATOIRE pour points
-    if (notesAnalysis.hasRecent) score += 7;
-    else score -= 10; // Pénalité si pas de note récente
+    // Récence importante mais pas bloquante
+    if (notesAnalysis.hasRecent) score += 5;
+    else score -= 5; // Pénalité modérée
 
-    // Sentiment - impact fort
+    // Sentiment avec impact mesuré
     if (notesAnalysis.sentiment === 'positive') score += 5;
-    else if (notesAnalysis.sentiment === 'negative') score -= 20; // Grosse pénalité
+    else if (notesAnalysis.sentiment === 'negative') score -= 10; // Pénalité moyenne
   } else {
-    score -= 25; // Grosse pénalité si aucune note
+    score -= 15; // Pénalité modérée si aucune note
   }
 
-  // 2. Engagement (30 points max) - SÉVÈRE
+  // 2. Engagement (30 points max) - ÉQUILIBRÉ
   const totalEmails = engagement.emails || 0;
   const totalCalls = engagement.calls || 0;
   const totalMeetings = engagement.meetings || 0;
 
-  // Il faut VRAIMENT de l'engagement
-  if (totalEmails >= 20) score += 6;
-  else if (totalEmails >= 10) score += 3;
-  else if (totalEmails >= 5) score += 1;
+  // Emails - seuils accessibles
+  if (totalEmails >= 15) score += 8;
+  else if (totalEmails >= 8) score += 5;
+  else if (totalEmails >= 3) score += 2;
 
-  if (totalCalls >= 10) score += 10;
-  else if (totalCalls >= 5) score += 5;
-  else if (totalCalls >= 2) score += 2;
+  // Calls - seuils raisonnables
+  if (totalCalls >= 8) score += 11;
+  else if (totalCalls >= 4) score += 7;
+  else if (totalCalls >= 1) score += 3;
 
-  if (totalMeetings >= 5) score += 14;
-  else if (totalMeetings >= 3) score += 8;
+  // Meetings - très important mais pas punitif
+  if (totalMeetings >= 4) score += 11;
+  else if (totalMeetings >= 2) score += 7;
   else if (totalMeetings >= 1) score += 3;
-  else score -= 5; // Pénalité si aucun meeting
+  // Pas de pénalité si aucun meeting
 
-  // 3. Keywords (10 points max) - SÉVÈRE
-  if (notesAnalysis.keywords.action >= 10) score += 5;
-  else if (notesAnalysis.keywords.action >= 5) score += 2;
+  // 3. Keywords (10 points max) - ÉQUILIBRÉ
+  if (notesAnalysis.keywords.action >= 8) score += 5;
+  else if (notesAnalysis.keywords.action >= 4) score += 3;
+  else if (notesAnalysis.keywords.action >= 1) score += 1;
 
-  if (notesAnalysis.keywords.meeting >= 5) score += 5;
-  else if (notesAnalysis.keywords.meeting >= 3) score += 2;
+  if (notesAnalysis.keywords.meeting >= 4) score += 5;
+  else if (notesAnalysis.keywords.meeting >= 2) score += 3;
+  else if (notesAnalysis.keywords.meeting >= 1) score += 1;
 
-  // 4. Revenue (25 points max) - TRÈS SÉVÈRE
+  // 4. Revenue (25 points max) - ÉQUILIBRÉ
   const revenue = companyData.totalRevenue || 0;
-  if (revenue >= 200000) score += 25;
-  else if (revenue >= 100000) score += 18;
-  else if (revenue >= 50000) score += 12;
+  if (revenue >= 150000) score += 25;
+  else if (revenue >= 75000) score += 18;
+  else if (revenue >= 40000) score += 12;
   else if (revenue >= 20000) score += 6;
-  else if (revenue >= 10000) score += 2;
-  else score -= 5; // Pénalité si CA trop faible
+  else if (revenue >= 10000) score += 3;
+  // Pas de pénalité pour CA faible
 
   return Math.max(0, Math.min(100, Math.round(score)));
 }
