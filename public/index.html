@@ -920,7 +920,9 @@ async function loadHubSpotData() {
       sortColumn = 'name'; // Tri alphabétique par défaut
       sortDirection = 'asc';
 
-      console.log('Données chargées:', result.data.length, 'deals');
+      // Stocker les companies pour la cartographie des relations
+      window.hubspotCompanies = result.companies || {};
+      console.log('Données chargées:', result.data.length, 'deals,', Object.keys(window.hubspotCompanies).length, 'companies');
 
       processData();
       console.log('✅ Données traitées:', processedData.length, 'clients');
@@ -2593,66 +2595,25 @@ function renderHealthTrendsChart() {
 // Industry Pie Chart - Répartition par secteur d'activité
 // ============================================================================
 function renderIndustryPieChart() {
-  // Mapping intelligent industries EN → FR
-  const industryMapping = {
-    // Tech & IT
-    'Computer Software': 'Logiciels & IT',
-    'Information Technology and Services': 'Logiciels & IT',
-    'Internet': 'Logiciels & IT',
-    'Computer & Network Security': 'Logiciels & IT',
-    'IT Services and IT Consulting': 'Logiciels & IT',
-    'Software Development': 'Logiciels & IT',
-    // Finance
-    'Financial Services': 'Finance & Assurance',
-    'Banking': 'Finance & Assurance',
-    'Insurance': 'Finance & Assurance',
-    'Venture Capital & Private Equity': 'Finance & Assurance',
-    // Manufacturing
-    'Manufacturing': 'Industrie & Manufacturing',
-    'Industrial Automation': 'Industrie & Manufacturing',
-    'Machinery': 'Industrie & Manufacturing',
-    // Retail & E-commerce
-    'Retail': 'Commerce & Distribution',
-    'E-Learning': 'Commerce & Distribution',
-    'Consumer Goods': 'Commerce & Distribution',
-    // Healthcare
-    'Hospital & Health Care': 'Santé & Pharmaceutique',
-    'Medical Devices': 'Santé & Pharmaceutique',
-    'Pharmaceuticals': 'Santé & Pharmaceutique',
-    'Biotechnology': 'Santé & Pharmaceutique',
-    // Consulting
-    'Management Consulting': 'Conseil & Services',
-    'Marketing and Advertising': 'Conseil & Services',
-    'Public Relations and Communications': 'Conseil & Services',
-    'Human Resources': 'Conseil & Services',
-    // Construction & Real Estate
-    'Construction': 'BTP & Immobilier',
-    'Real Estate': 'BTP & Immobilier',
-    'Architecture & Planning': 'BTP & Immobilier',
-    // Education
-    'Education Management': 'Éducation & Formation',
-    'Higher Education': 'Éducation & Formation',
-    'E-Learning': 'Éducation & Formation',
-    // Others
-    'Telecommunications': 'Télécommunications',
-    'Transportation/Trucking/Railroad': 'Transport & Logistique',
-    'Logistics and Supply Chain': 'Transport & Logistique',
-    'Hospitality': 'Hôtellerie & Tourisme',
-    'Food & Beverages': 'Agroalimentaire',
-    'Automotive': 'Automobile',
-    'Energy': 'Énergie & Utilities'
-  };
+  // DEBUG: Logger toutes les industries pour voir les vraies valeurs
+  const allIndustries = new Set();
+  processedData.forEach(client => {
+    if (client.companyIndustry) {
+      allIndustries.add(client.companyIndustry);
+    }
+  });
+  console.log('🔍 Industries trouvées dans HubSpot:', Array.from(allIndustries).sort());
 
-  // Regrouper par secteur
+  // Regrouper par secteur (SANS mapping - afficher les vraies valeurs)
   const industryCounts = {};
   const industryRevenues = {};
 
   processedData.forEach(client => {
-    const rawIndustry = client.companyIndustry || 'Non spécifié';
-    const frenchIndustry = industryMapping[rawIndustry] || 'Autres secteurs';
+    // Utiliser la vraie valeur d'industry (SANS mapping - afficher tel quel)
+    const industry = client.companyIndustry || 'Non spécifié';
 
-    industryCounts[frenchIndustry] = (industryCounts[frenchIndustry] || 0) + 1;
-    industryRevenues[frenchIndustry] = (industryRevenues[frenchIndustry] || 0) + client.totalRevenue;
+    industryCounts[industry] = (industryCounts[industry] || 0) + 1;
+    industryRevenues[industry] = (industryRevenues[industry] || 0) + client.totalRevenue;
   });
 
   // Convertir en array et trier par nombre de clients
@@ -2806,50 +2767,69 @@ function renderIndustryPieChart() {
 }
 
 // ============================================================================
-// Company Relationships Tree - Organigramme des relations
+// Company Relationships Tree - Organigramme des relations (VRAIES ASSOCIATIONS HUBSPOT)
 // ============================================================================
 function renderCompanyTree() {
-  // Détecter les groupes d'entreprises (noms similaires, domaines similaires, etc.)
+  // Utiliser les VRAIES associations parent/child HubSpot (pas de devinette!)
+  console.log('🔗 Construction arbre relations avec associations HubSpot réelles');
+
+  if (!window.hubspotCompanies) {
+    console.warn('⚠️ Aucune donnée companies disponible');
+    const svg = document.getElementById('chartCompanyTree');
+    svg.innerHTML = '';
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', '50%');
+    text.setAttribute('y', '50%');
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', '#94a3b8');
+    text.setAttribute('font-size', '14');
+    text.textContent = 'Données companies non chargées (lancez le workflow GitHub Actions)';
+    svg.appendChild(text);
+    svg.setAttribute('viewBox', `0 0 800 100`);
+    return;
+  }
+
+  // Créer index companyId → client pour mapping rapide
+  const companyIdToClient = {};
+  processedData.forEach(client => {
+    if (client.companyId) {
+      companyIdToClient[client.companyId] = client;
+    }
+  });
+
+  // Construire les groupes basés sur les VRAIES associations HubSpot
   const companyGroups = [];
   const processed = new Set();
 
-  processedData.forEach(client => {
-    if (processed.has(client.name)) return;
+  Object.values(window.hubspotCompanies).forEach(company => {
+    // Si cette company est déjà traitée, skip
+    if (processed.has(company.id)) return;
 
-    // Chercher des filiales potentielles
-    const baseName = client.name
-      .replace(/\s+(SAS|SA|SARL|EURL|SCI|SCOP|SASU|France|International|Group|Groupe)$/i, '')
-      .trim();
+    // Si cette company a des enfants, c'est un parent
+    if (company.childCompanyIds && company.childCompanyIds.length > 0) {
+      const parentClient = companyIdToClient[company.id];
+      if (!parentClient) return; // Pas de deal associé
 
-    const relatedCompanies = processedData.filter(other => {
-      if (other.name === client.name) return false;
-      const otherBaseName = other.name
-        .replace(/\s+(SAS|SA|SARL|EURL|SCI|SCOP|SASU|France|International|Group|Groupe)$/i, '')
-        .trim();
-
-      // Même base de nom
-      if (baseName && otherBaseName && baseName.length > 3 &&
-          (baseName.includes(otherBaseName) || otherBaseName.includes(baseName))) {
-        return true;
-      }
-
-      // Même domaine (indicateur de groupe)
-      if (client.domain && other.domain && client.domain === other.domain) {
-        return true;
-      }
-
-      return false;
-    });
-
-    if (relatedCompanies.length > 0) {
-      companyGroups.push({
-        parent: client,
-        children: relatedCompanies
+      const children = [];
+      company.childCompanyIds.forEach(childId => {
+        const childClient = companyIdToClient[childId];
+        if (childClient) {
+          children.push(childClient);
+          processed.add(childId);
+        }
       });
-      processed.add(client.name);
-      relatedCompanies.forEach(c => processed.add(c.name));
+
+      if (children.length > 0) {
+        companyGroups.push({
+          parent: parentClient,
+          children: children
+        });
+        processed.add(company.id);
+      }
     }
   });
+
+  console.log(`✅ ${companyGroups.length} groupes parent/child trouvés`);
 
   const svg = document.getElementById('chartCompanyTree');
   svg.innerHTML = '';

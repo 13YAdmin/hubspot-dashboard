@@ -76,10 +76,42 @@ async function main() {
         industry: company.properties.industry || '',
         revenue: parseFloat(company.properties.annualrevenue || 0),
         employees: parseInt(company.properties.numberofemployees || 0),
-        ownerId: company.properties.hubspot_owner_id || ''
+        ownerId: company.properties.hubspot_owner_id || '',
+        parentCompanyIds: [], // Sera rempli après
+        childCompanyIds: []   // Sera rempli après
       };
     });
-    console.log(`✅ ${Object.keys(companies).length} companies récupérées\n`);
+    console.log(`✅ ${Object.keys(companies).length} companies récupérées`);
+
+    // Récupérer les associations parent/child pour chaque company
+    console.log('🔗 Récupération des relations parent/child...');
+    let relationsCount = 0;
+    for (const companyId in companies) {
+      try {
+        // Récupérer les associations company→company
+        const assocs = await fetchHubSpot(`/crm/v4/objects/companies/${companyId}/associations/companies`);
+
+        if (assocs.results && assocs.results.length > 0) {
+          assocs.results.forEach(assoc => {
+            const associatedCompanyId = assoc.toObjectId;
+            const associationType = assoc.associationTypes?.[0]?.typeId;
+
+            // Type 13 = Parent company to child company (cette company est parent)
+            // Type 14 = Child company to parent company (cette company est enfant)
+            if (associationType === 13) {
+              companies[companyId].childCompanyIds.push(associatedCompanyId);
+              relationsCount++;
+            } else if (associationType === 14) {
+              companies[companyId].parentCompanyIds.push(associatedCompanyId);
+              relationsCount++;
+            }
+          });
+        }
+      } catch (err) {
+        // Pas d'associations, ce n'est pas une erreur
+      }
+    }
+    console.log(`✅ ${relationsCount} relations parent/child détectées\n`);
 
     // ÉTAPE 3 : Récupérer tous les deals
     console.log('💼 ÉTAPE 3/5 - Récupération des deals...');
@@ -184,6 +216,8 @@ async function main() {
         companyIndustry: companyData?.industry || '',
         companyRevenue: companyData?.revenue || 0,
         companyEmployees: companyData?.employees || 0,
+        companyParentIds: companyData?.parentCompanyIds || [],
+        companyChildIds: companyData?.childCompanyIds || [],
 
         // Owner info
         ownerId: dealProps.hubspot_owner_id || companyData?.ownerId || '',
@@ -232,17 +266,20 @@ async function main() {
       timestamp: new Date().toISOString(),
       count: enrichedDeals.length,
       data: enrichedDeals,
+      companies: companies, // Ajouter toutes les companies avec leurs relations
       metadata: {
         totalOwners: Object.keys(owners).length,
         totalCompanies: Object.keys(companies).length,
         totalDeals: dealsData.length,
+        totalRelations: relationsCount,
         enrichmentComplete: true,
         features: [
           'All notes analyzed',
           'Engagement history tracked',
           'Health scores calculated',
           'Segments detected',
-          'Dormant clients identified'
+          'Dormant clients identified',
+          'Parent/child company relationships'
         ]
       }
     };
