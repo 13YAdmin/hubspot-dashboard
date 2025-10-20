@@ -3211,11 +3211,11 @@ function renderCompanyTree() {
 
   svg.appendChild(defs);
 
-  // Helper pour dessiner un nœud SEXY avec gradients
+  // Helper pour dessiner un nœud avec PLUS D'INFOS
   function drawNode(x, y, nodeData, label, nodeType = 'center') {
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.style.cursor = 'pointer';
-    g.style.transition = 'all 0.2s ease';
+    g.classList.add('company-node'); // Marquer pour éviter le pan
 
     // Choisir le gradient selon le type et le statut
     let gradientId;
@@ -3223,18 +3223,17 @@ function renderCompanyTree() {
 
     if (nodeData.isProspect) {
       gradientId = 'gradientProspect';
-      strokeColor = '#fb923c'; // Orange clair
+      strokeColor = '#fb923c';
     } else {
-      // Client
       if (nodeType === 'parent') {
         gradientId = 'gradientParent';
-        strokeColor = '#818cf8'; // Bleu clair
+        strokeColor = '#818cf8';
       } else if (nodeType === 'child') {
         gradientId = 'gradientChild';
-        strokeColor = '#a78bfa'; // Violet clair
+        strokeColor = '#a78bfa';
       } else {
         gradientId = 'gradientClient';
-        strokeColor = '#a5b4fc'; // Indigo clair
+        strokeColor = '#a5b4fc';
       }
     }
 
@@ -3244,23 +3243,13 @@ function renderCompanyTree() {
       showCompanyDetails(nodeData);
     });
 
-    // Effet hover
-    g.addEventListener('mouseenter', () => {
-      g.style.transform = 'scale(1.08)';
-      g.style.filter = 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))';
-    });
-    g.addEventListener('mouseleave', () => {
-      g.style.transform = 'scale(1)';
-      g.style.filter = 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))';
-    });
-
-    // Rectangle avec gradient
+    // Rectangle avec gradient (PLUS GRAND pour plus d'infos)
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', x);
     rect.setAttribute('y', y);
-    rect.setAttribute('width', 220);
-    rect.setAttribute('height', 80);
-    rect.setAttribute('rx', 12); // Plus arrondi
+    rect.setAttribute('width', 280); // 220 → 280
+    rect.setAttribute('height', 110); // 80 → 110
+    rect.setAttribute('rx', 12);
     rect.setAttribute('fill', `url(#${gradientId})`);
     rect.setAttribute('stroke', strokeColor);
     rect.setAttribute('stroke-width', 3);
@@ -3269,47 +3258,73 @@ function renderCompanyTree() {
 
     // Nom
     const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    name.setAttribute('x', x + 110);
-    name.setAttribute('y', y + 28);
+    name.setAttribute('x', x + 140);
+    name.setAttribute('y', y + 22);
     name.setAttribute('text-anchor', 'middle');
     name.setAttribute('fill', 'white');
-    name.setAttribute('font-size', '13');
+    name.setAttribute('font-size', '14');
     name.setAttribute('font-weight', '800');
-    const nameText = nodeData.name.length > 25 ? nodeData.name.substring(0, 22) + '...' : nodeData.name;
+    const nameText = nodeData.name.length > 30 ? nodeData.name.substring(0, 27) + '...' : nodeData.name;
     name.textContent = nameText;
     g.appendChild(name);
 
+    // Industrie (NOUVEAU)
+    const industry = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    industry.setAttribute('x', x + 140);
+    industry.setAttribute('y', y + 40);
+    industry.setAttribute('text-anchor', 'middle');
+    industry.setAttribute('fill', 'rgba(255,255,255,0.85)');
+    industry.setAttribute('font-size', '10');
+    industry.setAttribute('font-style', 'italic');
+    const industryText = nodeData.companyIndustry || 'Secteur non défini';
+    const industryShort = industryText.length > 35 ? industryText.substring(0, 32) + '...' : industryText;
+    industry.textContent = industryShort;
+    g.appendChild(industry);
+
     // CA
     const ca = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    ca.setAttribute('x', x + 110);
-    ca.setAttribute('y', y + 48);
+    ca.setAttribute('x', x + 140);
+    ca.setAttribute('y', y + 60);
     ca.setAttribute('text-anchor', 'middle');
     ca.setAttribute('fill', 'rgba(255,255,255,0.95)');
-    ca.setAttribute('font-size', '11');
-    ca.setAttribute('font-weight', '600');
+    ca.setAttribute('font-size', '12');
+    ca.setAttribute('font-weight', '700');
     ca.textContent = nodeData.isProspect ? 'Prospect' : formatCurrency(nodeData.totalRevenue);
     g.appendChild(ca);
 
+    // Domaine (NOUVEAU)
+    if (nodeData.domain) {
+      const domain = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      domain.setAttribute('x', x + 140);
+      domain.setAttribute('y', y + 78);
+      domain.setAttribute('text-anchor', 'middle');
+      domain.setAttribute('fill', 'rgba(255,255,255,0.75)');
+      domain.setAttribute('font-size', '9');
+      const domainShort = nodeData.domain.length > 35 ? nodeData.domain.substring(0, 32) + '...' : nodeData.domain;
+      domain.textContent = domainShort;
+      g.appendChild(domain);
+    }
+
     // Badge
     const badge = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    badge.setAttribute('x', x + 110);
-    badge.setAttribute('y', y + 66);
+    badge.setAttribute('x', x + 140);
+    badge.setAttribute('y', y + 96);
     badge.setAttribute('text-anchor', 'middle');
     badge.setAttribute('fill', 'rgba(255,255,255,0.9)');
     badge.setAttribute('font-size', '9');
     badge.setAttribute('font-weight', '700');
     badge.setAttribute('letter-spacing', '0.5');
-    badge.textContent = nodeData.isProspect ? '🎯 CROSS-SELL' : label;
+    badge.textContent = nodeData.isProspect ? 'CROSS-SELL' : label;
     g.appendChild(badge);
 
     return g;
   }
 
   // NOUVEAU LAYOUT SIMPLE ET LISIBLE
-  const groupSpacing = 450; // Espacement horizontal entre groupes
-  const nodeWidth = 220;
-  const nodeHeight = 80;
-  const verticalSpacing = 110; // Espacement vertical entre nœuds
+  const groupSpacing = 550; // Espacement horizontal entre groupes (augmenté pour nœuds plus larges)
+  const nodeWidth = 280; // Largeur nœud mise à jour
+  const nodeHeight = 110; // Hauteur nœud mise à jour
+  const verticalSpacing = 130; // Espacement vertical entre nœuds (augmenté)
 
   // Calculer la hauteur nécessaire pour chaque groupe
   const groupHeights = companyGroups.map(group => {
@@ -3480,11 +3495,14 @@ function initCompanyTreeZoom() {
 
   // Mouse down pour démarrer le drag
   container.addEventListener('mousedown', (e) => {
-    if (e.target === container || e.target === svg) {
+    // Autoriser le drag sauf si on clique sur un nœud cliquable
+    const isNode = e.target.closest('.company-node');
+    if (!isNode) {
       companyTreeZoom.isDragging = true;
       companyTreeZoom.startX = e.clientX - companyTreeZoom.translateX;
       companyTreeZoom.startY = e.clientY - companyTreeZoom.translateY;
       container.style.cursor = 'grabbing';
+      e.preventDefault(); // Empêcher sélection texte
     }
   });
 
