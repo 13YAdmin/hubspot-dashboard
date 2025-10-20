@@ -180,16 +180,41 @@ Un workflow GitHub Actions a été lancé pour tester le fix des secteurs.
 
 ---
 
-**Dernière mise à jour**: 2025-10-20 19:30
-**Session**: COMPLÈTE - Groupes parent/filiales + Fix industries ✅✅
-**Tokens utilisés**: ~95k/200k
+**Dernière mise à jour**: 2025-10-20 20:00
+**Session**: COMPLÈTE + Debugging - Groupes parent/filiales + Industries ✅✅✅
+**Tokens utilisés**: ~115k/200k
 
 ## 🎉 RÉSUMÉ SESSION
 
-✅ **Industries**: 90+ mappings ajoutés, secteurs affichés en français
+### Fonctionnalités Principales
+✅ **Industries**: 90+ mappings ajoutés, secteurs en français
 ✅ **Groupes parent/filiales**: Implémentation complète expand/collapse
-✅ **CA Total groupe**: Agrégation parent + filiales fonctionnelle
+✅ **CA Total groupe**: Agrégation parent + filiales
 ✅ **UI**: 3 types de lignes (group, child, standalone) avec styles
 ✅ **Tri/Filtres**: Adaptés aux données groupées
+
+### Bugs Corrigés (après tests utilisateur)
+✅ **Clic sur groupes ne fonctionnait pas** (ex: Safran 2 filiales)
+   - Cause: event.stopPropagation() dans onclick HTML
+   - Fix: Simplification rowOnClick direct par type
+
+✅ **Industries toujours vides**
+   - Cause 1: Backend fetch OK, mais frontend manquait companyIndustry
+   - Cause 2: Mapping insuffisant (ajout 90+ codes underscore)
+   - Fix: Ajout champ + workflow pour regénérer data.json
+
+✅ **toggleGroup non accessible**
+   - Cause: Fonction non exposée globalement
+   - Fix: window.toggleGroup = toggleGroup
+
+### Commits Effectués
+1. FIX Industries: Mapping COMPLET 90+ codes HubSpot
+2. WIP: Groupes parent/filiales - Fondations (1/2)
+3. ✅ GROUPES Parent/Filiales - Implémentation COMPLÈTE (2/2)
+4. HIDE Cartographie: Masquée (remplacée par tableau)
+5. STATUS: Session complète - Groupes + Industries OK
+6. FIX toggleGroup: Exposition globale pour onclick
+7. FIX Industries: Ajout champ companyIndustry dans processData
+8. FIX toggleGroup: Correction onclick pour groupes
 
 🚀 **Dashboard entièrement fonctionnel avec relations hiérarchiques**
