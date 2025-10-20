@@ -1151,6 +1151,7 @@ function processData() {
         companyId: deal.companyId,
         domain: deal.companyDomain,
         industry: deal.companyIndustry,
+        companyIndustry: deal.companyIndustry, // Pour compatibilité graphique
         totalRevenue: 0,
         years: { '2022': 0, '2023': 0, '2024': 0, '2025': 0 },
         deals: [],
@@ -4329,14 +4330,18 @@ function renderSegmentationTable() {
 
     if (isGroup) {
       rowClass = `group-row ${client.isExpanded ? 'expanded' : ''}`;
-      rowOnClick = `toggleGroup(${idx}); event.stopPropagation();`;
+      rowOnClick = `toggleGroup(${idx})`;
       expandIcon = `<span class="expand-icon">${client.isExpanded ? '▼' : '▶'}</span>`;
     } else if (isChild) {
       rowClass = 'child-row';
+      rowOnClick = `showClientDetails(${idx})`;
+    } else {
+      // Standalone
+      rowOnClick = `showClientDetails(${idx})`;
     }
 
     return `
-      <tr class="${rowClass}" onclick='${isGroup ? rowOnClick : `showClientDetails(${idx})`}' style="cursor: pointer;">
+      <tr class="${rowClass}" onclick='${rowOnClick}' style="cursor: pointer;">
         <td><strong>${idx + 1}</strong></td>
         <td ${isChild ? 'class="child-cell-indent"' : ''}>
           ${isGroup ? expandIcon : ''}
