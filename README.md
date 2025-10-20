@@ -9,12 +9,23 @@ Dashboard interactif **ultra-enrichi** pour analyser les performances commercial
 ### 🔥 Enrichissement Automatique Complet
 - ✅ **TOUTES les notes** analysées (sentiment granulaire 8 niveaux, keywords, contenu)
 - ✅ **Engagement history** complet (emails, calls, meetings)
-- ✅ **Score Santé SÉVÈRE** (0-100) - notation exigeante basée sur notes + engagement + CA
-- ✅ **Détection de segments** discrète (affichage minimal par point de couleur)
+- ✅ **Score Santé ÉQUILIBRÉ** (0-100) - notation équilibrée basée sur notes + engagement + CA
+- ✅ **Détection de segments** intelligente
 - ✅ **Cross-référencement** total : Deals → Companies → Contacts → Notes
 - ✅ **Parsing intelligent des contacts** (extraction automatique des noms depuis les notes)
 
-### 📊 Données Enrichies (40+ Champs par Deal)
+### 📊 Visualisations Avancées
+
+| Graphique | Description |
+|-----------|-------------|
+| **KPIs Globaux** | CA total, nombre clients, health score moyen |
+| **Évolution CA Global** | Tendance revenue multi-années |
+| **Top 10 Clients** | Classement par CA avec health scores |
+| **Répartition Secteurs** | Pie chart industries (40+ mappings EN→FR) |
+| **Cartographie Relations** | Arbre hiérarchique groupes/filiales |
+| **Recommandations** | Insights stratégiques Account Manager |
+
+### 📈 Données Enrichies (40+ Champs par Client)
 
 | Catégorie | Champs |
 |-----------|--------|
@@ -113,7 +124,7 @@ hubspot-dashboard/
 │       └── 📁 lib/
 │           ├── api.js                # Fonctions API HubSpot
 │           ├── notes-analyzer.js     # Analyse de contenu des notes
-│           ├── health-score.js       # Calcul du health score
+│           ├── health-score.js       # Calcul du health score ÉQUILIBRÉ
 │           └── segment-detector.js   # Détection de segments
 │
 ├── 📁 public/
@@ -121,9 +132,7 @@ hubspot-dashboard/
 │   └── data.json                     # Données générées (auto-update)
 │
 ├── 📄 README.md                      # Documentation (ce fichier)
-├── 📄 DEPLOYMENT.md                  # Guide de déploiement
-├── 📄 QUICKSTART.md                  # Guide rapide
-└── 📄 GIT-CHEATSHEET.md              # Aide-mémoire Git
+└── 📄 .env.example                   # Exemple config HubSpot token
 ```
 
 ## 🔧 Architecture Modulaire
@@ -139,17 +148,18 @@ Gestion des appels HubSpot API :
 
 ### `.github/scripts/lib/notes-analyzer.js`
 Analyse de contenu des notes :
-- Détection de sentiment (positif/négatif/neutre)
-- Extraction de keywords
+- Détection de sentiment granulaire (8 niveaux)
+- Extraction de keywords (positifs/négatifs/action)
 - Calcul de métriques (longueur moyenne, récence)
 
 ### `.github/scripts/lib/health-score.js`
-Calcul du Score Santé (0-100) - VERSION SÉVÈRE :
+Calcul du Score Santé (0-100) - VERSION ÉQUILIBRÉE :
 - **35 pts** : Notes (quantité, qualité, sentiment, récence)
 - **30 pts** : Engagement (emails, calls, meetings)
 - **10 pts** : Keywords d'action
 - **25 pts** : CA (revenue)
-- **Pénalités** : -25 si aucune note, -20 si sentiment négatif, -10 si pas récent, -5 si aucun meeting
+- **Base 20** : Bonus de départ
+- Seuils accessibles et pénalités réduites
 
 ### `.github/scripts/lib/segment-detector.js`
 Détection intelligente de segments :
@@ -171,7 +181,7 @@ Détection intelligente de segments :
 
 ### Modifier la Fréquence de Mise à Jour
 
-Actuellement : **toutes les 2 heures** (~1080 min/mois)
+Actuellement : **toutes les 2 heures**
 
 Édite `.github/workflows/fetch-hubspot-data.yml` :
 
@@ -185,46 +195,37 @@ on:
 
 ### Ajouter de Nouvelles Propriétés HubSpot
 
-Édite `.github/scripts/fetch-hubspot.js` ligne 86-95 :
-
-```javascript
-const dealsData = await fetchAllPaginated('/crm/v3/objects/deals', [
-  'dealname',
-  'amount',
-  'closedate',
-  'createdate',
-  'ta_propriete_custom'  // ← Ajoute ici
-]);
-```
+Édite `.github/scripts/fetch-hubspot.js` dans la section des propriétés à récupérer.
 
 ## 📊 Méthodologie
 
-### Score Santé (0-100) - VERSION SÉVÈRE
+### Score Santé (0-100) - VERSION ÉQUILIBRÉE
 ```
-Score = Notes (35) + Engagement (30) + Keywords (10) + Revenue (25) + Pénalités
-Base : 0 (pas de cadeau !)
+Score = Base(20) + Notes(35) + Engagement(30) + Keywords(10) + Revenue(25)
 ```
 
 **Détails** :
-- **Notes** (35 pts max) - SÉVÈRE :
-  - ≥20 notes = +15 pts / ≥10 notes = +8 pts / ≥5 notes = +4 pts / <5 notes = +1 pt
-  - Longueur moyenne >300 chars = +8 pts / >150 chars = +3 pts
-  - Note récente (<90 jours) = +7 pts / **sinon -10 pts** (pénalité)
-  - Sentiment positif = +5 pts / **sentiment négatif = -20 pts** (grosse pénalité)
-  - **Aucune note = -25 pts** (grosse pénalité)
+- **Base** : 20 pts (petit bonus de départ)
 
-- **Engagement** (30 pts max) - SÉVÈRE :
-  - Emails : ≥20 = +6 pts / ≥10 = +3 pts / ≥5 = +1 pt
-  - Calls : ≥10 = +10 pts / ≥5 = +5 pts / ≥2 = +2 pts
-  - Meetings : ≥5 = +14 pts / ≥3 = +8 pts / ≥1 = +3 pts / **aucun = -5 pts** (pénalité)
+- **Notes** (35 pts max) - ÉQUILIBRÉ :
+  - ≥15 notes = +18 pts / ≥10 notes = +12 pts / ≥5 notes = +7 pts / quelques notes = +3 pts
+  - Longueur moyenne >250 chars = +7 pts / >120 chars = +4 pts
+  - Note récente (<90 jours) = +5 pts / **sinon -5 pts**
+  - Sentiment positif = +5 pts / **sentiment négatif = -10 pts**
+  - **Aucune note = -15 pts**
 
-- **Keywords** (10 pts max) - SÉVÈRE :
-  - ≥10 mots d'action = +5 pts / ≥5 = +2 pts
-  - ≥5 mentions meeting = +5 pts / ≥3 = +2 pts
+- **Engagement** (30 pts max) - ÉQUILIBRÉ :
+  - Emails : ≥15 = +8 pts / ≥8 = +5 pts / ≥3 = +2 pts
+  - Calls : ≥8 = +11 pts / ≥4 = +7 pts / ≥1 = +3 pts
+  - Meetings : ≥4 = +11 pts / ≥2 = +7 pts / ≥1 = +3 pts (pas de pénalité)
 
-- **Revenue** (25 pts max) - TRÈS SÉVÈRE :
-  - ≥200k€ = +25 pts / ≥100k€ = +18 pts / ≥50k€ = +12 pts
-  - ≥20k€ = +6 pts / ≥10k€ = +2 pts / **<10k€ = -5 pts** (pénalité)
+- **Keywords** (10 pts max) - ÉQUILIBRÉ :
+  - ≥8 mots d'action = +5 pts / ≥4 = +3 pts
+  - ≥4 mentions meeting = +5 pts / ≥2 = +3 pts
+
+- **Revenue** (25 pts max) - ÉQUILIBRÉ :
+  - ≥150k€ = +25 pts / ≥75k€ = +18 pts / ≥40k€ = +12 pts
+  - ≥20k€ = +6 pts / ≥10k€ = +3 pts (pas de pénalité)
 
 ### Segments
 
@@ -245,8 +246,7 @@ Base : 0 (pas de cadeau !)
 # Créer .env.local avec ton token
 echo "HUBSPOT_ACCESS_TOKEN=pat-eu1-xxx" > .env.local
 
-# Installer Node.js si pas déjà fait
-# puis :
+# Exporter le token et lancer le script
 export $(cat .env.local | xargs)
 node .github/scripts/fetch-hubspot.js
 ```
@@ -289,9 +289,6 @@ window.addEventListener('DOMContentLoaded', () => {
 ### Le dashboard affiche des données anciennes
 → Fais un hard refresh (CTRL+SHIFT+R ou CMD+SHIFT+R sur Mac) pour vider le cache du navigateur
 
-### Les clients dormants ne sont pas détectés
-→ Vérifie que le script récupère bien les notes avec `fetchAllNotes()` dans `lib/api.js`
-
 ### Les données sont trop anciennes (>2 heures)
 → Le workflow automatique tourne toutes les 2 heures. Pour des données plus fraîches :
   1. Clique sur le bouton "Actualiser" en haut à droite du dashboard
@@ -322,42 +319,6 @@ window.addEventListener('DOMContentLoaded', () => {
 - Cache des owners pour éviter appels répétés
 - Chargement automatique du dashboard (pas de bouton)
 
-## 🎓 Pour Aller Plus Loin
-
-### Ajouter un Nouveau Module d'Analyse
-
-Crée un fichier dans `.github/scripts/lib/` :
-
-```javascript
-// .github/scripts/lib/mon-module.js
-function monAnalyse(data) {
-  // Ta logique ici
-  return result;
-}
-
-module.exports = { monAnalyse };
-```
-
-Puis importe-le dans `fetch-hubspot.js` :
-```javascript
-const { monAnalyse } = require('./lib/mon-module');
-```
-
-### Personnaliser les Graphiques
-
-Le dashboard utilise Chart.js - Documentation : https://www.chartjs.org/docs/
-
-### Créer un Rapport PDF Personnalisé
-
-Ajoute des sections dans `public/index.html` et utilise la fonction d'export PDF intégrée.
-
-## 🤝 Support
-
-- 📖 Guide de déploiement : `DEPLOYMENT.md`
-- ⚡ Guide de démarrage : `QUICKSTART.md`
-- 📚 Aide-mémoire Git : `GIT-CHEATSHEET.md`
-- 🐛 Issues GitHub : https://github.com/13YAdmin/hubspot-dashboard/issues
-
 ## 📝 License
 
 MIT
@@ -366,4 +327,4 @@ MIT
 
 **Made with ❤️ for Account Managers**
 
-🚀 Version PRO - Architecture modulaire avec enrichissement complet HubSpot
+🚀 Version PRO - Architecture modulaire avec enrichissement complet HubSpot + GitHub Pages
