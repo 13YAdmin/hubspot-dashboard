@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-20T15:09:50.667Z",
+  "timestamp": "2025-10-20T15:14:27.965Z",
   "count": 81,
   "data": [
     {
@@ -101,7 +101,9 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264196399312
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -185,7 +187,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -308,7 +313,10 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226897211637,
+        258850478274
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -563,9 +571,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -648,7 +654,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -903,7 +911,9 @@
       "companyIndustry": "LOGISTICS_AND_SUPPLY_CHAIN",
       "companyRevenue": 18700000000,
       "companyEmployees": 98000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        258851914962
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -986,7 +996,15 @@
       "companyRevenue": 90061920000,
       "companyEmployees": 175647,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        225635140849,
+        230029784291,
+        231940442307,
+        232131152083,
+        262216855790,
+        262224529637,
+        263431222517
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1027,7 +1045,9 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264196399312
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1109,7 +1129,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1208,10 +1230,10 @@
       "latestNoteDate": "2025-10-17T11:31:28.930Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Très Bonne</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Louis Vuitton est une maison française de luxe, emblématique pour ses sacs, maroquinerie, prêt-à-porter et accessoires haut de gamme, appartenant au groupe LVMH. Louis Vuitton fait partie du groupe LVMH depuis la création de LVMH en 1987, lorsque le groupe a été formé par la fusion de Louis Vuitton et de Moët Hennessy.</p><p style=\"margin:0;\"><strong>Historique : </strong>Un premier projet en 2023 à 16K qui a lancé la relation avec cette marque emblématique. Ensuite en 2024 la relation se développe, plus de contacts et 224K au total avec plusieurs projets. En 2025 c'est 150K environ qui ont été généré, moins de chiffre que l'année dernière mais plus de factures avec plus de projets ce qui reste très encourageant</p><p style=\"margin:0;\"><strong>CA : </strong>420K sur 3 ans, super client</p><p style=\"margin:0;\">16K - 2023</p><p style=\"margin:0;\">224K - 2024</p><p style=\"margin:0;\">150 - 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>L&amp;D / Com interne / Engagement</p><p style=\"margin:0;\"><strong>Contact : </strong>Pas mal de contacts désormais - Marie Favier / Franklin Steward / Sophie Claverlo</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Job Fairs Assets &amp; Guidelines - Kakemmonos (2023)</p></li><li><p style=\"margin:0;\">Nomads Com (2024)</p></li><li><p style=\"margin:0;\">Goodies (2024)</p></li><li><p style=\"margin:0;\">Story Telling Population Retail (2025)</p></li><li><p style=\"margin:0;\">Leadership Program (2025)</p></li><li><p style=\"margin:0;\">Vidéo Origin (2025)</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Honnêtement énorme. Louis Vuitton c'est une des maisons les plus lucratives de LVMH avec 20 000 employés et + de 21 milliards de CA.</p><p style=\"margin:0;\">--&gt; On a une excellente relation avec eux. Identifier, organiser et intensifier peut être notre chasse sûr les BU avec lesquels on travaille le mois</p><p style=\"margin:0;\">--&gt; Plusieurs projets en cours - La relation s'épanouit très bien</p></div>",
       "engagementEmails": 18,
-      "engagementCalls": 0,
+      "engagementCalls": 1,
       "engagementMeetings": 3,
       "engagementLastActivity": "",
-      "healthScore": 73,
+      "healthScore": 76,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -1398,9 +1420,7 @@
       "companyRevenue": 1130000000,
       "companyEmployees": 10000,
       "companyParentIds": [],
-      "companyChildIds": [
-        263648066783
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1441,7 +1461,10 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226897211637,
+        258850478274
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1486,8 +1509,8 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 3,
-      "notesAvgLength": 1167,
+      "totalNotes": 5,
+      "notesAvgLength": 754,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 2,
@@ -1500,7 +1523,7 @@
       "engagementCalls": 3,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 81,
+      "healthScore": 85,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -1607,7 +1630,9 @@
       "companyRevenue": 4142119000,
       "companyEmployees": 11000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        235541582066
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1812,7 +1837,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1918,15 +1945,15 @@
       "notesMeetingKeywords": 1,
       "latestNoteDate": "2025-10-16T21:28:14.007Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Inexistante</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Orange S.A. est un groupe français de télécommunications leader en Europe et en Afrique, offrant des services de téléphonie fixe, mobile, Internet et de services numériques aux particuliers et aux entreprises.</p><p style=\"margin:0;\"><strong>Historique : </strong>Tony a écrit à tout Orange, on lui a proposé de participer à un appel d'offre, on l'a gagné et la relation a commencé comme ça. En 2022 les plusieurs projets à 188K étaient suivi par Cyril Bauchais, il était alors responsable Marque Employeur. En 2023 il est devenu responsable Communication de la Fondation Orange, c'est pour eux qu'on a fait les 12K en 2023 mais nous n'avons pas sollicité son successeur pour la marque employeur donc pas d'autres missions pour cette BU. Ensuite la relation s'est perdue et pas d'autres sollicitations de leurs parts.</p><p style=\"margin:0;\"><strong>CA : </strong>200K au total en 4 ans</p><p style=\"margin:0;\">-188K en 2022</p><p style=\"margin:0;\">-12K en 2023</p><p style=\"margin:0;\">-0K en 2024 et 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Marque Employeur / Communication Fondation Orange</p><p style=\"margin:0;\"><strong>Contact :</strong></p><p style=\"margin:0;\">-Cyril Bauchais (désormais responsable Com. Fondation Orange)</p><p style=\"margin:0;\">-Meike Spahrbier (Employeur Attractiveness)</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Insiders Program FR avec plusieurs Promo</p></li><li><p style=\"margin:0;\">Programme Orange Squad</p></li><li><p style=\"margin:0;\">Deck de présentation Groupe Orange</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Orange est une énorme boîte, plus de 46 milliards d'euros avec 140 000 employés. Plus de 20 filiales à travers plus d'une trentaine de pays.</p><p style=\"margin:0;\">--&gt; En France des filiales très intéressantes comme Sosh, Orange Bank, Orange prestations TV ou OCS peuvent mériter d'être creusé</p><p style=\"margin:0;\">--&gt; Très gros potentiel chez Orange, je pense vraiment qu'il suffit de chasser les bons contacts de la BU Marque Employeur pour déclencher de nouveaux RDV.</p><p style=\"margin:0;\">--&gt; Relancer Meike Spahrbier qui est toujours en poste et responsable de l'attractivité employeur</p></div>",
-      "engagementEmails": 0,
+      "engagementEmails": 23,
       "engagementCalls": 2,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 48,
-      "segment": "À Risque",
-      "segmentColor": "#e74c3c",
-      "segmentPriority": 1,
-      "segmentReason": "Health score faible",
+      "healthScore": 56,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
+      "segmentPriority": 3,
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2023
     },
     {
@@ -1949,25 +1976,25 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 0,
-      "notesAvgLength": 0,
-      "notesHasRecent": false,
+      "totalNotes": 1,
+      "notesAvgLength": 1643,
+      "notesHasRecent": true,
       "notesSentiment": "neutral",
       "notesPositiveKeywords": 0,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "",
-      "latestNoteBody": "",
+      "latestNoteDate": "2025-10-17T09:06:51.341Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Normale</strong></p><p style=\"margin:0;\"><strong>Intro :</strong> Van Cleef &amp; Arpels est une maison de haute joaillerie française fondée en 1906, réputée pour son savoir-faire artisanal et ses créations poétiques emblématiques. Fait parti de Richemont depuis 1999.</p><p style=\"margin:0;\"><strong>Historique : </strong>Vraiment petite relation avec eux. On a fait 1 joli projet pour 25K en 2023 mais ensuite plus rien. En 2024 Tony est revenu vers Raphaëlle Koch mais elle a confirmé qu'il n'y avait pas encore de nouveaux projets. Cependant Raphaëlle est partie chez Richemont comme Senior Group Learning &amp; Developement.</p><p style=\"margin:0;\"><strong>CA : </strong>25K en 2023 avec 1 projet</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Learning &amp; Development</p><p style=\"margin:0;\"><strong>Contact : </strong>Raphaëlle Koch (anciennement chez Van Cleef &amp; Arpel)</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Motion Il était une fois</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Van Cleef est une belle marque, elle fait partie du TOP 3 des plus rentables de Richemont. C'est 1M de CA en 2024 et environ 3000 employés</p><p style=\"margin:0;\">--&gt; Raphaëlle Koch est partie dans la maison mère Richemont, donc potentiellement très intéressant de la contacter</p><p style=\"margin:0;\">--&gt; Pour ce qui est de Van Cleef il n'y a pas eu énormément d'échanges donc on peut bombarder sans trop de pincettes.</p></div>",
       "engagementEmails": 12,
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 13,
-      "segment": "Dormant",
-      "segmentColor": "#95a5a6",
-      "segmentPriority": 4,
-      "segmentReason": "Pas d'activité depuis 22 mois",
+      "healthScore": 43,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -1979,36 +2006,36 @@
       "stage": "3442211051",
       "pipeline": "2496239810",
       "probability": "1",
-      "companyId": "",
-      "companyName": "",
-      "companyDomain": "",
-      "companyIndustry": "",
-      "companyRevenue": 0,
-      "companyEmployees": 0,
+      "companyId": 220236403918,
+      "companyName": "Pernod Ricard",
+      "companyDomain": "pernod-ricard.com",
+      "companyIndustry": "WINE_AND_SPIRITS",
+      "companyRevenue": 10746530000,
+      "companyEmployees": 18306,
       "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 0,
-      "notesAvgLength": 0,
-      "notesHasRecent": false,
+      "totalNotes": 6,
+      "notesAvgLength": 342,
+      "notesHasRecent": true,
       "notesSentiment": "neutral",
       "notesPositiveKeywords": 0,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "",
-      "latestNoteBody": "",
-      "engagementEmails": 0,
+      "latestNoteDate": "2025-10-16T23:39:10.280Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Inexistante</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Pernod Ricard est un groupe français spécialisé dans la production, la distribution et la commercialisation de spiritueux et vins premium à l’international avec des produits présents presque partout sur le globe.</p><p style=\"margin:0;\"><strong>Historique : </strong>On a fait 3 missions avec eux en 2022 pour environ 15K, ensuite 21K en 2023 avec 2 missions moyennes et 3 micro factures (car ils semblaient vraiment au centime près, on a quelques factures à 807,5 EUR ou 242 EUR), une micro mission de 2K en 2024 puis plus rien. J'ai l'impression qu'il y a eu beaucoup de chipotage sur les factures et</p><p style=\"margin:0;\"><strong>CA : </strong>Environ 38K sur 4 ans</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Digital Employee Experience / Employee Engagement</p><p style=\"margin:0;\"><strong>Contact : </strong>Aubin Colléaux</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">PPT Data Journey</p></li><li><p style=\"margin:0;\">Stickers et Manifesto</p></li><li><p style=\"margin:0;\">Data Awareness Campaign</p></li><li><p style=\"margin:0;\">Pernot Ricard Agility</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Pernot Ricard c'est 10 milliards de CA avec 19 000 employés. Dans l'idée gros potentiel mais ils semblent avoir très très peu de budget pour la Com. et Tony ne semble pas du tout enthousiaste à l'idée de retravailler avec eux pour cette question de budget instable.</p><p style=\"margin:0;\">--&gt; A ne pas prioriser</p></div>",
+      "engagementEmails": 8,
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 8,
-      "segment": "Dormant",
-      "segmentColor": "#95a5a6",
-      "segmentPriority": 4,
-      "segmentReason": "Pas d'activité depuis 22 mois",
+      "healthScore": 47,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -2027,7 +2054,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2232,7 +2262,15 @@
       "companyRevenue": 90061920000,
       "companyEmployees": 175647,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        225635140849,
+        230029784291,
+        231940442307,
+        232131152083,
+        262216855790,
+        262224529637,
+        263431222517
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2404,8 +2442,8 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 1,
-      "notesAvgLength": 225,
+      "totalNotes": 4,
+      "notesAvgLength": 1885,
       "notesHasRecent": true,
       "notesSentiment": "neutral",
       "notesPositiveKeywords": 0,
@@ -2418,7 +2456,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 2,
       "engagementLastActivity": "",
-      "healthScore": 41,
+      "healthScore": 44,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -2441,7 +2479,10 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226897211637,
+        258850478274
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2481,9 +2522,7 @@
       "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 389000,
       "companyEmployees": 1250,
-      "companyParentIds": [
-        263633128688
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2565,9 +2604,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 2000000000,
       "companyEmployees": 4000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2643,36 +2680,38 @@
       "stage": "3451949272",
       "pipeline": "2522471620",
       "probability": "1",
-      "companyId": "",
-      "companyName": "",
-      "companyDomain": "",
-      "companyIndustry": "",
-      "companyRevenue": 0,
-      "companyEmployees": 0,
+      "companyId": 220587788529,
+      "companyName": "Orange",
+      "companyDomain": "orange.com",
+      "companyIndustry": "TELECOMMUNICATIONS",
+      "companyRevenue": 46629100000,
+      "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 0,
-      "notesAvgLength": 0,
-      "notesHasRecent": false,
-      "notesSentiment": "neutral",
-      "notesPositiveKeywords": 0,
+      "totalNotes": 2,
+      "notesAvgLength": 1329,
+      "notesHasRecent": true,
+      "notesSentiment": "positive",
+      "notesPositiveKeywords": 2,
       "notesNegativeKeywords": 0,
-      "notesActionKeywords": 0,
-      "notesMeetingKeywords": 0,
-      "latestNoteDate": "",
-      "latestNoteBody": "",
-      "engagementEmails": 0,
-      "engagementCalls": 0,
-      "engagementMeetings": 0,
+      "notesActionKeywords": 3,
+      "notesMeetingKeywords": 1,
+      "latestNoteDate": "2025-10-16T21:28:14.007Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Inexistante</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Orange S.A. est un groupe français de télécommunications leader en Europe et en Afrique, offrant des services de téléphonie fixe, mobile, Internet et de services numériques aux particuliers et aux entreprises.</p><p style=\"margin:0;\"><strong>Historique : </strong>Tony a écrit à tout Orange, on lui a proposé de participer à un appel d'offre, on l'a gagné et la relation a commencé comme ça. En 2022 les plusieurs projets à 188K étaient suivi par Cyril Bauchais, il était alors responsable Marque Employeur. En 2023 il est devenu responsable Communication de la Fondation Orange, c'est pour eux qu'on a fait les 12K en 2023 mais nous n'avons pas sollicité son successeur pour la marque employeur donc pas d'autres missions pour cette BU. Ensuite la relation s'est perdue et pas d'autres sollicitations de leurs parts.</p><p style=\"margin:0;\"><strong>CA : </strong>200K au total en 4 ans</p><p style=\"margin:0;\">-188K en 2022</p><p style=\"margin:0;\">-12K en 2023</p><p style=\"margin:0;\">-0K en 2024 et 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Marque Employeur / Communication Fondation Orange</p><p style=\"margin:0;\"><strong>Contact :</strong></p><p style=\"margin:0;\">-Cyril Bauchais (désormais responsable Com. Fondation Orange)</p><p style=\"margin:0;\">-Meike Spahrbier (Employeur Attractiveness)</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Insiders Program FR avec plusieurs Promo</p></li><li><p style=\"margin:0;\">Programme Orange Squad</p></li><li><p style=\"margin:0;\">Deck de présentation Groupe Orange</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Orange est une énorme boîte, plus de 46 milliards d'euros avec 140 000 employés. Plus de 20 filiales à travers plus d'une trentaine de pays.</p><p style=\"margin:0;\">--&gt; En France des filiales très intéressantes comme Sosh, Orange Bank, Orange prestations TV ou OCS peuvent mériter d'être creusé</p><p style=\"margin:0;\">--&gt; Très gros potentiel chez Orange, je pense vraiment qu'il suffit de chasser les bons contacts de la BU Marque Employeur pour déclencher de nouveaux RDV.</p><p style=\"margin:0;\">--&gt; Relancer Meike Spahrbier qui est toujours en poste et responsable de l'attractivité employeur</p></div>",
+      "engagementEmails": 23,
+      "engagementCalls": 2,
+      "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 30,
-      "segment": "Dormant",
-      "segmentColor": "#95a5a6",
-      "segmentPriority": 4,
-      "segmentReason": "Pas d'activité depuis 34 mois",
+      "healthScore": 81,
+      "segment": "Clé",
+      "segmentColor": "#3498db",
+      "segmentPriority": 2,
+      "segmentReason": "CA 210k€, relation stable",
       "year": 2022
     },
     {
@@ -2732,7 +2771,10 @@
       "companyRevenue": 58221850000,
       "companyEmployees": 168000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264204857580,
+        264205578471
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2867,21 +2909,21 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 1,
-      "notesAvgLength": 1085,
+      "totalNotes": 2,
+      "notesAvgLength": 1887,
       "notesHasRecent": true,
       "notesSentiment": "neutral",
       "notesPositiveKeywords": 0,
       "notesNegativeKeywords": 0,
-      "notesActionKeywords": 0,
-      "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-16T15:04:39.610Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Intro : </strong>Thales est un groupe industriel français spécialisé dans les hautes technologies de défense, d’aérospatiale, de sécurité et de cybersécurité, reconnu pour ses systèmes électroniques avancés et solutions critiques.</p><p style=\"margin:0;\"><strong>Historique : </strong>On a connu Thales grâce à Mohammed qui travaillait chez eux. C'est devenu un véritable ami et apporteur d'affaire pour Tony, la relation a commencé en 2021. Il nous a aidé à vraiment très bien développer Thales. Cependant on a eu un litige avec eux ce qui a stoppé net la relation.</p><p style=\"margin:0;\"><strong>CA : </strong></p><ul><li><p style=\"margin:0;\">204K en 2022</p></li><li><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul><p style=\"margin:0;\"><strong>BU concerné :</strong></p><p style=\"margin:0;\"><strong>Contact :</strong></p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt;</p></div>",
+      "notesActionKeywords": 2,
+      "notesMeetingKeywords": 1,
+      "latestNoteDate": "2025-10-16T15:04:41.422Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Mitigée</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Thales est un groupe industriel français spécialisé dans les hautes technologies de défense, d’aérospatiale, de sécurité et de cybersécurité, reconnu pour ses systèmes électroniques avancés et solutions critiques.</p><p style=\"margin:0;\"><strong>Historique : </strong>On a connu Thales grâce à Mohammed qui travaillait chez eux. C'est devenu un véritable ami et apporteur d'affaire pour Tony, la relation a commencé en 2021. Il nous a aidé à vraiment très bien développer Thales. Cependant on a eu un litige avec eux ce qui a stoppé net la relation.</p><p style=\"margin:0;\"><strong>CA : </strong>Au total 300-310K sur 4 ans</p><ul><li><p style=\"margin:0;\">204K en 2022</p></li><li><p style=\"margin:0;\">54K en 2023</p></li><li><p style=\"margin:0;\">57K en 2024</p></li><li><p style=\"margin:0;\">0K en 2025</p></li></ul><p style=\"margin:0;\"><strong>BU concerné : </strong>Com interne / Séminaire Event / Learning &amp; Development / Com Corporate</p><p style=\"margin:0;\"><strong>Contact : </strong>Lea Baron est notre contact actuel.</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Vidéos Elise Riboulet</p></li><li><p style=\"margin:0;\">Thales anti-corruption</p></li><li><p style=\"margin:0;\">Thales Inflation</p></li><li><p style=\"margin:0;\">Thales Email Signatures</p></li><li><p style=\"margin:0;\">Com International Women's Day</p></li><li><p style=\"margin:0;\">Accompagnement séminaire équipes Communication</p></li><li><p style=\"margin:0;\">Roadshow Editorial Calendar</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Thales c'est 20 milliards d'euro pour 83 000 employés dans 68 pays différents. Cependant entreprise française ultra bien implanté dans le territoire.</p><p style=\"margin:0;\">--&gt; Après le litige nous n'avons plus eu de contact et on a considéré que c'était fini. Cependant contre toute attente Lea Baron (Communications Officer) et revenu vers nous pour un Concept Créatif Voeux Comex sur 2026. Réunion prévue le 20 octobre 2025 avec Tony. Elle fait partie du groupe donc il y a un risque que l'on soit repéré, affaire à suivre.</p><p style=\"margin:0;\">--&gt; Il y a 4 grandes BU chez Thales, il faut éviter le groupe mais on peut totalement chasser dans les 4 grandes unités de Thales :</p><ul><li><p style=\"margin:0;\">Aérospatial</p></li><li><p style=\"margin:0;\">Défense et Sécurité</p></li><li><p style=\"margin:0;\">Identité Numérique</p></li><li><p style=\"margin:0;\">Transports Terrestre</p></li></ul></div>",
       "engagementEmails": 1,
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 63,
+      "healthScore": 65,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -2897,36 +2939,36 @@
       "stage": "3451949272",
       "pipeline": "2522471620",
       "probability": "1",
-      "companyId": "",
-      "companyName": "",
-      "companyDomain": "",
-      "companyIndustry": "",
-      "companyRevenue": 0,
-      "companyEmployees": 0,
+      "companyId": 220612733131,
+      "companyName": "Solvay",
+      "companyDomain": "solvay.com",
+      "companyIndustry": "CHEMICALS",
+      "companyRevenue": 4359040000,
+      "companyEmployees": 9000,
       "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 0,
-      "notesAvgLength": 0,
-      "notesHasRecent": false,
-      "notesSentiment": "neutral",
-      "notesPositiveKeywords": 0,
+      "totalNotes": 2,
+      "notesAvgLength": 702,
+      "notesHasRecent": true,
+      "notesSentiment": "positive",
+      "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "",
-      "latestNoteBody": "",
-      "engagementEmails": 0,
+      "latestNoteDate": "2025-10-17T12:26:26.676Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Inexistante</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Solvay est un groupe chimique belge spécialisé dans la chimie avancée, les matériaux innovants et les solutions durables pour l’industrie, allant des plastiques haute performance aux produits chimiques de spécialité.</p><p style=\"margin:0;\"><strong>Historique : </strong>On a fait 2 projets employeur Branding en 2022 (36K), ensuite 78K en 2023 avec 2 projets. 2024 et 2025 il ne s'est rien passé.</p><p style=\"margin:0;\"><strong>CA : </strong>100K en 2022 - 2023</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Marque Employeur</p><p style=\"margin:0;\"><strong>Contact : </strong>Bernard-Jacques Thibaud</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Employeur Branding (+ Asian)</p></li><li><p style=\"margin:0;\">Milestones Timeline</p></li><li><p style=\"margin:0;\">Goodbye Party</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Solvay c'est 9000 employés et 4 milliards d'euro.</p><p style=\"margin:0;\">--&gt; La relation ne s'est pas poursuivi, pourquoi pas la relancer</p></div>",
+      "engagementEmails": 1,
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 11,
-      "segment": "Dormant",
-      "segmentColor": "#95a5a6",
-      "segmentPriority": 4,
-      "segmentReason": "Pas d'activité depuis 34 mois",
+      "healthScore": 46,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2022
     },
     {
@@ -2944,9 +2986,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3031,7 +3071,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3072,10 +3115,7 @@
       "companyRevenue": 20000000000,
       "companyEmployees": 72500,
       "companyParentIds": [],
-      "companyChildIds": [
-        264204131577,
-        264581917912
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3197,9 +3237,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 2000000000,
       "companyEmployees": 4000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3644,7 +3682,15 @@
       "employees": 175647,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        225635140849,
+        230029784291,
+        231940442307,
+        232131152083,
+        262216855790,
+        262224529637,
+        263431222517
+      ]
     },
     "220584257724": {
       "id": "220584257724",
@@ -3998,7 +4044,9 @@
       "employees": 49000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        225530064080
+      ]
     },
     "220598428890": {
       "id": "220598428890",
@@ -4207,7 +4255,9 @@
       "employees": 124600,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090717
+      ]
     },
     "220607386867": {
       "id": "220607386867",
@@ -4284,7 +4334,15 @@
       "employees": 170158,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090741,
+        226897212603,
+        226964007134,
+        234978104516,
+        234978104524,
+        234988938452,
+        234992537829
+      ]
     },
     "220609174728": {
       "id": "220609174728",
@@ -4427,7 +4485,10 @@
       "employees": 168000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204857580,
+        264205578471
+      ]
     },
     "220612718805": {
       "id": "220612718805",
@@ -4726,9 +4787,7 @@
       "employees": 83100,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        245933664460
-      ]
+      "childCompanyIds": []
     },
     "226285019338": {
       "id": "226285019338",
@@ -5908,7 +5967,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -6271,7 +6332,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226622786748": {
@@ -7340,7 +7403,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "226897211629": {
@@ -7406,9 +7471,7 @@
       "revenue": 20200000000,
       "employees": 5700,
       "ownerId": "29926733",
-      "parentCompanyIds": [
-        258851914962
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211638": {
@@ -7762,9 +7825,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220610910445
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226907993319": {
@@ -10168,9 +10229,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226920490174": {
@@ -11639,7 +11698,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226962201787": {
@@ -11870,9 +11931,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007115": {
@@ -11883,9 +11942,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        234999737587
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007116": {
@@ -12083,7 +12140,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226964007136": {
@@ -12688,9 +12747,7 @@
       "revenue": 163180400000,
       "employees": 8279,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226965808366": {
@@ -13595,10 +13652,7 @@
       "employees": 72500,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204131577,
-        264581917912
-      ]
+      "childCompanyIds": []
     },
     "230386516181": {
       "id": "230386516181",
@@ -13862,7 +13916,18 @@
       "employees": 165000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226454480064,
+        226458090739,
+        226622786747,
+        226897211598,
+        226897211613,
+        226911567072,
+        226920490175,
+        226962201786,
+        226964007114,
+        226965808365
+      ]
     },
     "231614068925": {
       "id": "231614068925",
@@ -13883,9 +13948,7 @@
       "revenue": 1180000000,
       "employees": 800,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "231941156027": {
@@ -13908,7 +13971,9 @@
       "employees": 17000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264196399312
+      ]
     },
     "231943344369": {
       "id": "231943344369",
@@ -13963,7 +14028,10 @@
       "employees": 81000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226909763825,
+        257087531219
+      ]
     },
     "232131152083": {
       "id": "232131152083",
@@ -13973,9 +14041,7 @@
       "revenue": 14000000000,
       "employees": 52000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "232131152093": {
@@ -15129,7 +15195,9 @@
       "revenue": 0,
       "employees": 130,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234978104517": {
@@ -15217,7 +15285,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234978104525": {
@@ -16240,7 +16310,9 @@
       "revenue": 0,
       "employees": 105,
       "ownerId": "29926733",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        244815187150
+      ],
       "childCompanyIds": []
     },
     "234988938461": {
@@ -16680,7 +16752,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234992537830": {
@@ -17648,9 +17722,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234997940470": {
@@ -17849,7 +17921,11 @@
       "employees": 21505,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226907993332,
+        226964007115,
+        235010292940
+      ]
     },
     "234999737588": {
       "id": "234999737588",
@@ -20700,9 +20776,7 @@
       "employees": 10000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        263648066783
-      ]
+      "childCompanyIds": []
     },
     "235051015374": {
       "id": "235051015374",
@@ -20845,7 +20919,9 @@
       "employees": 1664,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235724247236
+      ]
     },
     "235052258499": {
       "id": "235052258499",
@@ -21264,9 +21340,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        226922256592
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235511680222": {
@@ -21585,7 +21659,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260804494551
+      ],
       "childCompanyIds": []
     },
     "235542906101": {
@@ -22927,9 +23003,7 @@
       "revenue": 0,
       "employees": 1500,
       "ownerId": "",
-      "parentCompanyIds": [
-        235052258498
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235725744326": {
@@ -24375,7 +24449,9 @@
       "employees": 95442,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        233096890562
+      ]
     },
     "249843254517": {
       "id": "249843254517",
@@ -24495,9 +24571,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        232131150023
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "257704494304": {
@@ -24530,9 +24604,7 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258837299441": {
@@ -24587,7 +24659,9 @@
       "revenue": 18700000000,
       "employees": 98000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        258851914962
+      ],
       "childCompanyIds": []
     },
     "258851914962": {
@@ -24599,7 +24673,10 @@
       "employees": 150000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226897211637,
+        258850478274
+      ]
     },
     "260128816334": {
       "id": "260128816334",
@@ -24610,10 +24687,7 @@
       "employees": 34000,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204846315,
-        264205568248
-      ]
+      "childCompanyIds": []
     },
     "260804494551": {
       "id": "260804494551",
@@ -24624,7 +24698,9 @@
       "employees": 11000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235541582066
+      ]
     },
     "261317506283": {
       "id": "261317506283",
@@ -24678,9 +24754,7 @@
       "revenue": 2000000000,
       "employees": 4000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262224526524": {
@@ -24717,9 +24791,7 @@
       "revenue": 389000,
       "employees": 1250,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262613919992": {
@@ -24834,11 +24906,7 @@
       "employees": 6000,
       "ownerId": "29974261",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        262469511370,
-        263425988855,
-        263434090717
-      ]
+      "childCompanyIds": []
     },
     "263648066783": {
       "id": "263648066783",
@@ -24883,9 +24951,7 @@
       "revenue": 19669000,
       "employees": 7500,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        231943343327
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204131577": {
@@ -24957,7 +25023,9 @@
       "revenue": 15794000000,
       "employees": 3000,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220612714702
+      ],
       "childCompanyIds": []
     },
     "264240320709": {
@@ -25001,9 +25069,7 @@
       "revenue": 1700000000,
       "employees": 33300,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        230109082847
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264678063300": {
@@ -25037,7 +25103,9 @@
       "employees": 32500,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        265788546273
+      ]
     },
     "265787828441": {
       "id": "265787828441",
@@ -25079,7 +25147,7 @@
     "totalOwners": 11,
     "totalCompanies": 1961,
     "totalDeals": 81,
-    "totalRelations": 60,
+    "totalRelations": 86,
     "industriesFromHubSpot": 1960,
     "industriesDetectedAuto": 0,
     "industriesMissing": 1,
