@@ -218,3 +218,57 @@ Un workflow GitHub Actions a été lancé pour tester le fix des secteurs.
 8. FIX toggleGroup: Correction onclick pour groupes
 
 🚀 **Dashboard entièrement fonctionnel avec relations hiérarchiques**
+
+---
+
+## 📊 SESSION CONTINUATION - 2025-10-20 (Après restauration contexte)
+
+### ✅ Filtre Année pour Graphique Secteurs - IMPLÉMENTÉ
+**Objectif**: Ajouter un filtre par année au graphique circulaire des secteurs d'activité basé sur le CA
+
+**Implémentation**:
+- Ajout boutons de filtre (Toutes, 2022, 2023, 2024, 2025) au-dessus du graphique
+- Création fonction `filterIndustryChart(year)` avec:
+  * Mise à jour des styles des boutons (highlight actif)
+  * Stockage du filtre actuel dans `industryChartYear`
+  * Re-render du graphique avec données filtrées
+- Modification `renderIndustryPieChart(filterYear)` pour:
+  * Accepter paramètre année
+  * Filtrer `processedData` par année si spécifiée
+  * Calculer CA par secteur basé sur année sélectionnée
+- Fix bug: utiliser `revenue` filtré au lieu de `client.totalRevenue`
+- Exposition globale via `window.filterIndustryChart`
+
+**Status**: ✅ Commité et poussé
+
+---
+
+### ✅ Fix Expand/Collapse Groupes Parent/Filiales - RÉSOLU
+**Problème**: Cliquer sur les groupes (ex: Safran 2 filiales) ne déclenchait rien
+
+**Cause identifiée**:
+- `toggleGroup()` modifiait `group.isExpanded` sur l'objet dans `currentDisplayedClients`
+- `renderSegmentationTable()` appelait `processGroupedData()` qui créait des NOUVEAUX objets
+- L'état `isExpanded` était perdu à chaque re-render
+- Les groupes restaient toujours fermés
+
+**Solution implémentée**:
+1. Ajout global state `groupExpandedStates = {}` pour stocker les états
+2. Modification `processGroupedData()`:
+   - Restaurer l'état depuis `groupExpandedStates[client.companyId]`
+   - `isExpanded: groupExpandedStates[client.companyId] || false`
+3. Modification `toggleGroup()`:
+   - Mettre à jour directement le global state
+   - `groupExpandedStates[group.groupId] = newState`
+   - Re-render avec état persisté
+
+**Résultat**: L'état expand/collapse survit maintenant au re-render du tableau
+
+**Status**: ✅ Commité et poussé
+
+---
+
+### Commits Effectués (Session continuation)
+9. FIX Expand/collapse groupes + Filtre année graphique secteurs (commit 509843d)
+
+🎉 **Toutes les fonctionnalités demandées sont maintenant implémentées et fonctionnelles**
