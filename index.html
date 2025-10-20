@@ -896,6 +896,37 @@ details[open] summary {
       <div class="action-grid" id="recommendationsGrid"></div>
     </div>
 
+    <!-- White Spaces - Opportunités non exploitées -->
+    <div class="chart-section" style="border-left: 4px solid #f59e0b;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0;">🎯 Opportunités White Space</h3>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span id="whiteSpaceCount" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; padding: 4px 12px; border-radius: 6px; font-weight: 700; font-size: 14px;">0 opportunités</span>
+        </div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px; line-height: 1.6;">
+        Liste des filiales sans deals et opportunités de cross-sell non exploitées au sein des groupes clients.
+      </p>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr style="background: rgba(251, 191, 36, 0.1); border-bottom: 2px solid #f59e0b;">
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Opportunité</th>
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Groupe Parent</th>
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Secteur</th>
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">CA Parent</th>
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Potentiel Estimé</th>
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Priorité</th>
+              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Action</th>
+            </tr>
+          </thead>
+          <tbody id="whiteSpacesBody">
+            <!-- Rempli par JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- Company Relationships Tree - MASQUÉE (remplacée par tableau groupé) -->
     <div class="chart-section" style="display: none;">
       <h3>Cartographie des Relations Entreprises & Opportunités Cross-Sell</h3>
@@ -1705,6 +1736,7 @@ function renderDashboard() {
   renderRevenueGlobalChart();
   renderClientEvolutionChart();
   renderSegmentationTable();
+  renderWhiteSpaces();
   renderIndustryPieChart();
   renderRecommendations();
   renderCompanyTree();
@@ -5172,6 +5204,314 @@ function showClientDetails(clientIndex) {
     console.error('❌ Erreur lors de l\'ouverture du panel:', error);
   }
 }
+
+// ============================================================================
+// White Spaces Opportunities Table
+// ============================================================================
+function renderWhiteSpaces() {
+  console.log('🎯 Génération tableau White Spaces...');
+
+  const whiteSpaces = [];
+
+  // Extraire tous les white spaces des groupes
+  groupedData.forEach(item => {
+    if (item.type === 'group' && item.children && item.children.length > 0) {
+      // Parcourir les enfants pour identifier les prospects (isProspect: true)
+      item.children.forEach(child => {
+        if (child.isProspect === true) {
+          // C'est une filiale sans deals = white space
+          whiteSpaces.push({
+            name: child.name || 'Filiale sans nom',
+            parentName: item.groupName,
+            parentId: item.groupId,
+            parentRevenue: item.totalGroupRevenue,
+            parentHealthScore: item.avgHealthScore,
+            sector: child.companyIndustry || 'Non spécifié',
+            companyId: child.companyId
+          });
+        }
+      });
+
+      // Aussi ajouter les filiales mappées dans les relations mais sans deals du tout
+      const company = window.hubspotCompanies[item.groupId];
+      if (company && company.childCompanyIds) {
+        company.childCompanyIds.forEach(childId => {
+          // Vérifier si cette filiale n'est PAS déjà dans les enfants (= pas de deals)
+          const alreadyInChildren = item.children.some(c => c.companyId === childId);
+          if (!alreadyInChildren) {
+            const childCompany = window.hubspotCompanies[childId];
+            if (childCompany) {
+              whiteSpaces.push({
+                name: childCompany.name || 'Filiale sans nom',
+                parentName: item.groupName,
+                parentId: item.groupId,
+                parentRevenue: item.totalGroupRevenue,
+                parentHealthScore: item.avgHealthScore,
+                sector: childCompany.industry || 'Non spécifié',
+                companyId: childId,
+                isUnmapped: true // Pas de deals du tout
+              });
+            }
+          }
+        });
+      }
+    }
+  });
+
+  console.log(`   → ${whiteSpaces.length} white spaces identifiés`);
+
+  // Calculer le potentiel estimé pour chaque white space
+  whiteSpaces.forEach(ws => {
+    // Potentiel = % du CA parent (entre 5% et 15% selon le health score)
+    const potentialPercent = ws.parentHealthScore >= 70 ? 0.15 :
+                            ws.parentHealthScore >= 50 ? 0.10 :
+                            0.05;
+    ws.estimatedPotential = ws.parentRevenue * potentialPercent;
+
+    // Priorité basée sur le potentiel
+    if (ws.estimatedPotential >= 50000 && ws.parentHealthScore >= 70) {
+      ws.priority = 'HIGH';
+      ws.priorityColor = '#22c55e';
+      ws.priorityLabel = 'HAUTE';
+    } else if (ws.estimatedPotential >= 20000 || ws.parentHealthScore >= 50) {
+      ws.priority = 'MEDIUM';
+      ws.priorityColor = '#f59e0b';
+      ws.priorityLabel = 'MOYENNE';
+    } else {
+      ws.priority = 'LOW';
+      ws.priorityColor = '#94a3b8';
+      ws.priorityLabel = 'BASSE';
+    }
+
+    // Action recommandée
+    if (ws.priority === 'HIGH') {
+      ws.action = 'Contact immédiat';
+    } else if (ws.priority === 'MEDIUM') {
+      ws.action = 'Prospection ciblée';
+    } else {
+      ws.action = 'Veille passive';
+    }
+  });
+
+  // Trier par priorité puis potentiel
+  const priorityOrder = { 'HIGH': 1, 'MEDIUM': 2, 'LOW': 3 };
+  whiteSpaces.sort((a, b) => {
+    if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
+      return priorityOrder[a.priority] - priorityOrder[b.priority];
+    }
+    return b.estimatedPotential - a.estimatedPotential;
+  });
+
+  // Mettre à jour le compteur
+  const countBadge = document.getElementById('whiteSpaceCount');
+  if (countBadge) {
+    countBadge.textContent = `${whiteSpaces.length} opportunité${whiteSpaces.length > 1 ? 's' : ''}`;
+  }
+
+  // Remplir le tableau
+  const tbody = document.getElementById('whiteSpacesBody');
+  if (!tbody) {
+    console.warn('⚠️ Element whiteSpacesBody non trouvé');
+    return;
+  }
+
+  if (whiteSpaces.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted); font-style: italic;">
+          Aucun white space identifié. Toutes les filiales mappées ont des deals actifs.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = whiteSpaces.map((ws, idx) => {
+    // Mapping secteur FR
+    const sectorMapping = {
+      'COMPUTER_SOFTWARE': 'Logiciels & IT',
+      'INFORMATION_TECHNOLOGY_AND_SERVICES': 'Logiciels & IT',
+      'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie',
+      'AUTOMOTIVE': 'Automobile',
+      'BANKING': 'Banque',
+      'HOSPITAL_HEALTH_CARE': 'Santé & Soins',
+      // ... ajoutez plus au besoin
+    };
+    const sectorFr = sectorMapping[ws.sector] || ws.sector;
+
+    return `
+      <tr style="border-bottom: 1px solid var(--border); transition: all 0.2s;"
+          onmouseover="this.style.background='rgba(251, 191, 36, 0.08)'"
+          onmouseout="this.style.background='transparent'">
+
+        <!-- Opportunité -->
+        <td style="padding: 12px;">
+          <div style="font-weight: 600; color: var(--text); margin-bottom: 4px;">
+            ${ws.name}
+          </div>
+          ${ws.isUnmapped ? `
+          <div style="font-size: 10px; color: #f59e0b; font-style: italic;">
+            Filiale non contactée
+          </div>
+          ` : ''}
+        </td>
+
+        <!-- Groupe Parent -->
+        <td style="padding: 12px;">
+          <div style="color: var(--text-muted); font-size: 13px;">
+            ${ws.parentName}
+          </div>
+        </td>
+
+        <!-- Secteur -->
+        <td style="padding: 12px;">
+          <div style="color: var(--text); font-size: 12px;">
+            ${sectorFr}
+          </div>
+        </td>
+
+        <!-- CA Parent -->
+        <td style="padding: 12px;">
+          <div style="color: var(--accent); font-weight: 600; font-size: 13px;">
+            ${formatCurrency(ws.parentRevenue)}
+          </div>
+        </td>
+
+        <!-- Potentiel Estimé -->
+        <td style="padding: 12px;">
+          <div style="color: var(--green); font-weight: 700; font-size: 14px;">
+            ${formatCurrency(ws.estimatedPotential)}
+          </div>
+          <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">
+            ${((ws.estimatedPotential / ws.parentRevenue) * 100).toFixed(0)}% du parent
+          </div>
+        </td>
+
+        <!-- Priorité -->
+        <td style="padding: 12px;">
+          <div style="display: inline-block; background: ${ws.priorityColor}; color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;">
+            ${ws.priorityLabel}
+          </div>
+        </td>
+
+        <!-- Action -->
+        <td style="padding: 12px;">
+          <button onclick="showWhiteSpaceDetails(${idx})"
+                  style="padding: 6px 14px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;"
+                  onmouseover="this.style.transform='scale(1.05)'"
+                  onmouseout="this.style.transform='scale(1)'">
+            ${ws.action}
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  // Stocker les white spaces globalement pour accès dans showWhiteSpaceDetails
+  window.currentWhiteSpaces = whiteSpaces;
+
+  console.log('✅ Tableau White Spaces rendu');
+}
+
+// ============================================================================
+// Show White Space Details
+// ============================================================================
+function showWhiteSpaceDetails(wsIndex) {
+  const ws = window.currentWhiteSpaces[wsIndex];
+
+  if (!ws) {
+    console.error('❌ White space non trouvé:', wsIndex);
+    return;
+  }
+
+  const sectorMapping = {
+    'COMPUTER_SOFTWARE': 'Logiciels & IT',
+    'INFORMATION_TECHNOLOGY_AND_SERVICES': 'Logiciels & IT',
+    'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie',
+    'AUTOMOTIVE': 'Automobile',
+    'BANKING': 'Banque',
+    'HOSPITAL_HEALTH_CARE': 'Santé & Soins',
+  };
+  const sectorFr = sectorMapping[ws.sector] || ws.sector;
+
+  const content = `
+    <div class="info-highlight" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.05)); border-left: 4px solid #f59e0b; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+      <div style="font-size: 24px; font-weight: 800; color: #f59e0b; margin-bottom: 12px;">
+        ${ws.name}
+      </div>
+      <div style="font-size: 14px; color: var(--text-muted);">
+        Filiale de <strong style="color: var(--accent);">${ws.parentName}</strong>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px;">
+      <div style="background: var(--bg-card); padding: 16px; border-radius: 10px;">
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">Secteur d'Activité</div>
+        <div style="font-size: 18px; font-weight: 700; color: var(--accent);">${sectorFr}</div>
+      </div>
+      <div style="background: var(--bg-card); padding: 16px; border-radius: 10px;">
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">CA Groupe Parent</div>
+        <div style="font-size: 18px; font-weight: 700; color: var(--accent);">${formatCurrency(ws.parentRevenue)}</div>
+      </div>
+      <div style="background: var(--bg-card); padding: 16px; border-radius: 10px;">
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">Potentiel Estimé</div>
+        <div style="font-size: 18px; font-weight: 700; color: var(--green);">${formatCurrency(ws.estimatedPotential)}</div>
+      </div>
+      <div style="background: var(--bg-card); padding: 16px; border-radius: 10px;">
+        <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">Priorité</div>
+        <div style="font-size: 18px; font-weight: 700; color: ${ws.priorityColor};">${ws.priorityLabel}</div>
+      </div>
+    </div>
+
+    <div style="background: rgba(99, 102, 241, 0.05); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent); margin-bottom: 20px;">
+      <div style="font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 12px;">
+        Recommandations Account Manager
+      </div>
+      <div style="color: var(--text); line-height: 1.8; font-size: 14px;">
+        ${ws.priority === 'HIGH' ? `
+          <strong style="color: #22c55e;">PRIORITÉ HAUTE</strong> - Contact immédiat recommandé:<br><br>
+          • Organiser un meeting avec le sponsor existant chez ${ws.parentName}<br>
+          • Proposer une démonstration/POC spécifique à ${ws.name}<br>
+          • Potentiel estimé: ${formatCurrency(ws.estimatedPotential)} basé sur le CA du groupe<br>
+          • Timeline: 2-3 mois pour conclure<br>
+          • Leverage: Utiliser la relation existante et les success stories
+        ` : ws.priority === 'MEDIUM' ? `
+          <strong style="color: #f59e0b;">PRIORITÉ MOYENNE</strong> - Prospection ciblée:<br><br>
+          • Identifier les décideurs clés chez ${ws.name}<br>
+          • Présenter les bénéfices déjà obtenus par ${ws.parentName}<br>
+          • Potentiel: ${formatCurrency(ws.estimatedPotential)}<br>
+          • Approche: Multi-threading avec le groupe parent<br>
+          • Timeline: 3-6 mois
+        ` : `
+          <strong style="color: #94a3b8;">PRIORITÉ BASSE</strong> - Veille passive:<br><br>
+          • Maintenir le contact via ${ws.parentName}<br>
+          • Surveiller les signaux d'achat<br>
+          • Nurturing long terme<br>
+          • Potentiel: ${formatCurrency(ws.estimatedPotential)}
+        `}
+      </div>
+    </div>
+
+    ${!ws.isUnmapped ? `
+    <div style="background: rgba(251, 191, 36, 0.05); padding: 16px; border-radius: 10px; border-left: 3px solid #f59e0b;">
+      <div style="font-size: 13px; color: var(--text-muted); font-style: italic;">
+        ℹ️ Cette filiale est mappée dans HubSpot mais n'a aucun deal fermé.
+        C'est une opportunité de cross-sell directe au sein du groupe.
+      </div>
+    </div>
+    ` : `
+    <div style="background: rgba(239, 68, 68, 0.08); padding: 16px; border-radius: 10px; border-left: 3px solid #ef4444;">
+      <div style="font-size: 13px; color: #ef4444; font-style: italic;">
+        ⚠️ Cette filiale n'a JAMAIS été contactée. C'est une opportunité froide à prospecter depuis zéro.
+      </div>
+    </div>
+    `}
+  `;
+
+  openInfoPanel(`White Space: ${ws.name}`, content);
+}
+
+window.showWhiteSpaceDetails = showWhiteSpaceDetails;
 
 // ============================================================================
 // Recommendations
