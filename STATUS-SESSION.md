@@ -410,18 +410,51 @@ processedData.forEach(client => {
 
 ---
 
-### 2. Tableau White Spaces détaillé [DEMANDÉ]
+### 2. Tableau White Spaces détaillé [IMPLÉMENTÉ] ✅
 **User request**: "tu peux même créer un autre tableau qui rentrera dans le détail des white space"
 
-**À créer**:
-- Tableau dédié aux opportunités (white spaces)
-- Liste des filiales sans deals (prospects)
-- Liste des filiales/parents non mappés
-- Potentiel de CA
-- Recommandations d'action
+**Implémentation complète**:
+- ✅ Tableau dédié aux opportunités (white spaces)
+- ✅ 2 types d'opportunités détectées:
+  * Filiales mappées HubSpot sans deals (cross-sell direct)
+  * Filiales dans relations parent/child mais jamais contactées (prospection froide)
+- ✅ Calcul du potentiel estimé (5-15% du CA parent selon health score)
+- ✅ Scoring de priorité intelligent (HAUTE/MOYENNE/BASSE)
+- ✅ Actions recommandées contextuelles
+- ✅ Modal détaillée avec recommandations Account Manager
+- ✅ Badge compteur d'opportunités
+- ✅ Tri par priorité puis potentiel
 
-**Status**: 🔜 À implémenter après clic secteurs
+**Logique de calcul**:
+```javascript
+// Potentiel = % du CA parent
+Health Score >= 70 → 15% du CA parent
+Health Score >= 50 → 10% du CA parent
+Health Score < 50  → 5% du CA parent
+
+// Priorité
+HAUTE: Potentiel ≥50k€ + Health ≥70 → Contact immédiat
+MOYENNE: Potentiel ≥20k€ OU Health ≥50 → Prospection ciblée
+BASSE: Autres → Veille passive
+```
+
+**Colonnes du tableau**:
+1. Opportunité (nom + badge si non contactée)
+2. Groupe Parent
+3. Secteur d'Activité
+4. CA Parent
+5. Potentiel Estimé (montant + %)
+6. Priorité (badge coloré)
+7. Action (bouton cliquable)
+
+**Modal détails**:
+- KPIs: Secteur, CA Parent, Potentiel, Priorité
+- Recommandations Account Manager détaillées selon priorité
+- Timeline estimée (2-3 mois HAUTE, 3-6 mois MOYENNE)
+- Distinction visuelle mappé vs non contacté
+
+**Status**: ✅ Commité et poussé (commit 15f8a1c)
 
 ---
 
-🎉 **Expand/collapse fonctionne! Doublons résolus! White spaces stylés!**
+🎉 **Expand/collapse fonctionne! Doublons résolus! White spaces stylés! Tableau opportunités complet!**
