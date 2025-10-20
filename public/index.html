@@ -5213,48 +5213,41 @@ function renderWhiteSpaces() {
 
   const whiteSpaces = [];
 
-  // Extraire tous les white spaces des groupes
-  groupedData.forEach(item => {
-    if (item.type === 'group' && item.children && item.children.length > 0) {
-      // Parcourir les enfants pour identifier les prospects (isProspect: true)
-      item.children.forEach(child => {
-        if (child.isProspect === true) {
-          // C'est une filiale sans deals = white space
-          whiteSpaces.push({
-            name: child.name || 'Filiale sans nom',
-            parentName: item.groupName,
-            parentId: item.groupId,
-            parentRevenue: item.totalGroupRevenue,
-            parentHealthScore: item.avgHealthScore,
-            sector: child.companyIndustry || 'Non spécifié',
-            companyId: child.companyId
-          });
+  // Créer un Set de toutes les companies qui ont des deals
+  const companiesWithDeals = new Set(processedData.map(client => client.companyId));
+  console.log(`   → ${companiesWithDeals.size} companies avec deals`);
+
+  // Parcourir TOUTES les companies dans HubSpot pour trouver les relations parent/child
+  Object.values(window.hubspotCompanies).forEach(company => {
+    // Si cette company a des enfants (childCompanyIds)
+    if (company.childCompanyIds && company.childCompanyIds.length > 0) {
+      console.log(`   → Parent trouvé: ${company.name} avec ${company.childCompanyIds.length} filiales`);
+
+      // Trouver le parent dans processedData pour obtenir son CA et health score
+      const parentDeal = processedData.find(client => client.companyId === company.id);
+      const parentRevenue = parentDeal ? parentDeal.totalRevenue : 0;
+      const parentHealthScore = parentDeal ? parentDeal.avgHealthScore : 50;
+
+      // Parcourir chaque filiale
+      company.childCompanyIds.forEach(childId => {
+        // Si cette filiale N'A PAS de deals (n'est pas dans companiesWithDeals)
+        if (!companiesWithDeals.has(childId)) {
+          const childCompany = window.hubspotCompanies[childId];
+          if (childCompany) {
+            console.log(`     ✓ WHITE SPACE trouvé: ${childCompany.name} (filiale de ${company.name})`);
+            whiteSpaces.push({
+              name: childCompany.name || 'Filiale sans nom',
+              parentName: company.name,
+              parentId: company.id,
+              parentRevenue: parentRevenue,
+              parentHealthScore: parentHealthScore,
+              sector: childCompany.industry || 'Non spécifié',
+              companyId: childId,
+              isUnmapped: true // Pas de deals du tout
+            });
+          }
         }
       });
-
-      // Aussi ajouter les filiales mappées dans les relations mais sans deals du tout
-      const company = window.hubspotCompanies[item.groupId];
-      if (company && company.childCompanyIds) {
-        company.childCompanyIds.forEach(childId => {
-          // Vérifier si cette filiale n'est PAS déjà dans les enfants (= pas de deals)
-          const alreadyInChildren = item.children.some(c => c.companyId === childId);
-          if (!alreadyInChildren) {
-            const childCompany = window.hubspotCompanies[childId];
-            if (childCompany) {
-              whiteSpaces.push({
-                name: childCompany.name || 'Filiale sans nom',
-                parentName: item.groupName,
-                parentId: item.groupId,
-                parentRevenue: item.totalGroupRevenue,
-                parentHealthScore: item.avgHealthScore,
-                sector: childCompany.industry || 'Non spécifié',
-                companyId: childId,
-                isUnmapped: true // Pas de deals du tout
-              });
-            }
-          }
-        });
-      }
     }
   });
 
