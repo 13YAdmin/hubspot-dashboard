@@ -1296,7 +1296,7 @@ function processGroupedData() {
 
     // Vérifier si c'est un parent (a des filiales)
     if (company.childCompanyIds && company.childCompanyIds.length > 0) {
-      console.log(`👪 Groupe parent détecté: ${client.name} avec ${company.childCompanyIds.length} filiale(s)`);
+      console.log(`👪 Groupe parent détecté: ${client.name} (ID: ${client.companyId}) avec ${company.childCompanyIds.length} filiale(s):`, company.childCompanyIds);
 
       // C'est un groupe parent
       const group = {
@@ -1335,7 +1335,7 @@ function processGroupedData() {
         const childClient = processedData.find(c => c.companyId === childId);
 
         if (childClient) {
-          console.log(`  └─ Filiale trouvée: ${childClient.name} (CA: ${formatCurrency(childClient.totalRevenue)})`);
+          console.log(`  ✓ Filiale trouvée dans processedData: ${childClient.name} (ID: ${childId}, CA: ${formatCurrency(childClient.totalRevenue)})`);
 
           group.children.push({
             type: 'child',
@@ -1358,7 +1358,7 @@ function processGroupedData() {
           // La filiale existe dans HubSpot mais n'a pas de deals
           const childCompany = window.hubspotCompanies[childId];
           if (childCompany) {
-            console.log(`  └─ Filiale sans deals: ${childCompany.name}`);
+            console.log(`  ⚠️ Filiale sans deals (company existe): ${childCompany.name} (ID: ${childId})`);
             group.children.push({
               type: 'child',
               parentGroupId: client.companyId,
@@ -1373,6 +1373,8 @@ function processGroupedData() {
               segmentColor: '#64748b',
               isProspect: true
             });
+          } else {
+            console.warn(`  ❌ Filiale ID ${childId} non trouvée dans hubspotCompanies!`);
           }
         }
       });
@@ -4396,7 +4398,7 @@ function renderSegmentationTable() {
     }
 
     return `
-      <tr class="${rowClass}" onclick='${rowOnClick}' style="cursor: pointer;">
+      <tr class="${rowClass}" data-row-index="${idx}" data-row-type="${client.type}" style="cursor: pointer;">
         <td><strong>${idx + 1}</strong></td>
         <td ${isChild ? 'class="child-cell-indent"' : ''}>
           ${isGroup ? expandIcon : ''}
@@ -4455,6 +4457,44 @@ function renderSegmentationTable() {
       </tr>
     `;
   }).join('');
+
+  // ========================================================================
+  // ÉTAPE 3: Ajouter event delegation pour les clics sur les lignes
+  // ========================================================================
+  // Retirer l'ancien listener s'il existe
+  tbody.removeEventListener('click', handleTableRowClick);
+
+  // Ajouter le nouveau listener
+  tbody.addEventListener('click', handleTableRowClick);
+}
+
+// Handler pour les clics sur les lignes du tableau (avec event delegation)
+function handleTableRowClick(event) {
+  // Si c'est un bouton, laisser le bouton gérer le clic
+  if (event.target.tagName === 'BUTTON') {
+    return;
+  }
+
+  // Trouver la ligne TR cliquée (peut être un enfant qui a reçu le clic)
+  const row = event.target.closest('tr');
+  if (!row) return;
+
+  const rowIndex = parseInt(row.getAttribute('data-row-index'));
+  const rowType = row.getAttribute('data-row-type');
+
+  if (isNaN(rowIndex)) return;
+
+  console.log(`🖱️ Clic détecté: ligne ${rowIndex}, type: ${rowType}`);
+
+  if (rowType === 'group') {
+    // C'est un groupe → toggle
+    console.log(`🔄 Toggle groupe ${rowIndex}`);
+    toggleGroup(rowIndex);
+  } else {
+    // C'est un child ou standalone → afficher détails
+    console.log(`📋 Afficher détails client ${rowIndex}`);
+    showClientDetails(rowIndex);
+  }
 }
 
 // ============================================================================
