@@ -71,7 +71,12 @@ async function main() {
     const companiesData = await fetchAllPaginated('/crm/v3/objects/companies', [
       'name',
       'domain',
+      // TOUS les champs industry possibles dans HubSpot
       'industry',
+      'hs_industry',
+      'industry_category',
+      'type',
+      'business_type',
       'annualrevenue',
       'numberofemployees',
       'hubspot_owner_id'
@@ -83,9 +88,27 @@ async function main() {
     const industryValues = new Set();
 
     companiesData.forEach(company => {
-      let industryValue = company.properties.industry || '';
       const companyName = company.properties.name || 'Sans nom';
       const companyDomain = company.properties.domain || '';
+
+      // Chercher dans TOUS les champs industry possibles (dans l'ordre de priorité)
+      let industryValue =
+        company.properties.industry ||
+        company.properties.hs_industry ||
+        company.properties.industry_category ||
+        company.properties.business_type ||
+        company.properties.type ||
+        '';
+
+      // Logger pour debug
+      if (industryValue) {
+        const fieldUsed = company.properties.industry ? 'industry' :
+                         company.properties.hs_industry ? 'hs_industry' :
+                         company.properties.industry_category ? 'industry_category' :
+                         company.properties.business_type ? 'business_type' :
+                         'type';
+        console.log(`  ✓ ${companyName}: ${industryValue} (champ: ${fieldUsed})`);
+      }
 
       // Si industry vide, essayer de la détecter intelligemment
       if (!industryValue && companyName !== 'Sans nom') {
@@ -93,6 +116,7 @@ async function main() {
         if (detectedIndustry) {
           industryValue = detectedIndustry;
           industriesDetected++;
+          console.log(`  🤖 ${companyName}: ${industryValue} (détecté auto)`);
         }
       }
 
