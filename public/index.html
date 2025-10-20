@@ -4041,44 +4041,73 @@ function showCompanyDetails(nodeData) {
 function renderSegmentationTable() {
   const tbody = document.getElementById('segmentationBody');
 
-  // Apply filters
-  let filteredData = processedData.filter(client => {
+  // ========================================================================
+  // ÉTAPE 1: Créer la structure groupée parent/filiales
+  // ========================================================================
+  const groupedStructure = processGroupedData();
+
+  // Apply filters sur la structure groupée
+  let filteredData = groupedStructure.filter(item => {
+    // Pour les groupes, vérifier le CA total du groupe
+    // Pour les standalone, vérifier leur CA
+    const dataToCheck = item.type === 'group' ? item : item;
+
     // Year filter
     if (currentFilters.year !== 'all') {
-      const yearRevenue = client.years[currentFilters.year];
+      const yearRevenue = dataToCheck.years[currentFilters.year];
       if (!yearRevenue || yearRevenue === 0) return false;
     }
     return true;
   });
 
-  // Apply sorting
+  // Apply sorting (gestion groupes + standalone)
   filteredData.sort((a, b) => {
     let aVal, bVal;
 
+    // Helper pour extraire la valeur à comparer
+    const getValue = (item, column) => {
+      // Pour un groupe, utiliser les données agrégées
+      if (item.type === 'group') {
+        switch(column) {
+          case 'name': return item.groupName.toLowerCase();
+          case 'total': return item.totalGroupRevenue;
+          default:
+            // Pour les autres colonnes, utiliser les données du groupe
+            return item[column] !== undefined ? item[column] : item.parentData?.[column] || 0;
+        }
+      }
+      // Pour standalone, utiliser directement les données
+      return item[column] !== undefined ? item[column] : 0;
+    };
+
     switch(sortColumn) {
       case 'rank':
+        // Tri par ordre original
         return sortDirection === 'asc' ?
-          processedData.indexOf(a) - processedData.indexOf(b) :
-          processedData.indexOf(b) - processedData.indexOf(a);
+          groupedStructure.indexOf(a) - groupedStructure.indexOf(b) :
+          groupedStructure.indexOf(b) - groupedStructure.indexOf(a);
       case 'name':
-        aVal = a.name.toLowerCase();
-        bVal = b.name.toLowerCase();
+        aVal = getValue(a, 'name');
+        bVal = getValue(b, 'name');
         break;
       case 'segment':
-        aVal = a.segment;
-        bVal = b.segment;
+        aVal = a.segment || '';
+        bVal = b.segment || '';
         break;
       case 'healthScore':
         aVal = a.avgHealthScore || 0;
         bVal = b.avgHealthScore || 0;
         break;
       case 'total':
+        aVal = a.type === 'group' ? a.totalGroupRevenue : a.totalRevenue;
+        bVal = b.type === 'group' ? b.totalGroupRevenue : b.totalRevenue;
+        break;
       case '2022':
       case '2023':
       case '2024':
       case '2025':
-        aVal = sortColumn === 'total' ? a.totalRevenue : a.years[sortColumn];
-        bVal = sortColumn === 'total' ? b.totalRevenue : b.years[sortColumn];
+        aVal = a.years[sortColumn] || 0;
+        bVal = b.years[sortColumn] || 0;
         break;
       case 'globalTrend':
         aVal = a.trend || 0;
@@ -4153,10 +4182,42 @@ function renderSegmentationTable() {
     return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
   });
 
-  // Stocker les clients affichés pour accès dans showClientDetails
-  currentDisplayedClients = filteredData;
+  // ========================================================================
+  // ÉTAPE 2: "Flatten" les groupes pour le rendering
+  // Transformer la structure hiérarchique en liste plate pour affichage
+  // ========================================================================
+  const flattenedForDisplay = [];
+  filteredData.forEach(item => {
+    if (item.type === 'group') {
+      // Ajouter le groupe parent
+      flattenedForDisplay.push(item);
 
-  tbody.innerHTML = filteredData.map((client, idx) => {
+      // Si le groupe est étendu, ajouter les enfants
+      if (item.isExpanded && item.children && item.children.length > 0) {
+        item.children.forEach(child => {
+          flattenedForDisplay.push(child);
+        });
+      }
+    } else {
+      // Standalone
+      flattenedForDisplay.push(item);
+    }
+  });
+
+  // Stocker les clients affichés pour accès dans showClientDetails
+  currentDisplayedClients = flattenedForDisplay;
+
+  tbody.innerHTML = flattenedForDisplay.map((client, idx) => {
+    // ========================================================================
+    // Gérer les différents types de lignes
+    // ========================================================================
+    const isGroup = client.type === 'group';
+    const isChild = client.type === 'child';
+
+    // Pour les groupes, utiliser les données agrégées
+    const displayName = isGroup ? client.groupName : client.name;
+    const displayRevenue = isGroup ? client.totalGroupRevenue : (client.totalRevenue || 0);
+
     // Extraire les contacts depuis les notes HTML - Version intelligente
     let contacts = 'N/A';
     if (client.latestNoteBody) {
@@ -4255,11 +4316,29 @@ function renderSegmentationTable() {
       trendColor = client.trend > 0 ? '#22c55e' : client.trend < 0 ? '#ef4444' : '#94a3b8';
     }
 
+    // ========================================================================
+    // Déterminer les classes et handlers selon le type
+    // ========================================================================
+    let rowClass = '';
+    let rowOnClick = `showClientDetails(${idx})`;
+    let expandIcon = '';
+
+    if (isGroup) {
+      rowClass = `group-row ${client.isExpanded ? 'expanded' : ''}`;
+      rowOnClick = `toggleGroup(${idx}); event.stopPropagation();`;
+      expandIcon = `<span class="expand-icon">${client.isExpanded ? '▼' : '▶'}</span>`;
+    } else if (isChild) {
+      rowClass = 'child-row';
+    }
+
     return `
-      <tr onclick='showClientDetails(${idx})' style="cursor: pointer;">
+      <tr class="${rowClass}" onclick='${isGroup ? rowOnClick : `showClientDetails(${idx})`}' style="cursor: pointer;">
         <td><strong>${idx + 1}</strong></td>
-        <td>
-          <strong>${client.name}</strong>
+        <td ${isChild ? 'class="child-cell-indent"' : ''}>
+          ${isGroup ? expandIcon : ''}
+          ${isChild ? '<span class="child-indicator">└─</span>' : ''}
+          <strong class="${isGroup ? 'group-name' : ''}">${displayName}</strong>
+          ${isGroup ? `<span class="badge-subsidiaries">${client.childrenCount} filiale${client.childrenCount > 1 ? 's' : ''}</span>` : ''}
           ${client.domain ? `<br><small style="color: var(--text-muted);">${client.domain}</small>` : ''}
         </td>
         <td style="text-align: center;">
@@ -4269,7 +4348,7 @@ function renderSegmentationTable() {
           <div style="font-size: 18px; font-weight: 800; color: ${healthColor};">${client.avgHealthScore}</div>
           <small style="color: var(--text-muted); font-size: 10px;">/100</small>
         </td>
-        <td style="font-weight: 700; color: #6366f1;">${formatCurrency(client.totalRevenue)}</td>
+        <td style="font-weight: 700; color: #6366f1;">${formatCurrency(displayRevenue)}</td>
         ${years.map((year, idx) => {
           const revenue = client.years[year] || 0;
           let yearTrend = '';
