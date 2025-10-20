@@ -865,10 +865,18 @@ details[open] summary {
 
 <script>
 // ============================================================================
+// Configuration
+// ============================================================================
+// TODO: Remplacer par votre Portal ID HubSpot (trouvable dans Settings → Account defaults)
+// Exemple: const HUBSPOT_PORTAL_ID = '12345678';
+const HUBSPOT_PORTAL_ID = 'YOUR_PORTAL_ID'; // À configurer
+
+// ============================================================================
 // Global State
 // ============================================================================
 let dealsData = [];
 let processedData = [];
+let currentDisplayedClients = []; // Pour stocker les clients actuellement affichés
 let currentFilters = {
   year: 'all'
 };
@@ -1123,62 +1131,51 @@ function processData() {
 }
 
 function calculateTrend(client) {
-  // Nouvelle méthode : tendance globale sur plusieurs années
-  // On regarde l'évolution moyenne pondérée sur 2022-2025
-
+  // Tendance globale: depuis la PREMIÈRE année d'activité jusqu'à la DERNIÈRE
   const years = ['2022', '2023', '2024', '2025'];
   const revenues = years.map(y => client.years[y]);
 
   // Si aucune activité, tendance = 0
   if (revenues.every(r => r === 0)) return 0;
 
-  // Calculer la croissance moyenne annuelle composée (CAGR-like)
-  // On regarde combien d'années ont de l'activité
-  const activeYears = revenues.filter(r => r > 0);
+  // Trouver la PREMIÈRE et la DERNIÈRE année avec activité
+  let firstActiveIndex = -1;
+  let lastActiveIndex = -1;
+  let firstActiveRevenue = 0;
+  let lastActiveRevenue = 0;
 
-  if (activeYears.length === 1) {
-    // Un seul année active, on regarde si c'est récent
-    if (revenues[3] > 0) return 100; // Nouveau client 2025
-    if (revenues[2] > 0) return 50;  // Nouveau client 2024
-    return -50; // Ancien client qui a arrêté
-  }
-
-  // Calculer la tendance en comparant les 2 dernières années actives
-  let lastYearRevenue = 0;
-  let previousYearRevenue = 0;
-  let lastYearIndex = -1;
-  let previousYearIndex = -1;
-
-  // Trouver les 2 dernières années avec activité
-  for (let i = revenues.length - 1; i >= 0; i--) {
+  for (let i = 0; i < revenues.length; i++) {
     if (revenues[i] > 0) {
-      if (lastYearIndex === -1) {
-        lastYearIndex = i;
-        lastYearRevenue = revenues[i];
-      } else if (previousYearIndex === -1) {
-        previousYearIndex = i;
-        previousYearRevenue = revenues[i];
-        break;
+      if (firstActiveIndex === -1) {
+        // Première année active trouvée
+        firstActiveIndex = i;
+        firstActiveRevenue = revenues[i];
       }
+      // Toujours mettre à jour la dernière année active
+      lastActiveIndex = i;
+      lastActiveRevenue = revenues[i];
     }
   }
 
-  // Si on n'a qu'une seule année active
-  if (previousYearIndex === -1) {
-    return lastYearIndex >= 2 ? 50 : -50;
+  // Si une seule année active
+  if (firstActiveIndex === lastActiveIndex) {
+    // Nouveau client récent (2024-2025)
+    if (lastActiveIndex >= 2) return 100;
+    // Client ancien avec une seule année
+    return 0;
   }
 
-  // Calculer le taux de croissance annuel
-  const yearsDiff = lastYearIndex - previousYearIndex;
-  const growth = ((lastYearRevenue - previousYearRevenue) / previousYearRevenue) * 100;
+  // Calculer la tendance globale (première année → dernière année)
+  const yearsDiff = lastActiveIndex - firstActiveIndex;
+  const totalGrowth = ((lastActiveRevenue - firstActiveRevenue) / firstActiveRevenue) * 100;
 
-  // Ajuster selon le nombre d'années
-  const adjustedGrowth = growth / yearsDiff;
+  // Annualiser la croissance si plusieurs années se sont écoulées
+  const annualizedGrowth = yearsDiff > 0 ? totalGrowth / yearsDiff : totalGrowth;
 
-  // Bonus si activité récente (2024-2025)
-  const recencyBonus = lastYearIndex >= 2 ? 1.2 : 0.8;
+  // Bonus léger si client actif récemment
+  const recencyBonus = lastActiveIndex >= 2 ? 1.1 : 0.9;
 
-  return Math.round(adjustedGrowth * recencyBonus);
+  return Math.round(annualizedGrowth * recencyBonus);
 }
 
 function calculateYearlyTrends(client) {
@@ -2843,6 +2840,9 @@ function renderSegmentationTable() {
     return sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
   });
 
+  // Stocker les clients affichés pour accès dans showClientDetails
+  currentDisplayedClients = filteredData;
+
   tbody.innerHTML = filteredData.map((client, idx) => {
     // Extraire les contacts depuis les notes HTML - Version intelligente
     let contacts = 'N/A';
@@ -2947,7 +2947,7 @@ function renderSegmentationTable() {
     }
 
     return `
-      <tr onclick='showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})' style="cursor: pointer;">
+      <tr onclick='showClientDetails(${idx})' style="cursor: pointer;">
         <td><strong>${idx + 1}</strong></td>
         <td>
           <strong>${client.name}</strong>
@@ -2995,7 +2995,7 @@ function renderSegmentationTable() {
           </div>
         </td>
         <td>
-          <button onclick='event.stopPropagation(); showClientDetails(${JSON.stringify(client).replace(/'/g, "&#39;")})'
+          <button onclick='event.stopPropagation(); showClientDetails(${idx})'
                   style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 11px;">
             Voir détails
           </button>
@@ -3008,7 +3008,15 @@ function renderSegmentationTable() {
 // ============================================================================
 // Show Client Details - VERSION ENRICHIE
 // ============================================================================
-function showClientDetails(client) {
+function showClientDetails(clientIndex) {
+  // Récupérer le client depuis la liste affichée
+  const client = currentDisplayedClients[clientIndex];
+
+  if (!client) {
+    console.error('Client non trouvé à l\'index:', clientIndex);
+    return;
+  }
+
   console.log('Affichage détails client:', client);
 
   const years = ['2022', '2023', '2024', '2025'];
@@ -3055,7 +3063,21 @@ function showClientDetails(client) {
       <div style="font-size: 24px; font-weight: 800; color: var(--accent); margin-bottom: 12px;">
         ${client.name}
       </div>
-      ${client.domain ? `<div style="color: var(--text-muted); margin-bottom: 12px;">🌐 ${client.domain}</div>` : ''}
+      ${client.domain ? `<div style="color: var(--text-muted); margin-bottom: 8px;">🌐 ${client.domain}</div>` : ''}
+      ${client.companyId && HUBSPOT_PORTAL_ID !== 'YOUR_PORTAL_ID' ? `
+      <div style="margin-bottom: 12px;">
+        <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${client.companyId}"
+           target="_blank"
+           style="color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+          🔗 Voir dans HubSpot
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+      ` : ''}
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="badge ${client.segment.toLowerCase().replace(/[àâäéèêëïîôùûüç\s]/g, c => ({
           'à':'a','â':'a','ä':'a','é':'e','è':'e','ê':'e','ë':'e',
