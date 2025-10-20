@@ -4518,18 +4518,38 @@ function renderSegmentationTable() {
 // Show Client Details - VERSION ENRICHIE
 // ============================================================================
 function showClientDetails(clientIndex) {
+  console.log('📋 showClientDetails APPELÉE avec index:', clientIndex);
+  console.log('   → currentDisplayedClients.length:', currentDisplayedClients.length);
+
   // Récupérer le client depuis la liste affichée
   const client = currentDisplayedClients[clientIndex];
 
   if (!client) {
-    console.error('Client non trouvé à l\'index:', clientIndex);
+    console.error('❌ Client non trouvé à l\'index:', clientIndex);
+    console.error('   → currentDisplayedClients:', currentDisplayedClients);
     return;
   }
 
+  console.log('✓ Client trouvé:', client.name || client.groupName);
+  console.log('   → Type:', client.type);
   console.log('Affichage détails client:', client);
 
+  // Vérification de sécurité pour les propriétés manquantes
+  if (!client.years) {
+    console.warn('⚠️ client.years manquant, initialisation...');
+    client.years = { '2022': 0, '2023': 0, '2024': 0, '2025': 0 };
+  }
+  if (client.totalRevenue === undefined) {
+    console.warn('⚠️ client.totalRevenue manquant, initialisation à 0');
+    client.totalRevenue = 0;
+  }
+  if (client.avgHealthScore === undefined) {
+    console.warn('⚠️ client.avgHealthScore manquant, initialisation à 0');
+    client.avgHealthScore = 0;
+  }
+
   const years = ['2022', '2023', '2024', '2025'];
-  const activeYears = years.filter(y => client.years[y] > 0);
+  const activeYears = years.filter(y => client.years && client.years[y] > 0);
 
   // Calcul du score (pour afficher les détails)
   const scoreCA = Math.min((client.totalRevenue / 100000) * 40, 40);
@@ -4895,7 +4915,15 @@ function showClientDetails(clientIndex) {
     </div>
   `;
 
-  openInfoPanel(`Détails Client - ${client.name}`, infoContent);
+  const clientName = client.name || client.groupName || 'Client inconnu';
+  console.log('🔓 Ouverture du panel avec:', clientName);
+
+  try {
+    openInfoPanel(`Détails Client - ${clientName}`, infoContent);
+    console.log('✅ Panel ouvert avec succès');
+  } catch (error) {
+    console.error('❌ Erreur lors de l\'ouverture du panel:', error);
+  }
 }
 
 // ============================================================================
