@@ -7,11 +7,12 @@ Dashboard interactif **ultra-enrichi** pour analyser les performances commercial
 ## ✨ Fonctionnalités
 
 ### 🔥 Enrichissement Automatique Complet
-- ✅ **TOUTES les notes** analysées (sentiment, keywords, contenu)
+- ✅ **TOUTES les notes** analysées (sentiment granulaire 8 niveaux, keywords, contenu)
 - ✅ **Engagement history** complet (emails, calls, meetings)
-- ✅ **Health Score** calculé (0-100) basé sur notes + engagement + CA
-- ✅ **Détection de segments** intelligente (Stratégique, Clé, Dormant, etc.)
+- ✅ **Score Santé SÉVÈRE** (0-100) - notation exigeante basée sur notes + engagement + CA
+- ✅ **Détection de segments** discrète (affichage minimal par point de couleur)
 - ✅ **Cross-référencement** total : Deals → Companies → Contacts → Notes
+- ✅ **Parsing intelligent des contacts** (extraction automatique des noms depuis les notes)
 
 ### 📊 Données Enrichies (40+ Champs par Deal)
 
@@ -24,9 +25,10 @@ Dashboard interactif **ultra-enrichi** pour analyser les performances commercial
 | **Analysis** | Health Score (0-100), Segment, Raison du segment, Priorité |
 
 ### 🤖 Architecture Automatisée
-- 📦 **GitHub Actions** : Fetch automatique des données HubSpot toutes les 6 heures
+- 📦 **GitHub Actions** : Fetch automatique des données HubSpot **toutes les 2 heures**
+- 🔄 **Bouton Actualiser** : Actualisation manuelle instantanée via GitHub Actions
 - 🌍 **GitHub Pages** : Hébergement gratuit et automatique
-- 🔄 **Chargement automatique** : Données fraîches à chaque ouverture du dashboard
+- ⚡ **Chargement direct** : Dashboard s'affiche immédiatement au démarrage
 - 🏗️ **Architecture modulaire** : Code organisé en modules réutilisables
 
 ## 🚀 Installation
@@ -83,7 +85,7 @@ cd hubspot-dashboard
 
 Le workflow GitHub Actions se lance automatiquement :
 - ✅ Au premier push
-- ✅ Toutes les 6 heures
+- ✅ Toutes les 2 heures
 - ✅ Manuellement depuis l'onglet "Actions"
 
 Pour lancer manuellement :
@@ -142,11 +144,12 @@ Analyse de contenu des notes :
 - Calcul de métriques (longueur moyenne, récence)
 
 ### `.github/scripts/lib/health-score.js`
-Calcul du Health Score (0-100) :
-- **40 pts** : Notes (quantité, qualité, sentiment)
+Calcul du Score Santé (0-100) - VERSION SÉVÈRE :
+- **35 pts** : Notes (quantité, qualité, sentiment, récence)
 - **30 pts** : Engagement (emails, calls, meetings)
 - **10 pts** : Keywords d'action
-- **20 pts** : CA
+- **25 pts** : CA (revenue)
+- **Pénalités** : -25 si aucune note, -20 si sentiment négatif, -10 si pas récent, -5 si aucun meeting
 
 ### `.github/scripts/lib/segment-detector.js`
 Détection intelligente de segments :
@@ -159,15 +162,24 @@ Détection intelligente de segments :
 
 ## ⚙️ Configuration
 
+### Actualiser les Données Manuellement
+
+1. Clique sur le bouton **"Actualiser"** en haut à droite du dashboard
+2. GitHub Actions s'ouvre dans un nouvel onglet
+3. Clique sur **"Fetch HubSpot Data"** → **"Run workflow"** → **"Run workflow"** (bouton vert)
+4. Attends 2-3 minutes puis rafraîchis le dashboard (Cmd+Shift+R)
+
 ### Modifier la Fréquence de Mise à Jour
+
+Actuellement : **toutes les 2 heures** (~1080 min/mois)
 
 Édite `.github/workflows/fetch-hubspot-data.yml` :
 
 ```yaml
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Toutes les 6 heures
-    # - cron: '0 */3 * * *'  # Toutes les 3 heures
+    - cron: '0 */2 * * *'  # Toutes les 2 heures (actuel)
+    # - cron: '0 */1 * * *'  # Toutes les heures
     # - cron: '0 0 * * *'    # Une fois par jour à minuit
 ```
 
@@ -187,32 +199,32 @@ const dealsData = await fetchAllPaginated('/crm/v3/objects/deals', [
 
 ## 📊 Méthodologie
 
-### Health Score (0-100)
+### Score Santé (0-100) - VERSION SÉVÈRE
 ```
-Score = Notes (40) + Engagement (30) + Keywords (10) + Revenue (20)
+Score = Notes (35) + Engagement (30) + Keywords (10) + Revenue (25) + Pénalités
+Base : 0 (pas de cadeau !)
 ```
 
 **Détails** :
-- **Notes** (40 pts max) :
-  - +2 pts par note (max 20)
-  - +10 pts si longueur >200 chars
-  - +10 pts si note récente (<90 jours)
-  - +15 pts si sentiment positif / -15 si négatif
+- **Notes** (35 pts max) - SÉVÈRE :
+  - ≥20 notes = +15 pts / ≥10 notes = +8 pts / ≥5 notes = +4 pts / <5 notes = +1 pt
+  - Longueur moyenne >300 chars = +8 pts / >150 chars = +3 pts
+  - Note récente (<90 jours) = +7 pts / **sinon -10 pts** (pénalité)
+  - Sentiment positif = +5 pts / **sentiment négatif = -20 pts** (grosse pénalité)
+  - **Aucune note = -25 pts** (grosse pénalité)
 
-- **Engagement** (30 pts max) :
-  - +0.5 pt par email (max 10)
-  - +2 pts par call (max 10)
-  - +3 pts par meeting (max 10)
+- **Engagement** (30 pts max) - SÉVÈRE :
+  - Emails : ≥20 = +6 pts / ≥10 = +3 pts / ≥5 = +1 pt
+  - Calls : ≥10 = +10 pts / ≥5 = +5 pts / ≥2 = +2 pts
+  - Meetings : ≥5 = +14 pts / ≥3 = +8 pts / ≥1 = +3 pts / **aucun = -5 pts** (pénalité)
 
-- **Keywords** (10 pts max) :
-  - +5 pts si >5 mots d'action
-  - +5 pts si >3 mentions meeting
+- **Keywords** (10 pts max) - SÉVÈRE :
+  - ≥10 mots d'action = +5 pts / ≥5 = +2 pts
+  - ≥5 mentions meeting = +5 pts / ≥3 = +2 pts
 
-- **Revenue** (20 pts max) :
-  - >100k = 20 pts
-  - >50k = 15 pts
-  - >20k = 10 pts
-  - >10k = 5 pts
+- **Revenue** (25 pts max) - TRÈS SÉVÈRE :
+  - ≥200k€ = +25 pts / ≥100k€ = +18 pts / ≥50k€ = +12 pts
+  - ≥20k€ = +6 pts / ≥10k€ = +2 pts / **<10k€ = -5 pts** (pénalité)
 
 ### Segments
 
@@ -280,12 +292,19 @@ window.addEventListener('DOMContentLoaded', () => {
 ### Les clients dormants ne sont pas détectés
 → Vérifie que le script récupère bien les notes avec `fetchAllNotes()` dans `lib/api.js`
 
+### Les données sont trop anciennes (>2 heures)
+→ Le workflow automatique tourne toutes les 2 heures. Pour des données plus fraîches :
+  1. Clique sur le bouton "Actualiser" en haut à droite du dashboard
+  2. Lance manuellement le workflow dans GitHub Actions
+  3. Attends 2-3 minutes que le workflow se termine
+  4. Rafraîchis le dashboard (Cmd+Shift+R)
+
 ## 📈 Performance
 
 ### GitHub Actions Free Tier
 | Ressource | Limite Gratuite | Usage Estimé |
 |-----------|----------------|--------------|
-| Minutes | 2000/mois | ~100-200 (5-10%) |
+| Minutes | 2000/mois | ~1080 min/mois (54%) |
 | Stockage | 500 MB | ~1-5 MB (<1%) |
 | Bande passante | Illimitée | N/A |
 
