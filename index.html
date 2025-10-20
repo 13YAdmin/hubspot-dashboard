@@ -776,19 +776,30 @@ details[open] summary {
       </div>
     </div>
 
-    <!-- Évolution Multi-KPIs -->
+    <!-- Répartition Secteurs d'Activité -->
     <div class="chart-section">
-      <h3>Évolution des Indicateurs Clés</h3>
-      <div class="chart-container" style="height: 350px;">
-        <svg id="chartMultiKPIs"></svg>
+      <h3>Répartition par Secteur d'Activité</h3>
+      <div class="chart-container" style="height: 400px;">
+        <svg id="chartIndustryPie"></svg>
       </div>
-      <div class="legend" id="legendMultiKPIs" style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap;"></div>
+      <div class="legend" id="legendIndustryPie" style="display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;"></div>
     </div>
 
     <!-- Strategic Recommendations -->
     <div class="chart-section">
       <h3>Recommandations Stratégiques Account Manager</h3>
       <div class="action-grid" id="recommendationsGrid"></div>
+    </div>
+
+    <!-- Company Relationships Tree -->
+    <div class="chart-section">
+      <h3>Cartographie des Relations Entreprises</h3>
+      <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+        Visualisation des groupes d'entreprises et filiales potentielles
+      </p>
+      <div class="chart-container" style="height: 500px; overflow: auto;">
+        <svg id="chartCompanyTree"></svg>
+      </div>
     </div>
 
     <!-- Detailed Analysis -->
@@ -1314,8 +1325,9 @@ function renderDashboard() {
   renderRevenueGlobalChart();
   renderClientEvolutionChart();
   renderSegmentationTable();
-  renderMultiKPIsChart();
+  renderIndustryPieChart();
   renderRecommendations();
+  renderCompanyTree();
   renderAnalysis();
   initFilters();
 }
@@ -2567,79 +2579,111 @@ function renderHealthTrendsChart() {
 }
 
 // ============================================================================
-// Multi-KPIs Evolution Chart
+// Industry Pie Chart - Répartition par secteur d'activité
 // ============================================================================
-function renderMultiKPIsChart() {
-  const years = ['2022', '2023', '2024', '2025'];
+function renderIndustryPieChart() {
+  // Mapping intelligent industries EN → FR
+  const industryMapping = {
+    // Tech & IT
+    'Computer Software': 'Logiciels & IT',
+    'Information Technology and Services': 'Logiciels & IT',
+    'Internet': 'Logiciels & IT',
+    'Computer & Network Security': 'Logiciels & IT',
+    'IT Services and IT Consulting': 'Logiciels & IT',
+    'Software Development': 'Logiciels & IT',
+    // Finance
+    'Financial Services': 'Finance & Assurance',
+    'Banking': 'Finance & Assurance',
+    'Insurance': 'Finance & Assurance',
+    'Venture Capital & Private Equity': 'Finance & Assurance',
+    // Manufacturing
+    'Manufacturing': 'Industrie & Manufacturing',
+    'Industrial Automation': 'Industrie & Manufacturing',
+    'Machinery': 'Industrie & Manufacturing',
+    // Retail & E-commerce
+    'Retail': 'Commerce & Distribution',
+    'E-Learning': 'Commerce & Distribution',
+    'Consumer Goods': 'Commerce & Distribution',
+    // Healthcare
+    'Hospital & Health Care': 'Santé & Pharmaceutique',
+    'Medical Devices': 'Santé & Pharmaceutique',
+    'Pharmaceuticals': 'Santé & Pharmaceutique',
+    'Biotechnology': 'Santé & Pharmaceutique',
+    // Consulting
+    'Management Consulting': 'Conseil & Services',
+    'Marketing and Advertising': 'Conseil & Services',
+    'Public Relations and Communications': 'Conseil & Services',
+    'Human Resources': 'Conseil & Services',
+    // Construction & Real Estate
+    'Construction': 'BTP & Immobilier',
+    'Real Estate': 'BTP & Immobilier',
+    'Architecture & Planning': 'BTP & Immobilier',
+    // Education
+    'Education Management': 'Éducation & Formation',
+    'Higher Education': 'Éducation & Formation',
+    'E-Learning': 'Éducation & Formation',
+    // Others
+    'Telecommunications': 'Télécommunications',
+    'Transportation/Trucking/Railroad': 'Transport & Logistique',
+    'Logistics and Supply Chain': 'Transport & Logistique',
+    'Hospitality': 'Hôtellerie & Tourisme',
+    'Food & Beverages': 'Agroalimentaire',
+    'Automotive': 'Automobile',
+    'Energy': 'Énergie & Utilities'
+  };
 
-  // Calculate KPIs for each year
-  const kpisByYear = years.map(year => {
-    const clientsThisYear = processedData.filter(c => c.years[year] > 0);
-    const revenue = processedData.reduce((sum, c) => sum + c.years[year], 0);
-    const avgHealthScore = clientsThisYear.length > 0
-      ? clientsThisYear.reduce((sum, c) => sum + c.avgHealthScore, 0) / clientsThisYear.length
-      : 0;
-    const avgTicket = clientsThisYear.length > 0 ? revenue / clientsThisYear.length : 0;
-    const nbClients = clientsThisYear.length;
+  // Regrouper par secteur
+  const industryCounts = {};
+  const industryRevenues = {};
 
-    return {
-      year,
-      revenue: revenue / 1000, // En milliers pour échelle
-      avgHealthScore,
-      avgTicket: avgTicket / 1000, // En milliers pour échelle
-      nbClients
-    };
+  processedData.forEach(client => {
+    const rawIndustry = client.companyIndustry || 'Non spécifié';
+    const frenchIndustry = industryMapping[rawIndustry] || 'Autres secteurs';
+
+    industryCounts[frenchIndustry] = (industryCounts[frenchIndustry] || 0) + 1;
+    industryRevenues[frenchIndustry] = (industryRevenues[frenchIndustry] || 0) + client.totalRevenue;
   });
 
-  const svg = document.getElementById('chartMultiKPIs');
+  // Convertir en array et trier par nombre de clients
+  const industries = Object.keys(industryCounts)
+    .map(name => ({
+      name,
+      count: industryCounts[name],
+      revenue: industryRevenues[name],
+      percentage: (industryCounts[name] / processedData.length * 100).toFixed(1)
+    }))
+    .sort((a, b) => b.count - a.count);
+
+  // Palette de couleurs
+  const colors = [
+    '#6366f1', // Violet
+    '#22c55e', // Vert
+    '#f59e0b', // Orange
+    '#ec4899', // Rose
+    '#14b8a6', // Teal
+    '#8b5cf6', // Purple
+    '#f97316', // Orange foncé
+    '#06b6d4', // Cyan
+    '#84cc16', // Lime
+    '#ef4444', // Rouge
+    '#a855f7', // Violet clair
+    '#10b981'  // Vert émeraude
+  ];
+
+  const svg = document.getElementById('chartIndustryPie');
   svg.innerHTML = '';
 
-  const width = 1000;
-  const height = 350;
-  const padding = 60;
+  const width = 800;
+  const height = 400;
+  const radius = Math.min(width, height) / 2 - 40;
+  const centerX = width / 2;
+  const centerY = height / 2;
 
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
-  // Define metrics to display
-  const metrics = [
-    {
-      key: 'revenue',
-      label: 'CA (k€)',
-      color: '#6366f1',
-      scale: Math.max(...kpisByYear.map(d => d.revenue), 1)
-    },
-    {
-      key: 'avgHealthScore',
-      label: 'Score Santé Moyen',
-      color: '#22c55e',
-      scale: 100
-    },
-    {
-      key: 'nbClients',
-      label: 'Nombre de Clients',
-      color: '#f59e0b',
-      scale: Math.max(...kpisByYear.map(d => d.nbClients), 1)
-    }
-  ];
-
-  // Draw horizontal grid lines
-  const gridLines = 5;
-  for (let i = 0; i <= gridLines; i++) {
-    const y = padding + (height - 2 * padding) * i / gridLines;
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.setAttribute('x1', padding);
-    line.setAttribute('y1', y);
-    line.setAttribute('x2', width - padding);
-    line.setAttribute('y2', y);
-    line.setAttribute('stroke', '#334155');
-    line.setAttribute('stroke-width', '1');
-    line.setAttribute('opacity', '0.2');
-    svg.appendChild(line);
-  }
-
   // Create tooltip
   const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  tooltip.setAttribute('id', 'multiKPITooltip');
+  tooltip.setAttribute('id', 'industryTooltip');
   tooltip.style.opacity = '0';
   tooltip.style.pointerEvents = 'none';
   tooltip.style.transition = 'opacity 0.2s';
@@ -2658,122 +2702,291 @@ function renderMultiKPIsChart() {
   tooltipText.setAttribute('font-weight', '600');
   tooltip.appendChild(tooltipText);
 
-  // Draw each metric line
-  metrics.forEach(metric => {
-    const points = kpisByYear.map((data, i) => {
-      const x = padding + (i / (years.length - 1)) * (width - 2 * padding);
-      const value = data[metric.key];
-      const normalizedValue = value / metric.scale;
-      const y = padding + (height - 2 * padding) - (normalizedValue * (height - 2 * padding));
-      return { x, y, year: data.year, value, index: i };
+  // Draw pie slices
+  let startAngle = -Math.PI / 2; // Commence en haut
+
+  industries.forEach((industry, idx) => {
+    const sliceAngle = (industry.count / processedData.length) * 2 * Math.PI;
+    const endAngle = startAngle + sliceAngle;
+    const midAngle = startAngle + sliceAngle / 2;
+
+    // Calculate path
+    const x1 = centerX + radius * Math.cos(startAngle);
+    const y1 = centerY + radius * Math.sin(startAngle);
+    const x2 = centerX + radius * Math.cos(endAngle);
+    const y2 = centerY + radius * Math.sin(endAngle);
+
+    const largeArcFlag = sliceAngle > Math.PI ? 1 : 0;
+
+    const pathData = [
+      `M ${centerX} ${centerY}`,
+      `L ${x1} ${y1}`,
+      `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+      'Z'
+    ].join(' ');
+
+    const slice = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    slice.setAttribute('d', pathData);
+    slice.setAttribute('fill', colors[idx % colors.length]);
+    slice.style.cursor = 'pointer';
+    slice.style.transition = 'all 0.2s';
+    slice.setAttribute('opacity', '0.9');
+
+    // Hover effects
+    slice.addEventListener('mouseenter', function() {
+      this.setAttribute('opacity', '1');
+      this.setAttribute('transform', `translate(${Math.cos(midAngle) * 10}, ${Math.sin(midAngle) * 10})`);
+
+      tooltip.style.opacity = '1';
+      tooltipText.textContent = `${industry.name}: ${industry.count} clients (${industry.percentage}%)`;
+
+      const textBBox = tooltipText.getBBox();
+      const tooltipWidth = textBBox.width + 20;
+      const tooltipHeight = textBBox.height + 16;
+
+      tooltipRect.setAttribute('width', tooltipWidth);
+      tooltipRect.setAttribute('height', tooltipHeight);
+
+      const tooltipX = centerX - tooltipWidth / 2;
+      const tooltipY = 20;
+
+      tooltipRect.setAttribute('x', tooltipX);
+      tooltipRect.setAttribute('y', tooltipY);
+      tooltipText.setAttribute('x', tooltipX + 10);
+      tooltipText.setAttribute('y', tooltipY + tooltipHeight / 2 + 5);
     });
 
-    // Create smooth curve path
-    let pathD = `M ${points[0].x} ${points[0].y}`;
-    for (let i = 0; i < points.length - 1; i++) {
-      const p1 = points[i];
-      const p2 = points[i + 1];
-      const midX = (p1.x + p2.x) / 2;
-      pathD += ` Q ${p1.x} ${p1.y}, ${midX} ${(p1.y + p2.y) / 2}`;
-      pathD += ` Q ${p2.x} ${p2.y}, ${p2.x} ${p2.y}`;
+    slice.addEventListener('mouseleave', function() {
+      this.setAttribute('opacity', '0.9');
+      this.setAttribute('transform', '');
+      tooltip.style.opacity = '0';
+    });
+
+    svg.appendChild(slice);
+
+    // Add percentage label si slice assez grand
+    if (industry.percentage > 5) {
+      const labelRadius = radius * 0.7;
+      const labelX = centerX + labelRadius * Math.cos(midAngle);
+      const labelY = centerY + labelRadius * Math.sin(midAngle);
+
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', labelX);
+      label.setAttribute('y', labelY);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', 'white');
+      label.setAttribute('font-size', '12');
+      label.setAttribute('font-weight', '700');
+      label.textContent = `${industry.percentage}%`;
+      svg.appendChild(label);
     }
 
-    // Draw the curve
-    const curvePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    curvePath.setAttribute('d', pathD);
-    curvePath.setAttribute('stroke', metric.color);
-    curvePath.setAttribute('stroke-width', '2.5');
-    curvePath.setAttribute('fill', 'none');
-    curvePath.setAttribute('stroke-linecap', 'round');
-    curvePath.setAttribute('stroke-linejoin', 'round');
-    curvePath.style.opacity = '0.9';
-    svg.appendChild(curvePath);
-
-    // Draw points
-    points.forEach((point, i) => {
-      const { x, y, year, value } = point;
-
-      // Glow effect
-      const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      outerCircle.setAttribute('cx', x);
-      outerCircle.setAttribute('cy', y);
-      outerCircle.setAttribute('r', '6');
-      outerCircle.setAttribute('fill', metric.color);
-      outerCircle.setAttribute('opacity', '0.3');
-      svg.appendChild(outerCircle);
-
-      // Main circle
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', x);
-      circle.setAttribute('cy', y);
-      circle.setAttribute('r', '4');
-      circle.setAttribute('fill', metric.color);
-      circle.setAttribute('stroke', '#f1f5f9');
-      circle.setAttribute('stroke-width', '2');
-      circle.style.cursor = 'pointer';
-      circle.style.transition = 'all 0.2s';
-      svg.appendChild(circle);
-
-      // Tooltip interaction
-      circle.addEventListener('mouseenter', function() {
-        tooltip.style.opacity = '1';
-        circle.setAttribute('r', '6');
-        outerCircle.setAttribute('r', '10');
-
-        const displayValue = metric.key === 'revenue' || metric.key === 'avgTicket'
-          ? formatCurrency(value * 1000)
-          : metric.key === 'avgHealthScore'
-          ? value.toFixed(1)
-          : value;
-
-        tooltipText.textContent = `${year} - ${metric.label}: ${displayValue}`;
-
-        const textBBox = tooltipText.getBBox();
-        const tooltipWidth = textBBox.width + 20;
-        const tooltipHeight = textBBox.height + 16;
-
-        tooltipRect.setAttribute('width', tooltipWidth);
-        tooltipRect.setAttribute('height', tooltipHeight);
-
-        const tooltipX = x - tooltipWidth / 2;
-        const tooltipY = y - tooltipHeight - 15;
-
-        tooltipRect.setAttribute('x', tooltipX);
-        tooltipRect.setAttribute('y', tooltipY);
-        tooltipText.setAttribute('x', tooltipX + 10);
-        tooltipText.setAttribute('y', tooltipY + tooltipHeight / 2 + 5);
-      });
-
-      circle.addEventListener('mouseleave', function() {
-        tooltip.style.opacity = '0';
-        circle.setAttribute('r', '4');
-        outerCircle.setAttribute('r', '6');
-      });
-    });
-  });
-
-  // Add year labels on X axis
-  years.forEach((year, i) => {
-    const x = padding + (i / (years.length - 1)) * (width - 2 * padding);
-    const yearText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    yearText.setAttribute('x', x);
-    yearText.setAttribute('y', height - padding + 30);
-    yearText.setAttribute('text-anchor', 'middle');
-    yearText.setAttribute('fill', '#94a3b8');
-    yearText.setAttribute('font-size', '13');
-    yearText.setAttribute('font-weight', '600');
-    yearText.textContent = year;
-    svg.appendChild(yearText);
+    startAngle = endAngle;
   });
 
   // Render legend
-  const legend = document.getElementById('legendMultiKPIs');
-  legend.innerHTML = metrics.map(metric => `
+  const legend = document.getElementById('legendIndustryPie');
+  legend.innerHTML = industries.map((industry, idx) => `
     <div style="display: flex; align-items: center; gap: 8px; padding: 6px 12px; background: var(--card); border-radius: 6px;">
-      <div style="width: 16px; height: 3px; background: ${metric.color}; border-radius: 2px;"></div>
-      <span style="color: var(--text); font-size: 12px; font-weight: 500;">${metric.label}</span>
+      <div style="width: 12px; height: 12px; border-radius: 50%; background: ${colors[idx % colors.length]};"></div>
+      <span style="color: var(--text); font-size: 11px; font-weight: 500;">${industry.name} (${industry.count})</span>
     </div>
   `).join('');
+}
+
+// ============================================================================
+// Company Relationships Tree - Organigramme des relations
+// ============================================================================
+function renderCompanyTree() {
+  // Détecter les groupes d'entreprises (noms similaires, domaines similaires, etc.)
+  const companyGroups = [];
+  const processed = new Set();
+
+  processedData.forEach(client => {
+    if (processed.has(client.name)) return;
+
+    // Chercher des filiales potentielles
+    const baseName = client.name
+      .replace(/\s+(SAS|SA|SARL|EURL|SCI|SCOP|SASU|France|International|Group|Groupe)$/i, '')
+      .trim();
+
+    const relatedCompanies = processedData.filter(other => {
+      if (other.name === client.name) return false;
+      const otherBaseName = other.name
+        .replace(/\s+(SAS|SA|SARL|EURL|SCI|SCOP|SASU|France|International|Group|Groupe)$/i, '')
+        .trim();
+
+      // Même base de nom
+      if (baseName && otherBaseName && baseName.length > 3 &&
+          (baseName.includes(otherBaseName) || otherBaseName.includes(baseName))) {
+        return true;
+      }
+
+      // Même domaine (indicateur de groupe)
+      if (client.domain && other.domain && client.domain === other.domain) {
+        return true;
+      }
+
+      return false;
+    });
+
+    if (relatedCompanies.length > 0) {
+      companyGroups.push({
+        parent: client,
+        children: relatedCompanies
+      });
+      processed.add(client.name);
+      relatedCompanies.forEach(c => processed.add(c.name));
+    }
+  });
+
+  const svg = document.getElementById('chartCompanyTree');
+  svg.innerHTML = '';
+
+  if (companyGroups.length === 0) {
+    // Message si aucune relation détectée
+    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    text.setAttribute('x', '50%');
+    text.setAttribute('y', '50%');
+    text.setAttribute('text-anchor', 'middle');
+    text.setAttribute('fill', '#94a3b8');
+    text.setAttribute('font-size', '14');
+    text.textContent = 'Aucune relation entreprise détectée pour le moment';
+    svg.appendChild(text);
+    svg.setAttribute('viewBox', `0 0 800 100`);
+    return;
+  }
+
+  // Dimensions
+  const groupSpacing = 300;
+  const nodeHeight = 80;
+  const nodeWidth = 220;
+  const verticalSpacing = 120;
+  const width = Math.max(1200, companyGroups.length * groupSpacing);
+  const height = Math.max(400, 150 + verticalSpacing * 2);
+
+  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+  // Couleurs
+  const parentColor = '#6366f1';
+  const childColor = '#22c55e';
+
+  companyGroups.forEach((group, groupIdx) => {
+    const baseX = 100 + groupIdx * groupSpacing;
+    const baseY = 60;
+
+    // Parent node
+    const parentG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    parentG.style.cursor = 'pointer';
+
+    const parentRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    parentRect.setAttribute('x', baseX);
+    parentRect.setAttribute('y', baseY);
+    parentRect.setAttribute('width', nodeWidth);
+    parentRect.setAttribute('height', nodeHeight);
+    parentRect.setAttribute('rx', 8);
+    parentRect.setAttribute('fill', parentColor);
+    parentRect.setAttribute('stroke', '#ffffff');
+    parentRect.setAttribute('stroke-width', 2);
+    parentG.appendChild(parentRect);
+
+    const parentText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    parentText.setAttribute('x', baseX + nodeWidth / 2);
+    parentText.setAttribute('y', baseY + 25);
+    parentText.setAttribute('text-anchor', 'middle');
+    parentText.setAttribute('fill', 'white');
+    parentText.setAttribute('font-size', '12');
+    parentText.setAttribute('font-weight', '700');
+
+    // Tronquer si trop long
+    const parentName = group.parent.name.length > 25 ? group.parent.name.substring(0, 22) + '...' : group.parent.name;
+    parentText.textContent = parentName;
+    parentG.appendChild(parentText);
+
+    const parentCA = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    parentCA.setAttribute('x', baseX + nodeWidth / 2);
+    parentCA.setAttribute('y', baseY + 45);
+    parentCA.setAttribute('text-anchor', 'middle');
+    parentCA.setAttribute('fill', 'white');
+    parentCA.setAttribute('font-size', '11');
+    parentCA.textContent = `CA: ${formatCurrency(group.parent.totalRevenue)}`;
+    parentG.appendChild(parentCA);
+
+    const parentBadge = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    parentBadge.setAttribute('x', baseX + nodeWidth / 2);
+    parentBadge.setAttribute('y', baseY + 63);
+    parentBadge.setAttribute('text-anchor', 'middle');
+    parentBadge.setAttribute('fill', 'white');
+    parentBadge.setAttribute('font-size', '9');
+    parentBadge.setAttribute('font-weight', '600');
+    parentBadge.textContent = 'SOCIÉTÉ PRINCIPALE';
+    parentG.appendChild(parentBadge);
+
+    svg.appendChild(parentG);
+
+    // Children nodes
+    group.children.forEach((child, childIdx) => {
+      const childX = baseX - (group.children.length - 1) * 60 + childIdx * 120;
+      const childY = baseY + verticalSpacing;
+
+      // Connection line
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', baseX + nodeWidth / 2);
+      line.setAttribute('y1', baseY + nodeHeight);
+      line.setAttribute('x2', childX + nodeWidth / 2);
+      line.setAttribute('y2', childY);
+      line.setAttribute('stroke', '#475569');
+      line.setAttribute('stroke-width', 2);
+      line.setAttribute('stroke-dasharray', '5,5');
+      svg.appendChild(line);
+
+      // Child node
+      const childG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      childG.style.cursor = 'pointer';
+
+      const childRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      childRect.setAttribute('x', childX);
+      childRect.setAttribute('y', childY);
+      childRect.setAttribute('width', nodeWidth);
+      childRect.setAttribute('height', nodeHeight);
+      childRect.setAttribute('rx', 8);
+      childRect.setAttribute('fill', childColor);
+      childRect.setAttribute('stroke', '#ffffff');
+      childRect.setAttribute('stroke-width', 2);
+      childG.appendChild(childRect);
+
+      const childText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      childText.setAttribute('x', childX + nodeWidth / 2);
+      childText.setAttribute('y', childY + 25);
+      childText.setAttribute('text-anchor', 'middle');
+      childText.setAttribute('fill', 'white');
+      childText.setAttribute('font-size', '11');
+      childText.setAttribute('font-weight', '600');
+      const childName = child.name.length > 25 ? child.name.substring(0, 22) + '...' : child.name;
+      childText.textContent = childName;
+      childG.appendChild(childText);
+
+      const childCA = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      childCA.setAttribute('x', childX + nodeWidth / 2);
+      childCA.setAttribute('y', childY + 45);
+      childCA.setAttribute('text-anchor', 'middle');
+      childCA.setAttribute('fill', 'white');
+      childCA.setAttribute('font-size', '10');
+      childCA.textContent = `CA: ${formatCurrency(child.totalRevenue)}`;
+      childG.appendChild(childCA);
+
+      const childBadge = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      childBadge.setAttribute('x', childX + nodeWidth / 2);
+      childBadge.setAttribute('y', childY + 63);
+      childBadge.setAttribute('text-anchor', 'middle');
+      childBadge.setAttribute('fill', 'white');
+      childBadge.setAttribute('font-size', '8');
+      childBadge.textContent = 'Filiale/Entité liée';
+      childG.appendChild(childBadge);
+
+      svg.appendChild(childG);
+    });
+  });
 }
 
 // ============================================================================
@@ -2929,19 +3142,15 @@ function renderSegmentationTable() {
 
     const sentimentScore = `(${notesCount} notes, ${engagement} eng.)`;
 
-    // Calcul tendance intelligente (année sur année)
+    // Utiliser la tendance globale calculée (première année → dernière année)
     const years = ['2022', '2023', '2024', '2025'];
-    const yearlyRevenues = years.map(y => client.years[y] || 0);
-    const nonZeroYears = yearlyRevenues.filter(r => r > 0);
-
     let trendDisplay = '-';
     let trendColor = '#94a3b8';
-    if (nonZeroYears.length >= 2) {
-      const lastYear = nonZeroYears[nonZeroYears.length - 1];
-      const previousYear = nonZeroYears[nonZeroYears.length - 2];
-      const trendPercent = ((lastYear - previousYear) / previousYear * 100).toFixed(1);
-      trendDisplay = (trendPercent > 0 ? '+' : '') + trendPercent + '%';
-      trendColor = trendPercent > 0 ? '#22c55e' : trendPercent < 0 ? '#ef4444' : '#94a3b8';
+
+    if (client.trend !== undefined && client.trend !== 0) {
+      const trendValue = client.trend.toFixed(1);
+      trendDisplay = (client.trend > 0 ? '+' : '') + trendValue + '%';
+      trendColor = client.trend > 0 ? '#22c55e' : client.trend < 0 ? '#ef4444' : '#94a3b8';
     }
 
     return `
