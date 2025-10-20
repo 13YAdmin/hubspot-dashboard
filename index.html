@@ -3305,119 +3305,130 @@ function renderCompanyTree() {
     return g;
   }
 
-  // Dimensions - PLUS D'ESPACE entre les groupes
-  const groupSpacing = 600; // Augmenté de 350 à 600
+  // NOUVEAU LAYOUT SIMPLE ET LISIBLE
+  const groupSpacing = 450; // Espacement horizontal entre groupes
   const nodeWidth = 220;
   const nodeHeight = 80;
-  const verticalSpacing = 140;
+  const verticalSpacing = 110; // Espacement vertical entre nœuds
 
-  // Calculer profondeur max pour déterminer la hauteur
-  let maxDepth = 2; // Au minimum parents + center + children
-  companyGroups.forEach(group => {
-    function getDepth(children, currentDepth = 1) {
-      if (!children || children.length === 0) return currentDepth;
-      let maxChildDepth = currentDepth;
+  // Calculer la hauteur nécessaire pour chaque groupe
+  const groupHeights = companyGroups.map(group => {
+    // Compter tous les nœuds à afficher verticalement
+    let nodeCount = 1; // Centre
+    nodeCount += group.parents.length;
+
+    // Compter récursivement les enfants
+    function countChildren(children) {
+      if (!children || children.length === 0) return 0;
+      let count = children.length;
       children.forEach(child => {
         if (child.subChildren) {
-          const childDepth = getDepth(child.subChildren, currentDepth + 1);
-          maxChildDepth = Math.max(maxChildDepth, childDepth);
+          count += countChildren(child.subChildren);
         }
       });
-      return maxChildDepth;
+      return count;
     }
-    let groupDepth = 1 + getDepth(group.children);
-    if (group.parents.length > 0) groupDepth++;
-    maxDepth = Math.max(maxDepth, groupDepth);
+    nodeCount += countChildren(group.children);
+
+    return nodeCount * (nodeHeight + verticalSpacing) + 200; // Marge en haut/bas
   });
 
-  const width = Math.max(1600, companyGroups.length * groupSpacing + 200);
-  const height = Math.max(600, 200 + verticalSpacing * maxDepth);
+  const maxHeight = Math.max(...groupHeights, 800);
+  const width = Math.max(1400, companyGroups.length * groupSpacing + 200);
 
-  svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+  svg.setAttribute('viewBox', `0 0 ${width} ${maxHeight}`);
 
   companyGroups.forEach((group, groupIdx) => {
     const baseX = 100 + groupIdx * groupSpacing;
-    const centerY = 200; // Position verticale du nœud central
+    let currentY = 100; // Position Y courante (on empile verticalement)
 
     // RECTANGLE DE FOND pour séparer visuellement chaque groupe
     const groupBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    groupBg.setAttribute('x', baseX - 50);
-    groupBg.setAttribute('y', centerY - verticalSpacing - 100);
+    groupBg.setAttribute('x', baseX - 40);
+    groupBg.setAttribute('y', 50);
     groupBg.setAttribute('width', groupSpacing - 100);
-    groupBg.setAttribute('height', height - 100);
-    groupBg.setAttribute('fill', 'rgba(30, 41, 59, 0.3)'); // Slate-800 avec transparence
-    groupBg.setAttribute('stroke', 'rgba(71, 85, 105, 0.4)'); // Slate-600
+    groupBg.setAttribute('height', maxHeight - 100);
+    groupBg.setAttribute('fill', 'rgba(30, 41, 59, 0.3)');
+    groupBg.setAttribute('stroke', 'rgba(71, 85, 105, 0.4)');
     groupBg.setAttribute('stroke-width', 2);
     groupBg.setAttribute('rx', 20);
     svg.appendChild(groupBg);
 
     // Titre du groupe
     const groupTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    groupTitle.setAttribute('x', baseX + (groupSpacing - 100) / 2 - 50);
-    groupTitle.setAttribute('y', centerY - verticalSpacing - 70);
+    groupTitle.setAttribute('x', baseX + (groupSpacing - 100) / 2 - 40);
+    groupTitle.setAttribute('y', 80);
     groupTitle.setAttribute('text-anchor', 'middle');
-    groupTitle.setAttribute('fill', '#cbd5e1'); // Slate-300
+    groupTitle.setAttribute('fill', '#cbd5e1');
     groupTitle.setAttribute('font-size', '14');
     groupTitle.setAttribute('font-weight', '700');
     groupTitle.textContent = `Groupe ${groupIdx + 1} (${group.componentSize} entreprises)`;
     svg.appendChild(groupTitle);
 
-    // Parents nodes (au-dessus du center)
-    group.parents.forEach((parent, idx) => {
-      const parentX = baseX - (group.parents.length - 1) * 60 + idx * 120;
-      const parentY = centerY - verticalSpacing;
+    // Parents EMPILÉS VERTICALEMENT en haut
+    group.parents.forEach((parent) => {
+      const parentNode = drawNode(baseX, currentY, parent, 'SOCIÉTÉ MÈRE', 'parent');
+      svg.appendChild(parentNode);
 
-      // Line from parent to center
+      // Ligne vers le centre (qui viendra après)
+      const centerYPos = currentY + (group.parents.length - group.parents.indexOf(parent)) * (nodeHeight + verticalSpacing);
+      currentY += nodeHeight + verticalSpacing;
+    });
+
+    // Nœud centre
+    const centerYPos = currentY;
+    const centerNode = drawNode(baseX, centerYPos, group.center, 'CLIENT', 'center');
+    svg.appendChild(centerNode);
+    currentY += nodeHeight + verticalSpacing;
+
+    // Lignes des parents vers le centre
+    group.parents.forEach((parent, idx) => {
+      const parentYPos = 100 + idx * (nodeHeight + verticalSpacing);
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', parentX + nodeWidth / 2);
-      line.setAttribute('y1', parentY + nodeHeight);
+      line.setAttribute('x1', baseX + nodeWidth / 2);
+      line.setAttribute('y1', parentYPos + nodeHeight);
       line.setAttribute('x2', baseX + nodeWidth / 2);
-      line.setAttribute('y2', centerY);
+      line.setAttribute('y2', centerYPos);
       line.setAttribute('stroke', '#6366f1');
       line.setAttribute('stroke-width', 3);
       line.setAttribute('stroke-dasharray', '8,4');
       line.setAttribute('opacity', '0.6');
       svg.appendChild(line);
-
-      const parentNode = drawNode(parentX, parentY, parent, 'SOCIÉTÉ MÈRE', 'parent');
-      svg.appendChild(parentNode);
     });
 
-    // Center node
-    const centerNode = drawNode(baseX, centerY, group.center, 'CLIENT', 'center');
-    svg.appendChild(centerNode);
+    // Enfants EMPILÉS VERTICALEMENT en dessous (récursif)
+    function drawChildren(children, startY, indent = 0) {
+      if (!children || children.length === 0) return startY;
 
-    // Children nodes RÉCURSIFS (en-dessous du center)
-    function drawChildren(children, parentX, parentY, level = 1) {
-      if (!children || children.length === 0) return;
-
-      children.forEach((child, idx) => {
-        const childX = parentX - (children.length - 1) * 60 + idx * 120;
-        const childY = parentY + verticalSpacing;
-
-        // Line from parent to child
+      let y = startY;
+      children.forEach((child) => {
+        // Ligne du parent vers cet enfant
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', parentX + nodeWidth / 2);
-        line.setAttribute('y1', parentY + nodeHeight);
-        line.setAttribute('x2', childX + nodeWidth / 2);
-        line.setAttribute('y2', childY);
+        line.setAttribute('x1', baseX + nodeWidth / 2);
+        line.setAttribute('y1', startY - verticalSpacing);
+        line.setAttribute('x2', baseX + nodeWidth / 2 + indent);
+        line.setAttribute('y2', y);
         line.setAttribute('stroke', '#8b5cf6');
         line.setAttribute('stroke-width', 3);
         line.setAttribute('stroke-dasharray', '8,4');
         line.setAttribute('opacity', '0.6');
         svg.appendChild(line);
 
-        const childNode = drawNode(childX, childY, child, 'FILIALE', 'child');
+        // Nœud enfant (légèrement décalé si sous-enfant)
+        const childNode = drawNode(baseX + indent, y, child, 'FILIALE', 'child');
         svg.appendChild(childNode);
+        y += nodeHeight + verticalSpacing;
 
-        // Dessiner récursivement les sous-enfants
+        // Sous-enfants récursifs (encore plus décalés)
         if (child.subChildren && child.subChildren.length > 0) {
-          drawChildren(child.subChildren, childX, childY, level + 1);
+          y = drawChildren(child.subChildren, y, indent + 30);
         }
       });
+
+      return y;
     }
 
-    drawChildren(group.children, baseX, centerY);
+    drawChildren(group.children, currentY, 0);
   });
 
   // Initialiser le zoom/pan sur le SVG
