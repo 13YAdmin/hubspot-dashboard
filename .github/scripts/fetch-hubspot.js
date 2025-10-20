@@ -27,6 +27,7 @@ const { fetchHubSpot, fetchAllPaginated, fetchAllNotes, fetchEngagementHistory }
 const { analyzeNotes } = require('./lib/notes-analyzer');
 const { calculateHealthScore } = require('./lib/health-score');
 const { detectSegment } = require('./lib/segment-detector');
+const { detectIndustry } = require('./lib/industry-detector');
 
 const HUBSPOT_TOKEN = process.env.HUBSPOT_ACCESS_TOKEN;
 
@@ -70,10 +71,22 @@ async function main() {
     const companies = {};
     let industriesFound = 0;
     let industriesEmpty = 0;
+    let industriesDetected = 0;
     const industryValues = new Set();
 
     companiesData.forEach(company => {
-      const industryValue = company.properties.industry || '';
+      let industryValue = company.properties.industry || '';
+      const companyName = company.properties.name || 'Sans nom';
+      const companyDomain = company.properties.domain || '';
+
+      // Si industry vide, essayer de la détecter intelligemment
+      if (!industryValue && companyName !== 'Sans nom') {
+        const detectedIndustry = detectIndustry(companyName, companyDomain);
+        if (detectedIndustry) {
+          industryValue = detectedIndustry;
+          industriesDetected++;
+        }
+      }
 
       if (industryValue) {
         industriesFound++;
@@ -84,8 +97,8 @@ async function main() {
 
       companies[company.id] = {
         id: company.id,
-        name: company.properties.name || 'Sans nom',
-        domain: company.properties.domain || '',
+        name: companyName,
+        domain: companyDomain,
         industry: industryValue,
         revenue: parseFloat(company.properties.annualrevenue || 0),
         employees: parseInt(company.properties.numberofemployees || 0),
@@ -95,9 +108,12 @@ async function main() {
       };
     });
     console.log(`✅ ${Object.keys(companies).length} companies récupérées`);
-    console.log(`📊 Industries: ${industriesFound} avec secteur, ${industriesEmpty} sans secteur`);
+    console.log(`📊 Industries HubSpot: ${industriesFound - industriesDetected} trouvées`);
+    console.log(`🤖 Industries détectées automatiquement: ${industriesDetected}`);
+    console.log(`⚠️  Industries manquantes: ${industriesEmpty}`);
     if (industryValues.size > 0) {
-      console.log(`📋 Valeurs industries trouvées: ${Array.from(industryValues).join(', ')}`);
+      console.log(`📋 Secteurs uniques: ${industryValues.size} différents`);
+      console.log(`📋 Liste: ${Array.from(industryValues).sort().slice(0, 10).join(', ')}${industryValues.size > 10 ? '...' : ''}`);
     }
 
     // Récupérer les associations parent/child pour chaque company
@@ -289,6 +305,9 @@ async function main() {
         totalCompanies: Object.keys(companies).length,
         totalDeals: dealsData.length,
         totalRelations: relationsCount,
+        industriesFromHubSpot: industriesFound - industriesDetected,
+        industriesDetectedAuto: industriesDetected,
+        industriesMissing: industriesEmpty,
         enrichmentComplete: true,
         features: [
           'All notes analyzed',
@@ -296,7 +315,8 @@ async function main() {
           'Health scores calculated',
           'Segments detected',
           'Dormant clients identified',
-          'Parent/child company relationships'
+          'Parent/child company relationships',
+          'Smart industry detection (AI-powered)'
         ]
       }
     };

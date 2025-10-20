@@ -13,6 +13,7 @@ Dashboard interactif **ultra-enrichi** pour analyser les performances commercial
 - ✅ **Détection de segments** intelligente
 - ✅ **Cross-référencement** total : Deals → Companies → Contacts → Notes
 - ✅ **Parsing intelligent des contacts** (extraction automatique des noms depuis les notes)
+- ✅ **🤖 Détection intelligente des secteurs d'activité** (40+ secteurs, 300+ keywords, 84% précision)
 
 ### 📊 Visualisations Avancées
 
@@ -118,21 +119,24 @@ https://[TON-USERNAME].github.io/hubspot-dashboard/
 hubspot-dashboard/
 ├── 📁 .github/
 │   ├── 📁 workflows/
-│   │   └── fetch-hubspot-data.yml    # GitHub Actions workflow
+│   │   └── fetch-hubspot-data.yml      # GitHub Actions workflow
 │   └── 📁 scripts/
-│       ├── fetch-hubspot.js          # Script principal d'enrichissement
+│       ├── fetch-hubspot.js            # Script principal d'enrichissement
+│       ├── test-detector.js            # Tests détecteur industries
 │       └── 📁 lib/
-│           ├── api.js                # Fonctions API HubSpot
-│           ├── notes-analyzer.js     # Analyse de contenu des notes
-│           ├── health-score.js       # Calcul du health score ÉQUILIBRÉ
-│           └── segment-detector.js   # Détection de segments
+│           ├── api.js                  # Fonctions API HubSpot
+│           ├── notes-analyzer.js       # Analyse de contenu des notes
+│           ├── health-score.js         # Calcul du health score ÉQUILIBRÉ
+│           ├── segment-detector.js     # Détection de segments
+│           ├── industry-detector.js    # 🤖 Détection intelligente industries
+│           └── INDUSTRY-DETECTOR.md    # Documentation détecteur
 │
 ├── 📁 public/
-│   ├── index.html                    # Dashboard (se charge automatiquement)
-│   └── data.json                     # Données générées (auto-update)
+│   ├── index.html                      # Dashboard (se charge automatiquement)
+│   └── data.json                       # Données générées (auto-update)
 │
-├── 📄 README.md                      # Documentation (ce fichier)
-└── 📄 .env.example                   # Exemple config HubSpot token
+├── 📄 README.md                        # Documentation (ce fichier)
+└── 📄 .env.example                     # Exemple config HubSpot token
 ```
 
 ## 🔧 Architecture Modulaire
@@ -169,6 +173,31 @@ Détection intelligente de segments :
 - **Clé** : CA>50k + health>60
 - **Régulier** : CA>10k + health>40
 - **Prospect** : Nouveau ou petit client
+
+### `.github/scripts/lib/industry-detector.js` 🤖 NOUVEAU
+**Détecteur intelligent de secteurs d'activité** - Analyse automatique quand données HubSpot manquantes :
+
+**Algorithme multi-niveaux** :
+1. **Base entreprises connues** : 30+ grandes entreprises (LVMH, Microsoft, BNP, etc.)
+2. **Patterns de domaine** : Extensions spécifiques (.bank, .tech, .insurance)
+3. **Analyse par keywords** : 40+ secteurs, 300+ mots-clés (EN + FR)
+4. **Scoring intelligent** : Match exact (+10), contient (+5), partiel (+2)
+5. **Validation** : Seuil de confiance pour éviter faux positifs
+
+**Normalisation** :
+- Minuscules + suppression accents
+- Stop words retirés (SA, SAS, Ltd, Group, etc.)
+- Analyse combinée nom + domaine
+
+**Exemples** :
+- "LVMH" → Luxury Goods & Jewelry (entreprise connue)
+- "CloudTech Platform" → Computer Software (keywords: tech, platform)
+- "Digital Marketing Agency" → Marketing & Advertising (keywords)
+- "ABC Company" → null (pas assez d'indices)
+
+**Performance** : 84% de précision sur tests
+
+**Voir documentation complète** : `.github/scripts/lib/INDUSTRY-DETECTOR.md`
 
 ## ⚙️ Configuration
 
