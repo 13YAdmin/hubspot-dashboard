@@ -1489,18 +1489,35 @@ function processGroupedData() {
 
     const company = window.hubspotCompanies[client.companyId];
 
-    // Si pas de company data OU si n'a PAS de parent, c'est standalone
-    if (!company || !company.parentCompanyIds || company.parentCompanyIds.length === 0) {
+    // Vérifier si c'est une filiale (a des parentCompanyIds)
+    if (company && company.parentCompanyIds && company.parentCompanyIds.length > 0) {
+      // C'est une filiale
+      // Vérifier si le parent est dans processedData (= a des deals)
+      const parentHasDeals = company.parentCompanyIds.some(parentId => {
+        return processedData.some(c => c.companyId === parentId);
+      });
+
+      if (parentHasDeals) {
+        // Le parent a des deals, donc cette filiale DOIT être dans le groupe parent
+        // NE PAS l'ajouter en standalone
+        console.log(`   → Filiale ignorée (déjà dans groupe parent): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
+        processedClientNames.add(client.name);
+      } else {
+        // Le parent n'a PAS de deals, donc cette filiale devient standalone
+        console.log(`   → Filiale standalone (parent sans deals): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
+        grouped.push({
+          type: 'standalone',
+          ...client
+        });
+        processedClientNames.add(client.name);
+      }
+    } else {
+      // Pas de parent = standalone
       console.log(`   → Standalone: ${client.name}`);
       grouped.push({
         type: 'standalone',
         ...client
       });
-      processedClientNames.add(client.name);
-    } else {
-      // C'est une filiale dont le parent n'est pas dans nos données
-      // On la marque quand même comme traitée pour éviter qu'elle apparaisse
-      console.log(`   → Filiale orpheline (parent non trouvé): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
       processedClientNames.add(client.name);
     }
   });
