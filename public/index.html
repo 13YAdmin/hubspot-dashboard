@@ -3366,6 +3366,12 @@ function renderIndustryPieChart(filterYear = 'all') {
       tooltip.style.opacity = '0';
     });
 
+    // Click event pour afficher les détails du secteur
+    slice.addEventListener('click', function() {
+      console.log(`🖱️ Clic sur secteur: ${industry.name}`);
+      showIndustryDetails(industry.name, filterYear);
+    });
+
     svg.appendChild(slice);
 
     // Add percentage label si slice assez grand
@@ -3396,6 +3402,207 @@ function renderIndustryPieChart(filterYear = 'all') {
       <span style="color: var(--text); font-size: 11px; font-weight: 500;">${industry.name} (${industry.count})</span>
     </div>
   `).join('');
+}
+
+// ============================================================================
+// Show Industry Details - Afficher détails d'un secteur au clic
+// ============================================================================
+function showIndustryDetails(industryNameFr, filterYear = 'all') {
+  console.log(`📊 showIndustryDetails: ${industryNameFr}, année: ${filterYear}`);
+
+  // Filtrer les clients de ce secteur
+  let dataToUse = processedData;
+  if (filterYear !== 'all') {
+    dataToUse = processedData.filter(client => client.years[filterYear] > 0);
+  }
+
+  // Mapping inversé pour retrouver les codes HubSpot depuis le nom français
+  const industryMapping = {
+    // Tech & IT
+    'Logiciels & IT': ['Computer Software', 'Information Technology and Services', 'IT Services and IT Consulting', 'COMPUTER_SOFTWARE', 'INFORMATION_TECHNOLOGY_AND_SERVICES', 'SOFTWARE_DEVELOPMENT'],
+    'Internet & Web': ['Internet', 'INTERNET'],
+    'Cybersécurité': ['Computer & Network Security', 'COMPUTER_NETWORK_SECURITY'],
+    'Développement logiciel': ['Software Development', 'SOFTWARE_DEVELOPMENT'],
+    'Télécommunications': ['Telecommunications', 'TELECOMMUNICATIONS'],
+
+    // Finance & Banking
+    'Services financiers': ['Financial Services', 'FINANCIAL_SERVICES'],
+    'Banque': ['Banking', 'BANKING'],
+    'Assurance': ['Insurance', 'INSURANCE'],
+    'Capital-risque & Private Equity': ['Venture Capital & Private Equity', 'VENTURE_CAPITAL_PRIVATE_EQUITY'],
+    'Banque d\'investissement': ['Investment Banking', 'INVESTMENT_BANKING'],
+    'Gestion d\'actifs': ['Investment Management', 'INVESTMENT_MANAGEMENT'],
+
+    // Manufacturing & Industrial
+    'Industrie & Manufacturing': ['Manufacturing', 'MANUFACTURING'],
+    'Automatisation industrielle': ['Industrial Automation', 'INDUSTRIAL_AUTOMATION'],
+    'Machinerie': ['Machinery', 'MACHINERY'],
+    'Électronique': ['Electrical/Electronic Manufacturing', 'ELECTRICAL_ELECTRONIC_MANUFACTURING'],
+    'Automobile': ['Automotive', 'AUTOMOTIVE'],
+    'Aéronautique & Spatial': ['Aviation & Aerospace', 'AVIATION_AEROSPACE'],
+
+    // Retail & E-commerce
+    'Commerce de détail': ['Retail', 'RETAIL'],
+    'E-commerce': ['E-commerce', 'ECOMMERCE'],
+    'Biens de consommation': ['Consumer Goods', 'CONSUMER_GOODS'],
+    'Électronique grand public': ['Consumer Electronics', 'CONSUMER_ELECTRONICS'],
+    'Luxe & Joaillerie': ['Luxury Goods & Jewelry', 'LUXURY_GOODS_JEWELRY'],
+    'Mode & Habillement': ['Apparel & Fashion', 'APPAREL_FASHION'],
+
+    // Healthcare & Pharma
+    'Santé & Soins': ['Hospital & Health Care', 'HOSPITAL_HEALTH_CARE'],
+    'Dispositifs médicaux': ['Medical Devices', 'MEDICAL_DEVICES'],
+    'Pharmaceutique': ['Pharmaceuticals', 'PHARMACEUTICALS'],
+    'Biotechnologie': ['Biotechnology', 'BIOTECHNOLOGY'],
+    'Pratique médicale': ['Medical Practice', 'MEDICAL_PRACTICE'],
+
+    // Consulting & Services
+    'Conseil en management': ['Management Consulting', 'MANAGEMENT_CONSULTING'],
+    'Marketing & Publicité': ['Marketing and Advertising', 'MARKETING_ADVERTISING'],
+    'Relations publiques': ['Public Relations and Communications', 'PUBLIC_RELATIONS_COMMUNICATIONS'],
+    'Ressources humaines': ['Human Resources', 'HUMAN_RESOURCES'],
+    'Conseil & Services': ['Business Consulting and Services', 'BUSINESS_CONSULTING_SERVICES'],
+    'Services professionnels': ['Professional Services', 'PROFESSIONAL_SERVICES'],
+
+    // Construction & Real Estate
+    'BTP & Construction': ['Construction', 'CONSTRUCTION'],
+    'Immobilier': ['Real Estate', 'REAL_ESTATE'],
+    'Architecture': ['Architecture & Planning', 'ARCHITECTURE_PLANNING'],
+    'Génie civil': ['Civil Engineering', 'CIVIL_ENGINEERING'],
+
+    // Education
+    'Gestion éducative': ['Education Management', 'EDUCATION_MANAGEMENT'],
+    'Enseignement supérieur': ['Higher Education', 'HIGHER_EDUCATION'],
+    'E-learning': ['E-Learning', 'ELEARNING'],
+    'Enseignement primaire/secondaire': ['Primary/Secondary Education', 'PRIMARY_SECONDARY_EDUCATION'],
+
+    // Media & Entertainment
+    'Production média': ['Media Production', 'MEDIA_PRODUCTION'],
+    'Divertissement': ['Entertainment', 'ENTERTAINMENT'],
+    'Édition': ['Publishing', 'PUBLISHING'],
+    'Médias audiovisuels': ['Broadcast Media', 'BROADCAST_MEDIA'],
+
+    // Transport & Logistics
+    'Transport': ['Transportation/Trucking/Railroad', 'TRANSPORTATION_TRUCKING_RAILROAD'],
+    'Logistique': ['Logistics and Supply Chain', 'LOGISTICS_SUPPLY_CHAIN'],
+    'Aviation': ['Airlines/Aviation', 'AIRLINES_AVIATION'],
+    'Maritime': ['Maritime', 'MARITIME'],
+
+    // Hospitality & Food
+    'Hôtellerie': ['Hospitality', 'HOSPITALITY'],
+    'Restauration': ['Restaurants', 'RESTAURANTS'],
+    'Agroalimentaire': ['Food & Beverages', 'FOOD_BEVERAGES'],
+    'Production alimentaire': ['Food Production', 'FOOD_PRODUCTION'],
+
+    // Energy & Environment
+    'Pétrole & Énergie': ['Oil & Energy', 'OIL_ENERGY'],
+    'Énergies renouvelables': ['Renewable Energy', 'RENEWABLE_ENERGY'],
+    'Services publics': ['Utilities', 'UTILITIES'],
+    'Services environnementaux': ['Environmental Services', 'ENVIRONMENTAL_SERVICES'],
+
+    // Government & Non-Profit
+    'Administration publique': ['Government Administration', 'GOVERNMENT_ADMINISTRATION'],
+    'Association': ['Non-Profit Organization Management', 'NONPROFIT_ORGANIZATION_MANAGEMENT'],
+
+    // Other
+    'Non spécifié': ['', null, undefined]
+  };
+
+  // Trouver les codes HubSpot correspondants
+  const hubspotCodes = industryMapping[industryNameFr] || [industryNameFr];
+
+  // Filtrer les clients de ce secteur
+  const clientsInIndustry = dataToUse.filter(client => {
+    const clientIndustry = client.companyIndustry || '';
+    return hubspotCodes.some(code =>
+      code === clientIndustry ||
+      clientIndustry === industryNameFr ||
+      clientIndustry === '' && industryNameFr === 'Non spécifié'
+    );
+  });
+
+  console.log(`   → ${clientsInIndustry.length} clients trouvés dans ${industryNameFr}`);
+
+  // Calculer le CA total
+  const totalRevenue = clientsInIndustry.reduce((sum, client) => {
+    if (filterYear === 'all') {
+      return sum + client.totalRevenue;
+    } else {
+      return sum + (client.years[filterYear] || 0);
+    }
+  }, 0);
+
+  // Trier par CA décroissant
+  clientsInIndustry.sort((a, b) => {
+    const revenueA = filterYear === 'all' ? a.totalRevenue : (a.years[filterYear] || 0);
+    const revenueB = filterYear === 'all' ? b.totalRevenue : (b.years[filterYear] || 0);
+    return revenueB - revenueA;
+  });
+
+  // Générer le contenu HTML
+  const yearText = filterYear === 'all' ? 'Toutes années' : `Année ${filterYear}`;
+
+  const content = `
+    <!-- Header -->
+    <div class="info-highlight" style="margin-bottom: 24px;">
+      <div style="font-size: 24px; font-weight: 800; color: var(--accent); margin-bottom: 8px;">
+        ${industryNameFr}
+      </div>
+      <div style="color: var(--text-muted); margin-bottom: 12px;">
+        ${yearText}
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px;">
+        <div style="background: var(--bg-card); padding: 16px; border-radius: 8px;">
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">CA Total</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--accent);">${formatCurrency(totalRevenue)}</div>
+        </div>
+        <div style="background: var(--bg-card); padding: 16px; border-radius: 8px;">
+          <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">Nombre de clients</div>
+          <div style="font-size: 24px; font-weight: 800; color: var(--green);">${clientsInIndustry.length}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Liste des clients -->
+    <div style="margin-bottom: 16px;">
+      <h4 style="color: var(--text); font-size: 16px; margin-bottom: 12px;">Clients de ce secteur:</h4>
+      ${clientsInIndustry.length === 0 ?
+        '<div style="color: var(--text-muted); font-style: italic; padding: 20px; text-align: center;">Aucun client dans ce secteur pour cette période</div>' :
+        `<div style="max-height: 400px; overflow-y: auto;">
+          ${clientsInIndustry.map((client, idx) => {
+            const revenue = filterYear === 'all' ? client.totalRevenue : (client.years[filterYear] || 0);
+            const percentage = totalRevenue > 0 ? ((revenue / totalRevenue) * 100).toFixed(1) : 0;
+
+            return `
+              <div class="info-row" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s;"
+                   onmouseover="this.style.background='rgba(99, 102, 241, 0.05)'"
+                   onmouseout="this.style.background='transparent'"
+                   onclick="closeInfoPanel(); setTimeout(() => showClientDetails(${processedData.indexOf(client)}), 100)">
+                <div style="flex: 1;">
+                  <div style="font-weight: 700; color: var(--text); margin-bottom: 4px;">
+                    ${idx + 1}. ${client.name}
+                  </div>
+                  <div style="font-size: 11px; color: var(--text-muted);">
+                    ${client.domain || 'N/A'} • Health Score: ${client.avgHealthScore}/100
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 18px; font-weight: 800; color: var(--accent);">
+                    ${formatCurrency(revenue)}
+                  </div>
+                  <div style="font-size: 11px; color: var(--text-muted);">
+                    ${percentage}% du secteur
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>`
+      }
+    </div>
+  `;
+
+  openInfoPanel(`Secteur: ${industryNameFr}`, content);
 }
 
 // Fonction de filtrage par année pour le graphique des secteurs
