@@ -3409,6 +3409,10 @@ function renderSegmentationTable() {
         aVal = a.segment;
         bVal = b.segment;
         break;
+      case 'healthScore':
+        aVal = a.avgHealthScore || 0;
+        bVal = b.avgHealthScore || 0;
+        break;
       case 'total':
       case '2022':
       case '2023':
@@ -3417,13 +3421,65 @@ function renderSegmentationTable() {
         aVal = sortColumn === 'total' ? a.totalRevenue : a.years[sortColumn];
         bVal = sortColumn === 'total' ? b.totalRevenue : b.years[sortColumn];
         break;
-      case 'trend':
-        aVal = a.trend;
-        bVal = b.trend;
+      case 'globalTrend':
+        aVal = a.trend || 0;
+        bVal = b.trend || 0;
         break;
-      case 'score':
-        aVal = a.score;
-        bVal = b.score;
+      case 'sentiment':
+        // Sort by sentiment priority (positive > neutral > negative)
+        // Plus engagement and notes count as tiebreaker
+        const getSentimentPriority = (client) => {
+          const sentiment = client.notesSentiment || 'neutral';
+          const notesCount = client.totalNotes || 0;
+          const engagement = (client.engagementEmails || 0) +
+                            (client.engagementCalls || 0) * 2 +
+                            (client.engagementMeetings || 0) * 3;
+
+          // Base priority: positive=100, neutral=50, negative=0
+          let priority = sentiment === 'positive' ? 100 : (sentiment === 'negative' ? 0 : 50);
+
+          // Add engagement bonus (0-30)
+          priority += Math.min(engagement, 30);
+
+          // Add notes bonus (0-20)
+          priority += Math.min(notesCount * 2, 20);
+
+          return priority;
+        };
+
+        aVal = getSentimentPriority(a);
+        bVal = getSentimentPriority(b);
+        break;
+      case 'contacts':
+        // Extract contacts for sorting
+        const extractContacts = (client) => {
+          if (!client.latestNoteBody) return 'zzz'; // Sort N/A at end
+
+          let contactMatch = client.latestNoteBody.match(/<strong>Contact\s*:\s*<\/strong>(.*?)<\/p>/i);
+          if (contactMatch) {
+            return contactMatch[1].replace(/<[^>]*>/g, '').trim().toLowerCase();
+          }
+
+          // Try to find names
+          const namePatterns = [
+            /\b(M\.|Mme|Monsieur|Madame)\s+([A-ZÀ-Ü][a-zà-ü]+)\s+([A-ZÀ-Ü]{2,})\b/g,
+            /\b([A-ZÀ-Ü][a-zà-ü]+)\s+([A-ZÀ-Ü]{2,})\b/g
+          ];
+
+          const plainText = client.latestNoteBody.replace(/<[^>]*>/g, ' ');
+
+          for (const pattern of namePatterns) {
+            const match = pattern.exec(plainText);
+            if (match && match[0]) {
+              return match[0].trim().toLowerCase();
+            }
+          }
+
+          return 'zzz'; // Sort N/A at end
+        };
+
+        aVal = extractContacts(a);
+        bVal = extractContacts(b);
         break;
       default:
         return 0;
