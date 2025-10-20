@@ -270,5 +270,158 @@ Un workflow GitHub Actions a été lancé pour tester le fix des secteurs.
 
 ### Commits Effectués (Session continuation)
 9. FIX Expand/collapse groupes + Filtre année graphique secteurs (commit 509843d)
+10. FIX CRITIQUE: Event delegation pour expand/collapse + Debug logs (commit 12e0412)
+11. DEBUG MAXIMAL: Logs détaillés + Event listeners directs (commit 71383ed)
+12. FIX showClientDetails: Ajout vérifications sécurité + logs debug (commit 7268ab3)
+13. FIX MAJEUR: Doublons filiales + Style White Spaces (commit ad1c9e1)
 
-🎉 **Toutes les fonctionnalités demandées sont maintenant implémentées et fonctionnelles**
+---
+
+## 🔥 SESSION DEBUGGING INTENSIF - 2025-10-20 (après-midi)
+
+### ✅ Event Listeners - RÉSOLU (après 3 itérations!)
+**Problème**: Expand/collapse ne fonctionnait toujours pas malgré les fixes précédents
+
+**Tentatives**:
+1. Event delegation sur tbody (ne marchait pas)
+2. Refactor avec handleTableRowClick global (ne marchait pas)
+3. **Solution finale**: Listeners directs sur chaque ligne TR après rendering
+
+**Implémentation qui fonctionne**:
+```javascript
+// Dans renderSegmentationTable(), après tbody.innerHTML = ...
+const allRows = tbody.querySelectorAll('tr[data-row-index]');
+allRows.forEach((row) => {
+  row.addEventListener('click', function(event) {
+    if (event.target.tagName === 'BUTTON') return;
+    const rowIndex = parseInt(row.getAttribute('data-row-index'));
+    const rowType = row.getAttribute('data-row-type');
+
+    if (rowType === 'group') {
+      toggleGroup(rowIndex);
+    } else {
+      showClientDetails(rowIndex);
+    }
+  });
+});
+```
+
+**Status**: ✅ **Expand/collapse fonctionne enfin!**
+
+---
+
+### ✅ FIX Doublons Filiales - RÉSOLU
+**Problème**: Les filiales avec deals apparaissaient 2 fois:
+- Une fois dans l'arborescence sous le parent
+- Une fois toutes seules dans le tableau
+
+**Cause**: `processGroupedData()` parcourait les clients dans un ordre arbitraire. Si une filiale était traitée AVANT son parent, elle était marquée comme standalone.
+
+**Solution**: Refonte complète avec système à 2 passes:
+```javascript
+// PASSE 1: Traiter TOUS les groupes parents et leurs enfants
+processedData.forEach(client => {
+  if (company.childCompanyIds && company.childCompanyIds.length > 0) {
+    // Créer groupe + ajouter enfants
+    // Marquer parent ET enfants comme traités
+  }
+});
+
+// PASSE 2: Traiter les standalone (NI parents NI enfants)
+processedData.forEach(client => {
+  if (processedClientNames.has(client.name)) return; // Déjà traité
+  if (!company.parentCompanyIds || company.parentCompanyIds.length === 0) {
+    // C'est un standalone
+    grouped.push({ type: 'standalone', ...client });
+  }
+});
+```
+
+**Résultat**: Les filiales n'apparaissent maintenant QUE dans l'arborescence de leur parent
+
+**Status**: ✅ Plus de doublons
+
+---
+
+### ✅ Style White Spaces (Prospects) - IMPLÉMENTÉ
+**Objectif**: Distinguer visuellement les filiales sans deals (prospects/white spaces)
+
+**Implémentation CSS**:
+```css
+.white-space-row {
+  background: rgba(251, 191, 36, 0.05) !important;
+  border-left: 3px solid #f59e0b !important;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.white-space-badge {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+```
+
+**Application**:
+- Classe `.white-space-row` ajoutée si `client.isProspect === true`
+- Badge "WHITE SPACE" affiché dans le nom
+- Border orange gauche pour identification rapide
+
+**Status**: ✅ White spaces visuellement distincts
+
+---
+
+### ✅ Filtres Année Secteurs - FONCTIONNELS
+**User feedback**: "Je suis content, les filtres marchent bien sur le secteur d'activité"
+
+**Status**: ✅ Confirmé par utilisateur
+
+---
+
+### ❌ ShowClientDetails - EN COURS DE DEBUG
+**Problème**: Cliquer sur une ligne child/standalone n'ouvre pas la modal de détails
+
+**Debug ajouté**:
+- Logs complets dans showClientDetails()
+- Vérifications de sécurité (client.years, client.totalRevenue, etc.)
+- Try/catch autour de openInfoPanel()
+
+**Status**: ⏳ Attente logs console utilisateur
+
+---
+
+## 🎯 PROCHAINES FONCTIONNALITÉS
+
+### 1. Clic sur tranches diagramme circulaire secteurs [DEMANDÉ]
+**User request**: "il n'y a toujours rien quand je clique sur les différentes tranches du diagramme circulaire comme détail"
+
+**À implémenter**:
+- Cliquer sur un secteur → ouvrir modal
+- Afficher liste des clients de ce secteur
+- CA total du secteur
+- Statistiques (nombre clients, CA moyen, etc.)
+
+**Status**: 🔜 À implémenter
+
+---
+
+### 2. Tableau White Spaces détaillé [DEMANDÉ]
+**User request**: "tu peux même créer un autre tableau qui rentrera dans le détail des white space"
+
+**À créer**:
+- Tableau dédié aux opportunités (white spaces)
+- Liste des filiales sans deals (prospects)
+- Liste des filiales/parents non mappés
+- Potentiel de CA
+- Recommandations d'action
+
+**Status**: 🔜 À implémenter après clic secteurs
+
+---
+
+🎉 **Expand/collapse fonctionne! Doublons résolus! White spaces stylés!**
