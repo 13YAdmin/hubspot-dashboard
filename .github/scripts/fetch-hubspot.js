@@ -28,6 +28,7 @@ const { analyzeNotes } = require('./lib/notes-analyzer');
 const { calculateHealthScore } = require('./lib/health-score');
 const { detectSegment } = require('./lib/segment-detector');
 const { detectIndustry } = require('./lib/industry-detector');
+const industryCache = require('./lib/industry-cache');
 
 const HUBSPOT_TOKEN = process.env.HUBSPOT_ACCESS_TOKEN;
 
@@ -43,6 +44,13 @@ if (!HUBSPOT_TOKEN) {
 async function main() {
   console.log('🚀 ACCOUNT MANAGEMENT DASHBOARD PRO');
   console.log('Récupération COMPLÈTE de toutes les données HubSpot...\n');
+
+  // Charger le cache des industries pour performance
+  const cache = industryCache.loadCache();
+  industryCache.resetStats();
+
+  // Nettoyer les entrées anciennes (> 90 jours)
+  industryCache.cleanOldEntries(cache, 90);
 
   try {
     // ÉTAPE 1 : Récupérer tous les owners
@@ -81,7 +89,7 @@ async function main() {
 
       // Si industry vide, essayer de la détecter intelligemment
       if (!industryValue && companyName !== 'Sans nom') {
-        const detectedIndustry = detectIndustry(companyName, companyDomain);
+        const detectedIndustry = detectIndustry(companyName, companyDomain, cache);
         if (detectedIndustry) {
           industryValue = detectedIndustry;
           industriesDetected++;
@@ -339,9 +347,21 @@ async function main() {
       console.log(`  ${segment}: ${count}`);
     });
 
+    // Sauvegarder le cache et afficher les performances
+    industryCache.saveCache(cache);
+    industryCache.printStats();
+
   } catch (error) {
     console.error('\n❌ ERREUR:', error);
     console.error(error.stack);
+
+    // Sauvegarder le cache même en cas d'erreur
+    try {
+      industryCache.saveCache(cache);
+    } catch (cacheError) {
+      console.warn('⚠️  Erreur sauvegarde cache:', cacheError.message);
+    }
+
     process.exit(1);
   }
 }

@@ -311,9 +311,24 @@ function scoreIndustry(text, keywords) {
 
 /**
  * FONCTION PRINCIPALE - Détecte intelligemment le secteur d'activité
+ *
+ * @param {string} companyName - Nom de l'entreprise
+ * @param {string} domain - Domaine (optionnel)
+ * @param {object} cache - Cache object (optionnel, pour performance)
+ * @returns {string|null} - Secteur détecté ou null
  */
-function detectIndustry(companyName, domain = '') {
+function detectIndustry(companyName, domain = '', cache = null) {
   if (!companyName) return null;
+
+  // Vérifier le cache d'abord (si fourni)
+  if (cache && cache.entries) {
+    const cacheModule = require('./industry-cache');
+    const cached = cacheModule.getCachedIndustry(companyName, domain, cache);
+
+    if (cached !== undefined) {
+      return cached; // Peut être null si déjà vérifié et pas trouvé
+    }
+  }
 
   const normalizedName = normalize(companyName);
   const normalizedDomain = normalize(domain);
@@ -322,6 +337,13 @@ function detectIndustry(companyName, domain = '') {
   for (const [company, industry] of Object.entries(KNOWN_COMPANIES)) {
     if (normalizedName.includes(company) || normalizedDomain.includes(company)) {
       console.log(`  ✓ Entreprise connue détectée: ${companyName} → ${industry}`);
+
+      // Ajouter au cache si fourni
+      if (cache && cache.entries) {
+        const cacheModule = require('./industry-cache');
+        cacheModule.setCachedIndustry(companyName, domain, industry, cache);
+      }
+
       return industry;
     }
   }
@@ -330,6 +352,13 @@ function detectIndustry(companyName, domain = '') {
   for (const [pattern, industry] of Object.entries(DOMAIN_PATTERNS)) {
     if (domain && domain.endsWith(pattern)) {
       console.log(`  ✓ Pattern domaine détecté: ${domain} → ${industry}`);
+
+      // Ajouter au cache si fourni
+      if (cache && cache.entries) {
+        const cacheModule = require('./industry-cache');
+        cacheModule.setCachedIndustry(companyName, domain, industry, cache);
+      }
+
       return industry;
     }
   }
@@ -355,14 +384,24 @@ function detectIndustry(companyName, domain = '') {
   const hasGoodScore = bestScore >= 8;
   const isClearWinner = bestScore >= 6 && bestScore >= secondScore * 2;
 
+  let result = null;
+
   if (hasGoodScore || isClearWinner) {
     console.log(`  ✓ Détection par analyse: ${companyName} → ${bestMatch[0]} (score: ${bestScore})`);
-    return bestMatch[0];
+    result = bestMatch[0];
+  } else {
+    // 5. Pas de détection fiable
+    console.log(`  ⚠️ Pas de secteur détecté pour: ${companyName} (meilleur score: ${bestScore}, ambiguïté: ${secondScore})`);
+    result = null;
   }
 
-  // 5. Pas de détection fiable
-  console.log(`  ⚠️ Pas de secteur détecté pour: ${companyName} (meilleur score: ${bestScore}, ambiguïté: ${secondScore})`);
-  return null;
+  // Ajouter au cache (même si null, pour éviter de re-détecter)
+  if (cache && cache.entries) {
+    const cacheModule = require('./industry-cache');
+    cacheModule.setCachedIndustry(companyName, domain, result, cache);
+  }
+
+  return result;
 }
 
 module.exports = {
