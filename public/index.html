@@ -1451,6 +1451,9 @@ function toggleGroup(groupIndex) {
   renderSegmentationTable();
 }
 
+// Exposer la fonction globalement pour les attributs onclick HTML
+window.toggleGroup = toggleGroup;
+
 function calculateTrend(client) {
   /**
    * TENDANCE GLOBALE SIMPLE
