@@ -68,6 +68,56 @@ function calculateHealthScore(companyData, notesAnalysis, engagement) {
   else if (revenue >= 10000) score += 3;
   // Pas de pénalité pour CA faible
 
+  // 5. NOUVEAU: Pénalités CRITIQUES pour inactivité et déclin (jusqu'à -40 points)
+  const yearlyRevenue = companyData.yearlyRevenue || {};
+  const currentYear = new Date().getFullYear();
+  const lastYear = currentYear - 1;
+  const twoYearsAgo = currentYear - 2;
+
+  // Vérifier l'activité récente (dernières années)
+  const revenueCurrentYear = yearlyRevenue[currentYear] || 0;
+  const revenueLastYear = yearlyRevenue[lastYear] || 0;
+  const revenueTwoYearsAgo = yearlyRevenue[twoYearsAgo] || 0;
+
+  // Pénalité pour INACTIVITÉ COMPLÈTE
+  if (revenueCurrentYear === 0 && revenueLastYear === 0) {
+    // Pas de CA depuis 2 ans = RELATION MORTE
+    score -= 30; // Pénalité très sévère
+  } else if (revenueCurrentYear === 0) {
+    // Pas de CA cette année
+    score -= 15; // Pénalité importante
+  }
+
+  // Pénalité pour DÉCLIN MASSIF du CA
+  if (revenueTwoYearsAgo > 0 && revenueLastYear > 0) {
+    const decline = ((revenueTwoYearsAgo - revenueLastYear) / revenueTwoYearsAgo) * 100;
+    if (decline > 80) {
+      // Déclin > 80% = CHURN en cours
+      score -= 20;
+    } else if (decline > 50) {
+      // Déclin > 50% = Relation en danger
+      score -= 10;
+    } else if (decline > 30) {
+      // Déclin > 30% = Signal d'alerte
+      score -= 5;
+    }
+  }
+
+  // Pénalité pour inactivité depuis le dernier deal
+  if (companyData.lastDealDate) {
+    const daysSinceLastDeal = (Date.now() - new Date(companyData.lastDealDate).getTime()) / (1000 * 60 * 60 * 24);
+    if (daysSinceLastDeal > 730) {
+      // > 2 ans sans deal
+      score -= 25;
+    } else if (daysSinceLastDeal > 365) {
+      // > 1 an sans deal
+      score -= 15;
+    } else if (daysSinceLastDeal > 180) {
+      // > 6 mois sans deal
+      score -= 5;
+    }
+  }
+
   return Math.max(0, Math.min(100, Math.round(score)));
 }
 
