@@ -68,12 +68,25 @@ async function main() {
       'hubspot_owner_id'
     ]);
     const companies = {};
+    let industriesFound = 0;
+    let industriesEmpty = 0;
+    const industryValues = new Set();
+
     companiesData.forEach(company => {
+      const industryValue = company.properties.industry || '';
+
+      if (industryValue) {
+        industriesFound++;
+        industryValues.add(industryValue);
+      } else {
+        industriesEmpty++;
+      }
+
       companies[company.id] = {
         id: company.id,
         name: company.properties.name || 'Sans nom',
         domain: company.properties.domain || '',
-        industry: company.properties.industry || '',
+        industry: industryValue,
         revenue: parseFloat(company.properties.annualrevenue || 0),
         employees: parseInt(company.properties.numberofemployees || 0),
         ownerId: company.properties.hubspot_owner_id || '',
@@ -82,6 +95,10 @@ async function main() {
       };
     });
     console.log(`✅ ${Object.keys(companies).length} companies récupérées`);
+    console.log(`📊 Industries: ${industriesFound} avec secteur, ${industriesEmpty} sans secteur`);
+    if (industryValues.size > 0) {
+      console.log(`📋 Valeurs industries trouvées: ${Array.from(industryValues).join(', ')}`);
+    }
 
     // Récupérer les associations parent/child pour chaque company
     console.log('🔗 Récupération des relations parent/child...');
