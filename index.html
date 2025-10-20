@@ -807,8 +807,8 @@ details[open] summary {
           <span style="color: var(--text-muted);">🎯 Opportunité cross-sell (pas encore client)</span>
         </div>
       </div>
-      <div class="chart-container" style="height: 500px; overflow: auto;">
-        <svg id="chartCompanyTree"></svg>
+      <div class="chart-container" style="height: 600px; overflow: scroll; border: 1px solid var(--border); border-radius: 8px; background: #f8fafc;">
+        <svg id="chartCompanyTree" style="min-width: 100%; min-height: 100%;"></svg>
       </div>
     </div>
 
@@ -2605,26 +2605,136 @@ function renderHealthTrendsChart() {
 // Industry Pie Chart - Répartition par secteur d'activité
 // ============================================================================
 function renderIndustryPieChart() {
-  // DEBUG: Logger toutes les industries pour voir les vraies valeurs
+  // Mapping COMPLET EN→FR des industries HubSpot standards
+  const industryMapping = {
+    // Tech & IT
+    'Computer Software': 'Logiciels & IT',
+    'Information Technology and Services': 'Logiciels & IT',
+    'IT Services and IT Consulting': 'Logiciels & IT',
+    'Internet': 'Internet & Web',
+    'Computer & Network Security': 'Cybersécurité',
+    'Software Development': 'Développement logiciel',
+    'Telecommunications': 'Télécommunications',
+
+    // Finance & Banking
+    'Financial Services': 'Services financiers',
+    'Banking': 'Banque',
+    'Insurance': 'Assurance',
+    'Venture Capital & Private Equity': 'Capital-risque & Private Equity',
+    'Investment Banking': 'Banque d\'investissement',
+    'Investment Management': 'Gestion d\'actifs',
+
+    // Manufacturing & Industrial
+    'Manufacturing': 'Industrie & Manufacturing',
+    'Industrial Automation': 'Automatisation industrielle',
+    'Machinery': 'Machinerie',
+    'Electrical/Electronic Manufacturing': 'Électronique',
+    'Automotive': 'Automobile',
+    'Aviation & Aerospace': 'Aéronautique & Spatial',
+
+    // Retail & E-commerce
+    'Retail': 'Commerce de détail',
+    'E-commerce': 'E-commerce',
+    'Consumer Goods': 'Biens de consommation',
+    'Consumer Electronics': 'Électronique grand public',
+    'Luxury Goods & Jewelry': 'Luxe & Joaillerie',
+    'Apparel & Fashion': 'Mode & Habillement',
+
+    // Healthcare & Pharma
+    'Hospital & Health Care': 'Santé & Soins',
+    'Medical Devices': 'Dispositifs médicaux',
+    'Pharmaceuticals': 'Pharmaceutique',
+    'Biotechnology': 'Biotechnologie',
+    'Medical Practice': 'Pratique médicale',
+
+    // Consulting & Services
+    'Management Consulting': 'Conseil en management',
+    'Marketing and Advertising': 'Marketing & Publicité',
+    'Public Relations and Communications': 'Relations publiques',
+    'Human Resources': 'Ressources humaines',
+    'Business Consulting and Services': 'Conseil & Services',
+    'Professional Services': 'Services professionnels',
+
+    // Construction & Real Estate
+    'Construction': 'BTP & Construction',
+    'Real Estate': 'Immobilier',
+    'Architecture & Planning': 'Architecture',
+    'Civil Engineering': 'Génie civil',
+
+    // Education
+    'Education Management': 'Gestion éducative',
+    'Higher Education': 'Enseignement supérieur',
+    'E-Learning': 'E-learning',
+    'Primary/Secondary Education': 'Enseignement primaire/secondaire',
+
+    // Media & Entertainment
+    'Media Production': 'Production média',
+    'Entertainment': 'Divertissement',
+    'Publishing': 'Édition',
+    'Broadcast Media': 'Médias audiovisuels',
+
+    // Transport & Logistics
+    'Transportation/Trucking/Railroad': 'Transport',
+    'Logistics and Supply Chain': 'Logistique',
+    'Airlines/Aviation': 'Aviation',
+    'Maritime': 'Maritime',
+
+    // Hospitality & Food
+    'Hospitality': 'Hôtellerie',
+    'Restaurants': 'Restauration',
+    'Food & Beverages': 'Agroalimentaire',
+    'Food Production': 'Production alimentaire',
+
+    // Energy & Environment
+    'Oil & Energy': 'Pétrole & Énergie',
+    'Renewable Energy': 'Énergies renouvelables',
+    'Utilities': 'Services publics',
+    'Environmental Services': 'Services environnementaux',
+
+    // Government & Non-Profit
+    'Government Administration': 'Administration publique',
+    'Non-Profit Organization Management': 'Association',
+    'International Affairs': 'Affaires internationales',
+
+    // Legal
+    'Law Practice': 'Juridique',
+    'Legal Services': 'Services juridiques',
+
+    // Agriculture
+    'Farming': 'Agriculture',
+    'Ranching': 'Élevage',
+
+    // Other
+    'Research': 'Recherche',
+    'Security and Investigations': 'Sécurité & Investigation',
+    'Sports': 'Sports',
+    'Think Tanks': 'Think tanks',
+    'Staffing and Recruiting': 'Recrutement'
+  };
+
+  // DEBUG: Logger toutes les industries trouvées
   const allIndustries = new Set();
   processedData.forEach(client => {
     if (client.companyIndustry) {
       allIndustries.add(client.companyIndustry);
     }
   });
-  console.log('🔍 Industries trouvées dans HubSpot:', Array.from(allIndustries).sort());
+  console.log('🔍 Industries EN trouvées:', Array.from(allIndustries).sort());
 
-  // Regrouper par secteur (SANS mapping - afficher les vraies valeurs)
+  // Regrouper par secteur avec mapping EN→FR
   const industryCounts = {};
   const industryRevenues = {};
 
   processedData.forEach(client => {
-    // Utiliser la vraie valeur d'industry (SANS mapping - afficher tel quel)
-    const industry = client.companyIndustry || 'Non spécifié';
+    const rawIndustry = client.companyIndustry || 'Non spécifié';
+    // Utiliser le mapping, sinon garder la valeur originale
+    const frenchIndustry = industryMapping[rawIndustry] || rawIndustry;
 
-    industryCounts[industry] = (industryCounts[industry] || 0) + 1;
-    industryRevenues[industry] = (industryRevenues[industry] || 0) + client.totalRevenue;
+    industryCounts[frenchIndustry] = (industryCounts[frenchIndustry] || 0) + 1;
+    industryRevenues[frenchIndustry] = (industryRevenues[frenchIndustry] || 0) + client.totalRevenue;
   });
+
+  console.log('📊 Industries FR après mapping:', Object.keys(industryCounts).sort());
 
   // Convertir en array et trier par nombre de clients
   const industries = Object.keys(industryCounts)
@@ -2826,8 +2936,11 @@ function renderCompanyTree() {
   const companyGroups = [];
   const processed = new Set();
   let opportunitiesCount = 0;
+  let totalRelationsChecked = 0;
 
-  // Parcourir TOUTES les companies
+  console.log(`📊 Début analyse: ${Object.keys(window.hubspotCompanies).length} companies HubSpot, ${processedData.length} clients`);
+
+  // Parcourir TOUTES les companies HubSpot (pas seulement les clients)
   Object.values(window.hubspotCompanies).forEach(company => {
     if (processed.has(company.id)) return;
 
@@ -2835,25 +2948,50 @@ function renderCompanyTree() {
     const hasChildren = company.childCompanyIds && company.childCompanyIds.length > 0;
     const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
 
-    // Si cette company a des relations ET qu'au moins une entité du groupe est cliente
+    // Si cette company a des relations (parent OU child)
     if (hasChildren || hasParent) {
+      totalRelationsChecked++;
+
       // Vérifier si cette company OU une de ses relations est cliente
       const childrenAreClients = hasChildren && company.childCompanyIds.some(id => companyIdToClient[id]);
       const parentsAreClients = hasParent && company.parentCompanyIds.some(id => companyIdToClient[id]);
 
+      // Critère: afficher SI cette company OU au moins une relation est cliente
       if (isClient || childrenAreClients || parentsAreClients) {
-        // Cette company ou une relation est cliente → créer un groupe
 
-        // Parent node
-        let parentNode;
+        console.log(`🔗 Groupe détecté: ${company.name} (client: ${isClient}, parents: ${company.parentCompanyIds?.length || 0}, children: ${company.childCompanyIds?.length || 0})`);
+
+        // Nœud central
+        let centerNode;
         if (isClient) {
-          parentNode = companyIdToClient[company.id];
+          centerNode = companyIdToClient[company.id];
         } else {
-          parentNode = createProspectFromCompany(company.id);
-          if (parentNode) opportunitiesCount++;
+          centerNode = createProspectFromCompany(company.id);
+          if (centerNode) opportunitiesCount++;
         }
 
-        if (!parentNode) return;
+        if (!centerNode) {
+          console.warn(`  ⚠️ Impossible de créer centerNode pour ${company.name}`);
+          return;
+        }
+
+        // Parents nodes
+        const parents = [];
+        if (hasParent) {
+          company.parentCompanyIds.forEach(parentId => {
+            let parentNode;
+            if (companyIdToClient[parentId]) {
+              parentNode = companyIdToClient[parentId];
+            } else {
+              parentNode = createProspectFromCompany(parentId);
+              if (parentNode) opportunitiesCount++;
+            }
+            if (parentNode) {
+              parents.push(parentNode);
+              processed.add(parentId);
+            }
+          });
+        }
 
         // Children nodes
         const children = [];
@@ -2873,37 +3011,20 @@ function renderCompanyTree() {
           });
         }
 
-        // Parents nodes (afficher aussi les parents comme "au-dessus")
-        const parents = [];
-        if (hasParent) {
-          company.parentCompanyIds.forEach(parentId => {
-            let parentNodeItem;
-            if (companyIdToClient[parentId]) {
-              parentNodeItem = companyIdToClient[parentId];
-            } else {
-              parentNodeItem = createProspectFromCompany(parentId);
-              if (parentNodeItem) opportunitiesCount++;
-            }
-            if (parentNodeItem) {
-              parents.push(parentNodeItem);
-              processed.add(parentId);
-            }
-          });
-        }
+        // Créer le groupe même si pas de parents/children (pour debug)
+        companyGroups.push({
+          center: centerNode,
+          parents: parents,
+          children: children
+        });
+        processed.add(company.id);
 
-        if (children.length > 0 || parents.length > 0) {
-          companyGroups.push({
-            center: parentNode, // Nœud central
-            parents: parents,   // Parents (au-dessus)
-            children: children  // Enfants (en-dessous)
-          });
-          processed.add(company.id);
-        }
+        console.log(`  ✓ Groupe créé: ${parents.length} parents, ${children.length} children`);
       }
     }
   });
 
-  console.log(`✅ ${companyGroups.length} groupes trouvés dont ${opportunitiesCount} opportunités cross-sell`);
+  console.log(`✅ Analyse terminée: ${companyGroups.length} groupes affichés, ${opportunitiesCount} opportunités cross-sell, ${totalRelationsChecked} relations vérifiées`);
 
   const svg = document.getElementById('chartCompanyTree');
   svg.innerHTML = '';
