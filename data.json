@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-21T09:03:41.844Z",
+  "timestamp": "2025-10-21T10:16:34.456Z",
   "count": 81,
   "data": [
     {
@@ -306,7 +306,9 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        258850478274
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -387,7 +389,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 302000000,
       "companyEmployees": 500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220598428889
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -429,12 +433,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -720,9 +719,7 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        265787828419
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -1338,12 +1335,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1425,7 +1417,9 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        258850478274
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1589,9 +1583,7 @@
       "companyRevenue": 4142119000,
       "companyEmployees": 11000,
       "companyParentIds": [],
-      "companyChildIds": [
-        235541582066
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1714,12 +1706,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1883,25 +1870,27 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 2,
-      "notesAvgLength": 1329,
+      "totalNotes": 4,
+      "notesAvgLength": 2285,
       "notesHasRecent": true,
       "notesSentiment": "negative",
       "notesPositiveKeywords": 2,
       "notesNegativeKeywords": 7,
       "notesActionKeywords": 3,
       "notesMeetingKeywords": 1,
-      "latestNoteDate": "2025-10-16T21:28:14.007Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Inexistante</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Orange S.A. est un groupe français de télécommunications leader en Europe et en Afrique, offrant des services de téléphonie fixe, mobile, Internet et de services numériques aux particuliers et aux entreprises.</p><p style=\"margin:0;\"><strong>Historique : </strong>Tony a écrit à tout Orange, on lui a proposé de participer à un appel d'offre, on l'a gagné et la relation a commencé comme ça. En 2022 les plusieurs projets à 188K étaient suivi par Cyril Bauchais, il était alors responsable Marque Employeur. En 2023 il est devenu responsable Communication de la Fondation Orange, c'est pour eux qu'on a fait les 12K en 2023 mais nous n'avons pas sollicité son successeur pour la marque employeur donc pas d'autres missions pour cette BU. Ensuite la relation s'est perdue et pas d'autres sollicitations de leurs parts.</p><p style=\"margin:0;\"><strong>CA : </strong>200K au total en 4 ans</p><p style=\"margin:0;\">-188K en 2022</p><p style=\"margin:0;\">-12K en 2023</p><p style=\"margin:0;\">-0K en 2024 et 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Marque Employeur / Communication Fondation Orange</p><p style=\"margin:0;\"><strong>Contact :</strong></p><p style=\"margin:0;\">-Cyril Bauchais (désormais responsable Com. Fondation Orange)</p><p style=\"margin:0;\">-Meike Spahrbier (Employeur Attractiveness)</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Insiders Program FR avec plusieurs Promo</p></li><li><p style=\"margin:0;\">Programme Orange Squad</p></li><li><p style=\"margin:0;\">Deck de présentation Groupe Orange</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Orange est une énorme boîte, plus de 46 milliards d'euros avec 140 000 employés. Plus de 20 filiales à travers plus d'une trentaine de pays.</p><p style=\"margin:0;\">--&gt; En France des filiales très intéressantes comme Sosh, Orange Bank, Orange prestations TV ou OCS peuvent mériter d'être creusé</p><p style=\"margin:0;\">--&gt; Très gros potentiel chez Orange, je pense vraiment qu'il suffit de chasser les bons contacts de la BU Marque Employeur pour déclencher de nouveaux RDV.</p><p style=\"margin:0;\">--&gt; Relancer Meike Spahrbier qui est toujours en poste et responsable de l'attractivité employeur</p></div>",
-      "engagementEmails": 23,
-      "engagementCalls": 2,
+      "latestNoteDate": "2025-10-21T09:28:12.775Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Coordonnées</span></span></span></span></h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:caroline.guillaumin@orange.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">caroline.guillaumin@orange.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 41 33 07 11\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 41 33 07 11</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 18 18 06 18\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 18 18 06 18</span></span></a></p><img src=\"https://app.nomination.fr/assets/images/icon/certificate.png\" width=\"12\" height=\"16\"><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul><h5><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Orange</span></span></span></span></h5><p style=\"margin:0;\"><span style=\"color: rgb(205, 201, 194);\"><span style=\"font-size: 14px;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">111 quai du Président Roosevelt<br>Bridge Orange</span></span></span></span></p></div></div>",
+      "engagementEmails": 24,
+      "engagementCalls": 4,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 41,
+      "healthScore": 45,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2292,9 +2281,7 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        265787828419
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2418,7 +2405,9 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        258850478274
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2458,7 +2447,9 @@
       "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 389000,
       "companyEmployees": 1250,
-      "companyParentIds": [],
+      "companyParentIds": [
+        263633128688
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2540,7 +2531,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 2000000000,
       "companyEmployees": 4000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2623,25 +2616,27 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 2,
-      "notesAvgLength": 1329,
+      "totalNotes": 4,
+      "notesAvgLength": 2285,
       "notesHasRecent": true,
       "notesSentiment": "negative",
       "notesPositiveKeywords": 2,
       "notesNegativeKeywords": 7,
       "notesActionKeywords": 3,
       "notesMeetingKeywords": 1,
-      "latestNoteDate": "2025-10-16T21:28:14.007Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Inexistante</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>Orange S.A. est un groupe français de télécommunications leader en Europe et en Afrique, offrant des services de téléphonie fixe, mobile, Internet et de services numériques aux particuliers et aux entreprises.</p><p style=\"margin:0;\"><strong>Historique : </strong>Tony a écrit à tout Orange, on lui a proposé de participer à un appel d'offre, on l'a gagné et la relation a commencé comme ça. En 2022 les plusieurs projets à 188K étaient suivi par Cyril Bauchais, il était alors responsable Marque Employeur. En 2023 il est devenu responsable Communication de la Fondation Orange, c'est pour eux qu'on a fait les 12K en 2023 mais nous n'avons pas sollicité son successeur pour la marque employeur donc pas d'autres missions pour cette BU. Ensuite la relation s'est perdue et pas d'autres sollicitations de leurs parts.</p><p style=\"margin:0;\"><strong>CA : </strong>200K au total en 4 ans</p><p style=\"margin:0;\">-188K en 2022</p><p style=\"margin:0;\">-12K en 2023</p><p style=\"margin:0;\">-0K en 2024 et 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Marque Employeur / Communication Fondation Orange</p><p style=\"margin:0;\"><strong>Contact :</strong></p><p style=\"margin:0;\">-Cyril Bauchais (désormais responsable Com. Fondation Orange)</p><p style=\"margin:0;\">-Meike Spahrbier (Employeur Attractiveness)</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Insiders Program FR avec plusieurs Promo</p></li><li><p style=\"margin:0;\">Programme Orange Squad</p></li><li><p style=\"margin:0;\">Deck de présentation Groupe Orange</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Orange est une énorme boîte, plus de 46 milliards d'euros avec 140 000 employés. Plus de 20 filiales à travers plus d'une trentaine de pays.</p><p style=\"margin:0;\">--&gt; En France des filiales très intéressantes comme Sosh, Orange Bank, Orange prestations TV ou OCS peuvent mériter d'être creusé</p><p style=\"margin:0;\">--&gt; Très gros potentiel chez Orange, je pense vraiment qu'il suffit de chasser les bons contacts de la BU Marque Employeur pour déclencher de nouveaux RDV.</p><p style=\"margin:0;\">--&gt; Relancer Meike Spahrbier qui est toujours en poste et responsable de l'attractivité employeur</p></div>",
-      "engagementEmails": 23,
-      "engagementCalls": 2,
+      "latestNoteDate": "2025-10-21T09:28:12.775Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Coordonnées</span></span></span></span></h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:caroline.guillaumin@orange.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">caroline.guillaumin@orange.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 41 33 07 11\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 41 33 07 11</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 18 18 06 18\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 18 18 06 18</span></span></a></p><img src=\"https://app.nomination.fr/assets/images/icon/certificate.png\" width=\"12\" height=\"16\"><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul><h5><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Orange</span></span></span></span></h5><p style=\"margin:0;\"><span style=\"color: rgb(205, 201, 194);\"><span style=\"font-size: 14px;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">111 quai du Président Roosevelt<br>Bridge Orange</span></span></span></span></p></div></div>",
+      "engagementEmails": 24,
+      "engagementCalls": 4,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 66,
+      "healthScore": 70,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2950,9 +2945,7 @@
       "companyIndustry": "Client",
       "companyRevenue": 0,
       "companyEmployees": 0,
-      "companyParentIds": [
-        220607386866
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3035,10 +3028,7 @@
       "companyRevenue": 20000000000,
       "companyEmployees": 72500,
       "companyParentIds": [],
-      "companyChildIds": [
-        264204131577,
-        264581917912
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3160,7 +3150,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 2000000000,
       "companyEmployees": 4000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3324,9 +3316,7 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        265787828419
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3781,7 +3771,9 @@
       "employees": 140000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264581201087
+      ]
     },
     "220587794626": {
       "id": "220587794626",
@@ -3913,12 +3905,7 @@
       "employees": 272367,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ]
+      "childCompanyIds": []
     },
     "220593095921": {
       "id": "220593095921",
@@ -3962,9 +3949,7 @@
       "employees": 49000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        225530064080
-      ]
+      "childCompanyIds": []
     },
     "220598428890": {
       "id": "220598428890",
@@ -4173,7 +4158,9 @@
       "employees": 124600,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090717
+      ]
     },
     "220607386867": {
       "id": "220607386867",
@@ -4305,10 +4292,7 @@
       "employees": 130000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226907993318,
-        226922255599
-      ]
+      "childCompanyIds": []
     },
     "220610910446": {
       "id": "220610910446",
@@ -4615,7 +4599,9 @@
       "revenue": 302000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220598428889
+      ],
       "childCompanyIds": []
     },
     "225635140816": {
@@ -4637,9 +4623,7 @@
       "revenue": 4400000000,
       "employees": 14200,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226285007091": {
@@ -5334,9 +5318,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226454480065": {
@@ -5655,9 +5637,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220607386866
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090718": {
@@ -5789,9 +5769,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090731": {
@@ -5879,9 +5857,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -6246,9 +6222,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226622786748": {
@@ -6797,7 +6771,7 @@
       "industry": "APPAREL_FASHION",
       "revenue": 0,
       "employees": 145250,
-      "ownerId": "",
+      "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
@@ -6996,9 +6970,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "29926733",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211599": {
@@ -7163,9 +7135,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211614": {
@@ -7319,9 +7289,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211629": {
@@ -7431,9 +7399,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897212606": {
@@ -8379,9 +8345,7 @@
       "revenue": 0,
       "employees": 220,
       "ownerId": "",
-      "parentCompanyIds": [
-        232131150023
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226909763826": {
@@ -10165,7 +10129,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226920490176": {
@@ -11606,7 +11572,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226962201787": {
@@ -11837,9 +11805,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007115": {
@@ -12048,9 +12014,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007136": {
@@ -13558,10 +13522,7 @@
       "employees": 72500,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204131577,
-        264581917912
-      ]
+      "childCompanyIds": []
     },
     "230386516181": {
       "id": "230386516181",
@@ -14002,9 +13963,7 @@
       "revenue": 5000000000,
       "employees": 12000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        249838914787
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "233139578076": {
@@ -16193,9 +16152,7 @@
       "revenue": 0,
       "employees": 105,
       "ownerId": "29926733",
-      "parentCompanyIds": [
-        244815187150
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234988938461": {
@@ -16635,7 +16592,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234992537830": {
@@ -17802,7 +17761,11 @@
       "employees": 21505,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226907993332,
+        226964007115,
+        235010292940
+      ]
     },
     "234999737588": {
       "id": "234999737588",
@@ -19132,9 +19095,7 @@
       "revenue": 0,
       "employees": 21505,
       "ownerId": "",
-      "parentCompanyIds": [
-        234999737587
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235010292941": {
@@ -20963,9 +20924,7 @@
       "employees": 34000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        230072877254
-      ]
+      "childCompanyIds": []
     },
     "235137799405": {
       "id": "235137799405",
@@ -21536,9 +21495,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        260804494551
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235542906101": {
@@ -22396,9 +22353,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        226922256592
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235592339680": {
@@ -23861,7 +23816,9 @@
       "revenue": 26320000000,
       "employees": 75,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        226958605515
+      ],
       "childCompanyIds": []
     },
     "239539797219": {
@@ -24181,7 +24138,9 @@
       "employees": 2250,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        234988938460
+      ]
     },
     "245032334561": {
       "id": "245032334561",
@@ -24213,9 +24172,7 @@
       "revenue": 6069000000,
       "employees": 2525,
       "ownerId": "",
-      "parentCompanyIds": [
-        226285017278
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "246784900287": {
@@ -24446,7 +24403,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "257704494304": {
@@ -24457,9 +24416,7 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258156739774": {
@@ -24548,7 +24505,9 @@
       "employees": 150000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        258850478274
+      ]
     },
     "260128816334": {
       "id": "260128816334",
@@ -24570,9 +24529,7 @@
       "employees": 11000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        235541582066
-      ]
+      "childCompanyIds": []
     },
     "261317506283": {
       "id": "261317506283",
@@ -24626,7 +24583,9 @@
       "revenue": 2000000000,
       "employees": 4000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "262224526524": {
@@ -24637,9 +24596,7 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262224529637": {
@@ -24661,7 +24618,9 @@
       "revenue": 389000,
       "employees": 1250,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        263633128688
+      ],
       "childCompanyIds": []
     },
     "262613919992": {
@@ -24727,9 +24686,7 @@
       "revenue": 75000000,
       "employees": 570,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263431222517": {
@@ -24740,9 +24697,7 @@
       "revenue": 90061920000,
       "employees": 1521,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263434090717": {
@@ -24753,9 +24708,7 @@
       "revenue": 606014800,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263566089435": {
@@ -24778,11 +24731,7 @@
       "employees": 6000,
       "ownerId": "29974261",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        262469511370,
-        263425988855,
-        263434090717
-      ]
+      "childCompanyIds": []
     },
     "263648066783": {
       "id": "263648066783",
@@ -24895,9 +24844,7 @@
       "revenue": 15794000000,
       "employees": 3000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        220612714702
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264240320709": {
@@ -24975,9 +24922,7 @@
       "employees": 32500,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        265788546273
-      ]
+      "childCompanyIds": []
     },
     "265787828441": {
       "id": "265787828441",
@@ -25009,9 +24954,7 @@
       "revenue": 240000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        265787828419
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "266679153870": {
@@ -25030,7 +24973,7 @@
     "totalOwners": 11,
     "totalCompanies": 1962,
     "totalDeals": 81,
-    "totalRelations": 48,
+    "totalRelations": 22,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 1,
