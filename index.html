@@ -915,9 +915,6 @@ details[open] summary {
               <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Groupe Parent</th>
               <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Secteur</th>
               <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">CA Parent</th>
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Potentiel Estimé</th>
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Priorité</th>
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Action</th>
             </tr>
           </thead>
           <tbody id="whiteSpacesBody">
@@ -5259,14 +5256,26 @@ function renderWhiteSpaces() {
         if (!companiesWithDeals.has(childId)) {
           const childCompany = window.hubspotCompanies[childId];
           if (childCompany) {
-            console.log(`     ✓ WHITE SPACE trouvé: ${childCompany.name} (filiale de ${company.name})`);
+            // Lifecycle stages à ignorer (ne sont pas des secteurs d'activité)
+            const lifecycleStages = ['Prospect', 'Lead', 'Customer', 'Evangelist', 'Subscriber', 'Other'];
+
+            // Récupérer le secteur de la filiale
+            let sector = childCompany.industry || '';
+
+            // Si le secteur est vide ou est un lifecycle stage, essayer de récupérer depuis le parent
+            if (!sector || lifecycleStages.includes(sector)) {
+              sector = company.industry || parentDeal?.industry || 'Non spécifié';
+              console.log(`     → Secteur filiale vide/invalide ("${childCompany.industry}"), utilisation secteur parent: ${sector}`);
+            }
+
+            console.log(`     ✓ WHITE SPACE trouvé: ${childCompany.name} (filiale de ${company.name}) - Secteur: ${sector}`);
             whiteSpaces.push({
               name: childCompany.name || 'Filiale sans nom',
               parentName: company.name,
               parentId: company.id,
               parentRevenue: parentRevenue,
               parentHealthScore: parentHealthScore,
-              sector: childCompany.industry || 'Non spécifié',
+              sector: sector,
               companyId: childId,
               isUnmapped: true // Pas de deals du tout
             });
@@ -5342,7 +5351,7 @@ function renderWhiteSpaces() {
   if (whiteSpaces.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="7" style="text-align: center; padding: 40px; color: var(--text-muted); font-style: italic;">
+        <td colspan="4" style="text-align: center; padding: 40px; color: var(--text-muted); font-style: italic;">
           Aucun white space identifié. Toutes les filiales mappées ont des deals actifs.
         </td>
       </tr>
@@ -5488,33 +5497,6 @@ function renderWhiteSpaces() {
           <div style="color: var(--accent); font-weight: 600; font-size: 13px;">
             ${formatCurrency(ws.parentRevenue)}
           </div>
-        </td>
-
-        <!-- Potentiel Estimé -->
-        <td style="padding: 12px;">
-          <div style="color: var(--green); font-weight: 700; font-size: 14px;">
-            ${formatCurrency(ws.estimatedPotential)}
-          </div>
-          <div style="font-size: 10px; color: var(--text-muted); margin-top: 2px;">
-            ${((ws.estimatedPotential / ws.parentRevenue) * 100).toFixed(0)}% du parent
-          </div>
-        </td>
-
-        <!-- Priorité -->
-        <td style="padding: 12px;">
-          <div style="display: inline-block; background: ${ws.priorityColor}; color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;">
-            ${ws.priorityLabel}
-          </div>
-        </td>
-
-        <!-- Action -->
-        <td style="padding: 12px;">
-          <button onclick="showWhiteSpaceDetails(${idx})"
-                  style="padding: 6px 14px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;"
-                  onmouseover="this.style.transform='scale(1.05)'"
-                  onmouseout="this.style.transform='scale(1)'">
-            ${ws.action}
-          </button>
         </td>
       </tr>
     `;
