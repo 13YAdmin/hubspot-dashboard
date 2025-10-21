@@ -177,6 +177,7 @@ async function pushCompanyScores(company) {
     client_segment: mapSegment(company.segment),
     revenue_trend: parseFloat(trend),
     relationship_sentiment: mapSentiment(company.sentiment),
+    is_white_space: false, // A des deals = pas un white space
     last_score_update: new Date().toISOString()
   };
 
@@ -190,11 +191,105 @@ async function pushCompanyScores(company) {
   }
 }
 
+// Identifier et pusher les white spaces
+async function pushWhiteSpaces() {
+  console.log('\n🎯 Identification des White Spaces...\n');
+
+  // Créer un Set de toutes les companies qui ont des deals
+  const companiesWithDeals = new Set(deals.map(deal => deal.companyId));
+  const whiteSpaces = [];
+
+  // Parcourir TOUTES les companies pour trouver les relations parent/child
+  Object.values(companies).forEach(company => {
+    // Si cette company a des enfants (childCompanyIds)
+    if (company.childCompanyIds && company.childCompanyIds.length > 0) {
+      // Parcourir chaque filiale
+      company.childCompanyIds.forEach(childId => {
+        // Si cette filiale N'A PAS de deals (= white space)
+        if (!companiesWithDeals.has(childId)) {
+          const childCompany = companies[childId];
+          if (childCompany) {
+            whiteSpaces.push({
+              companyId: childId,
+              name: childCompany.name || 'Filiale sans nom',
+              parentName: company.name
+            });
+          }
+        }
+      });
+    }
+  });
+
+  console.log(`   → ${whiteSpaces.length} white spaces identifiés\n`);
+
+  if (whiteSpaces.length === 0) {
+    console.log('   ✅ Aucun white space à marquer\n');
+    return { success: 0, failures: 0 };
+  }
+
+  let success = 0;
+  let failures = 0;
+  const errors = [];
+
+  // Pusher le flag is_white_space = true pour chaque white space
+  const BATCH_SIZE = 10;
+  for (let i = 0; i < whiteSpaces.length; i += BATCH_SIZE) {
+    const batch = whiteSpaces.slice(i, i + BATCH_SIZE);
+
+    const results = await Promise.all(
+      batch.map(async (ws) => {
+        try {
+          await makeRequest('PATCH', `/crm/v3/objects/companies/${ws.companyId}`, {
+            properties: {
+              is_white_space: true,
+              last_score_update: new Date().toISOString()
+            }
+          });
+          return { success: true, name: ws.name };
+        } catch (error) {
+          return { success: false, name: ws.name, error: error.message };
+        }
+      })
+    );
+
+    results.forEach(result => {
+      if (result.success) {
+        console.log(`   ✅ ${result.name} (marqué White Space)`);
+        success++;
+      } else {
+        console.log(`   ❌ ${result.name}: ${result.error}`);
+        failures++;
+        errors.push({ name: result.name, error: result.error });
+      }
+    });
+
+    // Petit délai entre les batches
+    if (i + BATCH_SIZE < whiteSpaces.length) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+  }
+
+  console.log('\n=====================================');
+  console.log('📊 White Spaces:');
+  console.log(`   ✅ Marqués: ${success}`);
+  console.log(`   ❌ Échecs: ${failures}`);
+  console.log('=====================================\n');
+
+  if (failures > 0) {
+    console.log('⚠️  Erreurs White Spaces:');
+    errors.slice(0, 3).forEach(err => {
+      console.log(`   - ${err.name}: ${err.error}`);
+    });
+  }
+
+  return { success, failures };
+}
+
 // Fonction principale
 async function pushAllScores() {
   const companiesData = aggregateDataByCompany();
 
-  console.log(`📤 Mise à jour de ${companiesData.length} companies...\n`);
+  console.log(`📤 Mise à jour de ${companiesData.length} companies avec deals...\n`);
 
   let success = 0;
   let failures = 0;
@@ -243,11 +338,29 @@ async function pushAllScores() {
   }
 
   if (failures > companiesData.length / 2) {
-    console.error('\n❌ Trop d\'erreurs. Vérifier les permissions API.');
+    console.error('\n❌ Trop d\'erreurs sur les scores. Vérifier les permissions API.');
     process.exit(1);
-  } else {
-    console.log('\n✅ Scores pushés vers HubSpot !');
   }
+
+  console.log('✅ Scores pushés vers HubSpot !\n');
+
+  // Pusher les white spaces
+  const wsResults = await pushWhiteSpaces();
+
+  // Résumé global
+  console.log('=====================================');
+  console.log('📊 RÉSUMÉ GLOBAL:');
+  console.log(`   ✅ Companies avec deals: ${success}`);
+  console.log(`   ✅ White spaces marqués: ${wsResults.success}`);
+  console.log(`   ❌ Échecs totaux: ${failures + wsResults.failures}`);
+  console.log('=====================================\n');
+
+  if ((failures + wsResults.failures) > (companiesData.length + wsResults.success) / 2) {
+    console.error('❌ Trop d\'erreurs globales. Vérifier les permissions API.');
+    process.exit(1);
+  }
+
+  console.log('✅ Synchronisation HubSpot terminée !');
 }
 
 pushAllScores().catch(err => {
