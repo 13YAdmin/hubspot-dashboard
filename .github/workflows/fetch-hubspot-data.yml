@@ -24,11 +24,24 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Create Custom Properties (first run)
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+        run: |
+          node .github/scripts/create-custom-properties.js || echo "⚠️ Properties may already exist, continuing..."
+        continue-on-error: true
+
       - name: Fetch HubSpot Data
         env:
           HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
         run: |
           node .github/scripts/fetch-hubspot.js
+
+      - name: Push Calculated Scores to HubSpot
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+        run: |
+          node .github/scripts/push-scores-to-hubspot.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
