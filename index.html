@@ -5234,16 +5234,24 @@ function renderWhiteSpaces() {
   const companiesWithDeals = new Set(processedData.map(client => client.companyId));
   console.log(`   → ${companiesWithDeals.size} companies avec deals`);
 
+  // DEBUG: Logger les IDs pour debug
+  console.log('   → Exemple companyIds dans processedData:',
+    processedData.slice(0, 3).map(c => ({ name: c.name, id: c.companyId, type: typeof c.companyId })));
+
   // Parcourir TOUTES les companies dans HubSpot pour trouver les relations parent/child
   Object.values(window.hubspotCompanies).forEach(company => {
     // Si cette company a des enfants (childCompanyIds)
     if (company.childCompanyIds && company.childCompanyIds.length > 0) {
-      console.log(`   → Parent trouvé: ${company.name} avec ${company.childCompanyIds.length} filiales`);
+      console.log(`   → Parent trouvé: ${company.name} (ID: ${company.id}, type: ${typeof company.id}) avec ${company.childCompanyIds.length} filiales`);
 
       // Trouver le parent dans processedData pour obtenir son CA et health score
-      const parentDeal = processedData.find(client => client.companyId === company.id);
+      // Convertir les IDs en string pour la comparaison (au cas où l'un est number et l'autre string)
+      const parentDeal = processedData.find(client => String(client.companyId) === String(company.id));
       const parentRevenue = parentDeal ? parentDeal.totalRevenue : 0;
       const parentHealthScore = parentDeal ? parentDeal.avgHealthScore : 50;
+
+      // DEBUG: Logger le résultat de la recherche
+      console.log(`     → Parent deal trouvé: ${parentDeal ? 'OUI' : 'NON'}, CA: ${parentRevenue}, Health: ${parentHealthScore}`);
 
       // Parcourir chaque filiale
       company.childCompanyIds.forEach(childId => {
@@ -5303,13 +5311,19 @@ function renderWhiteSpaces() {
     }
   });
 
-  // Trier par priorité puis potentiel
+  // Trier par priorité, puis potentiel, puis alphabétique par nom du parent
   const priorityOrder = { 'HIGH': 1, 'MEDIUM': 2, 'LOW': 3 };
   whiteSpaces.sort((a, b) => {
+    // 1. Priorité
     if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
       return priorityOrder[a.priority] - priorityOrder[b.priority];
     }
-    return b.estimatedPotential - a.estimatedPotential;
+    // 2. Potentiel estimé (descendant)
+    if (b.estimatedPotential !== a.estimatedPotential) {
+      return b.estimatedPotential - a.estimatedPotential;
+    }
+    // 3. Ordre alphabétique du nom du parent
+    return a.parentName.localeCompare(b.parentName);
   });
 
   // Mettre à jour le compteur
@@ -5337,15 +5351,104 @@ function renderWhiteSpaces() {
   }
 
   tbody.innerHTML = whiteSpaces.map((ws, idx) => {
-    // Mapping secteur FR
+    // Mapping secteur FR (utiliser le mapping complet des industries)
     const sectorMapping = {
-      'COMPUTER_SOFTWARE': 'Logiciels & IT',
-      'INFORMATION_TECHNOLOGY_AND_SERVICES': 'Logiciels & IT',
-      'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie',
-      'AUTOMOTIVE': 'Automobile',
-      'BANKING': 'Banque',
-      'HOSPITAL_HEALTH_CARE': 'Santé & Soins',
-      // ... ajoutez plus au besoin
+      // Tech & IT
+      'Computer Software': 'Logiciels & IT', 'Information Technology and Services': 'Logiciels & IT',
+      'IT Services and IT Consulting': 'Logiciels & IT', 'Internet': 'Internet & Web',
+      'Computer & Network Security': 'Cybersécurité', 'Software Development': 'Développement logiciel',
+      'Telecommunications': 'Télécommunications', 'COMPUTER_SOFTWARE': 'Logiciels & IT',
+      'INFORMATION_TECHNOLOGY_AND_SERVICES': 'Logiciels & IT', 'INFORMATION_SERVICES': 'Services informatiques',
+      'COMPUTER_HARDWARE': 'Matériel informatique', 'TELECOMMUNICATIONS': 'Télécommunications',
+      'SEMICONDUCTORS': 'Semi-conducteurs', 'DESIGN': 'Design & CAO', 'E_LEARNING': 'E-learning',
+      // Finance & Banking
+      'Financial Services': 'Services financiers', 'Banking': 'Banque', 'Insurance': 'Assurance',
+      'Venture Capital & Private Equity': 'Capital-risque & Private Equity',
+      'Investment Banking': 'Banque d\'investissement', 'Investment Management': 'Gestion d\'actifs',
+      'FINANCIAL_SERVICES': 'Services financiers', 'BANKING': 'Banque', 'INSURANCE': 'Assurance',
+      'CAPITAL_MARKETS': 'Marchés financiers', 'ACCOUNTING': 'Comptabilité',
+      // Manufacturing & Industrial
+      'Manufacturing': 'Industrie & Manufacturing', 'Industrial Automation': 'Automatisation industrielle',
+      'Machinery': 'Machinerie', 'Electrical/Electronic Manufacturing': 'Électronique',
+      'Automotive': 'Automobile', 'Aviation & Aerospace': 'Aéronautique & Spatial',
+      'INDUSTRIAL_AUTOMATION': 'Automatisation industrielle', 'AUTOMOTIVE': 'Automobile',
+      'AVIATION_AEROSPACE': 'Aéronautique & Spatial', 'AIRLINES_AVIATION': 'Aviation',
+      'ELECTRICAL_ELECTRONIC_MANUFACTURING': 'Électronique', 'MACHINERY': 'Machinerie',
+      'MECHANICAL_OR_INDUSTRIAL_ENGINEERING': 'Ingénierie industrielle',
+      'BUILDING_MATERIALS': 'Matériaux de construction', 'CHEMICALS': 'Chimie',
+      'PLASTICS': 'Plastiques', 'PAPER_FOREST_PRODUCTS': 'Papier & Produits forestiers',
+      'MINING_METALS': 'Mines & Métaux', 'RAILROAD_MANUFACTURE': 'Fabrication ferroviaire',
+      'DEFENSE_SPACE': 'Défense & Spatial', 'MILITARY': 'Militaire',
+      // Retail & E-commerce
+      'Retail': 'Commerce de détail', 'E-commerce': 'E-commerce', 'Consumer Goods': 'Biens de consommation',
+      'Consumer Electronics': 'Électronique grand public', 'Luxury Goods & Jewelry': 'Luxe & Joaillerie',
+      'Apparel & Fashion': 'Mode & Habillement', 'RETAIL': 'Commerce de détail',
+      'CONSUMER_GOODS': 'Biens de consommation', 'CONSUMER_ELECTRONICS': 'Électronique grand public',
+      'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie', 'APPAREL_FASHION': 'Mode & Habillement',
+      'COSMETICS': 'Cosmétiques', 'TEXTILES': 'Textile', 'FURNITURE': 'Ameublement',
+      'SPORTING_GOODS': 'Articles de sport', 'BUSINESS_SUPPLIES_AND_EQUIPMENT': 'Fournitures & Équipements',
+      // Healthcare & Pharma
+      'Hospital & Health Care': 'Santé & Soins', 'Medical Devices': 'Dispositifs médicaux',
+      'Pharmaceuticals': 'Pharmaceutique', 'Biotechnology': 'Biotechnologie',
+      'Medical Practice': 'Pratique médicale', 'HOSPITAL_HEALTH_CARE': 'Santé & Soins',
+      'MEDICAL_DEVICES': 'Dispositifs médicaux', 'PHARMACEUTICALS': 'Pharmaceutique',
+      'BIOTECHNOLOGY': 'Biotechnologie', 'HEALTH_WELLNESS_AND_FITNESS': 'Santé & Bien-être',
+      'VETERINARY': 'Vétérinaire',
+      // Consulting & Services
+      'Management Consulting': 'Conseil en management', 'Marketing and Advertising': 'Marketing & Publicité',
+      'Public Relations and Communications': 'Relations publiques', 'Human Resources': 'Ressources humaines',
+      'Business Consulting and Services': 'Conseil & Services', 'Professional Services': 'Services professionnels',
+      'MANAGEMENT_CONSULTING': 'Conseil en management', 'MARKETING_AND_ADVERTISING': 'Marketing & Publicité',
+      'HUMAN_RESOURCES': 'Ressources humaines', 'STAFFING_AND_RECRUITING': 'Recrutement',
+      'OUTSOURCING_OFFSHORING': 'Externalisation', 'EVENTS_SERVICES': 'Événementiel',
+      'MARKET_RESEARCH': 'Études de marché',
+      // Construction & Real Estate
+      'Construction': 'BTP & Construction', 'Real Estate': 'Immobilier',
+      'Architecture & Planning': 'Architecture', 'Civil Engineering': 'Génie civil',
+      'CONSTRUCTION': 'BTP & Construction', 'REAL_ESTATE': 'Immobilier',
+      'COMMERCIAL_REAL_ESTATE': 'Immobilier commercial',
+      // Education
+      'Education Management': 'Gestion éducative', 'Higher Education': 'Enseignement supérieur',
+      'E-Learning': 'E-learning', 'Primary/Secondary Education': 'Enseignement primaire/secondaire',
+      'HIGHER_EDUCATION': 'Enseignement supérieur',
+      // Media & Entertainment
+      'Media Production': 'Production média', 'Entertainment': 'Divertissement',
+      'Publishing': 'Édition', 'Broadcast Media': 'Médias audiovisuels',
+      'MEDIA_PRODUCTION': 'Production média', 'ENTERTAINMENT': 'Divertissement',
+      'PUBLISHING': 'Édition', 'BROADCAST_MEDIA': 'Médias audiovisuels',
+      'ONLINE_MEDIA': 'Médias en ligne', 'COMPUTER_GAMES': 'Jeux vidéo',
+      'ARTS_AND_CRAFTS': 'Arts & Artisanat',
+      // Transport & Logistics
+      'Transportation/Trucking/Railroad': 'Transport', 'Logistics and Supply Chain': 'Logistique',
+      'Airlines/Aviation': 'Aviation', 'Maritime': 'Maritime',
+      'TRANSPORTATION_TRUCKING_RAILROAD': 'Transport', 'LOGISTICS_AND_SUPPLY_CHAIN': 'Logistique',
+      'MARITIME': 'Maritime',
+      // Hospitality & Food
+      'Hospitality': 'Hôtellerie', 'Restaurants': 'Restauration', 'Food & Beverages': 'Agroalimentaire',
+      'Food Production': 'Production alimentaire', 'HOSPITALITY': 'Hôtellerie',
+      'FOOD_BEVERAGES': 'Agroalimentaire', 'FOOD_PRODUCTION': 'Production alimentaire',
+      'WINE_AND_SPIRITS': 'Vins & Spiritueux', 'RESTAURANTS': 'Restauration',
+      'LEISURE_TRAVEL_TOURISM': 'Tourisme & Loisirs', 'GAMBLING_CASINOS': 'Casinos & Jeux',
+      // Energy & Environment
+      'Oil & Energy': 'Pétrole & Énergie', 'Renewable Energy': 'Énergies renouvelables',
+      'Utilities': 'Services publics', 'Environmental Services': 'Services environnementaux',
+      'OIL_ENERGY': 'Pétrole & Énergie', 'RENEWABLES_ENVIRONMENT': 'Énergies renouvelables',
+      'UTILITIES': 'Services publics', 'ENVIRONMENTAL_SERVICES': 'Services environnementaux',
+      // Government & Non-Profit
+      'Government Administration': 'Administration publique',
+      'Non-Profit Organization Management': 'Association', 'International Affairs': 'Affaires internationales',
+      'GOVERNMENT_ADMINISTRATION': 'Administration publique',
+      'NON_PROFIT_ORGANIZATION_MANAGEMENT': 'Association', 'CIVIC_SOCIAL_ORGANIZATION': 'Organisation civique',
+      'PHILANTHROPY': 'Philanthropie', 'INTERNATIONAL_TRADE_AND_DEVELOPMENT': 'Commerce international',
+      // Legal
+      'Law Practice': 'Juridique', 'Legal Services': 'Services juridiques', 'LAW_PRACTICE': 'Juridique',
+      // Agriculture
+      'Farming': 'Agriculture', 'Ranching': 'Élevage', 'FARMING': 'Agriculture',
+      // Other
+      'Research': 'Recherche', 'Security and Investigations': 'Sécurité & Investigation',
+      'Sports': 'Sports', 'Think Tanks': 'Think tanks', 'Staffing and Recruiting': 'Recrutement',
+      'RESEARCH': 'Recherche', 'SECURITY_AND_INVESTIGATIONS': 'Sécurité & Investigation',
+      'PROSPECT': 'Prospect', 'Client': 'Client'
     };
     const sectorFr = sectorMapping[ws.sector] || ws.sector;
 
@@ -5434,13 +5537,88 @@ function showWhiteSpaceDetails(wsIndex) {
     return;
   }
 
+  // Mapping secteur FR complet
   const sectorMapping = {
-    'COMPUTER_SOFTWARE': 'Logiciels & IT',
-    'INFORMATION_TECHNOLOGY_AND_SERVICES': 'Logiciels & IT',
-    'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie',
-    'AUTOMOTIVE': 'Automobile',
-    'BANKING': 'Banque',
-    'HOSPITAL_HEALTH_CARE': 'Santé & Soins',
+    'Computer Software': 'Logiciels & IT', 'Information Technology and Services': 'Logiciels & IT',
+    'IT Services and IT Consulting': 'Logiciels & IT', 'Internet': 'Internet & Web',
+    'Computer & Network Security': 'Cybersécurité', 'Software Development': 'Développement logiciel',
+    'Telecommunications': 'Télécommunications', 'COMPUTER_SOFTWARE': 'Logiciels & IT',
+    'INFORMATION_TECHNOLOGY_AND_SERVICES': 'Logiciels & IT', 'INFORMATION_SERVICES': 'Services informatiques',
+    'COMPUTER_HARDWARE': 'Matériel informatique', 'TELECOMMUNICATIONS': 'Télécommunications',
+    'SEMICONDUCTORS': 'Semi-conducteurs', 'DESIGN': 'Design & CAO', 'E_LEARNING': 'E-learning',
+    'Financial Services': 'Services financiers', 'Banking': 'Banque', 'Insurance': 'Assurance',
+    'Venture Capital & Private Equity': 'Capital-risque & Private Equity',
+    'Investment Banking': 'Banque d\'investissement', 'Investment Management': 'Gestion d\'actifs',
+    'FINANCIAL_SERVICES': 'Services financiers', 'BANKING': 'Banque', 'INSURANCE': 'Assurance',
+    'CAPITAL_MARKETS': 'Marchés financiers', 'ACCOUNTING': 'Comptabilité',
+    'Manufacturing': 'Industrie & Manufacturing', 'Industrial Automation': 'Automatisation industrielle',
+    'Machinery': 'Machinerie', 'Electrical/Electronic Manufacturing': 'Électronique',
+    'Automotive': 'Automobile', 'Aviation & Aerospace': 'Aéronautique & Spatial',
+    'INDUSTRIAL_AUTOMATION': 'Automatisation industrielle', 'AUTOMOTIVE': 'Automobile',
+    'AVIATION_AEROSPACE': 'Aéronautique & Spatial', 'AIRLINES_AVIATION': 'Aviation',
+    'ELECTRICAL_ELECTRONIC_MANUFACTURING': 'Électronique', 'MACHINERY': 'Machinerie',
+    'MECHANICAL_OR_INDUSTRIAL_ENGINEERING': 'Ingénierie industrielle',
+    'BUILDING_MATERIALS': 'Matériaux de construction', 'CHEMICALS': 'Chimie',
+    'PLASTICS': 'Plastiques', 'PAPER_FOREST_PRODUCTS': 'Papier & Produits forestiers',
+    'MINING_METALS': 'Mines & Métaux', 'RAILROAD_MANUFACTURE': 'Fabrication ferroviaire',
+    'DEFENSE_SPACE': 'Défense & Spatial', 'MILITARY': 'Militaire',
+    'Retail': 'Commerce de détail', 'E-commerce': 'E-commerce', 'Consumer Goods': 'Biens de consommation',
+    'Consumer Electronics': 'Électronique grand public', 'Luxury Goods & Jewelry': 'Luxe & Joaillerie',
+    'Apparel & Fashion': 'Mode & Habillement', 'RETAIL': 'Commerce de détail',
+    'CONSUMER_GOODS': 'Biens de consommation', 'CONSUMER_ELECTRONICS': 'Électronique grand public',
+    'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie', 'APPAREL_FASHION': 'Mode & Habillement',
+    'COSMETICS': 'Cosmétiques', 'TEXTILES': 'Textile', 'FURNITURE': 'Ameublement',
+    'SPORTING_GOODS': 'Articles de sport', 'BUSINESS_SUPPLIES_AND_EQUIPMENT': 'Fournitures & Équipements',
+    'Hospital & Health Care': 'Santé & Soins', 'Medical Devices': 'Dispositifs médicaux',
+    'Pharmaceuticals': 'Pharmaceutique', 'Biotechnology': 'Biotechnologie',
+    'Medical Practice': 'Pratique médicale', 'HOSPITAL_HEALTH_CARE': 'Santé & Soins',
+    'MEDICAL_DEVICES': 'Dispositifs médicaux', 'PHARMACEUTICALS': 'Pharmaceutique',
+    'BIOTECHNOLOGY': 'Biotechnologie', 'HEALTH_WELLNESS_AND_FITNESS': 'Santé & Bien-être',
+    'VETERINARY': 'Vétérinaire',
+    'Management Consulting': 'Conseil en management', 'Marketing and Advertising': 'Marketing & Publicité',
+    'Public Relations and Communications': 'Relations publiques', 'Human Resources': 'Ressources humaines',
+    'Business Consulting and Services': 'Conseil & Services', 'Professional Services': 'Services professionnels',
+    'MANAGEMENT_CONSULTING': 'Conseil en management', 'MARKETING_AND_ADVERTISING': 'Marketing & Publicité',
+    'HUMAN_RESOURCES': 'Ressources humaines', 'STAFFING_AND_RECRUITING': 'Recrutement',
+    'OUTSOURCING_OFFSHORING': 'Externalisation', 'EVENTS_SERVICES': 'Événementiel',
+    'MARKET_RESEARCH': 'Études de marché',
+    'Construction': 'BTP & Construction', 'Real Estate': 'Immobilier',
+    'Architecture & Planning': 'Architecture', 'Civil Engineering': 'Génie civil',
+    'CONSTRUCTION': 'BTP & Construction', 'REAL_ESTATE': 'Immobilier',
+    'COMMERCIAL_REAL_ESTATE': 'Immobilier commercial',
+    'Education Management': 'Gestion éducative', 'Higher Education': 'Enseignement supérieur',
+    'E-Learning': 'E-learning', 'Primary/Secondary Education': 'Enseignement primaire/secondaire',
+    'HIGHER_EDUCATION': 'Enseignement supérieur',
+    'Media Production': 'Production média', 'Entertainment': 'Divertissement',
+    'Publishing': 'Édition', 'Broadcast Media': 'Médias audiovisuels',
+    'MEDIA_PRODUCTION': 'Production média', 'ENTERTAINMENT': 'Divertissement',
+    'PUBLISHING': 'Édition', 'BROADCAST_MEDIA': 'Médias audiovisuels',
+    'ONLINE_MEDIA': 'Médias en ligne', 'COMPUTER_GAMES': 'Jeux vidéo',
+    'ARTS_AND_CRAFTS': 'Arts & Artisanat',
+    'Transportation/Trucking/Railroad': 'Transport', 'Logistics and Supply Chain': 'Logistique',
+    'Airlines/Aviation': 'Aviation', 'Maritime': 'Maritime',
+    'TRANSPORTATION_TRUCKING_RAILROAD': 'Transport', 'LOGISTICS_AND_SUPPLY_CHAIN': 'Logistique',
+    'MARITIME': 'Maritime',
+    'Hospitality': 'Hôtellerie', 'Restaurants': 'Restauration', 'Food & Beverages': 'Agroalimentaire',
+    'Food Production': 'Production alimentaire', 'HOSPITALITY': 'Hôtellerie',
+    'FOOD_BEVERAGES': 'Agroalimentaire', 'FOOD_PRODUCTION': 'Production alimentaire',
+    'WINE_AND_SPIRITS': 'Vins & Spiritueux', 'RESTAURANTS': 'Restauration',
+    'LEISURE_TRAVEL_TOURISM': 'Tourisme & Loisirs', 'GAMBLING_CASINOS': 'Casinos & Jeux',
+    'Oil & Energy': 'Pétrole & Énergie', 'Renewable Energy': 'Énergies renouvelables',
+    'Utilities': 'Services publics', 'Environmental Services': 'Services environnementaux',
+    'OIL_ENERGY': 'Pétrole & Énergie', 'RENEWABLES_ENVIRONMENT': 'Énergies renouvelables',
+    'UTILITIES': 'Services publics', 'ENVIRONMENTAL_SERVICES': 'Services environnementaux',
+    'Government Administration': 'Administration publique',
+    'Non-Profit Organization Management': 'Association', 'International Affairs': 'Affaires internationales',
+    'GOVERNMENT_ADMINISTRATION': 'Administration publique',
+    'NON_PROFIT_ORGANIZATION_MANAGEMENT': 'Association', 'CIVIC_SOCIAL_ORGANIZATION': 'Organisation civique',
+    'PHILANTHROPY': 'Philanthropie', 'INTERNATIONAL_TRADE_AND_DEVELOPMENT': 'Commerce international',
+    'Law Practice': 'Juridique', 'Legal Services': 'Services juridiques', 'LAW_PRACTICE': 'Juridique',
+    'Farming': 'Agriculture', 'Ranching': 'Élevage', 'FARMING': 'Agriculture',
+    'Research': 'Recherche', 'Security and Investigations': 'Sécurité & Investigation',
+    'Sports': 'Sports', 'Think Tanks': 'Think tanks', 'Staffing and Recruiting': 'Recrutement',
+    'RESEARCH': 'Recherche', 'SECURITY_AND_INVESTIGATIONS': 'Sécurité & Investigation',
+    'PROSPECT': 'Prospect', 'Client': 'Client'
   };
   const sectorFr = sectorMapping[ws.sector] || ws.sector;
 
