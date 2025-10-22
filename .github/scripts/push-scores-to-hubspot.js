@@ -177,7 +177,7 @@ async function pushCompanyScores(company) {
     client_segment: mapSegment(company.segment),
     revenue_trend: parseFloat(trend),
     relationship_sentiment: mapSentiment(company.sentiment),
-    is_white_space: false, // A des deals = pas un white space
+    is_white_space: 'false', // A des deals = pas un white space (string pour HubSpot enum)
     last_score_update: new Date().toISOString()
   };
 

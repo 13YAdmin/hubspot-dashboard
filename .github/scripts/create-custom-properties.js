@@ -72,11 +72,14 @@ const customProperties = [
   {
     name: 'is_white_space',
     label: 'White Space',
-    type: 'bool',
+    type: 'enumeration',
     fieldType: 'booleancheckbox',
     groupName: 'companyinformation',
     description: 'Filiale sans deals identifiée comme opportunité White Space (cross-sell non exploité).',
-    options: []
+    options: [
+      { label: 'Yes', value: 'true', displayOrder: 0 },
+      { label: 'No', value: 'false', displayOrder: 1 }
+    ]
   },
   {
     name: 'last_score_update',
