@@ -5465,7 +5465,7 @@ function renderWhiteSpaces() {
     const sectorFr = sectorMapping[ws.sector] || ws.sector;
 
     return `
-      <tr data-ws-index="${idx}" style="border-bottom: 1px solid var(--border); transition: all 0.2s; cursor: pointer;"
+      <tr style="border-bottom: 1px solid var(--border); transition: all 0.2s;"
           onmouseover="this.style.background='rgba(251, 191, 36, 0.08)'"
           onmouseout="this.style.background='transparent'">
 
@@ -5508,17 +5508,7 @@ function renderWhiteSpaces() {
   // Stocker les white spaces globalement pour accès dans showWhiteSpaceDetails
   window.currentWhiteSpaces = whiteSpaces;
 
-  // Attacher les event listeners pour les clics
-  const wsRows = tbody.querySelectorAll('tr[data-ws-index]');
-  wsRows.forEach(row => {
-    row.addEventListener('click', function() {
-      const wsIndex = parseInt(this.getAttribute('data-ws-index'));
-      console.log(`🖱️ Clic White Space index ${wsIndex}`);
-      showWhiteSpaceDetails(wsIndex);
-    });
-  });
-
-  console.log(`✅ Tableau White Spaces rendu avec ${wsRows.length} event listeners`);
+  console.log('✅ Tableau White Spaces rendu');
 }
 
 // ============================================================================
