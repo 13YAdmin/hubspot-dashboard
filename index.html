@@ -911,10 +911,18 @@ details[open] summary {
         <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
           <thead>
             <tr style="background: rgba(251, 191, 36, 0.1); border-bottom: 2px solid #f59e0b;">
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Opportunité</th>
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Groupe Parent</th>
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">Secteur</th>
-              <th style="padding: 12px; text-align: left; font-weight: 700; color: var(--text);">CA Parent</th>
+              <th data-sort-key="name" style="padding: 12px; text-align: left; font-weight: 700; color: var(--text); cursor: pointer; user-select: none;" onmouseover="this.style.background='rgba(251, 191, 36, 0.2)'" onmouseout="this.style.background='transparent'">
+                Opportunité <span class="sort-indicator"></span>
+              </th>
+              <th data-sort-key="parentName" style="padding: 12px; text-align: left; font-weight: 700; color: var(--text); cursor: pointer; user-select: none;" onmouseover="this.style.background='rgba(251, 191, 36, 0.2)'" onmouseout="this.style.background='transparent'">
+                Groupe Parent <span class="sort-indicator"></span>
+              </th>
+              <th data-sort-key="sector" style="padding: 12px; text-align: left; font-weight: 700; color: var(--text); cursor: pointer; user-select: none;" onmouseover="this.style.background='rgba(251, 191, 36, 0.2)'" onmouseout="this.style.background='transparent'">
+                Secteur <span class="sort-indicator"></span>
+              </th>
+              <th data-sort-key="parentRevenue" style="padding: 12px; text-align: left; font-weight: 700; color: var(--text); cursor: pointer; user-select: none;" onmouseover="this.style.background='rgba(251, 191, 36, 0.2)'" onmouseout="this.style.background='transparent'">
+                CA Parent <span class="sort-indicator"></span>
+              </th>
             </tr>
           </thead>
           <tbody id="whiteSpacesBody">
@@ -5323,20 +5331,74 @@ function renderWhiteSpaces() {
     }
   });
 
-  // Trier par priorité, puis potentiel, puis alphabétique par nom du parent
-  const priorityOrder = { 'HIGH': 1, 'MEDIUM': 2, 'LOW': 3 };
-  whiteSpaces.sort((a, b) => {
-    // 1. Priorité
-    if (priorityOrder[a.priority] !== priorityOrder[b.priority]) {
-      return priorityOrder[a.priority] - priorityOrder[b.priority];
+  // Initialiser l'état de tri si pas déjà fait
+  if (!window.whiteSpacesSortState) {
+    window.whiteSpacesSortState = {
+      key: 'parentRevenue',  // Tri par défaut par CA Parent
+      direction: 'desc'       // Descendant (plus gros CA en premier)
+    };
+  }
+
+  // Fonction de tri réutilisable
+  function sortWhiteSpacesArray(arr, sortKey, sortDir) {
+    return arr.sort((a, b) => {
+      let valA, valB;
+
+      if (sortKey === 'parentRevenue' || sortKey === 'estimatedPotential') {
+        // Tri numérique
+        valA = a[sortKey] || 0;
+        valB = b[sortKey] || 0;
+        return sortDir === 'asc' ? valA - valB : valB - valA;
+      } else {
+        // Tri alphabétique
+        valA = (a[sortKey] || '').toLowerCase();
+        valB = (b[sortKey] || '').toLowerCase();
+        const comparison = valA.localeCompare(valB);
+        return sortDir === 'asc' ? comparison : -comparison;
+      }
+    });
+  }
+
+  // Stocker les white spaces globalement AVANT le tri
+  window.allWhiteSpaces = whiteSpaces;
+
+  // Appliquer le tri
+  sortWhiteSpacesArray(whiteSpaces, window.whiteSpacesSortState.key, window.whiteSpacesSortState.direction);
+
+  // Appeler la fonction de rendu
+  renderWhiteSpacesTable(whiteSpaces);
+}
+
+// ============================================================================
+// Render White Spaces Table (appelée par renderWhiteSpaces et par les clics de tri)
+// ============================================================================
+function renderWhiteSpacesTable(whiteSpaces) {
+  // Si pas de whiteSpaces fournis, utiliser ceux stockés globalement et les re-trier
+  if (!whiteSpaces) {
+    whiteSpaces = window.allWhiteSpaces || [];
+
+    // Fonction de tri réutilisable
+    function sortWhiteSpacesArray(arr, sortKey, sortDir) {
+      return arr.sort((a, b) => {
+        let valA, valB;
+
+        if (sortKey === 'parentRevenue' || sortKey === 'estimatedPotential') {
+          // Tri numérique
+          valA = a[sortKey] || 0;
+          valB = b[sortKey] || 0;
+          return sortDir === 'asc' ? valA - valB : valB - valA;
+        } else {
+          // Tri alphabétique
+          valA = (a[sortKey] || '').toLowerCase();
+          valB = (b[sortKey] || '').toLowerCase();
+          const comparison = valA.localeCompare(valB);
+          return sortDir === 'asc' ? comparison : -comparison;
+        }
+      });
     }
-    // 2. Potentiel estimé (descendant)
-    if (b.estimatedPotential !== a.estimatedPotential) {
-      return b.estimatedPotential - a.estimatedPotential;
-    }
-    // 3. Ordre alphabétique du nom du parent
-    return a.parentName.localeCompare(b.parentName);
-  });
+
+    sortWhiteSpacesArray(whiteSpaces, window.whiteSpacesSortState.key, window.whiteSpacesSortState.direction);
+  }
 
   // Mettre à jour le compteur
   const countBadge = document.getElementById('whiteSpaceCount');
@@ -5508,7 +5570,7 @@ function renderWhiteSpaces() {
   // Stocker les white spaces globalement pour accès dans showWhiteSpaceDetails
   window.currentWhiteSpaces = whiteSpaces;
 
-  // Attacher les event listeners pour les clics
+  // Attacher les event listeners pour les clics sur les lignes
   const wsRows = tbody.querySelectorAll('tr[data-ws-index]');
   wsRows.forEach(row => {
     row.addEventListener('click', function() {
@@ -5518,7 +5580,40 @@ function renderWhiteSpaces() {
     });
   });
 
-  console.log(`✅ Tableau White Spaces rendu avec ${wsRows.length} event listeners`);
+  // Attacher les event listeners pour les en-têtes (tri)
+  const headers = tbody.parentElement.querySelectorAll('th[data-sort-key]');
+  headers.forEach(header => {
+    header.addEventListener('click', function() {
+      const sortKey = this.getAttribute('data-sort-key');
+
+      // Toggle direction si même colonne, sinon reset à desc
+      if (window.whiteSpacesSortState.key === sortKey) {
+        window.whiteSpacesSortState.direction = window.whiteSpacesSortState.direction === 'asc' ? 'desc' : 'asc';
+      } else {
+        window.whiteSpacesSortState.key = sortKey;
+        window.whiteSpacesSortState.direction = 'desc';
+      }
+
+      console.log(`📊 Tri White Spaces: ${sortKey} ${window.whiteSpacesSortState.direction}`);
+
+      // Re-trier et re-rendre
+      renderWhiteSpacesTable();
+    });
+  });
+
+  // Mettre à jour les indicateurs de tri
+  headers.forEach(header => {
+    const sortKey = header.getAttribute('data-sort-key');
+    const indicator = header.querySelector('.sort-indicator');
+    if (sortKey === window.whiteSpacesSortState.key) {
+      indicator.textContent = window.whiteSpacesSortState.direction === 'asc' ? ' ▲' : ' ▼';
+      indicator.style.color = '#f59e0b';
+    } else {
+      indicator.textContent = '';
+    }
+  });
+
+  console.log(`✅ Tableau White Spaces rendu avec ${wsRows.length} lignes, tri: ${window.whiteSpacesSortState.key} ${window.whiteSpacesSortState.direction}`);
 }
 
 // ============================================================================
