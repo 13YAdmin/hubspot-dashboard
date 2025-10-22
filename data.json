@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-21T10:53:37.729Z",
+  "timestamp": "2025-10-22T05:42:42.876Z",
   "count": 81,
   "data": [
     {
@@ -101,7 +101,9 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264196399312
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -141,7 +143,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -183,7 +187,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -280,10 +287,10 @@
       "latestNoteDate": "2025-10-16T22:11:41.251Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Excellente</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>L’Oréal est un groupe français leader mondial des cosmétiques et de la beauté, présent dans plus de 150 pays avec un large portefeuille de marques couvrant le luxe, le grand public, la dermocosmétique et les produits professionnels.</p><p style=\"margin:0;\"><strong>Historique : </strong>L'Oréal est presque notre client historique. On travaille avec eux depuis quasiment le début, chaque année nous avons des dizaines de projets différents et la relation continue de s'épanouir. Là en 2025 le courbe de progression est énorme, + de 407K validés, environ 100K de projet en cours de validation et plus d'une quinzaine de projets lancés avec d'autre en process. Officiellement notre plus gros client sur 2025.</p><p style=\"margin:0;\">--&gt; C'est surtout Emmanuelle et Cédric qui gèrent L'Oréal</p><p style=\"margin:0;\"><strong>CA : </strong>Environ 950K sur 4 ans</p><p style=\"margin:0;\">-285K en 2022</p><p style=\"margin:0;\">-100K en 2023</p><p style=\"margin:0;\">-162K en 2024</p><p style=\"margin:0;\">-407K en 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Transformation / Talent Acquisition / Com Corporate / Onboarding / Incentive / Internal tools</p><p style=\"margin:0;\"><strong>Contact : </strong>Thomas Welsch / + 30</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Bubbles and Fit Magazine (2022)</p></li><li><p style=\"margin:0;\">Pépinière Week (2022)</p></li><li><p style=\"margin:0;\">Film Onboarding CPD (2022)</p></li><li><p style=\"margin:0;\">Candidate Experience (2022)</p></li><li><p style=\"margin:0;\">Création contenu CA&amp;E (2023)</p></li><li><p style=\"margin:0;\">Vidéo PEX dans nouveau hall HR (2023)</p></li><li><p style=\"margin:0;\">PULSE L'Oréal (2023)</p></li><li><p style=\"margin:0;\">PULSE Assets 2024</p></li><li><p style=\"margin:0;\">One Learning Launch (2024)</p></li><li><p style=\"margin:0;\">University Week (2024)</p></li><li><p style=\"margin:0;\">L'Oréal BA Step 1 and 2 (2024)</p></li><li><p style=\"margin:0;\">One Hub project (2025)</p></li><li><p style=\"margin:0;\">Connect Quarter (2025)</p></li><li><p style=\"margin:0;\">University Week (2025)</p></li><li><p style=\"margin:0;\">L'Oréal Best practices Project (2025)</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; L'Oréal c'est 88 000 employés, 43 milliards de chiffre d'affaire, plus de 37 marques et une présence mondiale avec une maison mère à Paris.</p><p style=\"margin:0;\">--&gt; Aujourd'hui on travaille de manière régulière avec la France. L'opportunité réside dans les pays anglophones comme le Canada dans lequel nous pourrions lancer des missions et être référencé.</p><p style=\"margin:0;\">--&gt; Egalement vu le nombre de missions que nous faisons chez eux regarder la possibilité de faire un contrat cadre pour 2026.</p></div>",
       "engagementEmails": 182,
-      "engagementCalls": 3,
+      "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 92,
+      "healthScore": 96,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -431,12 +438,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -477,33 +479,25 @@
       "companyRevenue": 280999000000,
       "companyEmployees": 100000,
       "companyParentIds": [],
-      "companyChildIds": [
-        226897211627,
-        226920490173,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
-      "totalNotes": 4,
-      "notesAvgLength": 1246,
+      "totalNotes": 7,
+      "notesAvgLength": 1792,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-10T08:50:23.724Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Normale </strong></p><p style=\"margin:0;\"><strong>Intro : </strong>TotalEnergies est une entreprise énergétique mondiale intégrée, active dans le pétrole, le gaz, les énergies renouvelables et l’électricité, engagée dans la transition énergétique.</p><p style=\"margin:0;\"><strong>Historique : </strong>On travaille avec eux depuis 2023, on a commencé avec la filiale SE-GRP. <strong>On a eu 30 projets avec sur 3 ans avec 5 filiales différentes :</strong></p><ul><li><p style=\"margin:0;\">TotalEnergies Lubrifiants (68K - 4 projets dont 3 en 2024 et un petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Learning Solutions (33K - 2 factures pour 1 projet Onboarding en 2024, rien en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies One Tech SAS (117K - 4 gros projets en 2024 et 1 petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies SE - GRP (333K - 2 projets en 2023, 9 en 2024 et 3 en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Trading SA (8k - 1 projet en 2023)</p></li></ul><p style=\"margin:0;\">--&gt; C'est Cédric qui est le contact principal (chez nous)</p><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p><p style=\"margin:0;\"><strong>CA : </strong>560K sur 3 ans avec plus de 30 projets et 5 filiales</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Com. corporate, engagement, Com générale</p><p style=\"margin:0;\"><strong>Contact : </strong>En recherche des contacts principaux</p><p style=\"margin:0;\"><strong>Typologie des sujets : </strong>Beaucoup, en attente d'un résumé</p><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Total est un géant, le plus grand de tous nos clients. 102 887 employés, 993 filiales et 214M de CA. C'est également un de nos meilleurs clients, énorme potentiel pour la poursuite de la relation et le cross-sell au sein des entités avec lesquelles on travaille déjà</p><p style=\"margin:0;\">--&gt; Par contre on a une baisse de CA de 79% entre 2024 (357 487 EUR) et 2025 (75 084 EUR), soit 282 403 EUR de baisse. Comprendre pourquoi et mettre des actions en place pour retrouver le rythme de croisière de 2024.</p><p style=\"margin:0;\">--&gt; Enorme opportunité pour nous, reprendre notre relation avec eux.</p></div>",
-      "engagementEmails": 0,
-      "engagementCalls": 0,
+      "latestNoteDate": "2025-10-21T12:53:30.188Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "engagementEmails": 2,
+      "engagementCalls": 5,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 65,
+      "healthScore": 76,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -566,7 +560,9 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -772,33 +768,25 @@
       "companyRevenue": 280999000000,
       "companyEmployees": 100000,
       "companyParentIds": [],
-      "companyChildIds": [
-        226897211627,
-        226920490173,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 3,
-      "notesAvgLength": 1233,
+      "totalNotes": 6,
+      "notesAvgLength": 1877,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-10T08:50:23.724Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Normale </strong></p><p style=\"margin:0;\"><strong>Intro : </strong>TotalEnergies est une entreprise énergétique mondiale intégrée, active dans le pétrole, le gaz, les énergies renouvelables et l’électricité, engagée dans la transition énergétique.</p><p style=\"margin:0;\"><strong>Historique : </strong>On travaille avec eux depuis 2023, on a commencé avec la filiale SE-GRP. <strong>On a eu 30 projets avec sur 3 ans avec 5 filiales différentes :</strong></p><ul><li><p style=\"margin:0;\">TotalEnergies Lubrifiants (68K - 4 projets dont 3 en 2024 et un petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Learning Solutions (33K - 2 factures pour 1 projet Onboarding en 2024, rien en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies One Tech SAS (117K - 4 gros projets en 2024 et 1 petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies SE - GRP (333K - 2 projets en 2023, 9 en 2024 et 3 en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Trading SA (8k - 1 projet en 2023)</p></li></ul><p style=\"margin:0;\">--&gt; C'est Cédric qui est le contact principal (chez nous)</p><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p><p style=\"margin:0;\"><strong>CA : </strong>560K sur 3 ans avec plus de 30 projets et 5 filiales</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Com. corporate, engagement, Com générale</p><p style=\"margin:0;\"><strong>Contact : </strong>En recherche des contacts principaux</p><p style=\"margin:0;\"><strong>Typologie des sujets : </strong>Beaucoup, en attente d'un résumé</p><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Total est un géant, le plus grand de tous nos clients. 102 887 employés, 993 filiales et 214M de CA. C'est également un de nos meilleurs clients, énorme potentiel pour la poursuite de la relation et le cross-sell au sein des entités avec lesquelles on travaille déjà</p><p style=\"margin:0;\">--&gt; Par contre on a une baisse de CA de 79% entre 2024 (357 487 EUR) et 2025 (75 084 EUR), soit 282 403 EUR de baisse. Comprendre pourquoi et mettre des actions en place pour retrouver le rythme de croisière de 2024.</p><p style=\"margin:0;\">--&gt; Enorme opportunité pour nous, reprendre notre relation avec eux.</p></div>",
-      "engagementEmails": 0,
-      "engagementCalls": 0,
+      "latestNoteDate": "2025-10-21T12:53:30.188Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "engagementEmails": 2,
+      "engagementCalls": 5,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 46,
+      "healthScore": 57,
       "segment": "Régulier",
       "segmentColor": "#2ecc71",
       "segmentPriority": 3,
@@ -902,7 +890,9 @@
       "companyIndustry": "LOGISTICS_AND_SUPPLY_CHAIN",
       "companyRevenue": 18700000000,
       "companyEmployees": 98000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        258851914962
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -917,7 +907,7 @@
       "notesMeetingKeywords": 0,
       "latestNoteDate": "2025-10-17T10:35:24.306Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Excellente</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>CEVA Logistics est une entreprise française spécialisée dans la logistique et la gestion de la chaîne d’approvisionnement à l’échelle mondiale, offrant transport, entreposage et solutions supply chain intégrées. Elle appartient à la CMA CGM</p><p style=\"margin:0;\"><strong>Historique : </strong>Laure Poty est une amie de Tony, on a eu beaucoup de Pitch avec elle et surtout une grosse vague de projets en 2023 nottament avec \"MySociabble\". 2-3 projets à 150K en 2023, il y a eu 2 gros projets en 2024 mais qui n'ont jamais aboutit, donc 0 en 2024 et 13K en 2025. Avec la démonstration de 2023 on sait qu'il peut y avoir du budget et des briefs porteur.</p><p style=\"margin:0;\"><strong>CA : </strong>170K en 3 ans</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Internal Communications / Brand Identity</p><p style=\"margin:0;\"><strong>Contact : </strong>Laure Poty (Global Head Internal Communications)</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">My Socciable - Gros projet à 90K en 2023</p></li><li><p style=\"margin:0;\">CEVA slides graphic et identitée visuel (2023)</p></li><li><p style=\"margin:0;\">CEVA Ways (2025)</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; CEVA est véritablement la fer de lance de la CMA CGM. Sur 55 milliards pour CMA CGM, CEVA en génère 20 milliards avec 60% des effectifs, soit 98 000 EUR. Donc c'est véritablement la filiale sur laquelle se concentrer.</p><p style=\"margin:0;\">--&gt; Essayer de flairer les projets comme MySociabble et peut être regarder dans d'autres BU les opportunités.</p></div>",
-      "engagementEmails": 4,
+      "engagementEmails": 5,
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
@@ -1034,7 +1024,9 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264196399312
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1090,10 +1082,10 @@
       "latestNoteDate": "2025-10-16T22:11:41.251Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Excellente</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>L’Oréal est un groupe français leader mondial des cosmétiques et de la beauté, présent dans plus de 150 pays avec un large portefeuille de marques couvrant le luxe, le grand public, la dermocosmétique et les produits professionnels.</p><p style=\"margin:0;\"><strong>Historique : </strong>L'Oréal est presque notre client historique. On travaille avec eux depuis quasiment le début, chaque année nous avons des dizaines de projets différents et la relation continue de s'épanouir. Là en 2025 le courbe de progression est énorme, + de 407K validés, environ 100K de projet en cours de validation et plus d'une quinzaine de projets lancés avec d'autre en process. Officiellement notre plus gros client sur 2025.</p><p style=\"margin:0;\">--&gt; C'est surtout Emmanuelle et Cédric qui gèrent L'Oréal</p><p style=\"margin:0;\"><strong>CA : </strong>Environ 950K sur 4 ans</p><p style=\"margin:0;\">-285K en 2022</p><p style=\"margin:0;\">-100K en 2023</p><p style=\"margin:0;\">-162K en 2024</p><p style=\"margin:0;\">-407K en 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Transformation / Talent Acquisition / Com Corporate / Onboarding / Incentive / Internal tools</p><p style=\"margin:0;\"><strong>Contact : </strong>Thomas Welsch / + 30</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Bubbles and Fit Magazine (2022)</p></li><li><p style=\"margin:0;\">Pépinière Week (2022)</p></li><li><p style=\"margin:0;\">Film Onboarding CPD (2022)</p></li><li><p style=\"margin:0;\">Candidate Experience (2022)</p></li><li><p style=\"margin:0;\">Création contenu CA&amp;E (2023)</p></li><li><p style=\"margin:0;\">Vidéo PEX dans nouveau hall HR (2023)</p></li><li><p style=\"margin:0;\">PULSE L'Oréal (2023)</p></li><li><p style=\"margin:0;\">PULSE Assets 2024</p></li><li><p style=\"margin:0;\">One Learning Launch (2024)</p></li><li><p style=\"margin:0;\">University Week (2024)</p></li><li><p style=\"margin:0;\">L'Oréal BA Step 1 and 2 (2024)</p></li><li><p style=\"margin:0;\">One Hub project (2025)</p></li><li><p style=\"margin:0;\">Connect Quarter (2025)</p></li><li><p style=\"margin:0;\">University Week (2025)</p></li><li><p style=\"margin:0;\">L'Oréal Best practices Project (2025)</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; L'Oréal c'est 88 000 employés, 43 milliards de chiffre d'affaire, plus de 37 marques et une présence mondiale avec une maison mère à Paris.</p><p style=\"margin:0;\">--&gt; Aujourd'hui on travaille de manière régulière avec la France. L'opportunité réside dans les pays anglophones comme le Canada dans lequel nous pourrions lancer des missions et être référencé.</p><p style=\"margin:0;\">--&gt; Egalement vu le nombre de missions que nous faisons chez eux regarder la possibilité de faire un contrat cadre pour 2026.</p></div>",
       "engagementEmails": 182,
-      "engagementCalls": 3,
+      "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 92,
+      "healthScore": 96,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -1197,7 +1189,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1362,12 +1356,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1507,10 +1496,10 @@
       "latestNoteDate": "2025-10-16T22:11:41.251Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Excellente</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>L’Oréal est un groupe français leader mondial des cosmétiques et de la beauté, présent dans plus de 150 pays avec un large portefeuille de marques couvrant le luxe, le grand public, la dermocosmétique et les produits professionnels.</p><p style=\"margin:0;\"><strong>Historique : </strong>L'Oréal est presque notre client historique. On travaille avec eux depuis quasiment le début, chaque année nous avons des dizaines de projets différents et la relation continue de s'épanouir. Là en 2025 le courbe de progression est énorme, + de 407K validés, environ 100K de projet en cours de validation et plus d'une quinzaine de projets lancés avec d'autre en process. Officiellement notre plus gros client sur 2025.</p><p style=\"margin:0;\">--&gt; C'est surtout Emmanuelle et Cédric qui gèrent L'Oréal</p><p style=\"margin:0;\"><strong>CA : </strong>Environ 950K sur 4 ans</p><p style=\"margin:0;\">-285K en 2022</p><p style=\"margin:0;\">-100K en 2023</p><p style=\"margin:0;\">-162K en 2024</p><p style=\"margin:0;\">-407K en 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Transformation / Talent Acquisition / Com Corporate / Onboarding / Incentive / Internal tools</p><p style=\"margin:0;\"><strong>Contact : </strong>Thomas Welsch / + 30</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Bubbles and Fit Magazine (2022)</p></li><li><p style=\"margin:0;\">Pépinière Week (2022)</p></li><li><p style=\"margin:0;\">Film Onboarding CPD (2022)</p></li><li><p style=\"margin:0;\">Candidate Experience (2022)</p></li><li><p style=\"margin:0;\">Création contenu CA&amp;E (2023)</p></li><li><p style=\"margin:0;\">Vidéo PEX dans nouveau hall HR (2023)</p></li><li><p style=\"margin:0;\">PULSE L'Oréal (2023)</p></li><li><p style=\"margin:0;\">PULSE Assets 2024</p></li><li><p style=\"margin:0;\">One Learning Launch (2024)</p></li><li><p style=\"margin:0;\">University Week (2024)</p></li><li><p style=\"margin:0;\">L'Oréal BA Step 1 and 2 (2024)</p></li><li><p style=\"margin:0;\">One Hub project (2025)</p></li><li><p style=\"margin:0;\">Connect Quarter (2025)</p></li><li><p style=\"margin:0;\">University Week (2025)</p></li><li><p style=\"margin:0;\">L'Oréal Best practices Project (2025)</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; L'Oréal c'est 88 000 employés, 43 milliards de chiffre d'affaire, plus de 37 marques et une présence mondiale avec une maison mère à Paris.</p><p style=\"margin:0;\">--&gt; Aujourd'hui on travaille de manière régulière avec la France. L'opportunité réside dans les pays anglophones comme le Canada dans lequel nous pourrions lancer des missions et être référencé.</p><p style=\"margin:0;\">--&gt; Egalement vu le nombre de missions que nous faisons chez eux regarder la possibilité de faire un contrat cadre pour 2026.</p></div>",
       "engagementEmails": 182,
-      "engagementCalls": 3,
+      "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 85,
+      "healthScore": 89,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -1532,7 +1521,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1615,7 +1606,9 @@
       "companyRevenue": 4142119000,
       "companyEmployees": 11000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        235541582066
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1738,12 +1731,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1866,37 +1854,29 @@
       "companyRevenue": 280999000000,
       "companyEmployees": 100000,
       "companyParentIds": [],
-      "companyChildIds": [
-        226897211627,
-        226920490173,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 3,
-      "notesAvgLength": 1233,
+      "totalNotes": 6,
+      "notesAvgLength": 1877,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-10T08:50:23.724Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Normale </strong></p><p style=\"margin:0;\"><strong>Intro : </strong>TotalEnergies est une entreprise énergétique mondiale intégrée, active dans le pétrole, le gaz, les énergies renouvelables et l’électricité, engagée dans la transition énergétique.</p><p style=\"margin:0;\"><strong>Historique : </strong>On travaille avec eux depuis 2023, on a commencé avec la filiale SE-GRP. <strong>On a eu 30 projets avec sur 3 ans avec 5 filiales différentes :</strong></p><ul><li><p style=\"margin:0;\">TotalEnergies Lubrifiants (68K - 4 projets dont 3 en 2024 et un petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Learning Solutions (33K - 2 factures pour 1 projet Onboarding en 2024, rien en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies One Tech SAS (117K - 4 gros projets en 2024 et 1 petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies SE - GRP (333K - 2 projets en 2023, 9 en 2024 et 3 en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Trading SA (8k - 1 projet en 2023)</p></li></ul><p style=\"margin:0;\">--&gt; C'est Cédric qui est le contact principal (chez nous)</p><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p><p style=\"margin:0;\"><strong>CA : </strong>560K sur 3 ans avec plus de 30 projets et 5 filiales</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Com. corporate, engagement, Com générale</p><p style=\"margin:0;\"><strong>Contact : </strong>En recherche des contacts principaux</p><p style=\"margin:0;\"><strong>Typologie des sujets : </strong>Beaucoup, en attente d'un résumé</p><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Total est un géant, le plus grand de tous nos clients. 102 887 employés, 993 filiales et 214M de CA. C'est également un de nos meilleurs clients, énorme potentiel pour la poursuite de la relation et le cross-sell au sein des entités avec lesquelles on travaille déjà</p><p style=\"margin:0;\">--&gt; Par contre on a une baisse de CA de 79% entre 2024 (357 487 EUR) et 2025 (75 084 EUR), soit 282 403 EUR de baisse. Comprendre pourquoi et mettre des actions en place pour retrouver le rythme de croisière de 2024.</p><p style=\"margin:0;\">--&gt; Enorme opportunité pour nous, reprendre notre relation avec eux.</p></div>",
-      "engagementEmails": 0,
-      "engagementCalls": 0,
+      "latestNoteDate": "2025-10-21T12:53:30.188Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "engagementEmails": 2,
+      "engagementCalls": 5,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 58,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 69,
+      "segment": "Clé",
+      "segmentColor": "#3498db",
+      "segmentPriority": 2,
+      "segmentReason": "CA 128k€, relation stable",
       "year": 2023
     },
     {
@@ -1915,7 +1895,9 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1930,7 +1912,7 @@
       "latestNoteDate": "2025-10-21T09:28:12.775Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Coordonnées</span></span></span></span></h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:caroline.guillaumin@orange.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">caroline.guillaumin@orange.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 41 33 07 11\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 41 33 07 11</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 18 18 06 18\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 18 18 06 18</span></span></a></p><img src=\"https://app.nomination.fr/assets/images/icon/certificate.png\" width=\"12\" height=\"16\"><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul><h5><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Orange</span></span></span></span></h5><p style=\"margin:0;\"><span style=\"color: rgb(205, 201, 194);\"><span style=\"font-size: 14px;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">111 quai du Président Roosevelt<br>Bridge Orange</span></span></span></span></p></div></div>",
       "engagementEmails": 24,
-      "engagementCalls": 4,
+      "engagementCalls": 5,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
       "healthScore": 45,
@@ -2038,7 +2020,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2389,10 +2374,10 @@
       "latestNoteDate": "2025-10-16T22:11:41.251Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Excellente</strong></p><p style=\"margin:0;\"><strong>Intro : </strong>L’Oréal est un groupe français leader mondial des cosmétiques et de la beauté, présent dans plus de 150 pays avec un large portefeuille de marques couvrant le luxe, le grand public, la dermocosmétique et les produits professionnels.</p><p style=\"margin:0;\"><strong>Historique : </strong>L'Oréal est presque notre client historique. On travaille avec eux depuis quasiment le début, chaque année nous avons des dizaines de projets différents et la relation continue de s'épanouir. Là en 2025 le courbe de progression est énorme, + de 407K validés, environ 100K de projet en cours de validation et plus d'une quinzaine de projets lancés avec d'autre en process. Officiellement notre plus gros client sur 2025.</p><p style=\"margin:0;\">--&gt; C'est surtout Emmanuelle et Cédric qui gèrent L'Oréal</p><p style=\"margin:0;\"><strong>CA : </strong>Environ 950K sur 4 ans</p><p style=\"margin:0;\">-285K en 2022</p><p style=\"margin:0;\">-100K en 2023</p><p style=\"margin:0;\">-162K en 2024</p><p style=\"margin:0;\">-407K en 2025</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Transformation / Talent Acquisition / Com Corporate / Onboarding / Incentive / Internal tools</p><p style=\"margin:0;\"><strong>Contact : </strong>Thomas Welsch / + 30</p><p style=\"margin:0;\"><strong>Typologie des sujets :</strong></p><ul><li><p style=\"margin:0;\">Bubbles and Fit Magazine (2022)</p></li><li><p style=\"margin:0;\">Pépinière Week (2022)</p></li><li><p style=\"margin:0;\">Film Onboarding CPD (2022)</p></li><li><p style=\"margin:0;\">Candidate Experience (2022)</p></li><li><p style=\"margin:0;\">Création contenu CA&amp;E (2023)</p></li><li><p style=\"margin:0;\">Vidéo PEX dans nouveau hall HR (2023)</p></li><li><p style=\"margin:0;\">PULSE L'Oréal (2023)</p></li><li><p style=\"margin:0;\">PULSE Assets 2024</p></li><li><p style=\"margin:0;\">One Learning Launch (2024)</p></li><li><p style=\"margin:0;\">University Week (2024)</p></li><li><p style=\"margin:0;\">L'Oréal BA Step 1 and 2 (2024)</p></li><li><p style=\"margin:0;\">One Hub project (2025)</p></li><li><p style=\"margin:0;\">Connect Quarter (2025)</p></li><li><p style=\"margin:0;\">University Week (2025)</p></li><li><p style=\"margin:0;\">L'Oréal Best practices Project (2025)</p></li></ul><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; L'Oréal c'est 88 000 employés, 43 milliards de chiffre d'affaire, plus de 37 marques et une présence mondiale avec une maison mère à Paris.</p><p style=\"margin:0;\">--&gt; Aujourd'hui on travaille de manière régulière avec la France. L'opportunité réside dans les pays anglophones comme le Canada dans lequel nous pourrions lancer des missions et être référencé.</p><p style=\"margin:0;\">--&gt; Egalement vu le nombre de missions que nous faisons chez eux regarder la possibilité de faire un contrat cadre pour 2026.</p></div>",
       "engagementEmails": 182,
-      "engagementCalls": 3,
+      "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 92,
+      "healthScore": 96,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -2500,7 +2485,9 @@
       "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 389000,
       "companyEmployees": 1250,
-      "companyParentIds": [],
+      "companyParentIds": [
+        263633128688
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2665,7 +2652,9 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2680,7 +2669,7 @@
       "latestNoteDate": "2025-10-21T09:28:12.775Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Coordonnées</span></span></span></span></h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:caroline.guillaumin@orange.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">caroline.guillaumin@orange.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 41 33 07 11\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 41 33 07 11</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 18 18 06 18\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 18 18 06 18</span></span></a></p><img src=\"https://app.nomination.fr/assets/images/icon/certificate.png\" width=\"12\" height=\"16\"><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul><h5><span style=\"color: rgb(232, 230, 227);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">Orange</span></span></span></span></h5><p style=\"margin:0;\"><span style=\"color: rgb(205, 201, 194);\"><span style=\"font-size: 14px;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: &quot;Fira Sans&quot;;\">111 quai du Président Roosevelt<br>Bridge Orange</span></span></span></span></p></div></div>",
       "engagementEmails": 24,
-      "engagementCalls": 4,
+      "engagementCalls": 5,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
       "healthScore": 70,
@@ -2791,37 +2780,29 @@
       "companyRevenue": 280999000000,
       "companyEmployees": 100000,
       "companyParentIds": [],
-      "companyChildIds": [
-        226897211627,
-        226920490173,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 3,
-      "notesAvgLength": 1233,
+      "totalNotes": 6,
+      "notesAvgLength": 1877,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-10T08:50:23.724Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\"><strong>Relation : Normale </strong></p><p style=\"margin:0;\"><strong>Intro : </strong>TotalEnergies est une entreprise énergétique mondiale intégrée, active dans le pétrole, le gaz, les énergies renouvelables et l’électricité, engagée dans la transition énergétique.</p><p style=\"margin:0;\"><strong>Historique : </strong>On travaille avec eux depuis 2023, on a commencé avec la filiale SE-GRP. <strong>On a eu 30 projets avec sur 3 ans avec 5 filiales différentes :</strong></p><ul><li><p style=\"margin:0;\">TotalEnergies Lubrifiants (68K - 4 projets dont 3 en 2024 et un petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Learning Solutions (33K - 2 factures pour 1 projet Onboarding en 2024, rien en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies One Tech SAS (117K - 4 gros projets en 2024 et 1 petit en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies SE - GRP (333K - 2 projets en 2023, 9 en 2024 et 3 en 2025)</p></li><li><p style=\"margin:0;\">TotalEnergies Trading SA (8k - 1 projet en 2023)</p></li></ul><p style=\"margin:0;\">--&gt; C'est Cédric qui est le contact principal (chez nous)</p><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p><p style=\"margin:0;\"><strong>CA : </strong>560K sur 3 ans avec plus de 30 projets et 5 filiales</p><p style=\"margin:0;\"><strong>BU concerné : </strong>Com. corporate, engagement, Com générale</p><p style=\"margin:0;\"><strong>Contact : </strong>En recherche des contacts principaux</p><p style=\"margin:0;\"><strong>Typologie des sujets : </strong>Beaucoup, en attente d'un résumé</p><p style=\"margin:0;\"><strong>Potentiel Développement :</strong></p><p style=\"margin:0;\">--&gt; Total est un géant, le plus grand de tous nos clients. 102 887 employés, 993 filiales et 214M de CA. C'est également un de nos meilleurs clients, énorme potentiel pour la poursuite de la relation et le cross-sell au sein des entités avec lesquelles on travaille déjà</p><p style=\"margin:0;\">--&gt; Par contre on a une baisse de CA de 79% entre 2024 (357 487 EUR) et 2025 (75 084 EUR), soit 282 403 EUR de baisse. Comprendre pourquoi et mettre des actions en place pour retrouver le rythme de croisière de 2024.</p><p style=\"margin:0;\">--&gt; Enorme opportunité pour nous, reprendre notre relation avec eux.</p></div>",
-      "engagementEmails": 0,
-      "engagementCalls": 0,
+      "latestNoteDate": "2025-10-21T12:53:30.188Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "engagementEmails": 2,
+      "engagementCalls": 5,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 58,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 69,
+      "segment": "Clé",
+      "segmentColor": "#3498db",
+      "segmentPriority": 2,
+      "segmentReason": "CA 93k€, relation stable",
       "year": 2022
     },
     {
@@ -2962,7 +2943,9 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3003,7 +2986,9 @@
       "companyIndustry": "Client",
       "companyRevenue": 0,
       "companyEmployees": 0,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220607386866
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3045,7 +3030,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3838,7 +3826,9 @@
       "employees": 140000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264581201087
+      ]
     },
     "220587794626": {
       "id": "220587794626",
@@ -3970,12 +3960,7 @@
       "employees": 272367,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ]
+      "childCompanyIds": []
     },
     "220593095921": {
       "id": "220593095921",
@@ -4019,7 +4004,9 @@
       "employees": 49000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        225530064080
+      ]
     },
     "220598428890": {
       "id": "220598428890",
@@ -4228,9 +4215,7 @@
       "employees": 124600,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226458090717
-      ]
+      "childCompanyIds": []
     },
     "220607386867": {
       "id": "220607386867",
@@ -4307,7 +4292,15 @@
       "employees": 170158,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090741,
+        226897212603,
+        226964007134,
+        234978104516,
+        234978104524,
+        234988938452,
+        234992537829
+      ]
     },
     "220609174728": {
       "id": "220609174728",
@@ -4362,7 +4355,10 @@
       "employees": 130000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226907993318,
+        226922255599
+      ]
     },
     "220610910446": {
       "id": "220610910446",
@@ -4750,7 +4746,9 @@
       "employees": 83100,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        245933664460
+      ]
     },
     "226285019338": {
       "id": "226285019338",
@@ -5706,7 +5704,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220607386866
+      ],
       "childCompanyIds": []
     },
     "226458090718": {
@@ -5838,9 +5838,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090731": {
@@ -5928,7 +5926,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -5968,9 +5968,9 @@
       "id": "226458090743",
       "name": "Naarea",
       "domain": "naarea.fr",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6089,9 +6089,9 @@
       "id": "226458091720",
       "name": "Axelife",
       "domain": "axelife.com",
-      "industry": "PROSPECT",
+      "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6291,7 +6291,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226622786748": {
@@ -7039,7 +7041,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "29926733",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226897211599": {
@@ -7204,7 +7208,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226897211614": {
@@ -7468,9 +7474,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897212606": {
@@ -7778,7 +7782,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226907993319": {
@@ -8042,7 +8048,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220593061109
+      ],
       "childCompanyIds": []
     },
     "226909763783": {
@@ -8416,7 +8424,9 @@
       "revenue": 0,
       "employees": 220,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "226909763826": {
@@ -8500,9 +8510,9 @@
       "id": "226911567071",
       "name": "Le Jardin de Rabelais",
       "domain": "lejardinderabelais.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8515,7 +8525,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226911567073": {
@@ -9094,9 +9106,9 @@
       "id": "226913359060",
       "name": "Midipile Mobility",
       "domain": "midipile.eu",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10176,7 +10188,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "226920490174": {
@@ -10194,9 +10208,9 @@
       "id": "226920490175",
       "name": "Dalkia Air Solutions (EDF)",
       "domain": "dalkiaairsolutions.fr",
-      "industry": "PROSPECT",
+      "industry": "MECHANICAL_OR_INDUSTRIAL_ENGINEERING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [
         231316462780
@@ -10475,7 +10489,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226922255601": {
@@ -10751,7 +10767,10 @@
       "employees": 68000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235511680221,
+        235592339679
+      ]
     },
     "226922256593": {
       "id": "226922256593",
@@ -11876,9 +11895,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007115": {
@@ -11889,7 +11906,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "226964007116": {
@@ -12017,9 +12036,9 @@
       "id": "226964007128",
       "name": "Maître Coq (Groupe LDC)",
       "domain": "maitrecoq.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12087,9 +12106,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007136": {
@@ -12694,7 +12711,9 @@
       "revenue": 163180400000,
       "employees": 8279,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226965808366": {
@@ -13519,7 +13538,9 @@
       "revenue": 21707870000,
       "employees": 21280,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "230031576306": {
@@ -13683,9 +13704,9 @@
       "id": "230755656923",
       "name": "Orion",
       "domain": "orion.fi",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "industry": "PHARMACEUTICALS",
+      "revenue": 1267808000,
+      "employees": 3364,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13908,7 +13929,9 @@
       "employees": 17000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264196399312
+      ]
     },
     "231943344369": {
       "id": "231943344369",
@@ -13963,7 +13986,10 @@
       "employees": 81000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226909763825,
+        257087531219
+      ]
     },
     "232131152083": {
       "id": "232131152083",
@@ -13973,7 +13999,9 @@
       "revenue": 14000000000,
       "employees": 52000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "232131152093": {
@@ -13996,15 +14024,7 @@
       "employees": 100000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226897211627,
-        226920490173,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ]
+      "childCompanyIds": []
     },
     "233094730995": {
       "id": "233094730995",
@@ -15125,16 +15145,18 @@
       "revenue": 0,
       "employees": 130,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234978104517": {
       "id": "234978104517",
       "name": "Culligan France",
       "domain": "culligan.fr",
-      "industry": "PROSPECT",
+      "industry": "UTILITIES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15213,18 +15235,16 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234978104525": {
       "id": "234978104525",
       "name": "Groupe SFPI",
       "domain": "france-fermetures.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15849,9 +15869,9 @@
       "id": "234981703928",
       "name": "Cérience (Terrena)",
       "domain": "cerience.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16680,7 +16700,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234992537830": {
@@ -17072,9 +17094,9 @@
       "id": "234994338028",
       "name": "Summit Cosmetics Europe",
       "domain": "summitcosmetics-europe.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17847,7 +17869,11 @@
       "employees": 21505,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226907993332,
+        226964007115,
+        235010292940
+      ]
     },
     "234999737588": {
       "id": "234999737588",
@@ -19325,12 +19351,12 @@
     },
     "235012095188": {
       "id": "235012095188",
-      "name": "AS 24 (TotalEnergies)",
+      "name": "AS 24",
       "domain": "as24.com",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
-      "ownerId": "",
+      "industry": "OIL_ENERGY",
+      "revenue": 280999000000,
+      "employees": 390,
+      "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
@@ -20839,9 +20865,7 @@
       "employees": 1664,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        235724247236
-      ]
+      "childCompanyIds": []
     },
     "235052258499": {
       "id": "235052258499",
@@ -21006,7 +21030,9 @@
       "employees": 34000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        230072877254
+      ]
     },
     "235137799405": {
       "id": "235137799405",
@@ -21111,9 +21137,9 @@
       "id": "235504326855",
       "name": "CAUDALIE",
       "domain": "caudalie.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 936,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21577,7 +21603,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260804494551
+      ],
       "childCompanyIds": []
     },
     "235542906101": {
@@ -21617,9 +21645,9 @@
       "id": "235543402711",
       "name": "H.T.S. BIO",
       "domain": "htsbio.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22435,9 +22463,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        226922256592
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235592339680": {
@@ -23900,9 +23926,7 @@
       "revenue": 26320000000,
       "employees": 75,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        226958605515
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "239539797219": {
@@ -24487,7 +24511,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "257704494304": {
@@ -24498,9 +24524,7 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258156739774": {
@@ -24579,7 +24603,9 @@
       "revenue": 18700000000,
       "employees": 98000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        258851914962
+      ],
       "childCompanyIds": []
     },
     "258851914962": {
@@ -24615,7 +24641,9 @@
       "employees": 11000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235541582066
+      ]
     },
     "261317506283": {
       "id": "261317506283",
@@ -24680,7 +24708,9 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "262224529637": {
@@ -24704,7 +24734,9 @@
       "revenue": 389000,
       "employees": 1250,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        263633128688
+      ],
       "childCompanyIds": []
     },
     "262613919992": {
@@ -24715,7 +24747,9 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "262613925050": {
@@ -24770,7 +24804,9 @@
       "revenue": 75000000,
       "employees": 570,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        263633128688
+      ],
       "childCompanyIds": []
     },
     "263431222517": {
@@ -24781,7 +24817,9 @@
       "revenue": 90061920000,
       "employees": 1521,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "263434090717": {
@@ -24817,7 +24855,11 @@
       "employees": 6000,
       "ownerId": "29974261",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        262469511370,
+        263425988855,
+        263434090717
+      ]
     },
     "263648066783": {
       "id": "263648066783",
@@ -24860,9 +24902,7 @@
       "revenue": 19669000,
       "employees": 7500,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        231943343327
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204131577": {
@@ -24873,7 +24913,9 @@
       "revenue": 30000000,
       "employees": 450,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        230109082847
+      ],
       "childCompanyIds": []
     },
     "264204846315": {
@@ -24884,7 +24926,9 @@
       "revenue": 19500000000,
       "employees": 4000,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260128816334
+      ],
       "childCompanyIds": []
     },
     "264204852443": {
@@ -24928,7 +24972,9 @@
       "revenue": 15794000000,
       "employees": 3000,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220612714702
+      ],
       "childCompanyIds": []
     },
     "264240320709": {
@@ -24972,9 +25018,7 @@
       "revenue": 1700000000,
       "employees": 33300,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        230109082847
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264678063300": {
@@ -25008,9 +25052,7 @@
       "employees": 32500,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        265788546273
-      ]
+      "childCompanyIds": []
     },
     "265787828441": {
       "id": "265787828441",
@@ -25061,7 +25103,7 @@
     "totalOwners": 11,
     "totalCompanies": 1962,
     "totalDeals": 81,
-    "totalRelations": 44,
+    "totalRelations": 73,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 1,
