@@ -4794,13 +4794,16 @@ function renderSegmentationTable() {
 
       console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
 
-      if (rowType === 'group') {
-        console.log(`🔄 TOGGLE groupe ${rowIndex}`);
+      // Si c'est un groupe ET qu'on clique sur l'icône expand → toggle uniquement
+      if (rowType === 'group' && event.target.classList.contains('expand-icon')) {
+        console.log(`🔄 TOGGLE groupe ${rowIndex} (clic sur icône)`);
         toggleGroup(rowIndex);
-      } else {
-        console.log(`📋 Détails client ${rowIndex}`);
-        showClientDetails(rowIndex);
+        return;  // Ne pas ouvrir les détails
       }
+
+      // Sinon, ouvrir les détails (même pour les groupes si on ne clique pas sur l'icône)
+      console.log(`📋 Détails client ${rowIndex}`);
+      showClientDetails(rowIndex);
     });
   });
 
