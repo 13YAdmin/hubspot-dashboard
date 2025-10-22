@@ -5275,7 +5275,20 @@ function renderWhiteSpaces() {
 
             // Si le secteur est vide ou est un lifecycle stage, essayer de récupérer depuis le parent
             if (!sector || lifecycleStages.includes(sector)) {
-              sector = company.industry || parentDeal?.industry || 'Non spécifié';
+              // Vérifier le secteur du parent (company)
+              let parentSector = company.industry || '';
+
+              // Si le parent a aussi un lifecycle stage comme secteur, essayer depuis parentDeal
+              if (!parentSector || lifecycleStages.includes(parentSector)) {
+                parentSector = parentDeal?.industry || 'Non spécifié';
+
+                // Si parentDeal a aussi un lifecycle stage, mettre "Non spécifié"
+                if (lifecycleStages.includes(parentSector)) {
+                  parentSector = 'Non spécifié';
+                }
+              }
+
+              sector = parentSector;
               console.log(`     → Secteur filiale vide/invalide ("${childCompany.industry}"), utilisation secteur parent: ${sector}`);
             }
 
