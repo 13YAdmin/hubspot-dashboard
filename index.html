@@ -4802,14 +4802,14 @@ function renderSegmentationTable() {
 
       console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
 
-      // Si c'est un groupe ET qu'on clique sur l'icône expand → toggle uniquement
-      if (rowType === 'group' && event.target.classList.contains('expand-icon')) {
-        console.log(`🔄 TOGGLE groupe ${rowIndex} (clic sur icône)`);
+      // Si c'est un groupe → UNIQUEMENT toggle (pas de détails pour les groupes)
+      if (rowType === 'group') {
+        console.log(`🔄 TOGGLE groupe ${rowIndex}`);
         toggleGroup(rowIndex);
-        return;  // Ne pas ouvrir les détails
+        return;
       }
 
-      // Sinon, ouvrir les détails (même pour les groupes si on ne clique pas sur l'icône)
+      // Pour les enfants et standalone → ouvrir les détails
       console.log(`📋 Détails client ${rowIndex}`);
       showClientDetails(rowIndex);
     });
@@ -5580,26 +5580,34 @@ function renderWhiteSpacesTable(whiteSpaces) {
     });
   });
 
-  // Attacher les event listeners pour les en-têtes (tri)
+  // Attacher les event listeners pour les en-têtes (tri) UNE SEULE FOIS
   const headers = tbody.parentElement.querySelectorAll('th[data-sort-key]');
-  headers.forEach(header => {
-    header.addEventListener('click', function() {
-      const sortKey = this.getAttribute('data-sort-key');
 
-      // Toggle direction si même colonne, sinon reset à desc
-      if (window.whiteSpacesSortState.key === sortKey) {
-        window.whiteSpacesSortState.direction = window.whiteSpacesSortState.direction === 'asc' ? 'desc' : 'asc';
-      } else {
-        window.whiteSpacesSortState.key = sortKey;
-        window.whiteSpacesSortState.direction = 'desc';
-      }
+  // Vérifier si les listeners sont déjà attachés (éviter les doublons)
+  if (!window.whiteSpacesHeadersInitialized) {
+    console.log('🔧 Initialisation listeners headers White Spaces (première fois uniquement)');
 
-      console.log(`📊 Tri White Spaces: ${sortKey} ${window.whiteSpacesSortState.direction}`);
+    headers.forEach(header => {
+      header.addEventListener('click', function() {
+        const sortKey = this.getAttribute('data-sort-key');
 
-      // Re-trier et re-rendre
-      renderWhiteSpacesTable();
+        // Toggle direction si même colonne, sinon reset à desc
+        if (window.whiteSpacesSortState.key === sortKey) {
+          window.whiteSpacesSortState.direction = window.whiteSpacesSortState.direction === 'asc' ? 'desc' : 'asc';
+        } else {
+          window.whiteSpacesSortState.key = sortKey;
+          window.whiteSpacesSortState.direction = 'desc';
+        }
+
+        console.log(`📊 Tri White Spaces: ${sortKey} ${window.whiteSpacesSortState.direction}`);
+
+        // Re-trier et re-rendre
+        renderWhiteSpacesTable();
+      });
     });
-  });
+
+    window.whiteSpacesHeadersInitialized = true;
+  }
 
   // Mettre à jour les indicateurs de tri
   headers.forEach(header => {
