@@ -9,12 +9,13 @@ name: 🤖 Boucle Vertueuse Autonome
 
 on:
   schedule:
-    # Toutes les 6 heures (plus fréquent que le fetch HubSpot)
+    # Toutes les 6 heures
     - cron: '0 */6 * * *'
   workflow_dispatch:  # Permet lancement manuel
-  push:
-    branches:
-      - main
+  # NOTE: push: main retiré pour éviter conflit avec fetch-hubspot-data.yml
+  # Le workflow tourne uniquement:
+  # - Toutes les 6 heures (automatique)
+  # - Manuellement (workflow_dispatch)
   pull_request:
     branches:
       - main
@@ -317,7 +318,7 @@ jobs:
 
           if [ -n "$(git status --porcelain)" ]; then
             git add STATUS-AUTO.md
-            git commit -m "docs: Mise à jour automatique documentation par Boucle Vertueuse
+            git commit -m "docs: Mise à jour automatique documentation [skip ci]
 
             🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
@@ -330,12 +331,14 @@ jobs:
             echo "ℹ️  Pas de changement dans la documentation"
           fi
 
-  # JOB 5: DÉPLOIEMENT (si tests passent)
+  # JOB 5: DÉPLOIEMENT (DÉSACTIVÉ - géré par fetch-hubspot-data.yml)
+  # NOTE: Le déploiement est géré par le workflow principal fetch-hubspot-data.yml
+  # qui synchronise les données HubSpot ET déploie. Pas besoin de déployer 2 fois.
   deploy:
     name: 🚀 Déploiement Automatique
     runs-on: ubuntu-latest
     needs: [test, update-docs]
-    if: needs.test.result == 'success'
+    if: false  # Désactivé pour éviter conflit avec fetch-hubspot-data.yml
 
     permissions:
       contents: write
@@ -371,7 +374,7 @@ jobs:
   report:
     name: 📊 Rapport Final
     runs-on: ubuntu-latest
-    needs: [audit, auto-fix, test, update-docs, deploy]
+    needs: [audit, auto-fix, test, update-docs]  # deploy retiré car désactivé
     if: always()
 
     steps:
