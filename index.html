@@ -4706,8 +4706,8 @@ function renderSegmentationTable() {
 
     if (isGroup) {
       rowClass = `group-row ${client.isExpanded ? 'expanded' : ''}`;
-      rowOnClick = `showClientDetails(${idx})`; // Par défaut ouvre détails
-      expandIcon = `<span class="expand-icon" data-action="toggle" data-row-index="${idx}" style="cursor: pointer; padding: 4px 8px; margin-right: 6px; display: inline-block; user-select: none;">${client.isExpanded ? '▼' : '▶'}</span>`;
+      rowOnClick = `toggleGroup(${idx})`;
+      expandIcon = `<span class="expand-icon">${client.isExpanded ? '▼' : '▶'}</span>`;
     } else if (isChild) {
       rowClass = 'child-row';
       // Si c'est un white space (filiale sans deals/prospect)
@@ -4802,29 +4802,15 @@ function renderSegmentationTable() {
 
       console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
 
-      // Vérifier si on a cliqué sur l'icône toggle ou un de ses enfants
-      let clickedElement = event.target;
-      let isToggleClick = false;
-
-      // Remonter jusqu'à 3 niveaux pour trouver data-action="toggle"
-      for (let i = 0; i < 3 && clickedElement; i++) {
-        if (clickedElement.getAttribute && clickedElement.getAttribute('data-action') === 'toggle') {
-          isToggleClick = true;
-          break;
-        }
-        clickedElement = clickedElement.parentElement;
-      }
-
-      // Si clic sur toggle → toggle uniquement
-      if (isToggleClick && rowType === 'group') {
-        console.log(`🔄 TOGGLE groupe ${rowIndex} (clic sur icône)`);
-        event.stopPropagation(); // Empêcher la propagation
+      // Si c'est un groupe → UNIQUEMENT toggle (pas de détails pour les groupes)
+      if (rowType === 'group') {
+        console.log(`🔄 TOGGLE groupe ${rowIndex}`);
         toggleGroup(rowIndex);
         return;
       }
 
-      // Sinon → ouvrir les détails (pour tout type: group, child, standalone)
-      console.log(`📋 Détails ${rowType} ${rowIndex}`);
+      // Pour les enfants et standalone → ouvrir les détails
+      console.log(`📋 Détails client ${rowIndex}`);
       showClientDetails(rowIndex);
     });
   });
