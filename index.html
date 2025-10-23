@@ -1784,9 +1784,9 @@ function renderDashboard() {
 // ============================================================================
 function renderKPIs() {
   const totalRevenue = processedData.reduce((sum, c) => sum + c.totalRevenue, 0);
+  const revenue2025 = processedData.reduce((sum, c) => sum + c.years['2025'], 0);
   const revenue2024 = processedData.reduce((sum, c) => sum + c.years['2024'], 0);
-  const revenue2023 = processedData.reduce((sum, c) => sum + c.years['2023'], 0);
-  const growth = revenue2023 > 0 ? ((revenue2024 - revenue2023) / revenue2023 * 100) : 0;
+  const growth = revenue2024 > 0 ? ((revenue2025 - revenue2024) / revenue2024 * 100) : 0;
 
   const avgDeal = totalRevenue / processedData.reduce((sum, c) => sum + c.dealCount, 0);
 
@@ -1800,8 +1800,8 @@ function renderKPIs() {
       change: null
     },
     {
-      label: 'CA 2024',
-      value: formatCurrency(revenue2024),
+      label: 'CA 2025',
+      value: formatCurrency(revenue2025),
       change: { value: growth.toFixed(1) + '%', positive: growth >= 0 }
     },
     {
@@ -1818,7 +1818,7 @@ function renderKPIs() {
 
   const kpiData = {
     'CA Total': { value: totalRevenue, context: 'total' },
-    'CA 2024': { value: revenue2024, context: '2024', growth },
+    'CA 2025': { value: revenue2025, context: '2025', growth },
     'Nombre de Clients': { value: processedData.length, context: 'clients' },
     'Ticket Moyen': { value: avgDeal, context: 'ticket' }
   };
@@ -1871,10 +1871,10 @@ function showKPIDetails(label, data) {
       `;
       break;
 
-    case '2024':
-      const top5_2024 = processedData
-        .filter(c => c.years['2024'] > 0)
-        .sort((a, b) => b.years['2024'] - a.years['2024'])
+    case '2025':
+      const top5_2025 = processedData
+        .filter(c => c.years['2025'] > 0)
+        .sort((a, b) => b.years['2025'] - a.years['2025'])
         .slice(0, 5);
 
       content = `
@@ -1882,22 +1882,22 @@ function showKPIDetails(label, data) {
           <div style="font-size: 24px; font-weight: 800; color: var(--accent);">
             ${formatCurrency(data.value)}
           </div>
-          <div style="color: var(--text-muted); font-size: 13px;">Chiffre d'affaires 2024</div>
+          <div style="color: var(--text-muted); font-size: 13px;">Chiffre d'affaires 2025</div>
         </div>
 
         <div class="info-row">
-          <span class="info-label">Croissance vs 2023</span>
+          <span class="info-label">Croissance vs 2024</span>
           <span class="info-value" style="color: ${data.growth >= 0 ? 'var(--green)' : 'var(--red)'}">
             ${data.growth >= 0 ? '+' : ''}${data.growth.toFixed(1)}%
           </span>
         </div>
 
         <div style="margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--border);">
-          <div style="color: var(--accent); font-weight: 700; margin-bottom: 12px;">Top 5 Clients 2024</div>
-          ${top5_2024.map((c, i) => `
+          <div style="color: var(--accent); font-weight: 700; margin-bottom: 12px;">Top 5 Clients 2025</div>
+          ${top5_2025.map((c, i) => `
             <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border);">
               <span>${i + 1}. ${c.name}</span>
-              <span style="color: var(--green); font-weight: 700;">${formatCurrency(c.years['2024'])}</span>
+              <span style="color: var(--green); font-weight: 700;">${formatCurrency(c.years['2025'])}</span>
             </div>
           `).join('')}
         </div>
@@ -4706,8 +4706,8 @@ function renderSegmentationTable() {
 
     if (isGroup) {
       rowClass = `group-row ${client.isExpanded ? 'expanded' : ''}`;
-      rowOnClick = `toggleGroup(${idx})`;
-      expandIcon = `<span class="expand-icon">${client.isExpanded ? '▼' : '▶'}</span>`;
+      rowOnClick = `showClientDetails(${idx})`; // Par défaut ouvre détails
+      expandIcon = `<span class="expand-icon" data-action="toggle" data-row-index="${idx}" style="cursor: pointer; padding: 4px 8px; margin-right: 6px; display: inline-block; user-select: none;">${client.isExpanded ? '▼' : '▶'}</span>`;
     } else if (isChild) {
       rowClass = 'child-row';
       // Si c'est un white space (filiale sans deals/prospect)
@@ -4802,15 +4802,29 @@ function renderSegmentationTable() {
 
       console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
 
-      // Si c'est un groupe → UNIQUEMENT toggle (pas de détails pour les groupes)
-      if (rowType === 'group') {
-        console.log(`🔄 TOGGLE groupe ${rowIndex}`);
+      // Vérifier si on a cliqué sur l'icône toggle ou un de ses enfants
+      let clickedElement = event.target;
+      let isToggleClick = false;
+
+      // Remonter jusqu'à 3 niveaux pour trouver data-action="toggle"
+      for (let i = 0; i < 3 && clickedElement; i++) {
+        if (clickedElement.getAttribute && clickedElement.getAttribute('data-action') === 'toggle') {
+          isToggleClick = true;
+          break;
+        }
+        clickedElement = clickedElement.parentElement;
+      }
+
+      // Si clic sur toggle → toggle uniquement
+      if (isToggleClick && rowType === 'group') {
+        console.log(`🔄 TOGGLE groupe ${rowIndex} (clic sur icône)`);
+        event.stopPropagation(); // Empêcher la propagation
         toggleGroup(rowIndex);
         return;
       }
 
-      // Pour les enfants et standalone → ouvrir les détails
-      console.log(`📋 Détails client ${rowIndex}`);
+      // Sinon → ouvrir les détails (pour tout type: group, child, standalone)
+      console.log(`📋 Détails ${rowType} ${rowIndex}`);
       showClientDetails(rowIndex);
     });
   });
@@ -6510,12 +6524,12 @@ function showMethodologyDetails(type) {
 
           <div style="margin-bottom: 16px; padding: 14px; background: var(--bg-card); border-radius: 8px;">
             <div style="font-weight: 700; margin-bottom: 6px; font-size: 15px;">
-              CA 2024
+              CA 2025
             </div>
             <div style="font-size: 14px; color: var(--text-muted);">
-              <strong>Définition :</strong> Total des deals fermés en 2024 avec % de croissance vs 2023<br>
+              <strong>Définition :</strong> Total des deals fermés en 2025 avec % de croissance vs 2024<br>
               <strong>Usage :</strong> Mesurer la performance de l'année en cours<br>
-              <strong>Cliquez dessus</strong> pour voir le top 5 clients 2024
+              <strong>Cliquez dessus</strong> pour voir le top 5 clients 2025
             </div>
           </div>
 
