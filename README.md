@@ -26,6 +26,36 @@ Un **dashboard HubSpot intelligent** géré par une **société autonome d'agent
 
 ---
 
+## 🎯 CARTE BLANCHE & INTELLIGENCE ARTIFICIELLE
+
+### 🚀 Les Agents ont CARTE BLANCHE
+
+Les agents sont **AUTORISÉS** à:
+- ✅ Recréer le projet avec une autre tech si nécessaire
+- ✅ Ouvrir des nouvelles branches et merger automatiquement
+- ✅ S'étendre en entreprise virtuelle pour scale
+- ✅ Prendre toutes les décisions sans permission (sauf API keys/permissions)
+- ✅ Innover, refactorer, déployer automatiquement
+
+**Voir**: [📜 CARTE-BLANCHE.md](./CARTE-BLANCHE.md) pour les détails complets
+
+### 🤖 Intelligence Artificielle (Claude AI)
+
+**Status IA**: ⚠️ EN ATTENTE DE CONFIGURATION
+
+Les agents peuvent utiliser **Claude (Anthropic)** pour:
+- 🧠 Prendre de vraies décisions intelligentes (pas juste des scripts)
+- 📊 Analyser du code avec compréhension contextuelle
+- 🔧 Résoudre des bugs complexes
+- 💡 Générer des idées innovantes
+- 🎯 Prioriser selon ROI réel
+
+**Configuration**: 2 minutes | **Coût**: ~$13/mois | **ROI**: Immédiat
+
+**Voir**: [🤖 CONFIGURATION-IA.md](./CONFIGURATION-IA.md) pour activer l'IA
+
+---
+
 ## 📚 DOCUMENTATION COMPLÈTE
 
 ### 🚀 DÉMARRAGE RAPIDE
@@ -44,6 +74,8 @@ Un **dashboard HubSpot intelligent** géré par une **société autonome d'agent
 | **⚡ Système Continu 24/7** | 288 cycles d'amélioration par jour | [SYSTÈME-CONTINU.md](./SYSTÈME-CONTINU.md) |
 | **🤖 Système Autonome** | 9 agents autonomes en détail | [SYSTÈME-AUTONOME.md](./SYSTÈME-AUTONOME.md) |
 | **🧹 Workflows Cleanup** | Résolution conflits workflows | [WORKFLOWS-CLEANUP.md](./WORKFLOWS-CLEANUP.md) |
+| **📜 Carte Blanche** | Autonomie complète des agents | [CARTE-BLANCHE.md](./CARTE-BLANCHE.md) |
+| **🤖 Configuration IA** | Activer Claude AI (2min) | [CONFIGURATION-IA.md](./CONFIGURATION-IA.md) |
 
 ### 📊 RAPPORTS & AUDITS
 
