@@ -1765,6 +1765,13 @@ function renderDashboard() {
   renderAnalysis();
   initFilters();
 
+  // Graphiques avancés
+  renderSegmentDonutChart();
+  renderRadarChart();
+  renderStackedAreaChart();
+  renderHealthTrendsChart();
+  console.log('✅ 4 graphiques avancés ajoutés');
+
   // Vérifier que les boutons de filtre année sont bien présents
   setTimeout(() => {
     const filterButtons = document.querySelectorAll('[data-industry-year]');
@@ -3631,7 +3638,7 @@ function showIndustryDetails(industryNameFr, filterYear = 'all') {
               <div class="info-row" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.2s;"
                    onmouseover="this.style.background='rgba(99, 102, 241, 0.05)'"
                    onmouseout="this.style.background='transparent'"
-                   onclick="closeInfoPanel(); setTimeout(() => showClientDetails(${processedData.indexOf(client)}), 100)">
+                   onclick="closeInfoPanel(); setTimeout(() => showClientDetails(${currentDisplayedClients.findIndex(c => c.companyId === client.companyId)}), 100)">
                 <div style="flex: 1;">
                   <div style="font-weight: 700; color: var(--text); margin-bottom: 4px;">
                     ${idx + 1}. ${client.name}
@@ -3658,6 +3665,10 @@ function showIndustryDetails(industryNameFr, filterYear = 'all') {
 
   openInfoPanel(`Secteur: ${industryNameFr}`, content);
 }
+
+// Exposition globale pour compatibilité onclick HTML
+window.showIndustryDetails = showIndustryDetails;
+console.log('✅ window.showIndustryDetails exposée globalement');
 
 // Fonction de filtrage par année pour le graphique des secteurs
 function filterIndustryChart(year) {
@@ -5244,6 +5255,10 @@ function showClientDetails(clientIndex) {
   }
 }
 
+// Exposition globale pour compatibilité onclick HTML
+window.showClientDetails = showClientDetails;
+console.log('✅ window.showClientDetails exposée globalement');
+
 // ============================================================================
 // White Spaces Opportunities Table
 // ============================================================================
@@ -6638,6 +6653,26 @@ function describeArc(x, y, radius, innerRadius, startAngle, endAngle) {
 
   return d;
 }
+
+// ============================================================================
+// === EXPOSITION GLOBALE DES FONCTIONS ===
+// Pour compatibilité avec onclick HTML
+// ============================================================================
+
+// KPIs & Méthodologie
+window.showKPIDetails = showKPIDetails;
+window.showMethodologyDetails = showMethodologyDetails;
+
+// Panels & Modals
+window.openInfoPanel = openInfoPanel;
+window.closeInfoPanel = closeInfoPanel;
+
+// Cartographie
+window.showCompanyDetails = showCompanyDetails;
+window.zoomCompanyTree = zoomCompanyTree;
+window.resetCompanyTreeZoom = resetCompanyTreeZoom;
+
+console.log('✅ Toutes les fonctions modals exposées globalement');
 </script>
 </body>
 </html>
