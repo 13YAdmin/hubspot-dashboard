@@ -198,7 +198,255 @@
         "Planification si go"
       ],
       "status": "pending"
+    },
+    {
+      "id": "REC-1761232032112",
+      "from": "Agent Producteur",
+      "timestamp": "2025-10-23T15:07:12.112Z",
+      "type": "process_improvement",
+      "title": "Boucle de feedback QA → Debugger → QA",
+      "description": "Bugs non re-testés après fix",
+      "priority": "critical",
+      "category": "process",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer urgence",
+        "Assigner aux agents appropriés",
+        "Implémenter ASAP",
+        "Valider fonctionnement"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232032113",
+      "from": "Agent Producteur",
+      "timestamp": "2025-10-23T15:07:12.113Z",
+      "type": "process_improvement",
+      "title": "Escalade Debugger → Développeur après 3 échecs",
+      "description": "Bugs complexes jamais résolus",
+      "priority": "critical",
+      "category": "process",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer urgence",
+        "Assigner aux agents appropriés",
+        "Implémenter ASAP",
+        "Valider fonctionnement"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232032113",
+      "from": "Agent Producteur",
+      "timestamp": "2025-10-23T15:07:12.113Z",
+      "type": "process_improvement",
+      "title": "Agent Développeur",
+      "description": "Nécessaire pour implémenter les features",
+      "priority": "critical",
+      "category": "process",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer urgence",
+        "Assigner aux agents appropriés",
+        "Implémenter ASAP",
+        "Valider fonctionnement"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232032114",
+      "from": "Agent Producteur",
+      "timestamp": "2025-10-23T15:07:12.114Z",
+      "type": "process_improvement",
+      "title": "Agent Debugger",
+      "description": "Nécessaire pour corriger les bugs",
+      "priority": "critical",
+      "category": "process",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer urgence",
+        "Assigner aux agents appropriés",
+        "Implémenter ASAP",
+        "Valider fonctionnement"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232032114",
+      "from": "Agent Producteur",
+      "timestamp": "2025-10-23T15:07:12.114Z",
+      "type": "process_improvement",
+      "title": "Créer Agent Self-Healing",
+      "description": "Agent qui détecte et répare automatiquement les pannes",
+      "priority": "critical",
+      "category": "process",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer urgence",
+        "Assigner aux agents appropriés",
+        "Implémenter ASAP",
+        "Valider fonctionnement"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232032114",
+      "from": "Agent Producteur",
+      "timestamp": "2025-10-23T15:07:12.114Z",
+      "type": "process_improvement",
+      "title": "Créer Agent Développeur et Debugger",
+      "description": "Agents manquants pour compléter la boucle",
+      "priority": "critical",
+      "category": "process",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer urgence",
+        "Assigner aux agents appropriés",
+        "Implémenter ASAP",
+        "Valider fonctionnement"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243345",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.345Z",
+      "type": "recruitment",
+      "title": "Recruter CEO",
+      "description": "Agent critique manquant - Département C-Level",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243347",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.347Z",
+      "type": "recruitment",
+      "title": "Recruter CTO",
+      "description": "Agent critique manquant - Département C-Level",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243347",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.347Z",
+      "type": "recruitment",
+      "title": "Recruter COO",
+      "description": "Agent critique manquant - Département C-Level",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243347",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.347Z",
+      "type": "recruitment",
+      "title": "Recruter Senior Developer",
+      "description": "Agent critique manquant - Département Engineering",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243347",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.347Z",
+      "type": "recruitment",
+      "title": "Recruter QA Engineer",
+      "description": "Agent critique manquant - Département Engineering",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243348",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.348Z",
+      "type": "recruitment",
+      "title": "Recruter Monitoring",
+      "description": "Agent critique manquant - Département Infrastructure",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761232243348",
+      "from": "Agent RH",
+      "timestamp": "2025-10-23T15:10:43.348Z",
+      "type": "recruitment",
+      "title": "Recruter Self-Healing",
+      "description": "Agent critique manquant - Département Infrastructure",
+      "priority": "immediate",
+      "category": "team_scaling",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Valider besoin de recrutement",
+        "Générer template agent",
+        "Créer fichier agent",
+        "Configurer workflow",
+        "Onboarding agent"
+      ],
+      "autoGenerate": true,
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-23T15:00:52.950Z"
+  "lastUpdate": "2025-10-23T15:10:43.348Z"
 }
