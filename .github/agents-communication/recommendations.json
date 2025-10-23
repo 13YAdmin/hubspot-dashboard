@@ -1,0 +1,204 @@
+{
+  "items": [
+    {
+      "id": "REC-1761231652949",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.949Z",
+      "type": "tech_innovation",
+      "title": "Observable Plot",
+      "description": "Plus moderne que D3.js, plus simple, meilleure perf",
+      "priority": "high",
+      "category": "Data Viz",
+      "estimatedImpact": "high",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer faisabilité avec Agent Développeur",
+        "Estimer temps avec Agent Chef",
+        "Planifier implémentation",
+        "Valider avec Agent QA"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652949",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.949Z",
+      "type": "tech_innovation",
+      "title": "Vitest",
+      "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
+      "priority": "high",
+      "category": "Testing",
+      "estimatedImpact": "high",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer faisabilité avec Agent Développeur",
+        "Estimer temps avec Agent Chef",
+        "Planifier implémentation",
+        "Valider avec Agent QA"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652949",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.949Z",
+      "type": "tech_innovation",
+      "title": "Turbo",
+      "description": "Build incrementiel, cache intelligent, x10 plus rapide",
+      "priority": "high",
+      "category": "Build",
+      "estimatedImpact": "high",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer faisabilité avec Agent Développeur",
+        "Estimer temps avec Agent Chef",
+        "Planifier implémentation",
+        "Valider avec Agent QA"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652949",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.949Z",
+      "type": "business_opportunity",
+      "title": "Opportunité: UPSELL",
+      "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
+      "priority": "high",
+      "category": "business",
+      "suggestedAction": "Proposer upgrade / services additionnels",
+      "automation": "Auto-create deal + email séquence",
+      "expectedROI": "x3 revenue potential",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Analyser faisabilité technique",
+        "Créer tâches pour Agent Développeur",
+        "Implémenter automation",
+        "Tester avec Agent QA"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652950",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.950Z",
+      "type": "business_opportunity",
+      "title": "Opportunité: CHURN RISK",
+      "description": "Signal: Health Score < 50 + Engagement décroissant",
+      "priority": "critical",
+      "category": "business",
+      "suggestedAction": "Intervention Account Manager immédiate",
+      "automation": "Alerte Slack + Task HubSpot + Email CEO",
+      "expectedROI": "Retain 85% churn risks",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Analyser faisabilité technique",
+        "Créer tâches pour Agent Développeur",
+        "Implémenter automation",
+        "Tester avec Agent QA"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652950",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.950Z",
+      "type": "business_opportunity",
+      "title": "Opportunité: CROSS-SELL",
+      "description": "Signal: Industry = Tech + Using Product A only",
+      "priority": "medium",
+      "category": "business",
+      "suggestedAction": "Proposer Product B (high fit)",
+      "automation": "Targeted email campaign",
+      "expectedROI": "x2 ARPU",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Analyser faisabilité technique",
+        "Créer tâches pour Agent Développeur",
+        "Implémenter automation",
+        "Tester avec Agent QA"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652950",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.950Z",
+      "type": "data_quality",
+      "title": "Missing company data",
+      "description": "Detection: No industry OR no revenue OR no employee count",
+      "priority": "high",
+      "category": "data",
+      "suggestedFix": "Clearbit enrichment",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer coût APIs externes",
+        "Créer script d'enrichissement",
+        "Tester sur échantillon",
+        "Déployer en production"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652950",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.950Z",
+      "type": "data_quality",
+      "title": "Invalid emails",
+      "description": "Detection: Email bounce rate > 5%",
+      "priority": "high",
+      "category": "data",
+      "suggestedFix": "Hunter.io validation",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer coût APIs externes",
+        "Créer script d'enrichissement",
+        "Tester sur échantillon",
+        "Déployer en production"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652950",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.950Z",
+      "type": "data_quality",
+      "title": "Incomplete notes",
+      "description": "Detection: Notes < 50 characters OR no structured data",
+      "priority": "high",
+      "category": "data",
+      "suggestedFix": "OpenAI extraction + auto-populate fields",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Évaluer coût APIs externes",
+        "Créer script d'enrichissement",
+        "Tester sur échantillon",
+        "Déployer en production"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761231652950",
+      "from": "Agent Visionnaire",
+      "timestamp": "2025-10-23T15:00:52.950Z",
+      "type": "moonshot",
+      "title": "AI-Powered Auto-Pilot",
+      "description": "IA qui prend des actions automatiques (create deals, send emails, update data)",
+      "priority": "medium",
+      "category": "innovation",
+      "expectedImpact": "10x sales productivity",
+      "risk": "high",
+      "timeline": "3 months",
+      "implementation": "OpenAI GPT-4 + function calling + HubSpot API",
+      "targetAgent": "Agent Chef de Projet",
+      "nextSteps": [
+        "Proof of concept",
+        "Évaluation ROI vs effort",
+        "Décision go/no-go",
+        "Planification si go"
+      ],
+      "status": "pending"
+    }
+  ],
+  "lastUpdate": "2025-10-23T15:00:52.950Z"
+}
