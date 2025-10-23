@@ -12,8 +12,8 @@ name: 🚦 Agent Aiguilleur (Traffic Controller)
 
 on:
   schedule:
-    # Toutes les heures (monitoring fréquent)
-    - cron: '0 * * * *'
+    # Toutes les 15 minutes (monitoring TRÈS fréquent - c'est le traffic controller!)
+    - cron: '*/15 * * * *'
   workflow_dispatch:  # Manuel
   # Note: Ne se déclenche PAS sur push pour éviter de surcharger
 
@@ -43,38 +43,50 @@ jobs:
         run: |
           echo "✅ GitHub CLI configuré"
 
-      - name: Exécuter Agent Aiguilleur
+      - name: Exécuter Agent Aiguilleur AI
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          echo "🚦 AGENT AIGUILLEUR - Démarrage"
+          echo "🚦 AGENT AIGUILLEUR AI-POWERED - Démarrage"
           echo "================================================"
           echo ""
 
-          # Donner les permissions d'exécution
-          chmod +x .github/scripts/autonomous-agents/agent-aiguilleur.js
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "⚠️  ANTHROPIC_API_KEY non configuré - Mode fallback"
+            echo "ℹ️  Voir CONFIGURATION-IA.md pour activer l'IA"
+            echo ""
+          else
+            echo "✅ Claude AI activé - Analyse intelligente"
+            echo ""
+          fi
 
-          # Exécuter l'agent
-          node .github/scripts/autonomous-agents/agent-aiguilleur.js
+          # Donner les permissions d'exécution
+          chmod +x .github/scripts/autonomous-agents/agent-aiguilleur-ai.js
+
+          # Exécuter l'agent AI
+          node .github/scripts/autonomous-agents/agent-aiguilleur-ai.js
 
           echo ""
-          echo "✅ Agent Aiguilleur terminé"
+          echo "✅ Agent Aiguilleur AI terminé"
 
       - name: Upload rapport
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: traffic-controller-report
-          path: RAPPORT-AGENT-AIGUILLEUR.md
+          path: RAPPORT-AGENT-AIGUILLEUR-AI.md
 
       - name: Commit rapport si changé
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          git config user.name "Traffic Controller Bot"
+          git config user.name "Traffic Controller AI Bot"
           git config user.email "noreply@traffic-controller.bot"
 
           if [ -n "$(git status --porcelain)" ]; then
-            git add RAPPORT-AGENT-AIGUILLEUR.md
-            git commit -m "docs: Mise à jour rapport Agent Aiguilleur [skip ci]
+            git add RAPPORT-AGENT-AIGUILLEUR-AI.md .github/agents-communication/
+            git commit -m "docs: Rapport Agent Aiguilleur AI $([ -z "$ANTHROPIC_API_KEY" ] && echo "(fallback)" || echo "+ recommandations") [skip ci]
 
             🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
