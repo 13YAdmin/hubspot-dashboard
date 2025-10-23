@@ -51,7 +51,7 @@ Créer un dashboard HubSpot qui **s'améliore automatiquement** sans interventio
 
 ---
 
-## 🤖 LES 8 AGENTS AUTONOMES
+## 🤖 LES 9 AGENTS AUTONOMES
 
 ### 1. Agent Chef de Projet (Orchestrateur)
 **Fichier**: `.github/scripts/autonomous-agents/agent-chef.js`
@@ -213,6 +213,45 @@ Créer un dashboard HubSpot qui **s'améliore automatiquement** sans interventio
 
 ---
 
+### 9. Agent Aiguilleur (Traffic Controller) 🚦
+**Fichier**: `.github/scripts/autonomous-agents/agent-aiguilleur.js`
+**Workflow**: `.github/workflows/traffic-controller.yml`
+**Status**: ✅ Opérationnel (toutes les heures)
+
+**Responsabilités**:
+- Monitore tous les workflows GitHub Actions
+- Détecte les conflits entre workflows
+- Prévient les boucles infinies
+- Identifie les workflows bloqués/stales
+- Génère des alertes si problèmes critiques
+- Maintient un score de santé des workflows
+- Annule les workflows redondants si nécessaire
+
+**Monitoring en continu**:
+- ✅ Workflows en cours d'exécution
+- ✅ Workflows en attente (queued)
+- ✅ Workflows bloqués (> max duration)
+- ✅ Risques de boucle infinie (exécutions trop fréquentes)
+- ✅ Conflits entre workflows (concurrent execution)
+
+**Actions automatiques**:
+- Génération rapport `RAPPORT-AGENT-AIGUILLEUR.md` (toutes les heures)
+- Alertes si score de santé < 70/100
+- Alertes critiques si score < 50/100
+- Recommandations d'actions correctives
+
+**Métriques surveillées**:
+- Nombre de workflows actifs (seuil: 2 max)
+- Durée d'exécution (seuil: 30 min pour stale)
+- Fréquence d'exécution (détection boucles)
+- Taux de succès (dernières 24h)
+
+**Fréquence**: Toutes les heures (plus fréquent que les autres agents)
+
+**Rôle clé**: Cet agent est l'**aiguilleur du système autonome** - il s'assure que tous les autres agents et workflows fonctionnent correctement et ne se marchent pas dessus.
+
+---
+
 ## 🔄 WORKFLOW AUTONOME
 
 ### Fichier
@@ -220,9 +259,9 @@ Créer un dashboard HubSpot qui **s'améliore automatiquement** sans interventio
 
 ### Déclenchement
 - ⏰ **Automatique**: Toutes les 6 heures (cron: `0 */6 * * *`)
-- 🖱️ **Manuel**: Via GitHub Actions interface
-- 📝 **Push**: À chaque commit sur `main`
-- 📨 **Pull Request**: À chaque PR
+- 🖱️ **Manuel**: Via GitHub Actions interface (workflow_dispatch)
+- 📨 **Pull Request**: À chaque PR sur `main`
+- ⚠️ **Note**: Trigger `push: main` **retiré** pour éviter conflits avec `fetch-hubspot-data.yml`
 
 ### Jobs Séquentiels
 
@@ -246,19 +285,20 @@ Créer un dashboard HubSpot qui **s'améliore automatiquement** sans interventio
 
 4. UPDATE-DOCS (5 min)
    └─> Met à jour STATUS-AUTO.md
-   └─> Commit documentation
+   └─> Commit documentation [skip ci]
    └─> Push automatique
 
-5. DEPLOY (si tests OK)
-   └─> Déploiement GitHub Pages
-   └─> Notification succès
+5. DEPLOY
+   └─> ⚠️ DÉSACTIVÉ (if: false)
+   └─> Géré par fetch-hubspot-data.yml uniquement
+   └─> Évite conflits de déploiement
 
 6. RAPPORT (2 min)
    └─> Génère rapport final
    └─> Résumé de la boucle
 ```
 
-**Durée totale**: ~22 minutes par boucle
+**Durée totale**: ~15 minutes par boucle (deploy retiré)
 
 ---
 
@@ -290,11 +330,93 @@ Créer un dashboard HubSpot qui **s'améliore automatiquement** sans interventio
    - Plan d'action
    - Métriques détaillées
 
-3. **Logs GitHub Actions** (chaque exécution)
+3. **RAPPORT-AGENT-AIGUILLEUR.md** (toutes les heures) 🆕
+   - Score de santé des workflows
+   - Conflits détectés
+   - Workflows bloqués
+   - Risques de boucle infinie
+   - Recommandations
+
+4. **Logs GitHub Actions** (chaque exécution)
    - Détail de chaque job
    - Erreurs rencontrées
    - Corrections appliquées
    - Tests exécutés
+
+---
+
+## 🔄 ARCHITECTURE DES WORKFLOWS
+
+Le système utilise **3 workflows GitHub Actions** avec des responsabilités séparées pour éviter les conflits :
+
+### 1. fetch-hubspot-data.yml (Principal)
+**Fréquence**: Toutes les 2 heures + push sur main
+**Responsabilités**:
+- ✅ Synchronisation HubSpot (fetch + push)
+- ✅ Génération data.json
+- ✅ **Déploiement GitHub Pages** (unique)
+- ✅ Commit avec [skip ci]
+
+**Durée**: ~5 minutes
+
+---
+
+### 2. autonomous-loop.yml (Boucle Vertueuse)
+**Fréquence**: Toutes les 6 heures + manuel + PR
+**Responsabilités**:
+- ✅ Audit code automatique
+- ✅ Tests validation
+- ✅ Mise à jour documentation
+- ✅ Génération rapports
+- ❌ Déploiement DÉSACTIVÉ (évite conflit)
+
+**Durée**: ~15 minutes
+
+---
+
+### 3. traffic-controller.yml (Agent Aiguilleur) 🆕
+**Fréquence**: Toutes les heures + manuel
+**Responsabilités**:
+- ✅ Monitoring tous les workflows
+- ✅ Détection conflits
+- ✅ Prévention boucles infinies
+- ✅ Alertes si problèmes
+- ✅ Génération rapport santé
+
+**Durée**: ~2 minutes
+
+---
+
+### Séparation des Responsabilités
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    WORKFLOWS ARCHITECTURE                    │
+│                                                              │
+│  ┌────────────────┐     ┌────────────────┐     ┌──────────┐│
+│  │ HubSpot Sync   │     │ Boucle        │     │ Traffic   ││
+│  │ (2h + push)    │     │ Vertueuse     │     │ Controller││
+│  │                │     │ (6h + manual) │     │ (1h)      ││
+│  ├────────────────┤     ├────────────────┤     ├──────────┤│
+│  │ • Fetch data   │     │ • Audit code   │     │ • Monitor││
+│  │ • Push scores  │     │ • Tests        │     │ • Detect ││
+│  │ • DEPLOY ✅    │     │ • Docs         │     │ • Alert  ││
+│  └────────────────┘     └────────────────┘     └──────────┘│
+│         │                      │                      │      │
+│         v                      v                      v      │
+│    Dashboard Live        Documentation            Health     │
+│  (gh-pages branch)       (main branch)           Reports     │
+│                                                              │
+│  🚦 L'Agent Aiguilleur surveille les 2 autres workflows    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Prévention Boucle Infinie**:
+- ✅ Un seul workflow déploie (fetch-hubspot-data.yml)
+- ✅ Commits automatiques avec [skip ci]
+- ✅ autonomous-loop.yml sans trigger push:main
+- ✅ traffic-controller.yml sans trigger push
+- ✅ Monitoring continu par Agent Aiguilleur
 
 ---
 
