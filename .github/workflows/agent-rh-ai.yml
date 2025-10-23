@@ -1,17 +1,17 @@
-name: 🏭 Agent Producteur (Process Improvement)
+name: 👔 Agent RH AI (Recruitment)
 
-# Agent qui détecte automatiquement les problèmes de processus
+# Agent RH AI-Powered - Gestion intelligente du recrutement
 # Toutes les 12 heures
 
 on:
   schedule:
     # Toutes les 12 heures
-    - cron: '0 */12 * * *'
+    - cron: '30 */12 * * *'
   workflow_dispatch:
 
 jobs:
-  producteur:
-    name: 🏭 Agent Producteur
+  rh-ai:
+    name: 👔 Agent RH AI
     runs-on: ubuntu-latest
 
     steps:
@@ -23,12 +23,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Exécuter Agent Producteur AI
+      - name: Exécuter Agent RH AI
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          echo "🏭 AGENT PRODUCTEUR AI-POWERED - Process Improvement"
-          echo "===================================================="
+          echo "👔 AGENT RH AI-POWERED - Recruitment Manager"
+          echo "=============================================="
           echo ""
 
           if [ -z "$ANTHROPIC_API_KEY" ]; then
@@ -36,34 +36,38 @@ jobs:
             echo "ℹ️  Voir CONFIGURATION-IA.md pour activer l'IA réelle"
             echo ""
           else
-            echo "✅ Claude AI activé - Détection intelligente des problèmes"
+            echo "✅ Claude AI activé - Décisions intelligentes de recrutement"
             echo ""
           fi
 
-          chmod +x .github/scripts/autonomous-agents/agent-producteur-ai.js
-          node .github/scripts/autonomous-agents/agent-producteur-ai.js
+          chmod +x .github/scripts/autonomous-agents/agent-rh-ai.js
+          node .github/scripts/autonomous-agents/agent-rh-ai.js
 
       - name: Upload rapports
         uses: actions/upload-artifact@v3
         with:
-          name: producteur-reports
+          name: rh-reports
           path: |
-            RAPPORT-AGENT-PRODUCTEUR-AI.md
+            RAPPORT-AGENT-RH-AI.md
             .github/agents-communication/recommendations.json
 
-      - name: Commit rapports
+      - name: Commit rapports et recommandations
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          git config user.name "Agent Producteur AI"
-          git config user.email "noreply@producteur.bot"
+          git config user.name "Agent RH AI"
+          git config user.email "noreply@rh.bot"
 
           if [ -n "$(git status --porcelain)" ]; then
-            git add RAPPORT-AGENT-PRODUCTEUR-AI.md .github/agents-communication/
-            git commit -m "docs: Rapport Agent Producteur AI - Process gaps $([ -z "$ANTHROPIC_API_KEY" ] && echo "(fallback)" || echo "détectés par IA") [skip ci]
+            git add RAPPORT-AGENT-RH-AI.md .github/agents-communication/
+            git commit -m "docs: Rapport Agent RH AI - Besoins recrutement $([ -z "$ANTHROPIC_API_KEY" ] && echo "(fallback)" || echo "analysés par IA") [skip ci]
+
+            👔 Analyse workforce planning et recommandations recrutement
 
             🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
             Co-Authored-By: Claude <noreply@anthropic.com>"
             git push origin main || echo "OK"
+
+            echo "✅ Recommandations de recrutement communiquées au Chef"
           fi
