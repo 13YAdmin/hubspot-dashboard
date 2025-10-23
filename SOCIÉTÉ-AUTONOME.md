@@ -397,7 +397,7 @@ Agent Chef           Agent Visionnaire              Agent Producteur
 
 ## 📊 ÉTAT ACTUEL
 
-### Équipe Actuelle: 6 agents
+### Équipe Actuelle: 7 agents
 
 - ✅ Agent Chef de Projet (CEO)
 - ✅ Agent Visionnaire (CTO)
