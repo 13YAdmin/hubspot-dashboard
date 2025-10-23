@@ -9,12 +9,12 @@ name: 🤖 Boucle Vertueuse Autonome
 
 on:
   schedule:
-    # Toutes les 6 heures
-    - cron: '0 */6 * * *'
+    # Toutes les 2 heures (cycle rapide pour évolution rapide)
+    - cron: '0 */2 * * *'
   workflow_dispatch:  # Permet lancement manuel
   # NOTE: push: main retiré pour éviter conflit avec fetch-hubspot-data.yml
   # Le workflow tourne uniquement:
-  # - Toutes les 6 heures (automatique)
+  # - Toutes les 2 heures (automatique - cycle RAPIDE)
   # - Manuellement (workflow_dispatch)
   pull_request:
     branches:

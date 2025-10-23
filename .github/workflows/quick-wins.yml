@@ -1,0 +1,50 @@
+name: ⚡ Quick Wins Agent (1h)
+
+# Exécute l'Agent Quick Wins pour implémenter les améliorations Phase 2
+
+on:
+  schedule:
+    # Toutes les heures (décalé)
+    - cron: '30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  quick-wins:
+    name: ⚡ Agent Quick Wins
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Exécuter Agent Quick Wins
+        run: |
+          echo "⚡ AGENT QUICK WINS"
+          echo "================================================"
+
+          chmod +x .github/scripts/autonomous-agents/agent-quick-wins.js
+          node .github/scripts/autonomous-agents/agent-quick-wins.js
+
+      - name: Upload rapports
+        uses: actions/upload-artifact@v3
+        with:
+          name: quick-wins-reports
+          path: |
+            RAPPORT-AGENT-QUICK-WINS.md
+            PATCHES-QUICK-WINS.md
+
+      - name: Commit rapports
+        run: |
+          git config user.name "Quick Wins Bot"
+          git config user.email "noreply@quickwins.bot"
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git add RAPPORT-AGENT-QUICK-WINS.md PATCHES-QUICK-WINS.md
+            git commit -m "docs: Rapport Agent Quick Wins [skip ci]"
+            git push origin main || echo "OK"
+          fi
