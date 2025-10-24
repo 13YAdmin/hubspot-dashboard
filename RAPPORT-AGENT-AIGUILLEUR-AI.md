@@ -1,15 +1,15 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 14:59:22
+**Date**: 24/10/2025 15:00:13
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
 
 ## 📊 ÉTAT WORKFLOWS
 
-- **Total runs analysés**: 0
-- **En cours**: 0
-- **Échecs récents**: 0
+- **Total runs analysés**: 30
+- **En cours**: 1
+- **Échecs récents**: 4
 - **Score de santé**: 100/100
 
 ---
