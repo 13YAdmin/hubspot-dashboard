@@ -1323,7 +1323,46 @@
       "targetAgent": "Agent Chef de Projet",
       "estimatedImpact": "very_high",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761302596872",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T10:43:16.873Z",
+      "type": "traffic_control",
+      "title": "Annuler workflows legacy conflictuels",
+      "description": "Les workflows legacy détectés avec problèmes peuvent créer des conflits avec les nouveaux workflows AI-powered, qui sont une priorité pour le projet. Annuler ces workflows legacy permettra d'éviter ces conflits et de se concentrer sur le bon fonctionnement des nouveaux workflows critiques pour le projet.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "cancel_legacy",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761302596913",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T10:43:16.913Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte temporaire de fonctionnalités liées aux workflows legacy",
+      "description": "Risque identifié par IA: Perte temporaire de fonctionnalités liées aux workflows legacy",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761302596921",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T10:43:16.921Z",
+      "type": "traffic_control",
+      "title": "Risque: Possibles impacts négatifs sur les données HubSpot si le workflow de récupération des données est arrêté",
+      "description": "Risque identifié par IA: Possibles impacts négatifs sur les données HubSpot si le workflow de récupération des données est arrêté",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T10:17:51.928Z"
+  "lastUpdate": "2025-10-24T10:43:16.921Z"
 }

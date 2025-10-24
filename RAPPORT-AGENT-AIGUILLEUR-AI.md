@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 11:58:43
+**Date**: 24/10/2025 10:43:16
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -8,19 +8,34 @@
 ## 📊 ÉTAT WORKFLOWS
 
 - **Total runs analysés**: 30
-- **En cours**: 2
-- **Échecs récents**: 10
+- **En cours**: 3
+- **Échecs récents**: 8
 - **Score de santé**: 30/100
 
 ---
 
 ## ⚠️  WORKFLOWS LEGACY DÉTECTÉS
 
-Total: 0
+Total: 2
+
+
+### 1. autonomous-loop.yml
+
+- **Issue**: Tourne en même temps que nouveaux workflows
+- **Sévérité**: high
+- **Conflits avec**: 🔄 Boucle Dev → QA → Debug, 🚦 Agent Aiguilleur (Traffic Controller), ⚡ Amélioration Continue (15 min), 🏢 Entreprise Autonome IA, Fetch HubSpot Data
 
 
 
-Aucun workflow legacy problématique détecté ✅
+### 2. fetch-hubspot-data.yml
+
+- **Issue**: Tourne en même temps que nouveaux workflows
+- **Sévérité**: high
+- **Conflits avec**: 🔄 Boucle Dev → QA → Debug, 🚦 Agent Aiguilleur (Traffic Controller), 🤖 Boucle Vertueuse Autonome, ⚡ Amélioration Continue (15 min), 🏢 Entreprise Autonome IA
+
+
+
+
 
 ---
 
@@ -41,21 +56,21 @@ Total: 3
 
 - **Type**: cancel_legacy
 - **Priorité**: high
-- **Description**: Bien que les workflows existants soient en cours d'exécution, les nombreux échecs récents indiquent un problème potentiel avec ces workflows legacy. Avec l'ajout de nouveaux agents AI, il est préférable d'éviter tout conflit entre les anciens et les nouveaux workflows. En annulant les workflows legacy, nous pourrons nous concentrer sur les nouveaux workflows AI-powered et nous assurer que le système reste sain et fonctionnel.
+- **Description**: Les workflows legacy détectés avec problèmes peuvent créer des conflits avec les nouveaux workflows AI-powered, qui sont une priorité pour le projet. Annuler ces workflows legacy permettra d'éviter ces conflits et de se concentrer sur le bon fonctionnement des nouveaux workflows critiques pour le projet.
 
 
-### 2. Risque: Interruption temporaire des workflows existants
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Interruption temporaire des workflows existants
-
-
-### 3. Risque: Perte potentielle de données ou de fonctionnalités si les workflows legacy étaient essentiels
+### 2. Risque: Perte temporaire de fonctionnalités liées aux workflows legacy
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte potentielle de données ou de fonctionnalités si les workflows legacy étaient essentiels
+- **Description**: Risque identifié par IA: Perte temporaire de fonctionnalités liées aux workflows legacy
+
+
+### 3. Risque: Possibles impacts négatifs sur les données HubSpot si le workflow de récupération des données est arrêté
+
+- **Type**: risk
+- **Priorité**: medium
+- **Description**: Risque identifié par IA: Possibles impacts négatifs sur les données HubSpot si le workflow de récupération des données est arrêté
 
 
 
