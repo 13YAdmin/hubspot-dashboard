@@ -1362,7 +1362,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761303204999",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T10:53:24.999Z",
+      "type": "traffic_control",
+      "title": "Annuler workflows legacy conflictuels",
+      "description": "Bien que les workflows en cours semblent fonctionner, les nombreux échecs récents des workflows legacy indiquent un problème potentiel de stabilité et de fiabilité du système. De plus, avec l'ajout de nouveaux agents AI, il est important d'éviter tout conflit entre les anciens et les nouveaux workflows. La meilleure décision serait donc d'annuler les workflows legacy pour garantir le bon fonctionnement du système et la priorité aux nouveaux workflows AI-powered.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "cancel_legacy",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761303205000",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T10:53:25.000Z",
+      "type": "traffic_control",
+      "title": "Risque: Risque de perte de fonctionnalités ou de données si les workflows legacy sont critiques",
+      "description": "Risque identifié par IA: Risque de perte de fonctionnalités ou de données si les workflows legacy sont critiques",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761303205002",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T10:53:25.002Z",
+      "type": "traffic_control",
+      "title": "Risque: Risque de perturbation temporaire du système pendant la transition",
+      "description": "Risque identifié par IA: Risque de perturbation temporaire du système pendant la transition",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T10:43:16.921Z"
+  "lastUpdate": "2025-10-24T10:53:25.002Z"
 }
