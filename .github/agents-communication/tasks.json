@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "id": "TASK-1761297428543-1",
+      "id": "TASK-1761305354678-1",
       "title": "Fix Bug #1: Exposer showClientDetails globalement",
       "description": "Ajouter window.showClientDetails = showClientDetails après la ligne 5245",
       "type": "bugfix",
@@ -11,11 +11,11 @@
       "estimatedTime": "2 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-24T09:17:08.543Z",
+      "createdAt": "2025-10-24T11:29:14.678Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761297428544-2",
+      "id": "TASK-1761305354679-2",
       "title": "Fix Bug #2: Exposer showIndustryDetails globalement",
       "description": "Ajouter window.showIndustryDetails = showIndustryDetails après la ligne 3660",
       "type": "bugfix",
@@ -25,11 +25,11 @@
       "estimatedTime": "2 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-24T09:17:08.544Z",
+      "createdAt": "2025-10-24T11:29:14.679Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761297428544-3",
+      "id": "TASK-1761305354679-3",
       "title": "Fix Bug #3-7: Exposer 5 fonctions modals",
       "description": "Exposer showKPIDetails, showMethodologyDetails, closeInfoPanel, zoomCompanyTree, resetCompanyTreeZoom",
       "type": "bugfix",
@@ -38,11 +38,11 @@
       "estimatedTime": "5 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-24T09:17:08.544Z",
+      "createdAt": "2025-10-24T11:29:14.679Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761297428544-4",
+      "id": "TASK-1761305354679-4",
       "title": "Fix Bug #8: Corriger index client dans modal secteur",
       "description": "Remplacer processedData.indexOf(client) par currentDisplayedClients.findIndex(c => c.companyId === client.companyId) ligne 3634",
       "type": "bugfix",
@@ -52,11 +52,11 @@
       "estimatedTime": "5 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-24T09:17:08.544Z",
+      "createdAt": "2025-10-24T11:29:14.679Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761297428544-5",
+      "id": "TASK-1761305354679-5",
       "title": "Fix Bug #9: Appeler 4 graphiques avancés",
       "description": "Ajouter renderSegmentDonutChart(), renderRadarChart(), renderStackedAreaChart(), renderHealthTrendsChart() dans renderDashboard() après ligne 1764",
       "type": "feature",
@@ -66,174 +66,64 @@
       "estimatedTime": "2 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-24T09:17:08.544Z",
+      "createdAt": "2025-10-24T11:29:14.679Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761298130403",
-      "title": "Observable Plot",
-      "description": "Plus moderne que D3.js, plus simple, meilleure perf",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:28:50.403Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761298130407",
+      "id": "TASK-1761305381898",
       "title": "Vitest",
       "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
       "priority": "high",
       "fromRecommendation": "REC-1761231652949",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:28:50.407Z",
+      "createdAt": "2025-10-24T11:29:41.898Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761298130408",
+      "id": "TASK-1761305381900",
       "title": "Turbo",
       "description": "Build incrementiel, cache intelligent, x10 plus rapide",
       "priority": "high",
       "fromRecommendation": "REC-1761231652949",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:28:50.408Z",
+      "createdAt": "2025-10-24T11:29:41.900Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761298130409",
+      "id": "TASK-1761305381901",
       "title": "Opportunité: UPSELL",
       "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
       "priority": "high",
       "fromRecommendation": "REC-1761231652949",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:28:50.409Z",
+      "createdAt": "2025-10-24T11:29:41.901Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761298130410",
+      "id": "TASK-1761305381903",
       "title": "Missing company data",
       "description": "Detection: No industry OR no revenue OR no employee count",
       "priority": "high",
       "fromRecommendation": "REC-1761231652950",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:28:50.410Z",
+      "createdAt": "2025-10-24T11:29:41.903Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761299125333",
-      "title": "Vitest",
-      "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:45:25.333Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299125334",
-      "title": "Turbo",
-      "description": "Build incrementiel, cache intelligent, x10 plus rapide",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:45:25.334Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299125335",
-      "title": "Opportunité: UPSELL",
-      "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:45:25.335Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299125336",
-      "title": "Missing company data",
-      "description": "Detection: No industry OR no revenue OR no employee count",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652950",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:45:25.336Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299125336",
+      "id": "TASK-1761305381904",
       "title": "Invalid emails",
       "description": "Detection: Email bounce rate > 5%",
       "priority": "high",
       "fromRecommendation": "REC-1761231652950",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:45:25.336Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299919644",
-      "title": "Vitest",
-      "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:58:39.644Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299919650",
-      "title": "Turbo",
-      "description": "Build incrementiel, cache intelligent, x10 plus rapide",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:58:39.650Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299919651",
-      "title": "Opportunité: UPSELL",
-      "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652949",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:58:39.651Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299919653",
-      "title": "Missing company data",
-      "description": "Detection: No industry OR no revenue OR no employee count",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652950",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:58:39.653Z",
-      "status": "pending"
-    },
-    {
-      "id": "TASK-1761299919654",
-      "title": "Invalid emails",
-      "description": "Detection: Email bounce rate > 5%",
-      "priority": "high",
-      "fromRecommendation": "REC-1761231652950",
-      "assignedTo": "Agent Développeur",
-      "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-24T09:58:39.654Z",
+      "createdAt": "2025-10-24T11:29:41.904Z",
       "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T09:58:39.654Z"
+  "lastUpdate": "2025-10-24T11:29:41.904Z"
 }
