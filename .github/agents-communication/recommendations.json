@@ -787,7 +787,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761298558414",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:35:58.414Z",
+      "type": "traffic_control",
+      "title": "Annuler workflows legacy conflictuels",
+      "description": "Bien que les workflows actuels semblent fonctionner, les nombreux échecs récents des workflows legacy indiquent qu'ils entrent en conflit avec les nouveaux workflows AI-powered. Pour éviter tout problème futur, la meilleure décision est d'annuler ces workflows legacy afin de privilégier les nouveaux workflows plus performants.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "cancel_legacy",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761298558415",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:35:58.415Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte potentielle de fonctionnalités si les workflows legacy étaient encore nécessaires",
+      "description": "Risque identifié par IA: Perte potentielle de fonctionnalités si les workflows legacy étaient encore nécessaires",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761298558416",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:35:58.416Z",
+      "type": "traffic_control",
+      "title": "Risque: Risque de casser des intégrations existantes si les workflows legacy sont mal configurés",
+      "description": "Risque identifié par IA: Risque de casser des intégrations existantes si les workflows legacy sont mal configurés",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T09:28:54.112Z"
+  "lastUpdate": "2025-10-24T09:35:58.416Z"
 }
