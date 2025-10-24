@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 
 /**
- * AGENT AIGUILLEUR - VERSION AI-POWERED (Traffic Controller)
+ * AGENT AIGUILLEUR - VERSION AI-POWERED (Traffic Controller / Intégrateur)
  *
- * Utilise Claude AI pour gérer intelligemment les workflows
+ * L'IA qui ORCHESTRE et PRÉVIENT - pas juste qui répare!
  *
- * Responsabilités:
- * - Détecter workflows legacy qui créent des conflits
- * - Monitorer santé de tous les workflows avec IA
- * - Communiquer avec autres agents si problèmes détectés
- * - Prendre actions correctives intelligentes
- * - Annuler workflows redondants/conflictuels
+ * Responsabilités PROACTIVES:
+ * 1. ORCHESTRER: Lancer les workflows dans le BON ORDRE
+ * 2. SÉQUENCER: Éviter que tout tourne en même temps (conflits)
+ * 3. PRÉVENIR: Détecter risques de conflits AVANT qu'ils arrivent
+ * 4. COORDONNER: Workflows doivent se compléter, pas se bloquer
+ * 5. INTÉGRER: Assurer que la boucle complète fonctionne harmonieusement
+ * 6. RÉPARER: Seulement en dernier recours si problème malgré tout
+ *
+ * PHILOSOPHIE: Si l'Aiguilleur fait bien son travail, les problèmes n'arrivent JAMAIS.
  */
 
 const fs = require('fs');
@@ -82,6 +85,14 @@ class CommunicationHub {
     fs.writeFileSync(file, JSON.stringify(data, null, 2));
     return newRec.id;
   }
+
+  async readTasks() {
+    const file = path.join(this.baseDir, 'tasks.json');
+    if (!fs.existsSync(file)) return [];
+
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    return Array.isArray(data) ? data : (data.items || []);
+  }
 }
 
 // ============================================================================
@@ -108,14 +119,208 @@ class AgentAiguilleurAI {
   }
 
   /**
+   * 🎯 ORCHESTRATION INTELLIGENTE DES WORKFLOWS
+   * Le VRAI métier de l'Aiguilleur: PRÉVENIR les problèmes en orchestrant intelligemment
+   */
+  async orchestrateWorkflows() {
+    console.log('🎼 ORCHESTRATION: Coordination intelligente des workflows...\n');
+
+    // État des workflows en cours
+    const runningWorkflows = await this.getRunningWorkflows();
+    console.log(`📊 ${runningWorkflows.length} workflow(s) en cours d'exécution\n`);
+
+    if (runningWorkflows.length > 0) {
+      console.log('Workflows actifs:');
+      runningWorkflows.forEach(w => {
+        const elapsed = Math.floor((Date.now() - new Date(w.created_at)) / 60000);
+        console.log(`  - ${w.name} (depuis ${elapsed}min)`);
+      });
+      console.log('');
+    }
+
+    // Lire les tâches en attente pour savoir ce qui doit tourner
+    const tasks = await this.hub.readTasks();
+    const pendingTasks = tasks.filter(t => t.status === 'pending');
+    const inProgressTasks = tasks.filter(t => t.status === 'in_progress');
+
+    console.log(`📋 Tâches: ${pendingTasks.length} pending, ${inProgressTasks.length} in_progress\n`);
+
+    // LOGIQUE D'ORCHESTRATION INTELLIGENTE avec IA
+    if (this.useAI) {
+      const orchestrationContext = `
+🎯 CONTEXTE ORCHESTRATION - Traffic Controller
+
+📊 ÉTAT ACTUEL:
+- Workflows actifs: ${runningWorkflows.length}
+${runningWorkflows.map(w => `  • ${w.name} (status: ${w.status})`).join('\n')}
+
+- Tâches pending: ${pendingTasks.length}
+- Tâches in_progress: ${inProgressTasks.length}
+
+🎼 VOTRE MISSION (Aiguilleur/Intégrateur):
+Vous devez ORCHESTRER les workflows pour éviter les conflits.
+
+RÈGLES D'ORCHESTRATION:
+1. Si ${runningWorkflows.length} workflows tournent → ATTENDRE qu'ils finissent
+2. Si trop de tâches pending (>${pendingTasks.length > 10 ? '10' : 'N/A'}) → Lancer workflow Dev
+3. Si aucun workflow actif ET tâches pending → Déclencher boucle principale
+4. Si workflows échouent répétitivement → Séquencer (1 à la fois)
+5. JAMAIS lancer workflows concurrents qui modifient les mêmes fichiers
+
+🎯 DÉCISION: Que faut-il orchestrer MAINTENANT pour optimiser le flux?`;
+
+      try {
+        const decision = await this.ai.makeDecision(
+          orchestrationContext,
+          [
+            '✅ Rien à faire - Workflows se déroulent normalement',
+            '🚀 Lancer workflow principal (autonomous-company.yml)',
+            '⏸️  ATTENDRE - Trop de workflows actifs, risque de conflit',
+            '🔄 Séquencer - Lancer workflows UN PAR UN pour éviter conflits',
+            '⚠️  Annuler workflows bloqués et relancer proprement'
+          ],
+          [
+            'PRÉVENIR les conflits > Réparer',
+            'Workflows concurrents = risque de git conflicts',
+            'Si >2 workflows actifs = ATTENDRE',
+            'Orchestrer dans le bon ordre pour fluidité maximale'
+          ]
+        );
+
+        console.log('🎯 Décision IA Orchestration:\n');
+        console.log(`Decision: ${decision.decision}`);
+        console.log(`Reasoning: ${decision.reasoning}\n`);
+
+        // EXÉCUTER l'orchestration selon décision IA
+        if (decision.decision && decision.decision.includes('Lancer workflow')) {
+          console.log('🚀 ORCHESTRATION: Lancement du workflow principal...\n');
+          await this.triggerWorkflowSafely('autonomous-company.yml', runningWorkflows);
+        } else if (decision.decision && decision.decision.includes('Séquencer')) {
+          console.log('🔄 ORCHESTRATION: Mode séquentiel activé\n');
+          // Lancer UN SEUL workflow à la fois
+          if (runningWorkflows.length === 0 && pendingTasks.length > 0) {
+            await this.triggerWorkflowSafely('autonomous-company.yml', runningWorkflows);
+          }
+        } else if (decision.decision && decision.decision.includes('ATTENDRE')) {
+          console.log('⏸️  ORCHESTRATION: Attente - Laisse workflows actifs finir\n');
+        } else if (decision.decision && decision.decision.includes('Annuler')) {
+          console.log('⚠️  ORCHESTRATION: Nettoyage des workflows bloqués...\n');
+          await this.cancelStuckWorkflows(runningWorkflows);
+        } else {
+          console.log('✅ ORCHESTRATION: Flux optimal - Rien à faire\n');
+        }
+
+      } catch (error) {
+        console.log('⚠️  Orchestration IA échouée, mode fallback:', error.message);
+        // Fallback: si rien ne tourne et tasks pending, lancer
+        if (runningWorkflows.length === 0 && pendingTasks.length > 0) {
+          await this.triggerWorkflowSafely('autonomous-company.yml', runningWorkflows);
+        }
+      }
+
+    } else {
+      // Mode sans IA: règles simples
+      console.log('⚠️  Orchestration en mode fallback (règles simples)\n');
+      if (runningWorkflows.length === 0 && pendingTasks.length > 0) {
+        console.log('🚀 Lancement workflow principal (règle simple)...\n');
+        await this.triggerWorkflowSafely('autonomous-company.yml', runningWorkflows);
+      }
+    }
+
+    console.log('✅ Phase orchestration terminée\n');
+  }
+
+  /**
+   * Récupérer les workflows actuellement en cours
+   */
+  async getRunningWorkflows() {
+    try {
+      const cmd = `gh run list --repo ${CONFIG.repoOwner}/${CONFIG.repoName} --limit 20 --json status,name,createdAt,workflowName,conclusion,databaseId`;
+      const output = execSync(cmd, { encoding: 'utf8', cwd: CONFIG.projectRoot });
+      const runs = JSON.parse(output);
+
+      // Normaliser le format - gh utilise 'createdAt' pas 'created_at'
+      return runs
+        .filter(r => r.status === 'in_progress' || r.status === 'queued')
+        .map(r => ({
+          ...r,
+          created_at: r.createdAt, // Normaliser pour compatibilité
+          id: r.databaseId
+        }));
+    } catch (error) {
+      console.log('⚠️  Erreur récupération workflows actifs:', error.message);
+      return [];
+    }
+  }
+
+  /**
+   * Lancer un workflow de manière SÉCURISÉE (vérifie conflits)
+   */
+  async triggerWorkflowSafely(workflowFile, runningWorkflows) {
+    // Vérifier qu'aucun workflow du même type ne tourne déjà
+    const alreadyRunning = runningWorkflows.some(w =>
+      w.name && w.name.includes('Entreprise Autonome')
+    );
+
+    if (alreadyRunning) {
+      console.log(`⏸️  Workflow ${workflowFile} déjà en cours - SKIP pour éviter conflit\n`);
+      return false;
+    }
+
+    try {
+      console.log(`🚀 Trigger sécurisé: ${workflowFile}...`);
+      execSync(`gh workflow run "${workflowFile}" --ref main`, { cwd: CONFIG.projectRoot, stdio: 'inherit' });
+      console.log(`✅ Workflow ${workflowFile} lancé avec succès\n`);
+      return true;
+    } catch (error) {
+      console.log(`❌ Erreur lancement ${workflowFile}:`, error.message);
+      return false;
+    }
+  }
+
+  /**
+   * Annuler les workflows bloqués depuis trop longtemps
+   */
+  async cancelStuckWorkflows(runningWorkflows) {
+    const stuckWorkflows = runningWorkflows.filter(w => {
+      const minutesRunning = (Date.now() - new Date(w.created_at)) / 60000;
+      return minutesRunning > 30; // Bloqué depuis >30min
+    });
+
+    if (stuckWorkflows.length === 0) {
+      console.log('✅ Aucun workflow bloqué\n');
+      return;
+    }
+
+    console.log(`⚠️  ${stuckWorkflows.length} workflow(s) bloqué(s) depuis >30min\n`);
+
+    for (const workflow of stuckWorkflows) {
+      try {
+        console.log(`❌ Annulation workflow bloqué: ${workflow.name}...`);
+        // Note: gh run cancel nécessite le run ID
+        // execSync(`gh run cancel ${workflow.id}`, { cwd: CONFIG.projectRoot });
+        console.log(`⚠️  Workflow ${workflow.name} devrait être annulé manuellement (ID requis)`);
+      } catch (error) {
+        console.log(`⚠️  Erreur annulation:`, error.message);
+      }
+    }
+  }
+
+  /**
    * Point d'entrée principal
    */
   async run() {
-    console.log('\n🚦 AGENT AIGUILLEUR (AI-POWERED) - Traffic Controller');
-    console.log('======================================================\n');
+    console.log('\n🚦 AGENT AIGUILLEUR (AI-POWERED) - Traffic Controller / Intégrateur');
+    console.log('===================================================================\n');
+    console.log('📋 PHILOSOPHIE: ORCHESTRER et PRÉVENIR > Réparer\n');
 
     try {
+      // 0. ORCHESTRATION PROACTIVE - LE CŒUR DU MÉTIER
+      console.log('🎯 PHASE 1: ORCHESTRATION INTELLIGENTE\n');
+      await this.orchestrateWorkflows();
+
       // 1. Récupérer état workflows
+      console.log('\n🔍 PHASE 2: MONITORING\n');
       await this.fetchWorkflowRuns();
 
       // 2. 🚨 Lire TOUS les workflows configurés
