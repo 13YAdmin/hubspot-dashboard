@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 20:51:54
+**Date**: 24/10/2025 21:29:19
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -8,9 +8,9 @@
 ## 📊 ÉTAT WORKFLOWS
 
 - **Total runs analysés**: 30
-- **En cours**: 1
-- **Échecs récents**: 7
-- **Score de santé**: 30/100
+- **En cours**: 2
+- **Échecs récents**: 6
+- **Score de santé**: 40/100
 
 ---
 
@@ -37,32 +37,32 @@ Aucun conflit ✅
 Total: 4
 
 
-### 1. ⚠️ 7 workflow(s) échouent
+### 1. ⚠️ 6 workflow(s) échouent
 
 - **Type**: workflows_failing
 - **Priorité**: high
-- **Description**: Selon les informations fournies, il y a un problème critique avec les workflows de l'entreprise. 7 workflows avec un schedule configuré ne tournent pas actuellement, ce qui est un problème majeur car ces workflows sont essentiels au bon fonctionnement de l'entreprise. De plus, le CEO attend des résultats rapides, donc il est nécessaire d'escalader le problème immédiatement.
+- **Description**: Selon les informations fournies, il y a 2 workflows en cours mais 6 échecs récents pour le workflow 'Entreprise Autonome IA', qui semble être un workflow critique. De plus, il n'y a pas de workflows avec un schedule qui ne tournent pas. Cela indique un problème critique où des workflows importants ne tournent pas comme prévu. Étant donné la priorité de détecter les workflows qui ne tournent pas et l'exigence d'escalader au CEO si un workflow critique ne tourne pas depuis plus de 15 minutes, la meilleure décision est d'alerter immédiatement le CEO de cette situation.
 
 
-### 2. Risque: Retard dans l'exécution des workflows critiques, pouvant avoir un impact négatif sur les performances de l'entreprise
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Retard dans l'exécution des workflows critiques, pouvant avoir un impact négatif sur les performances de l'entreprise
-
-
-### 3. Risque: Mécontentement du CEO si le problème n'est pas résolu rapidement
+### 2. Risque: Retard dans l'exécution des workflows critiques
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Mécontentement du CEO si le problème n'est pas résolu rapidement
+- **Description**: Risque identifié par IA: Retard dans l'exécution des workflows critiques
 
 
-### 4. Risque: Perte de confiance des utilisateurs dans le système automatisé
+### 3. Risque: Perte de confiance du CEO dans le système automatisé
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte de confiance des utilisateurs dans le système automatisé
+- **Description**: Risque identifié par IA: Perte de confiance du CEO dans le système automatisé
+
+
+### 4. Risque: Impacts négatifs potentiels sur les activités de l'entreprise
+
+- **Type**: risk
+- **Priorité**: medium
+- **Description**: Risque identifié par IA: Impacts négatifs potentiels sur les activités de l'entreprise
 
 
 
@@ -87,7 +87,7 @@ Les décisions sont basées sur analyse contextuelle, pas règles fixes.
 
 🔴 CRITIQUE
 
-Score: 30/100
+Score: 40/100
 
 ---
 
