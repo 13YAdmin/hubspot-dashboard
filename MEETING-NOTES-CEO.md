@@ -16,14 +16,37 @@
 
 ### Directives Actives
 
-*(Ajoutez vos directives ici - le Chef AI les lira à chaque boucle)*
+🚨 **CODE ROUGE - PRESSION DIRECTION MAXIMALE** 🚨
 
-**Exemple:**
-```
-- Priorité absolue: Atteindre 95/100 au score QA
-- Budget IA: Maximum $1/jour
-- Focus: Corriger les bugs avant d'ajouter des features
-```
+**DEADLINE: 24H - LIVRAISON IMMÉDIATE REQUISE**
+
+**OBJECTIF:** Score QA 95/100 en 24H (actuellement 39/100)
+
+**PRIORITÉS ABSOLUES:**
+1. ⚠️ CRITIQUE: Fixer les 6 échecs QA critiques EN PRIORITÉ
+2. 🔥 Atteindre 95/100 MINIMUM - NON NÉGOCIABLE
+3. 💰 Business features APRÈS 95/100 seulement
+
+**ACCÉLÉRATIONS:**
+- Workflow toutes les 5 minutes (au lieu de 1h)
+- Corrections en parallèle
+- Speed > Perfect jusqu'à 95/100
+- Pas de review, juste fixer et ship
+
+**BUDGET:**
+- Budget IA ILLIMITÉ pour les 24 prochaines heures
+- Peu importe le coût - IL FAUT LIVRER
+
+**SUSPENSIONS TEMPORAIRES:**
+- ❌ Recrutement nouveaux agents
+- ❌ Moonshots et innovations
+- ❌ Refactoring code
+→ Tout ça APRÈS 95/100
+
+**ESCALATION:**
+Si aucune progression en 2h → ALERTE IMMÉDIATE
+
+🔥 **BURN THE SHIPS - ON LIVRE MAINTENANT!** 🔥
 
 ---
 
