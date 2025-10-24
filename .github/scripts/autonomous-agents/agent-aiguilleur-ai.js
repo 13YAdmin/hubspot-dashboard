@@ -29,6 +29,11 @@ const CONFIG = {
   repoOwner: '13YAdmin',
   repoName: 'hubspot-dashboard',
   useAI: !!process.env.ANTHROPIC_API_KEY,
+  // Workflows CRITIQUES qui DOIVENT tourner
+  criticalWorkflows: [
+    { name: '🏢 Entreprise Autonome IA', maxDelayMinutes: 10, file: 'autonomous-company.yml' },
+    { name: '🔄 Boucle Dev → QA → Debug', maxDelayMinutes: 20, file: 'dev-qa-debug-loop.yml' }
+  ],
   // Workflows legacy à surveiller (peuvent créer conflits)
   legacyWorkflows: [
     'autonomous-loop.yml',  // Ancienne version, peut être redondant
@@ -113,20 +118,23 @@ class AgentAiguilleurAI {
       // 1. Récupérer état workflows
       await this.fetchWorkflowRuns();
 
-      // 2. Détecter workflows legacy problématiques
+      // 2. 🚨 Lire TOUS les workflows configurés
+      await this.readAllWorkflows();
+
+      // 3. Détecter workflows legacy problématiques
       await this.detectLegacyWorkflows();
 
-      // 3. Analyser avec IA si disponible
+      // 4. Analyser avec IA si disponible
       if (this.useAI) {
         await this.analyzeWithAI();
       } else {
         await this.analyzeWithRules();
       }
 
-      // 4. Communiquer aux autres agents si nécessaire
+      // 5. Communiquer aux autres agents si nécessaire
       await this.communicateToAgents();
 
-      // 5. Générer rapport
+      // 6. Générer rapport
       await this.saveReport();
 
       console.log('\n✅ Agent Aiguilleur AI - Exécution terminée');
@@ -165,6 +173,47 @@ class AgentAiguilleurAI {
     } catch (error) {
       console.log('   ⚠️  API non disponible, données locales');
       this.workflowRuns = [];
+    }
+  }
+
+  /**
+   * Lire TOUS les workflows du projet
+   */
+  async readAllWorkflows() {
+    console.log('📂 Lecture de TOUS les workflows configurés...\n');
+
+    try {
+      const workflowsDir = path.join(CONFIG.projectRoot, '.github/workflows');
+      const workflowFiles = fs.readdirSync(workflowsDir)
+        .filter(f => f.endsWith('.yml') || f.endsWith('.yaml'));
+
+      this.allWorkflows = [];
+
+      for (const file of workflowFiles) {
+        const filePath = path.join(workflowsDir, file);
+        const content = fs.readFileSync(filePath, 'utf8');
+
+        // Extraire le nom et le schedule
+        const nameMatch = content.match(/name:\s*(.+)/);
+        const scheduleMatch = content.match(/schedule:\s*\n\s*-\s*cron:\s*['"](.+)['"]/);
+
+        const workflow = {
+          file,
+          name: nameMatch ? nameMatch[1].trim() : file,
+          hasSchedule: !!scheduleMatch,
+          schedule: scheduleMatch ? scheduleMatch[1] : null,
+          content: content.substring(0, 500) // Premier 500 chars pour analyse IA
+        };
+
+        this.allWorkflows.push(workflow);
+        console.log(`   📄 ${workflow.name}${workflow.hasSchedule ? ` (cron: ${workflow.schedule})` : ' (manuel)'}`);
+      }
+
+      console.log(`\n   ✅ ${this.allWorkflows.length} workflows configurés\n`);
+
+    } catch (error) {
+      console.log('   ⚠️  Impossible de lire workflows, skip');
+      this.allWorkflows = [];
     }
   }
 
@@ -237,35 +286,74 @@ class AgentAiguilleurAI {
     const failedRuns = this.workflowRuns.filter(r => r.conclusion === 'failure').slice(0, 10);
     const runningRuns = this.workflowRuns.filter(r => r.status === 'in_progress');
 
-    const situation = `État actuel des workflows GitHub Actions:
+    // Calculer le dernier run de chaque workflow
+    const lastRunByWorkflow = {};
+    for (const run of this.workflowRuns) {
+      if (!lastRunByWorkflow[run.name] || new Date(run.created_at) > new Date(lastRunByWorkflow[run.name].created_at)) {
+        lastRunByWorkflow[run.name] = run;
+      }
+    }
 
-Workflows en cours: ${runningRuns.length}
+    // Trouver workflows configurés mais qui n'ont PAS tourné récemment
+    const workflowsNotRunning = this.allWorkflows
+      .filter(w => w.hasSchedule) // Seulement ceux avec schedule
+      .filter(w => {
+        const lastRun = lastRunByWorkflow[w.name];
+        if (!lastRun) return true; // Jamais tourné
+        const minutesSinceLastRun = (Date.now() - new Date(lastRun.created_at)) / 1000 / 60;
+        // Si cron toutes les 5min mais pas tourné depuis 15min = problème!
+        if (w.schedule.includes('*/5') && minutesSinceLastRun > 15) return true;
+        if (w.schedule.includes('*/15') && minutesSinceLastRun > 45) return true;
+        if (w.schedule.includes('0 *') && minutesSinceLastRun > 120) return true; // Toutes les heures
+        return false;
+      });
+
+    const situation = `🚨 ANALYSE COMPLÈTE DES WORKFLOWS - DÉTECTION AUTOMATIQUE
+
+📊 WORKFLOWS CONFIGURÉS: ${this.allWorkflows.length}
+${this.allWorkflows.map(w => `- ${w.name}${w.hasSchedule ? ` [cron: ${w.schedule}]` : ' [manuel]'}`).join('\n')}
+
+🏃 WORKFLOWS EN COURS: ${runningRuns.length}
 ${runningRuns.map(r => `- ${r.name} (depuis ${this.getTimeSince(r.created_at)})`).join('\n')}
 
-Échecs récents: ${failedRuns.length}
+⚠️ WORKFLOWS AVEC SCHEDULE MAIS PAS TOURNÉS: ${workflowsNotRunning.length}
+${workflowsNotRunning.map(w => {
+  const lastRun = lastRunByWorkflow[w.name];
+  const delay = lastRun ? this.getTimeSince(lastRun.created_at) : 'JAMAIS';
+  return `- 🔴 ${w.name} [schedule: ${w.schedule}] → Dernier run: ${delay}`;
+}).join('\n')}
+
+❌ ÉCHECS RÉCENTS: ${failedRuns.length}
 ${failedRuns.map(r => `- ${r.name} (${r.conclusion})`).join('\n')}
 
-Workflows legacy détectés avec problèmes: ${this.legacyIssues.length}
+📂 WORKFLOWS LEGACY: ${this.legacyIssues.length}
 ${this.legacyIssues.map(i => `- ${i.workflow}: ${i.issue}`).join('\n')}
 
-Contexte:
-- Projet: Dashboard HubSpot autonome
-- Nouveaux agents AI viennent d'être ajoutés
-- Anciens workflows peuvent créer conflits avec nouveaux
+🎯 CONTEXTE:
+- Dashboard HubSpot autonome avec agents IA
+- MISSION: Les workflows DOIVENT tourner automatiquement
+- Si un workflow a un schedule mais ne tourne pas = PROBLÈME CRITIQUE
+- Le CEO attend des résultats rapides
+
+⚠️ VOTRE MISSION IA:
+Déterminez AUTOMATIQUEMENT quels workflows ne tournent PAS alors qu'ils DEVRAIENT.
+Si des workflows critiques ne tournent pas = escalade IMMÉDIATE.
 `;
 
     const analysis = await this.ai.makeDecision(
       situation,
       [
-        'Tout va bien, aucune action nécessaire',
-        'Annuler workflows legacy pour éviter conflits',
-        'Workflows échouent à cause de code manquant, attendre prochain push',
-        'Problème grave nécessitant intervention immédiate'
+        'Tout va bien - Workflows tournent normalement',
+        '🚨 ALERTE: Workflows critiques ne tournent PAS - Escalade CEO',
+        'Workflows échouent - Corrections nécessaires',
+        'Conflicts entre workflows - Annuler legacy',
+        'Problème GitHub Actions - Attendre'
       ],
       [
-        'Privilégier nouveaux workflows AI-powered',
-        'Éviter workflows concurrents conflictuels',
-        'Maintenir système sain et fonctionnel'
+        '🚨 PRIORITÉ: Détecter workflows qui ne tournent PAS',
+        'Workflows avec schedule DOIVENT tourner automatiquement',
+        'Si workflow critique ne tourne pas depuis >15min = ALERTE',
+        'Escalader au CEO si workflows bloqués'
       ]
     );
 
@@ -274,6 +362,31 @@ Contexte:
 
     // Interpréter les décisions
     if (analysis && !analysis.error) {
+      // 🔧 AUTO-RÉPARATION: Workflows qui ne tournent pas = FIX AUTOMATIQUE
+      if (workflowsNotRunning.length > 0) {
+        console.log(`\n🚨 ${workflowsNotRunning.length} workflow(s) ne tournent PAS - RÉPARATION AUTOMATIQUE...\n`);
+
+        // FIXER AUTOMATIQUEMENT - plus d'escalade, on répare!
+        await this.autoFixWorkflows(workflowsNotRunning, lastRunByWorkflow);
+
+        this.recommendations.push({
+          type: 'workflows_auto_fixed',
+          title: `🔧 ${workflowsNotRunning.length} workflow(s) auto-réparés`,
+          description: `L'Aiguilleur AI a détecté et FIXÉ automatiquement ${workflowsNotRunning.length} workflow(s) qui ne tournaient pas.`,
+          priority: 'high'
+        });
+      }
+
+      // Workflows échouent (différent de "ne tournent pas") = suggestions IA
+      if (analysis.decision && analysis.decision.toLowerCase().includes('alerte') && failedRuns.length > 0) {
+        this.recommendations.push({
+          type: 'workflows_failing',
+          title: `⚠️ ${failedRuns.length} workflow(s) échouent`,
+          description: analysis.reasoning || 'Workflows échouent - corrections nécessaires',
+          priority: 'high'
+        });
+      }
+
       if (analysis.decision && analysis.decision.toLowerCase().includes('annuler')) {
         this.recommendations.push({
           type: 'cancel_legacy',
@@ -382,6 +495,100 @@ Contexte:
     if (minutes < 60) return `${minutes}min`;
     const hours = Math.floor(minutes / 60);
     return `${hours}h${minutes % 60}min`;
+  }
+
+  /**
+   * 🔧 AUTO-RÉPARER LES WORKFLOWS CASSÉS
+   * L'IA détecte ET FIXE automatiquement - zéro intervention humaine
+   */
+  async autoFixWorkflows(workflowsNotRunning, lastRunByWorkflow) {
+    console.log('\n🔧 AUTO-RÉPARATION DES WORKFLOWS\n');
+
+    for (const workflow of workflowsNotRunning) {
+      console.log(`🔨 Fixing: ${workflow.name}...`);
+
+      try {
+        // 1. Vérifier si le workflow existe sur GitHub
+        const checkCmd = `gh workflow list | grep -i "${workflow.name.substring(0, 30)}" || echo "NOT_FOUND"`;
+        const { execSync } = require('child_process');
+        const ghResult = execSync(checkCmd, { encoding: 'utf8', stdio: 'pipe' });
+
+        if (ghResult.includes('NOT_FOUND')) {
+          console.log(`⚠️  Workflow "${workflow.name}" non trouvé sur GitHub - Probable push manquant`);
+
+          // FIX AUTOMATIQUE: Commit + Push
+          console.log('🚀 PUSH AUTOMATIQUE DU WORKFLOW...');
+          execSync(`git add "${path.join(CONFIG.projectRoot, '.github/workflows', workflow.file)}"`, { cwd: CONFIG.projectRoot });
+          execSync(`git commit -m "🤖 Aiguilleur AI: Auto-push workflow ${workflow.name}" || echo "Already committed"`, { cwd: CONFIG.projectRoot });
+          execSync('git push origin main', { cwd: CONFIG.projectRoot });
+          console.log('✅ Workflow pushé sur GitHub!');
+
+          // Attendre 5 secondes que GitHub actualise
+          await new Promise(resolve => setTimeout(resolve, 5000));
+        }
+
+        // 2. Trigger le workflow manuellement
+        console.log(`⚡ Déclenchement manuel de "${workflow.name}"...`);
+        const triggerCmd = `gh workflow run "${workflow.file}" --ref main`;
+        execSync(triggerCmd, { cwd: CONFIG.projectRoot, stdio: 'inherit' });
+        console.log(`✅ Workflow "${workflow.name}" déclenché!\n`);
+
+      } catch (error) {
+        console.log(`❌ Erreur réparation ${workflow.name}:`, error.message);
+
+        // Escalade SEULEMENT si vraiment impossible de fixer
+        this.escalateToCEO(`🚨 IMPOSSIBLE DE FIXER: ${workflow.name}
+
+Erreur: ${error.message}
+
+⚠️  Intervention manuelle requise - problème GitHub Actions ou permissions.`);
+      }
+    }
+
+    console.log('✅ AUTO-RÉPARATION TERMINÉE\n');
+  }
+
+  /**
+   * Escalade automatique au CEO (seulement pour problèmes NON auto-réparables)
+   */
+  escalateToCEO(message) {
+    console.log('\n🚨 ESCALADE AU CEO!\n');
+
+    try {
+      const meetingNotesPath = path.join(CONFIG.projectRoot, 'MEETING-NOTES-CEO.md');
+
+      if (!fs.existsSync(meetingNotesPath)) {
+        console.log('⚠️  Meeting Notes non trouvé, skip escalade');
+        return;
+      }
+
+      let content = fs.readFileSync(meetingNotesPath, 'utf8');
+
+      const escalation = `
+
+---
+
+## 🚨 ALERTE AIGUILLEUR - ${new Date().toLocaleString('fr-FR')}
+
+${message}
+
+**Status**: ⚠️ ESCALADE AUTOMATIQUE - Intervention manuelle requise
+
+---
+`;
+
+      // Insérer après "## 📝 HISTORIQUE DES RÉUNIONS"
+      content = content.replace(
+        /(## 📝 HISTORIQUE DES RÉUNIONS)/,
+        `$1${escalation}`
+      );
+
+      fs.writeFileSync(meetingNotesPath, content);
+      console.log('✅ Escalade ajoutée dans MEETING-NOTES-CEO.md\n');
+
+    } catch (error) {
+      console.log('❌ Erreur escalade CEO:', error.message);
+    }
   }
 
   /**

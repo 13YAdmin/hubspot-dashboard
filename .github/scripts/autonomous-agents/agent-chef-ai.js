@@ -116,6 +116,73 @@ class AgentChefAI {
   }
 
   /**
+   * 🔧 AUTO-HEALING: Détecte et corrige les problèmes d'orchestration
+   */
+  async autoHealOrchestration() {
+    console.log('\n🔧 AUTO-HEALING: Vérification santé orchestration...\n');
+
+    const issues = [];
+
+    // 1. Vérifier que le dossier de communication existe
+    if (!fs.existsSync(CONFIG.communicationDir)) {
+      console.log('🔨 FIX: Création du dossier de communication...');
+      fs.mkdirSync(CONFIG.communicationDir, { recursive: true });
+      issues.push('Communication dir manquant → créé');
+    }
+
+    // 2. Vérifier que les fichiers essentiels existent
+    const essentialFiles = ['tasks.json', 'recommendations.json', 'decisions.json'];
+    for (const file of essentialFiles) {
+      const filePath = path.join(CONFIG.communicationDir, file);
+      if (!fs.existsSync(filePath)) {
+        console.log(`🔨 FIX: Création de ${file}...`);
+        fs.writeFileSync(filePath, JSON.stringify({ items: [], lastUpdate: new Date().toISOString() }, null, 2));
+        issues.push(`${file} manquant → créé`);
+      }
+    }
+
+    // 3. Vérifier que les tâches ne sont pas bloquées depuis trop longtemps
+    const tasks = await this.hub.readTasks();
+    const stuckTasks = tasks.filter(t => {
+      if (t.status !== 'in_progress') return false;
+      const hoursSinceUpdate = (Date.now() - new Date(t.createdAt)) / (1000 * 60 * 60);
+      return hoursSinceUpdate > 2; // Bloquée depuis >2h
+    });
+
+    if (stuckTasks.length > 0) {
+      console.log(`🔨 FIX: ${stuckTasks.length} tâches bloquées depuis >2h → reset à 'pending'`);
+      for (const task of stuckTasks) {
+        // Reset le status pour que d'autres agents puissent les prendre
+        const file = path.join(CONFIG.communicationDir, 'tasks.json');
+        const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const taskToUpdate = data.items.find(t => t.id === task.id);
+        if (taskToUpdate) {
+          taskToUpdate.status = 'pending';
+          taskToUpdate.resetCount = (taskToUpdate.resetCount || 0) + 1;
+          taskToUpdate.lastReset = new Date().toISOString();
+        }
+        fs.writeFileSync(file, JSON.stringify(data, null, 2));
+      }
+      issues.push(`${stuckTasks.length} tâches bloquées → reset`);
+    }
+
+    // 4. Vérifier que l'IA fonctionne
+    if (!this.useAI) {
+      console.log('⚠️  IA NON ACTIVÉE - Fonctionnement en mode dégradé');
+      issues.push('IA désactivée → mode fallback');
+    }
+
+    if (issues.length > 0) {
+      console.log(`\n✅ AUTO-HEALING: ${issues.length} problème(s) corrigé(s):`);
+      issues.forEach(i => console.log(`  - ${i}`));
+    } else {
+      console.log('✅ Orchestration en bonne santé\n');
+    }
+
+    return issues;
+  }
+
+  /**
    * Point d'entrée principal
    */
   async run() {
@@ -123,31 +190,34 @@ class AgentChefAI {
     console.log('=====================================\n');
 
     try {
-      // 0. Lire les directives du CEO (Grand Chef Suprême)
+      // 0. AUTO-HEALING FIRST - répare les problèmes d'orchestration
+      await this.autoHealOrchestration();
+
+      // 1. Lire les directives du CEO (Grand Chef Suprême)
       const ceoDirectives = await this.readCEODirectives();
 
-      // 1. Analyser l'état actuel
+      // 2. Analyser l'état actuel
       const projectState = await this.analyzeProjectState();
 
-      // 2. Lire les recommandations des autres agents
+      // 3. Lire les recommandations des autres agents
       const recommendations = await this.hub.readRecommendations();
       console.log(`\n💡 ${recommendations.length} recommandations à évaluer`);
 
-      // 3. Lire les tâches en cours
+      // 4. Lire les tâches en cours
       const tasks = await this.hub.readTasks();
       console.log(`📋 ${tasks.length} tâches dans le système`);
 
-      // 4. Utiliser l'IA pour décider quoi faire
+      // 5. Utiliser l'IA pour décider quoi faire
       if (this.useAI) {
         await this.makeAIDecisions(projectState, recommendations, tasks, ceoDirectives);
       } else {
         await this.makeFallbackDecisions(recommendations);
       }
 
-      // 5. Sauvegarder le rapport
+      // 6. Sauvegarder le rapport
       await this.saveReport();
 
-      // 6. Ajouter une entrée dans les notes de réunion CEO
+      // 7. Ajouter une entrée dans les notes de réunion CEO
       await this.addMeetingEntry(projectState, recommendations, tasks);
 
       console.log('\n✅ Agent Chef AI - Exécution terminée');

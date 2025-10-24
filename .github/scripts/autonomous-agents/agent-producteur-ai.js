@@ -91,6 +91,63 @@ class AgentProducteurAI {
   }
 
   /**
+   * 🔧 AUTO-HEALING: Vérifie que la détection de problèmes fonctionne
+   */
+  async autoHealDetection() {
+    console.log('\n🔧 AUTO-HEALING: Vérification détection de problèmes...\n');
+
+    const issues = [];
+
+    // 1. Vérifier que le dossier de communication existe
+    if (!fs.existsSync(CONFIG.communicationDir)) {
+      console.log('🔨 FIX: Création du dossier de communication...');
+      fs.mkdirSync(CONFIG.communicationDir, { recursive: true });
+      issues.push('Communication dir créé');
+    }
+
+    // 2. Vérifier qu'on a détecté des améliorations récemment
+    const recommendationsPath = path.join(CONFIG.communicationDir, 'recommendations.json');
+    if (fs.existsSync(recommendationsPath)) {
+      const recs = JSON.parse(fs.readFileSync(recommendationsPath, 'utf8'));
+      const recArray = Array.isArray(recs) ? recs : (recs.items || []);
+      const producerRecs = recArray.filter(r => r.source === 'Agent Producteur (AI)');
+
+      if (producerRecs.length === 0) {
+        console.log('⚠️  Aucune amélioration détectée récemment - analyse approfondie requise');
+        issues.push('Analyse peu productive → approfondir');
+      }
+    }
+
+    // 3. Vérifier que l'IA fonctionne
+    if (!this.useAI) {
+      console.log('⚠️  IA NON ACTIVÉE - Détection limitée aux règles simples');
+      issues.push('IA désactivée → mode fallback');
+    }
+
+    // 4. Vérifier que les fichiers essentiels existent
+    const essentialPaths = [
+      path.join(CONFIG.projectRoot, 'public/index.html'),
+      path.join(CONFIG.projectRoot, 'RAPPORT-AGENT-QA.md')
+    ];
+
+    for (const filePath of essentialPaths) {
+      if (!fs.existsSync(filePath)) {
+        console.log(`⚠️  Fichier critique manquant: ${path.basename(filePath)}`);
+        issues.push(`${path.basename(filePath)} manquant`);
+      }
+    }
+
+    if (issues.length > 0) {
+      console.log(`\n✅ AUTO-HEALING: ${issues.length} problème(s) détecté(s):`);
+      issues.forEach(i => console.log(`  - ${i}`));
+    } else {
+      console.log('✅ Système de détection en bonne santé\n');
+    }
+
+    return issues;
+  }
+
+  /**
    * Point d'entrée principal
    */
   async run() {
@@ -98,6 +155,9 @@ class AgentProducteurAI {
     console.log('==============================================================\n');
 
     try {
+      // 0. AUTO-HEALING FIRST
+      await this.autoHealDetection();
+
       // 1. Analyser le système complet
       const systemState = await this.analyzeSystemState();
 
