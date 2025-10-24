@@ -1,0 +1,52 @@
+name: Fetch HubSpot Data
+
+# Déclenche le workflow automatiquement toutes les 2 heures + manuellement
+on:
+  schedule:
+    - cron: '0 */2 * * *'  # Toutes les 2 heures
+  workflow_dispatch:  # Permet de lancer manuellement depuis GitHub
+  push:
+    branches:
+      - main  # Lance aussi à chaque push sur main
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permet de push sur le repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Create Custom Properties (first run)
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+        run: |
+          node .github/scripts/create-custom-properties.js || echo "⚠️ Properties may already exist, continuing..."
+        continue-on-error: true
+
+      - name: Fetch HubSpot Data
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+        run: |
+          node .github/scripts/fetch-hubspot.js
+
+      - name: Push Calculated Scores to HubSpot
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+        run: |
+          node .github/scripts/push-scores-to-hubspot.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
+          commit_message: '🔄 Auto-update dashboard and data [skip ci]'
