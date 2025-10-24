@@ -1,26 +1,41 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 13:57:59
+**Date**: 24/10/2025 14:43:52
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
 
 ## 📊 ÉTAT WORKFLOWS
 
-- **Total runs analysés**: 0
-- **En cours**: 0
-- **Échecs récents**: 0
+- **Total runs analysés**: 30
+- **En cours**: 3
+- **Échecs récents**: 2
 - **Score de santé**: 100/100
 
 ---
 
 ## ⚠️  WORKFLOWS LEGACY DÉTECTÉS
 
-Total: 0
+Total: 2
+
+
+### 1. autonomous-loop.yml
+
+- **Issue**: Tourne en même temps que nouveaux workflows
+- **Sévérité**: high
+- **Conflits avec**: 🔄 Boucle Dev → QA → Debug, 🚦 Agent Aiguilleur (Traffic Controller), 🏢 Entreprise Autonome IA, ⚡ Amélioration Continue (15 min), Fetch HubSpot Data
 
 
 
-Aucun workflow legacy problématique détecté ✅
+### 2. fetch-hubspot-data.yml
+
+- **Issue**: Tourne en même temps que nouveaux workflows
+- **Sévérité**: high
+- **Conflits avec**: 🔄 Boucle Dev → QA → Debug, 🚦 Agent Aiguilleur (Traffic Controller), 🏢 Entreprise Autonome IA, 🤖 Boucle Vertueuse Autonome, ⚡ Amélioration Continue (15 min)
+
+
+
+
 
 ---
 
@@ -34,38 +49,11 @@ Aucun conflit ✅
 
 ## 💡 RECOMMANDATIONS
 
-Total: 4
-
-
-### 1. 🔧 1 workflow(s) auto-réparés
-
-- **Type**: workflows_auto_fixed
-- **Priorité**: high
-- **Description**: L'Aiguilleur AI a détecté et FIXÉ automatiquement 1 workflow(s) qui ne tournaient pas.
-
-
-### 2. Risque: Perte de données HubSpot si le workflow ne tourne pas
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte de données HubSpot si le workflow ne tourne pas
-
-
-### 3. Risque: Dysfonctionnement du dashboard autonome sans les données HubSpot
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Dysfonctionnement du dashboard autonome sans les données HubSpot
-
-
-### 4. Risque: Insatisfaction du CEO si le problème n'est pas résolu rapidement
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Insatisfaction du CEO si le problème n'est pas résolu rapidement
+Total: 0
 
 
 
+Aucune action nécessaire - système sain ✅
 
 ---
 
