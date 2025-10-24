@@ -1879,7 +1879,63 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761311921030",
+      "from": "Agent RH (AI)",
+      "timestamp": "2025-10-24T13:18:41.030Z",
+      "type": "recruitment",
+      "title": "Recruter Agent Monitoring",
+      "description": "Recrutement recommandé par Agent RH (AI).\n\nRaison: Cette option me semble la plus judicieuse pour atteindre les objectifs du projet. Bien que l'option 1 (recruter uniquement les rôles CRITICAL) puisse sembler plus rapide, elle ne permettrait pas de combler tous les besoins critiques de l'équipe. Les rôles HIGH priority sont également essentiels pour assurer la réussite du projet à long terme (Tech Lead, DevOps). De plus, recruter progressivement tous les rôles manquants permettra de mieux contrôler les coûts et d'intégrer de nouveaux talents de manière plus fluide. Cela réduira également les risques liés à une croissance trop rapide de l'équipe.\n\nUrgence: immediate",
+      "priority": "critical",
+      "category": "Recruitment",
+      "urgency": "immediate",
+      "autoGenerate": true,
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761311921032",
+      "from": "Agent RH (AI)",
+      "timestamp": "2025-10-24T13:18:41.032Z",
+      "type": "recruitment",
+      "title": "Recruter Agent Self-Healing",
+      "description": "Recrutement recommandé par Agent RH (AI).\n\nRaison: Cette option me semble la plus judicieuse pour atteindre les objectifs du projet. Bien que l'option 1 (recruter uniquement les rôles CRITICAL) puisse sembler plus rapide, elle ne permettrait pas de combler tous les besoins critiques de l'équipe. Les rôles HIGH priority sont également essentiels pour assurer la réussite du projet à long terme (Tech Lead, DevOps). De plus, recruter progressivement tous les rôles manquants permettra de mieux contrôler les coûts et d'intégrer de nouveaux talents de manière plus fluide. Cela réduira également les risques liés à une croissance trop rapide de l'équipe.\n\nUrgence: immediate",
+      "priority": "critical",
+      "category": "Recruitment",
+      "urgency": "immediate",
+      "autoGenerate": true,
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761311921034",
+      "from": "Agent RH (AI)",
+      "timestamp": "2025-10-24T13:18:41.034Z",
+      "type": "recruitment",
+      "title": "Recruter Agent Tech Lead",
+      "description": "Recrutement recommandé par Agent RH (AI).\n\nRaison: Cette option me semble la plus judicieuse pour atteindre les objectifs du projet. Bien que l'option 1 (recruter uniquement les rôles CRITICAL) puisse sembler plus rapide, elle ne permettrait pas de combler tous les besoins critiques de l'équipe. Les rôles HIGH priority sont également essentiels pour assurer la réussite du projet à long terme (Tech Lead, DevOps). De plus, recruter progressivement tous les rôles manquants permettra de mieux contrôler les coûts et d'intégrer de nouveaux talents de manière plus fluide. Cela réduira également les risques liés à une croissance trop rapide de l'équipe.\n\nUrgence: this_week",
+      "priority": "high",
+      "category": "Recruitment",
+      "urgency": "this_week",
+      "autoGenerate": true,
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761311921035",
+      "from": "Agent RH (AI)",
+      "timestamp": "2025-10-24T13:18:41.035Z",
+      "type": "recruitment",
+      "title": "Recruter Agent DevOps",
+      "description": "Recrutement recommandé par Agent RH (AI).\n\nRaison: Cette option me semble la plus judicieuse pour atteindre les objectifs du projet. Bien que l'option 1 (recruter uniquement les rôles CRITICAL) puisse sembler plus rapide, elle ne permettrait pas de combler tous les besoins critiques de l'équipe. Les rôles HIGH priority sont également essentiels pour assurer la réussite du projet à long terme (Tech Lead, DevOps). De plus, recruter progressivement tous les rôles manquants permettra de mieux contrôler les coûts et d'intégrer de nouveaux talents de manière plus fluide. Cela réduira également les risques liés à une croissance trop rapide de l'équipe.\n\nUrgence: this_week",
+      "priority": "high",
+      "category": "Recruitment",
+      "urgency": "this_week",
+      "autoGenerate": true,
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T11:54:18.954Z"
+  "lastUpdate": "2025-10-24T13:18:41.035Z"
 }
