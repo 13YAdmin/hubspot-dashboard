@@ -969,7 +969,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761299481546",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:51:21.546Z",
+      "type": "traffic_control",
+      "title": "Annuler workflows legacy conflictuels",
+      "description": "Bien que les nouveaux workflows AI-powered soient prioritaires, les échecs récurrents et la présence de workflows legacy conflictuels indiquent un problème systémique qui nécessite une intervention. La meilleure approche serait d'annuler les workflows legacy pour éviter tout conflit avec les nouveaux workflows, tout en gardant un œil attentif sur les performances et la stabilité du système. Cela permettra de se concentrer sur le déploiement réussi des nouveaux agents AI sans être entravé par des workflows obsolètes.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "cancel_legacy",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761299481547",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:51:21.547Z",
+      "type": "traffic_control",
+      "title": "Risque: Possibilité de perdre des données ou des fonctionnalités importantes si les workflows legacy sont critiques",
+      "description": "Risque identifié par IA: Possibilité de perdre des données ou des fonctionnalités importantes si les workflows legacy sont critiques",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761299481548",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:51:21.548Z",
+      "type": "traffic_control",
+      "title": "Risque: Risque de régression si les nouveaux workflows ne sont pas suffisamment testés et stables",
+      "description": "Risque identifié par IA: Risque de régression si les nouveaux workflows ne sont pas suffisamment testés et stables",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T09:45:29.133Z"
+  "lastUpdate": "2025-10-24T09:51:21.548Z"
 }
