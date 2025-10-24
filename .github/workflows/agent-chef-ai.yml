@@ -6,6 +6,11 @@ on:
     - cron: '0 */3 * * *'
   workflow_dispatch:  # Permet exécution manuelle
 
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
 jobs:
   chef-ai-decisions:
     runs-on: ubuntu-latest

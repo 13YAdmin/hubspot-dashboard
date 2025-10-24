@@ -20,6 +20,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
 jobs:
   # JOB 1: AUDIT AUTOMATIQUE
   audit:

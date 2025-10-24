@@ -10,6 +10,11 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
 jobs:
   visionnaire:
     name: 🚀 Agent Visionnaire

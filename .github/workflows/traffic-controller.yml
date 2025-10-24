@@ -17,6 +17,11 @@ on:
   workflow_dispatch:  # Manuel
   # Note: Ne se déclenche PAS sur push pour éviter de surcharger
 
+permissions:
+  contents: write  # Permet de commit et push les rapports
+  issues: write    # Pour créer des issues si nécessaire
+  actions: read    # Pour lire l'état des workflows
+
 jobs:
   # JOB 1: MONITORING DES WORKFLOWS
   monitor:

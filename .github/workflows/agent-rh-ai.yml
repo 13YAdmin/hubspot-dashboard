@@ -9,6 +9,11 @@ on:
     - cron: '30 */12 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
 jobs:
   rh-ai:
     name: 👔 Agent RH AI

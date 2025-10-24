@@ -9,6 +9,11 @@ on:
     - cron: '0,30 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  issues: write
+  actions: read
+
 jobs:
   optimize:
     name: 🚀 Optimiser Performance
