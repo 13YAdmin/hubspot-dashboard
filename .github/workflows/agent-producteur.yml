@@ -44,7 +44,7 @@ jobs:
           node .github/scripts/autonomous-agents/agent-producteur-ai.js
 
       - name: Upload rapports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: producteur-reports
           path: |
