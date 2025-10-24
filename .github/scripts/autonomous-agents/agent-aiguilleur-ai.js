@@ -240,16 +240,73 @@ RÈGLES D'ORCHESTRATION:
       const runs = JSON.parse(output);
 
       // Normaliser le format - gh utilise 'createdAt' pas 'created_at'
-      return runs
+      const activeRuns = runs
         .filter(r => r.status === 'in_progress' || r.status === 'queued')
         .map(r => ({
           ...r,
           created_at: r.createdAt, // Normaliser pour compatibilité
           id: r.databaseId
         }));
+
+      // 🚨 CRITIQUE: Détecter workflows QUEUED depuis trop longtemps
+      const queuedTooLong = activeRuns.filter(r => {
+        if (r.status !== 'queued') return false;
+        const minutesQueued = (Date.now() - new Date(r.createdAt)) / 60000;
+        return minutesQueued > 10; // Queued >10min = PROBLÈME
+      });
+
+      if (queuedTooLong.length > 0) {
+        console.log(`\n🚨 ALERTE: ${queuedTooLong.length} workflow(s) QUEUED depuis >10min!\n`);
+        for (const w of queuedTooLong) {
+          const mins = Math.floor((Date.now() - new Date(w.createdAt)) / 60000);
+          console.log(`  ⏸️  ${w.name} - Queued depuis ${mins}min`);
+        }
+        console.log('\n🔧 ACTION: Relance automatique...\n');
+
+        // Relancer ces workflows
+        await this.relaunchQueuedWorkflows(queuedTooLong);
+      }
+
+      return activeRuns;
     } catch (error) {
       console.log('⚠️  Erreur récupération workflows actifs:', error.message);
       return [];
+    }
+  }
+
+  /**
+   * Relancer workflows bloqués en queue
+   */
+  async relaunchQueuedWorkflows(queuedWorkflows) {
+    for (const workflow of queuedWorkflows) {
+      try {
+        // Trouver le fichier workflow correspondant
+        const workflowFile = workflow.workflowName.toLowerCase()
+          .replace(/[^a-z0-9-]/g, '-')
+          .replace(/-+/g, '-') + '.yml';
+
+        // Essayer de trouver le vrai nom de fichier
+        const possibleFiles = [
+          'autonomous-company.yml',
+          'traffic-controller.yml',
+          'continuous-improvement.yml',
+          'code-quality.yml',
+          'performance-optimization.yml',
+          'quick-wins.yml',
+          'security-scan.yml'
+        ];
+
+        for (const file of possibleFiles) {
+          if (workflow.name.toLowerCase().includes(file.replace('.yml', '').replace(/-/g, ' '))) {
+            console.log(`🚀 Relance: ${file}...`);
+            execSync(`gh workflow run "${file}" --ref main`, { cwd: CONFIG.projectRoot, stdio: 'pipe' });
+            console.log(`✅ ${file} relancé\n`);
+            break;
+          }
+        }
+      } catch (error) {
+        console.log(`⚠️ Erreur relance ${workflow.name}:`, error.message);
+      }
     }
   }
 
