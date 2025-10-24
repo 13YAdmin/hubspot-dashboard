@@ -5,8 +5,8 @@ name: 🏢 Entreprise Autonome IA
 
 on:
   schedule:
-    # Toutes les heures - La boucle complète
-    - cron: '0 * * * *'
+    # 🚨 MODE URGENCE - Toutes les 5 minutes!
+    - cron: '*/5 * * * *'
   workflow_dispatch:  # Manuel
   push:
     branches: [main]
@@ -14,6 +14,8 @@ on:
       - 'public/index.html'
       - 'CAHIER-DES-CHARGES.md'
       - 'RAPPORT-FINAL-AUDIT.md'
+      - '.github/agents-communication/**'
+      - 'MEETING-NOTES-CEO.md'
 
 permissions:
   contents: write
