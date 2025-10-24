@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 14:43:52
+**Date**: 24/10/2025 14:56:25
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -9,33 +9,18 @@
 
 - **Total runs analysés**: 30
 - **En cours**: 3
-- **Échecs récents**: 2
-- **Score de santé**: 100/100
+- **Échecs récents**: 3
+- **Score de santé**: 55/100
 
 ---
 
 ## ⚠️  WORKFLOWS LEGACY DÉTECTÉS
 
-Total: 2
-
-
-### 1. autonomous-loop.yml
-
-- **Issue**: Tourne en même temps que nouveaux workflows
-- **Sévérité**: high
-- **Conflits avec**: 🔄 Boucle Dev → QA → Debug, 🚦 Agent Aiguilleur (Traffic Controller), 🏢 Entreprise Autonome IA, ⚡ Amélioration Continue (15 min), Fetch HubSpot Data
+Total: 0
 
 
 
-### 2. fetch-hubspot-data.yml
-
-- **Issue**: Tourne en même temps que nouveaux workflows
-- **Sévérité**: high
-- **Conflits avec**: 🔄 Boucle Dev → QA → Debug, 🚦 Agent Aiguilleur (Traffic Controller), 🏢 Entreprise Autonome IA, 🤖 Boucle Vertueuse Autonome, ⚡ Amélioration Continue (15 min)
-
-
-
-
+Aucun workflow legacy problématique détecté ✅
 
 ---
 
@@ -49,11 +34,38 @@ Aucun conflit ✅
 
 ## 💡 RECOMMANDATIONS
 
-Total: 0
+Total: 4
+
+
+### 1. ⚠️ 3 workflow(s) échouent
+
+- **Type**: workflows_failing
+- **Priorité**: high
+- **Description**: D'après l'analyse des workflows, il y a 3 workflows en cours qui semblent avoir échoué récemment. De plus, il y a 0 workflow avec un schedule qui ne tourne pas, ce qui est un problème critique. Étant donné que le CEO attend des résultats rapides et que les workflows critiques ne tournent pas depuis plus de 15 minutes, la meilleure décision est d'escalader immédiatement auprès du CEO pour l'alerter de cette situation bloquante.
+
+
+### 2. Risque: Retard dans la livraison des résultats attendus par le CEO
+
+- **Type**: risk
+- **Priorité**: medium
+- **Description**: Risque identifié par IA: Retard dans la livraison des résultats attendus par le CEO
+
+
+### 3. Risque: Perte de confiance du CEO envers l'équipe et les solutions IA
+
+- **Type**: risk
+- **Priorité**: medium
+- **Description**: Risque identifié par IA: Perte de confiance du CEO envers l'équipe et les solutions IA
+
+
+### 4. Risque: Impact négatif potentiel sur l'activité de l'entreprise
+
+- **Type**: risk
+- **Priorité**: medium
+- **Description**: Risque identifié par IA: Impact négatif potentiel sur l'activité de l'entreprise
 
 
 
-Aucune action nécessaire - système sain ✅
 
 ---
 
@@ -73,9 +85,9 @@ Les décisions sont basées sur analyse contextuelle, pas règles fixes.
 
 ## 🔄 ÉTAT GLOBAL
 
-🟢 SAIN
+🟠 DÉGRADÉ
 
-Score: 100/100
+Score: 55/100
 
 ---
 
