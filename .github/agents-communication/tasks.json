@@ -178,7 +178,62 @@
       "createdBy": "Agent Chef (AI)",
       "createdAt": "2025-10-24T09:45:25.336Z",
       "status": "pending"
+    },
+    {
+      "id": "TASK-1761299919644",
+      "title": "Vitest",
+      "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:58:39.644Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761299919650",
+      "title": "Turbo",
+      "description": "Build incrementiel, cache intelligent, x10 plus rapide",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:58:39.650Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761299919651",
+      "title": "Opportunité: UPSELL",
+      "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:58:39.651Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761299919653",
+      "title": "Missing company data",
+      "description": "Detection: No industry OR no revenue OR no employee count",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652950",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:58:39.653Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761299919654",
+      "title": "Invalid emails",
+      "description": "Detection: Email bounce rate > 5%",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652950",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:58:39.654Z",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T09:45:25.336Z"
+  "lastUpdate": "2025-10-24T09:58:39.654Z"
 }
