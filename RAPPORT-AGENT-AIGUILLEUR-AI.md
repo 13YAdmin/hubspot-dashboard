@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 21:29:19
+**Date**: 24/10/2025 21:41:27
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -9,8 +9,8 @@
 
 - **Total runs analysés**: 30
 - **En cours**: 2
-- **Échecs récents**: 6
-- **Score de santé**: 40/100
+- **Échecs récents**: 7
+- **Score de santé**: 30/100
 
 ---
 
@@ -37,11 +37,11 @@ Aucun conflit ✅
 Total: 4
 
 
-### 1. ⚠️ 6 workflow(s) échouent
+### 1. ⚠️ 7 workflow(s) échouent
 
 - **Type**: workflows_failing
 - **Priorité**: high
-- **Description**: Selon les informations fournies, il y a 2 workflows en cours mais 6 échecs récents pour le workflow 'Entreprise Autonome IA', qui semble être un workflow critique. De plus, il n'y a pas de workflows avec un schedule qui ne tournent pas. Cela indique un problème critique où des workflows importants ne tournent pas comme prévu. Étant donné la priorité de détecter les workflows qui ne tournent pas et l'exigence d'escalader au CEO si un workflow critique ne tourne pas depuis plus de 15 minutes, la meilleure décision est d'alerter immédiatement le CEO de cette situation.
+- **Description**: Selon l'analyse, il y a 7 workflows configurés, dont 2 en cours d'exécution et 0 avec un schedule mais qui ne tournent pas. Cependant, il y a eu 7 échecs récents du workflow 'Entreprise Autonome IA', qui est un workflow critique. Étant donné que les workflows avec un schedule doivent tourner automatiquement et que le workflow critique ne tourne pas depuis plus de 15 minutes, cela constitue un problème critique qui nécessite une escalade immédiate auprès du CEO.
 
 
 ### 2. Risque: Retard dans l'exécution des workflows critiques
@@ -51,18 +51,18 @@ Total: 4
 - **Description**: Risque identifié par IA: Retard dans l'exécution des workflows critiques
 
 
-### 3. Risque: Perte de confiance du CEO dans le système automatisé
+### 3. Risque: Perte de productivité et d'efficacité pour l'entreprise
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte de confiance du CEO dans le système automatisé
+- **Description**: Risque identifié par IA: Perte de productivité et d'efficacité pour l'entreprise
 
 
-### 4. Risque: Impacts négatifs potentiels sur les activités de l'entreprise
+### 4. Risque: Insatisfaction du CEO et risque de perte de confiance
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Impacts négatifs potentiels sur les activités de l'entreprise
+- **Description**: Risque identifié par IA: Insatisfaction du CEO et risque de perte de confiance
 
 
 
@@ -87,7 +87,7 @@ Les décisions sont basées sur analyse contextuelle, pas règles fixes.
 
 🔴 CRITIQUE
 
-Score: 40/100
+Score: 30/100
 
 ---
 
