@@ -1,16 +1,24 @@
 #!/usr/bin/env node
 
 /**
- * AGENT VISIONNAIRE - VERSION AI-POWERED (CTO - Elon Musk Mode)
+ * AGENT VISIONNAIRE AI - CRO/CTO HYBRID (Elon Musk + Steve Jobs Mode)
  *
- * Utilise Claude AI pour générer de VRAIES idées innovantes
+ * MISSION: BUSINESS FIRST, TECH SECOND
  *
  * Responsabilités:
- * - Proposer des innovations technologiques RÉELLES (pas liste hardcodée)
- * - Identifier des opportunités business avec analyse contextuelle
- * - Améliorer la qualité des données intelligemment
- * - Générer des moonshots disruptifs
- * - Penser 10x, pas 10%
+ * - Penser REVENU et VALEUR BUSINESS avant tech
+ * - Identifier opportunités WHITE SPACE, UPSELL, CROSS-SELL
+ * - Proposer features qui génèrent du $$$ mesurable
+ * - Analyser impact business chiffré (ARR, conversion, efficiency)
+ * - Moonshots qui changent la donne commerciale
+ * - Account managers doivent CLOSER PLUS avec ce dashboard
+ *
+ * Style: Elon Musk (vision 10x) + Steve Jobs (obsession produit)
+ *
+ * Contexte Business:
+ * - Dashboard pour Account Managers HubSpot
+ * - But: Identifier white space, upsell, générer revenu
+ * - Chaque feature = Impact business CHIFFRÉ
  */
 
 const fs = require('fs');
@@ -55,7 +63,7 @@ class CommunicationHub {
 
     const newRec = {
       id: `REC-${Date.now()}`,
-      from: 'Agent Visionnaire (AI)',
+      from: 'Agent Visionnaire (CRO/CTO)',
       timestamp: new Date().toISOString(),
       ...recommendation,
       status: 'pending'
@@ -77,7 +85,7 @@ class CommunicationHub {
 }
 
 // ============================================================================
-// AGENT VISIONNAIRE AI-POWERED
+// AGENT VISIONNAIRE AI-POWERED (CRO/CTO)
 // ============================================================================
 
 class AgentVisionnaireAI {
@@ -89,9 +97,9 @@ class AgentVisionnaireAI {
     this.useAI = CONFIG.useAI;
 
     if (this.useAI) {
-      console.log('🚀 Agent Visionnaire AI - Mode INTELLIGENCE ARTIFICIELLE activé');
+      console.log('🚀 Agent Visionnaire AI - Mode CRO/CTO (Business + Tech)');
     } else {
-      console.log('⚠️  Agent Visionnaire AI - Mode fallback (configurer ANTHROPIC_API_KEY)');
+      console.log('⚠️  Agent Visionnaire AI - Mode fallback');
     }
   }
 
@@ -99,16 +107,16 @@ class AgentVisionnaireAI {
    * Point d'entrée principal
    */
   async run() {
-    console.log('\n🚀 AGENT VISIONNAIRE (AI-POWERED) - CTO / Elon Musk Mode');
-    console.log('============================================================\n');
+    console.log('\n🚀 AGENT VISIONNAIRE (CRO/CTO) - Business Value First');
+    console.log('===========================================================\n');
 
     try {
-      // 1. Analyser le contexte actuel du projet
-      const context = await this.analyzeProjectContext();
+      // 1. Analyser le contexte BUSINESS
+      const context = await this.analyzeBusinessContext();
 
-      // 2. Générer des idées avec IA
+      // 2. Générer des idées orientées REVENU avec IA
       if (this.useAI) {
-        await this.generateAIIdeas(context);
+        await this.generateBusinessIdeas(context);
       } else {
         await this.generateFallbackIdeas();
       }
@@ -120,7 +128,7 @@ class AgentVisionnaireAI {
       await this.saveReport();
 
       console.log('\n✅ Agent Visionnaire AI - Exécution terminée');
-      console.log(`💡 ${this.recommendations.length} recommandations générées`);
+      console.log(`💡 ${this.recommendations.length} recommandations business générées`);
 
     } catch (error) {
       console.error('❌ Erreur Agent Visionnaire AI:', error.message);
@@ -134,182 +142,310 @@ class AgentVisionnaireAI {
   }
 
   /**
-   * Analyser le contexte du projet
+   * Analyser le contexte BUSINESS (pas juste tech!)
    */
-  async analyzeProjectContext() {
-    console.log('🔍 Analyse du contexte projet...\n');
+  async analyzeBusinessContext() {
+    console.log('💰 Analyse du contexte BUSINESS...\n');
+
+    // Lire le cahier des charges
+    const cahierPath = path.join(CONFIG.projectRoot, 'CAHIER-DES-CHARGES.md');
+    let cahier = '';
+    if (fs.existsSync(cahierPath)) {
+      cahier = fs.readFileSync(cahierPath, 'utf8');
+    }
+
+    // Lire le dashboard actuel
+    const dashboardPath = path.join(CONFIG.projectRoot, 'public/index.html');
+    let dashboardSize = 0;
+    if (fs.existsSync(dashboardPath)) {
+      dashboardSize = fs.readFileSync(dashboardPath, 'utf8').split('\n').length;
+    }
+
+    // Compter agents et recs
+    const agentsDir = path.join(CONFIG.projectRoot, '.github/scripts/autonomous-agents');
+    const agentFiles = fs.readdirSync(agentsDir).filter(f => f.startsWith('agent-') && f.endsWith('.js'));
+
+    const recommendations = await this.hub.readRecommendations();
 
     const context = {
       timestamp: new Date().toISOString(),
-      project: 'HubSpot Dashboard',
-      stack: {
-        frontend: 'Vanilla JS',
-        viz: 'D3.js',
-        hosting: 'GitHub Pages'
+
+      // BUSINESS CONTEXT
+      business: {
+        product: 'HubSpot Dashboard pour Account Managers',
+        purpose: 'Générer du revenu via white space, upsell, cross-sell',
+        users: 'Account Managers / Customer Success',
+        kpis: ['ARR', 'Upsell Rate', 'White Space Identified', 'Time to Close'],
+        painPoints: [
+          'Account managers perdent du temps à chercher les opportunités',
+          'White space invisible = revenus perdus',
+          'Pas de priorisation des accounts à fort potentiel',
+          'Décisions business basées sur le gut feeling vs data'
+        ]
       },
-      agents: {
-        active: 8,
-        total: 13
+
+      // TECH CONTEXT
+      tech: {
+        stack: 'Vanilla JS + D3.js',
+        linesOfCode: dashboardSize,
+        agents: {
+          total: agentFiles.length,
+          aiPowered: agentFiles.filter(f => f.includes('-ai.js')).length
+        },
+        recommendations: recommendations.length
       },
-      goals: [
-        'Amélioration continue qualité',
-        'Scaling entreprise virtuelle',
-        'Innovation disruptive',
-        'ROI maximum'
-      ]
+
+      // CAHIER DES CHARGES (si existe)
+      specs: cahier.substring(0, 1000) // Premier 1000 chars
     };
 
-    // Lire les recommandations existantes pour éviter doublons
-    const existing = await this.hub.readRecommendations();
-    context.existingRecommendations = existing.length;
-
     console.log('📊 Contexte analysé:');
-    console.log(`   - Projet: ${context.project}`);
-    console.log(`   - Stack: ${context.stack.frontend}, ${context.stack.viz}`);
-    console.log(`   - Agents: ${context.agents.active}/${context.agents.total}`);
-    console.log(`   - Recommandations existantes: ${context.existingRecommendations}`);
+    console.log(`   - Produit: ${context.business.product}`);
+    console.log(`   - But: ${context.business.purpose}`);
+    console.log(`   - Utilisateurs: ${context.business.users}`);
+    console.log(`   - Dashboard: ${context.tech.linesOfCode} lignes`);
+    console.log(`   - Agents: ${context.tech.agents.total} (${context.tech.agents.aiPowered} AI)`);
+    console.log(`   - Recs existantes: ${context.tech.recommendations}`);
 
     return context;
   }
 
   /**
-   * Générer des idées avec Claude AI
+   * Générer des idées orientées BUSINESS avec IA
    */
-  async generateAIIdeas(context) {
-    console.log('\n🧠 Génération d\'idées avec Claude AI...\n');
+  async generateBusinessIdeas(context) {
+    console.log('\n💰 Génération d\'idées BUSINESS avec Claude AI...\n');
 
-    // 1. Innovations technologiques
-    console.log('💡 Génération innovations tech...');
-    const techIdeas = await this.ai.brainstormIdeas(
-      `Améliorer un dashboard HubSpot actuellement en ${context.stack.frontend} et ${context.stack.viz}. Le projet doit scaler et être maintenu par des agents autonomes.`,
-      [
-        'Doit être faisable par des agents autonomes',
-        'Budget raisonnable (préférer solutions gratuites/open-source)',
-        'Impact sur qualité, performance ou innovation',
-        'Pas de solutions nécessitant intervention manuelle constante'
-      ],
-      'Sales teams et agents autonomes'
-    );
+    // 1. OPPORTUNITÉS REVENU
+    console.log('💵 Analyse opportunités revenu...');
+    await this.analyzeRevenueOpportunities(context);
 
-    if (!techIdeas.error) {
-      for (const idea of techIdeas.ideas || []) {
-        this.recommendations.push({
-          type: 'tech_innovation',
-          title: idea.title,
-          description: idea.description,
-          priority: this.mapFeasibilityToPriority(idea.feasibility),
-          estimatedImpact: idea.impact,
-          feasibility: idea.feasibility,
-          category: 'Tech Innovation'
-        });
-      }
-    }
+    // 2. EFFICACITÉ ACCOUNT MANAGERS
+    console.log('⚡ Analyse efficacité Account Managers...');
+    await this.analyzeEfficiencyGains(context);
 
-    // 2. Opportunités business
-    console.log('💼 Analyse opportunités business...');
-    const businessIdeas = await this.ai.brainstormIdeas(
-      `Identifier des opportunités business pour un dashboard HubSpot utilisé par des sales teams. Penser aux features qui augmentent la valeur, le ROI, ou créent de nouveaux use cases.`,
-      [
-        'Doit avoir impact business mesurable',
-        'Faisable avec stack actuel ou avec migration',
-        'Objectif: augmenter usage, satisfaction, ou revenus'
-      ],
-      'Sales managers, Account executives, Revenue operations'
-    );
-
-    if (!businessIdeas.error) {
-      for (const idea of businessIdeas.ideas || []) {
-        this.recommendations.push({
-          type: 'business_opportunity',
-          title: idea.title,
-          description: idea.description,
-          priority: this.mapImpactToPriority(idea.impact),
-          estimatedImpact: idea.impact,
-          feasibility: idea.feasibility,
-          category: 'Business Opportunity'
-        });
-      }
-    }
-
-    // 3. Moonshots (idées 10x)
-    console.log('🌙 Génération moonshots...');
-    const moonshots = await this.ai.brainstormIdeas(
-      `Proposer des idées DISRUPTIVES et 10x pour transformer un dashboard HubSpot en quelque chose de révolutionnaire. Penser comme Elon Musk: pas d'amélioration incrémentale, mais changement de paradigme complet.`,
-      [
-        'Doit être révolutionnaire, pas juste une amélioration',
-        'Peut nécessiter changement tech radical',
-        'Objectif: créer quelque chose que personne d\'autre n\'a'
-      ],
-      'Early adopters, innovators, visionnaires'
-    );
-
-    if (!moonshots.error) {
-      for (const idea of moonshots.ideas || []) {
-        this.recommendations.push({
-          type: 'moonshot',
-          title: idea.title,
-          description: idea.description,
-          priority: 'medium', // Moonshots = pas urgent mais important
-          estimatedImpact: idea.impact,
-          feasibility: idea.feasibility,
-          category: 'Moonshot',
-          tags: ['disruptive', '10x', 'long-term']
-        });
-      }
-    }
-
-    console.log(`\n✅ ${this.recommendations.length} idées générées avec IA`);
+    // 3. MOONSHOTS BUSINESS
+    console.log('🚀 Génération moonshots business...');
+    await this.generateMoonshots(context);
   }
 
   /**
-   * Générer des idées de secours (sans IA)
+   * Analyser opportunités de revenu
+   */
+  async analyzeRevenueOpportunities(context) {
+    const systemPrompt = `Tu es un Chief Revenue Officer (CRO) visionnaire.
+Tu penses business FIRST, tech SECOND.
+Ton job: identifier des opportunités qui génèrent du REVENU MESURABLE.
+
+Style: Elon Musk + Steve Jobs
+- Pense 10x, pas 10%
+- Obsession: Valeur business tangible
+- Chaque idée doit avoir un impact chiffré
+
+Réponds en JSON avec:
+{
+  "opportunities": [
+    {
+      "title": "Nom court",
+      "description": "Quoi et POURQUOI business",
+      "businessImpact": "Impact chiffré (ARR, conversion, efficiency)",
+      "userValue": "Ce que l'account manager gagne concrètement",
+      "implementation": "Comment techniquement",
+      "priority": "critical/high/medium",
+      "estimatedROI": "Retour sur investissement estimé"
+    }
+  ]
+}`;
+
+    const userMessage = `Contexte:
+Produit: ${context.business.product}
+But: ${context.business.purpose}
+Utilisateurs: ${context.business.users}
+Pain points:
+${context.business.painPoints.map(p => `- ${p}`).join('\n')}
+
+Dashboard actuel: ${context.tech.linesOfCode} lignes, ${context.tech.agents.total} agents
+
+MISSION: Propose 5 features qui génèrent du REVENU MESURABLE.
+Focus: White space, upsell, cross-sell, efficiency.
+Chaque feature DOIT avoir un impact business CHIFFRÉ.`;
+
+    try {
+      const response = await this.ai.ask(systemPrompt, userMessage, { temperature: 0.8, maxTokens: 3000 });
+
+      const result = JSON.parse(response);
+
+      if (result.opportunities && Array.isArray(result.opportunities)) {
+        for (const opp of result.opportunities) {
+          this.recommendations.push({
+            type: 'revenue_opportunity',
+            title: opp.title,
+            description: opp.description,
+            businessImpact: opp.businessImpact,
+            userValue: opp.userValue,
+            implementation: opp.implementation,
+            estimatedROI: opp.estimatedROI,
+            priority: opp.priority || 'high',
+            category: 'Revenue Generation',
+            targetAgent: 'Agent Chef de Projet',
+            estimatedImpact: 'high'
+          });
+
+          console.log(`   ✅ ${opp.title} → ${opp.businessImpact}`);
+        }
+      }
+    } catch (error) {
+      console.error('   ❌ Erreur génération opportunités:', error.message);
+    }
+  }
+
+  /**
+   * Analyser gains d'efficacité pour Account Managers
+   */
+  async analyzeEfficiencyGains(context) {
+    const systemPrompt = `Tu es un CRO/CTO obsédé par l'efficacité des équipes sales.
+Tu identifies des features qui font gagner du TEMPS = ARGENT.
+
+Pense: Combien de temps économisé? Combien de deals en plus?
+
+Réponds en JSON avec:
+{
+  "efficiencyGains": [
+    {
+      "title": "Nom court",
+      "description": "Quoi et POURQUOI",
+      "timeSaved": "Temps économisé par account manager par jour/semaine",
+      "dealsImpact": "Impact sur le nombre de deals closés",
+      "implementation": "Comment techniquement",
+      "priority": "critical/high/medium"
+    }
+  ]
+}`;
+
+    const userMessage = `Contexte:
+Account Managers utilisent le dashboard pour:
+- Identifier white space
+- Prioriser accounts
+- Préparer conversations upsell
+- Tracker opportunités
+
+Pain points actuels:
+${context.business.painPoints.map(p => `- ${p}`).join('\n')}
+
+MISSION: Propose 3 features qui font GAGNER DU TEMPS = CLOSER PLUS DE DEALS.`;
+
+    try {
+      const response = await this.ai.ask(systemPrompt, userMessage, { temperature: 0.8, maxTokens: 2000 });
+
+      const result = JSON.parse(response);
+
+      if (result.efficiencyGains && Array.isArray(result.efficiencyGains)) {
+        for (const gain of result.efficiencyGains) {
+          this.recommendations.push({
+            type: 'efficiency_gain',
+            title: gain.title,
+            description: gain.description,
+            businessImpact: `${gain.timeSaved} économisé → ${gain.dealsImpact}`,
+            implementation: gain.implementation,
+            priority: gain.priority || 'high',
+            category: 'Sales Efficiency',
+            targetAgent: 'Agent Chef de Projet',
+            estimatedImpact: 'high'
+          });
+
+          console.log(`   ✅ ${gain.title} → ${gain.timeSaved}`);
+        }
+      }
+    } catch (error) {
+      console.error('   ❌ Erreur génération efficiency gains:', error.message);
+    }
+  }
+
+  /**
+   * Générer des moonshots business
+   */
+  async generateMoonshots(context) {
+    const systemPrompt = `Tu es Elon Musk + Steve Jobs combined.
+Tu penses DISRUPTIF. Tu changes la donne.
+
+Pas de "améliorer un graphique" - pense "révolutionner comment les account managers travaillent".
+
+Réponds en JSON avec:
+{
+  "moonshots": [
+    {
+      "title": "Vision audacieuse",
+      "description": "Le futur que tu vois",
+      "businessImpact": "Impact business massif (chiffré si possible)",
+      "whyNow": "Pourquoi c'est le bon moment",
+      "firstStep": "Première étape concrète",
+      "priority": "high/medium"
+    }
+  ]
+}`;
+
+    const userMessage = `Contexte: Dashboard HubSpot pour Account Managers
+
+Tendances actuelles:
+- AI/ML pour prédictions
+- Automation
+- Real-time data
+- Conversational interfaces
+
+MISSION: Propose 2 MOONSHOTS qui changent radicalement comment on génère du revenu avec HubSpot.
+Pense BIG. Pense 10x. Pense disruptif.`;
+
+    try {
+      const response = await this.ai.ask(systemPrompt, userMessage, { temperature: 0.9, maxTokens: 2000 });
+
+      const result = JSON.parse(response);
+
+      if (result.moonshots && Array.isArray(result.moonshots)) {
+        for (const moonshot of result.moonshots) {
+          this.recommendations.push({
+            type: 'moonshot',
+            title: moonshot.title,
+            description: moonshot.description,
+            businessImpact: moonshot.businessImpact,
+            whyNow: moonshot.whyNow,
+            implementation: moonshot.firstStep,
+            priority: moonshot.priority || 'medium',
+            category: 'Innovation',
+            targetAgent: 'Agent Chef de Projet',
+            estimatedImpact: 'very_high'
+          });
+
+          console.log(`   🚀 ${moonshot.title}`);
+        }
+      }
+    } catch (error) {
+      console.error('   ❌ Erreur génération moonshots:', error.message);
+    }
+  }
+
+  /**
+   * Fallback sans IA
    */
   async generateFallbackIdeas() {
-    console.log('\n⚠️  Mode fallback - Idées basiques\n');
-
-    // Quelques idées hardcodées basiques
-    this.recommendations.push({
-      type: 'tech_innovation',
-      title: 'Migrer vers framework moderne',
-      description: 'Considérer React, Vue ou Svelte pour meilleure maintenabilité',
-      priority: 'medium',
-      estimatedImpact: 'high',
-      category: 'Tech Innovation'
-    });
+    console.log('⚠️  Mode fallback - Idées business basiques\n');
 
     this.recommendations.push({
-      type: 'business_opportunity',
-      title: 'Analytics avancées',
-      description: 'Ajouter prédictions et insights automatiques',
+      type: 'revenue_opportunity',
+      title: 'Alertes White Space Automatiques',
+      description: 'Notifications push quand white space détecté sur un account',
+      businessImpact: '+20% opportunités identifiées → +$150K ARR estimé',
       priority: 'high',
-      estimatedImpact: 'high',
-      category: 'Business Opportunity'
+      category: 'Revenue Generation'
     });
 
-    console.log('⚠️  2 idées basiques générées (configurer IA pour vraies idées)');
-  }
-
-  /**
-   * Mapper feasibility to priority
-   */
-  mapFeasibilityToPriority(feasibility) {
-    if (!feasibility) return 'medium';
-    const f = feasibility.toLowerCase();
-    if (f.includes('high') || f.includes('easy')) return 'high';
-    if (f.includes('low') || f.includes('hard')) return 'low';
-    return 'medium';
-  }
-
-  /**
-   * Mapper impact to priority
-   */
-  mapImpactToPriority(impact) {
-    if (!impact) return 'medium';
-    const i = impact.toLowerCase();
-    if (i.includes('high') || i.includes('major')) return 'high';
-    if (i.includes('critical') || i.includes('game')) return 'critical';
-    if (i.includes('low') || i.includes('minor')) return 'low';
-    return 'medium';
+    this.recommendations.push({
+      type: 'efficiency_gain',
+      title: 'Priorisation AI des Accounts',
+      description: 'Scoring AI des accounts selon potentiel upsell',
+      businessImpact: '2h/jour économisées par AM → +15% deals closés',
+      priority: 'high',
+      category: 'Sales Efficiency'
+    });
   }
 
   /**
@@ -321,25 +457,28 @@ class AgentVisionnaireAI {
     for (const rec of this.recommendations) {
       await this.hub.addRecommendation(rec);
       console.log(`✉️  [${rec.priority}] ${rec.title}`);
+      if (rec.businessImpact) {
+        console.log(`   💰 Impact: ${rec.businessImpact}`);
+      }
     }
 
     console.log(`\n✅ ${this.recommendations.length} recommandations envoyées au Chef`);
   }
 
   /**
-   * Escalader le besoin d'IA
+   * Escalader besoin API
    */
   async escalateNeedForAI() {
-    console.log('\n📞 Escalade: Besoin Claude AI pour vraies idées innovantes\n');
+    console.log('\n📞 Escalade: Besoin Claude AI pour vraies innovations\n');
 
     await escalateAPIKey(
       'Agent Visionnaire',
       'Claude (Anthropic)',
-      'Générer de vraies idées innovantes et disruptives (pas juste liste hardcodée)',
-      'Selon usage (~$10-50/mois)',
+      'Générer de vraies idées business innovantes (pas liste hardcodée)',
+      'Selon usage (~$10-50/mois estimé)',
       [
-        { name: 'Liste hardcodée', reason: 'Idées toujours les mêmes, pas d\'innovation réelle' },
-        { name: 'Scripts pattern matching', reason: 'Pas de créativité, pas de contexte' }
+        { name: 'Liste hardcodée', reason: 'Pas de vraie intelligence, idées répétitives' },
+        { name: 'Templates basiques', reason: 'Pas d\'analyse contextuelle' }
       ]
     );
   }
@@ -350,67 +489,63 @@ class AgentVisionnaireAI {
   async saveReport() {
     const reportPath = path.join(CONFIG.projectRoot, 'RAPPORT-AGENT-VISIONNAIRE-AI.md');
 
-    const report = `# 🚀 RAPPORT - Agent Visionnaire AI-Powered (CTO)
+    const report = `# 🚀 RAPPORT - Agent Visionnaire (CRO/CTO)
 
 **Date**: ${new Date().toLocaleString('fr-FR')}
-**Mode**: ${this.useAI ? '✅ Intelligence Artificielle (Claude)' : '⚠️  Fallback (idées basiques)'}
+**Mode**: ${this.useAI ? '✅ Intelligence Artificielle (Claude) - Business Focus' : '⚠️  Fallback'}
 
 ---
 
-## 💡 RECOMMANDATIONS GÉNÉRÉES
+## 💰 MISSION
+
+Générer de la VALEUR BUSINESS tangible via le dashboard.
+Chaque feature = Impact revenu CHIFFRÉ.
+
+**Contexte**: Dashboard HubSpot pour Account Managers
+**But**: White space, upsell, cross-sell → Générer du CA
+
+---
+
+## 💡 RECOMMANDATIONS BUSINESS
 
 Total: ${this.recommendations.length}
 
 ${this.recommendations.map((r, i) => `
 ### ${i + 1}. ${r.title}
 
-- **Type**: ${r.type}
-- **Catégorie**: ${r.category}
-- **Priorité**: ${r.priority}
-- **Impact estimé**: ${r.estimatedImpact || 'N/A'}
-- **Faisabilité**: ${r.feasibility || 'N/A'}
+**Type**: ${r.type || 'N/A'}
+**Priorité**: ${r.priority}
+**Catégorie**: ${r.category || 'N/A'}
 
-**Description**:
-${r.description}
+**Description**: ${r.description}
 
-${r.tags ? `**Tags**: ${r.tags.join(', ')}` : ''}
+${r.businessImpact ? `**💰 Impact Business**: ${r.businessImpact}` : ''}
+
+${r.userValue ? `**👤 Valeur Account Manager**: ${r.userValue}` : ''}
+
+${r.estimatedROI ? `**📈 ROI Estimé**: ${r.estimatedROI}` : ''}
+
+${r.implementation ? `**🔧 Implémentation**: ${r.implementation}` : ''}
+
+${r.whyNow ? `**⏰ Pourquoi Maintenant**: ${r.whyNow}` : ''}
 `).join('\n---\n')}
-
----
-
-## 📊 STATISTIQUES
-
-- **Innovations tech**: ${this.recommendations.filter(r => r.type === 'tech_innovation').length}
-- **Opportunités business**: ${this.recommendations.filter(r => r.type === 'business_opportunity').length}
-- **Moonshots**: ${this.recommendations.filter(r => r.type === 'moonshot').length}
 
 ---
 
 ## 🎯 RÉSUMÉ
 
 ${this.useAI ?
-  `✅ Agent Visionnaire utilise Claude AI pour générer de vraies idées innovantes et contextuelles.
+  `✅ Agent Visionnaire fonctionne avec IA - Focus BUSINESS FIRST` :
+  `⚠️  Mode fallback - Configurer ANTHROPIC_API_KEY pour vraies innovations`}
 
-Les recommandations sont générées en analysant:
-- Le contexte complet du projet
-- Les contraintes réelles
-- Les opportunités de marché
-- L'impact business potentiel
-
-Ce ne sont PAS des idées hardcodées, mais de vraies propositions intelligentes.` :
-  `⚠️  Agent Visionnaire fonctionne en mode fallback (idées basiques hardcodées).
-
-Pour activer les vraies idées innovantes avec IA:
-1. Configurer ANTHROPIC_API_KEY dans GitHub Secrets
-2. Voir CONFIGURATION-IA.md pour détails
-
-Avec IA: vraies idées disruptives, contextuelles, innovantes
-Sans IA: liste basique prédéfinie`}
+${this.recommendations.length > 0 ?
+  `${this.recommendations.length} recommandations business générées` :
+  'Aucune recommandation générée'}
 
 ---
 
-**🚀 Généré par Agent Visionnaire AI-Powered**
-**"Think 10x, not 10%"**
+**🤖 Généré par Agent Visionnaire (CRO/CTO)**
+**"Business Value First, Tech Second"**
 `;
 
     fs.writeFileSync(reportPath, report, 'utf8');
@@ -427,11 +562,11 @@ if (require.main === module) {
 
   agent.run()
     .then(() => {
-      console.log('\n✅ Agent Visionnaire AI - Succès');
+      console.log('\n✅ Agent Visionnaire (CRO/CTO) - Succès');
       process.exit(0);
     })
     .catch(error => {
-      console.error('\n❌ Agent Visionnaire AI - Échec:', error);
+      console.error('\n❌ Agent Visionnaire (CRO/CTO) - Échec:', error);
       process.exit(1);
     });
 }
