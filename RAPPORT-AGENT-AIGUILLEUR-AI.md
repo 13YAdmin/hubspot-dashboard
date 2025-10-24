@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 08:48:28
+**Date**: 24/10/2025 11:16:26
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -8,42 +8,19 @@
 ## 📊 ÉTAT WORKFLOWS
 
 - **Total runs analysés**: 30
-- **En cours**: 3
-- **Échecs récents**: 10
+- **En cours**: 1
+- **Échecs récents**: 12
 - **Score de santé**: 30/100
 
 ---
 
 ## ⚠️  WORKFLOWS LEGACY DÉTECTÉS
 
-Total: 3
-
-
-### 1. autonomous-loop.yml
-
-- **Issue**: Tourne en même temps que nouveaux workflows
-- **Sévérité**: high
-- **Conflits avec**: 🚦 Agent Aiguilleur (Traffic Controller), Fetch HubSpot Data, 🚦 Agent Aiguilleur (Traffic Controller), ⚡ Amélioration Continue (15 min), Fetch HubSpot Data
+Total: 0
 
 
 
-### 2. fetch-hubspot-data.yml
-
-- **Issue**: Tourne en même temps que nouveaux workflows
-- **Sévérité**: high
-- **Conflits avec**: 🚦 Agent Aiguilleur (Traffic Controller), 🤖 Boucle Vertueuse Autonome, 🚦 Agent Aiguilleur (Traffic Controller), ⚡ Amélioration Continue (15 min), Fetch HubSpot Data
-
-
-
-### 3. fetch-hubspot-data.yml
-
-- **Issue**: Tourne en même temps que nouveaux workflows
-- **Sévérité**: high
-- **Conflits avec**: 🚦 Agent Aiguilleur (Traffic Controller), 🤖 Boucle Vertueuse Autonome, Fetch HubSpot Data, 🚦 Agent Aiguilleur (Traffic Controller), ⚡ Amélioration Continue (15 min)
-
-
-
-
+Aucun workflow legacy problématique détecté ✅
 
 ---
 

@@ -97,7 +97,9 @@
         "Implémenter automation",
         "Tester avec Agent QA"
       ],
-      "status": "pending"
+      "status": "approved",
+      "approvedBy": "Agent Chef (Fallback)",
+      "approvedAt": "2025-10-24T09:15:53.887Z"
     },
     {
       "id": "REC-1761231652950",
@@ -215,7 +217,9 @@
         "Implémenter ASAP",
         "Valider fonctionnement"
       ],
-      "status": "pending"
+      "status": "approved",
+      "approvedBy": "Agent Chef (Fallback)",
+      "approvedAt": "2025-10-24T09:15:53.887Z"
     },
     {
       "id": "REC-1761232032113",
@@ -233,7 +237,9 @@
         "Implémenter ASAP",
         "Valider fonctionnement"
       ],
-      "status": "pending"
+      "status": "approved",
+      "approvedBy": "Agent Chef (Fallback)",
+      "approvedAt": "2025-10-24T09:15:53.888Z"
     },
     {
       "id": "REC-1761232032113",
@@ -269,7 +275,9 @@
         "Implémenter ASAP",
         "Valider fonctionnement"
       ],
-      "status": "pending"
+      "status": "approved",
+      "approvedBy": "Agent Chef (Fallback)",
+      "approvedAt": "2025-10-24T09:15:53.888Z"
     },
     {
       "id": "REC-1761232032114",
@@ -446,7 +454,100 @@
       ],
       "autoGenerate": true,
       "status": "pending"
+    },
+    {
+      "id": "REC-1761297353778",
+      "from": "Agent Producteur (AI)",
+      "timestamp": "2025-10-24T09:15:53.778Z",
+      "type": "process_improvement",
+      "title": "Pas assez d'agents AI-powered",
+      "description": "Seulement 6/15 agents utilisent l'IA",
+      "priority": "high",
+      "category": "AI Integration",
+      "improvementType": "process_gap",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761297353778",
+      "from": "Agent Producteur (AI)",
+      "timestamp": "2025-10-24T09:15:53.778Z",
+      "type": "process_improvement",
+      "title": "Tests automatiques manquants",
+      "description": "Aucun test détecté - risque de bugs non détectés",
+      "priority": "high",
+      "category": "Testing",
+      "improvementType": "process_gap",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761297353815",
+      "from": "Agent Visionnaire (AI)",
+      "timestamp": "2025-10-24T09:15:53.815Z",
+      "type": "tech_innovation",
+      "title": "Migrer vers framework moderne",
+      "description": "Considérer React, Vue ou Svelte pour meilleure maintenabilité",
+      "priority": "medium",
+      "estimatedImpact": "high",
+      "category": "Tech Innovation",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761297353815",
+      "from": "Agent Visionnaire (AI)",
+      "timestamp": "2025-10-24T09:15:53.815Z",
+      "type": "business_opportunity",
+      "title": "Analytics avancées",
+      "description": "Ajouter prédictions et insights automatiques",
+      "priority": "high",
+      "estimatedImpact": "high",
+      "category": "Business Opportunity",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761297353852",
+      "from": "Agent RH (AI)",
+      "timestamp": "2025-10-24T09:15:53.852Z",
+      "type": "recruitment",
+      "title": "Recruter Agent Monitoring",
+      "description": "Recrutement recommandé par Agent RH (AI).\n\nRaison: Rôle critique manquant\n\nUrgence: immediate",
+      "priority": "critical",
+      "category": "Recruitment",
+      "urgency": "immediate",
+      "autoGenerate": true,
+      "targetAgent": "Agent Chef",
+      "status": "approved",
+      "approvedBy": "Agent Chef (Fallback)",
+      "approvedAt": "2025-10-24T09:15:53.888Z"
+    },
+    {
+      "id": "REC-1761297353852",
+      "from": "Agent RH (AI)",
+      "timestamp": "2025-10-24T09:15:53.852Z",
+      "type": "recruitment",
+      "title": "Recruter Agent Self-Healing",
+      "description": "Recrutement recommandé par Agent RH (AI).\n\nRaison: Rôle critique manquant\n\nUrgence: immediate",
+      "priority": "critical",
+      "category": "Recruitment",
+      "urgency": "immediate",
+      "autoGenerate": true,
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761297355167",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T09:15:55.167Z",
+      "type": "traffic_control",
+      "title": "Taux d'échec élevé",
+      "description": "12 workflows ont échoué récemment",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "high_failure_rate",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-23T15:10:43.348Z"
+  "lastUpdate": "2025-10-24T09:15:55.167Z"
 }
