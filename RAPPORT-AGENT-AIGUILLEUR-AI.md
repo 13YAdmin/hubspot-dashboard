@@ -1,26 +1,41 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 24/10/2025 11:29:44
+**Date**: 24/10/2025 11:43:00
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
 
 ## 📊 ÉTAT WORKFLOWS
 
-- **Total runs analysés**: 0
-- **En cours**: 0
-- **Échecs récents**: 0
-- **Score de santé**: 100/100
+- **Total runs analysés**: 30
+- **En cours**: 4
+- **Échecs récents**: 7
+- **Score de santé**: 30/100
 
 ---
 
 ## ⚠️  WORKFLOWS LEGACY DÉTECTÉS
 
-Total: 0
+Total: 2
+
+
+### 1. fetch-hubspot-data.yml
+
+- **Issue**: Tourne en même temps que nouveaux workflows
+- **Sévérité**: high
+- **Conflits avec**: Fetch HubSpot Data
 
 
 
-Aucun workflow legacy problématique détecté ✅
+### 2. fetch-hubspot-data.yml
+
+- **Issue**: Tourne en même temps que nouveaux workflows
+- **Sévérité**: high
+- **Conflits avec**: Fetch HubSpot Data
+
+
+
+
 
 ---
 
@@ -41,21 +56,21 @@ Total: 3
 
 - **Type**: cancel_legacy
 - **Priorité**: high
-- **Description**: Bien que les workflows actuels fonctionnent, les nouveaux workflows AI-powered sont prioritaires. Les workflows legacy peuvent créer des conflits et compromettre la stabilité du système. Il est donc préférable de les annuler pour éviter tout problème futur.
+- **Description**: Bien que les workflows legacy puissent encore être utiles, ils créent actuellement des conflits avec les nouveaux workflows AI-powered qui doivent être prioritaires. Annuler ces workflows legacy permettra d'éviter les problèmes de concurrence et de stabiliser le système dans l'immédiat.
 
 
-### 2. Risque: Possibilité de perdre des fonctionnalités existantes si les workflows legacy sont supprimés sans précaution
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Possibilité de perdre des fonctionnalités existantes si les workflows legacy sont supprimés sans précaution
-
-
-### 3. Risque: Risque de régression si les nouveaux workflows AI-powered ne sont pas correctement testés et intégrés
+### 2. Risque: Perte potentielle de fonctionnalités offertes par les workflows legacy
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Risque de régression si les nouveaux workflows AI-powered ne sont pas correctement testés et intégrés
+- **Description**: Risque identifié par IA: Perte potentielle de fonctionnalités offertes par les workflows legacy
+
+
+### 3. Risque: Nécessité de revoir l'intégration des nouveaux workflows AI-powered avec les anciens workflows
+
+- **Type**: risk
+- **Priorité**: medium
+- **Description**: Risque identifié par IA: Nécessité de revoir l'intégration des nouveaux workflows AI-powered avec les anciens workflows
 
 
 
@@ -78,9 +93,9 @@ Les décisions sont basées sur analyse contextuelle, pas règles fixes.
 
 ## 🔄 ÉTAT GLOBAL
 
-🟢 SAIN
+🔴 CRITIQUE
 
-Score: 100/100
+Score: 30/100
 
 ---
 

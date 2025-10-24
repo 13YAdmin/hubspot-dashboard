@@ -1801,7 +1801,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761306180182",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T11:43:00.182Z",
+      "type": "traffic_control",
+      "title": "Annuler workflows legacy conflictuels",
+      "description": "Bien que les workflows legacy puissent encore être utiles, ils créent actuellement des conflits avec les nouveaux workflows AI-powered qui doivent être prioritaires. Annuler ces workflows legacy permettra d'éviter les problèmes de concurrence et de stabiliser le système dans l'immédiat.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "cancel_legacy",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761306180184",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T11:43:00.184Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte potentielle de fonctionnalités offertes par les workflows legacy",
+      "description": "Risque identifié par IA: Perte potentielle de fonctionnalités offertes par les workflows legacy",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761306180186",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-24T11:43:00.186Z",
+      "type": "traffic_control",
+      "title": "Risque: Nécessité de revoir l'intégration des nouveaux workflows AI-powered avec les anciens workflows",
+      "description": "Risque identifié par IA: Nécessité de revoir l'intégration des nouveaux workflows AI-powered avec les anciens workflows",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T11:29:44.770Z"
+  "lastUpdate": "2025-10-24T11:43:00.186Z"
 }
