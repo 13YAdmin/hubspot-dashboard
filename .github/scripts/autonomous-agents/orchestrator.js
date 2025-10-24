@@ -127,6 +127,15 @@ class Orchestrator {
     await this.runAgent('Aiguilleur AI', 'agent-aiguilleur-ai.js');
 
     // ========================================================================
+    // PHASE 5: COMMUNICATION & RAPPORTS
+    // ========================================================================
+
+    this.log('PHASE 5: COMMUNICATION & RAPPORTS');
+    console.log('\nL\'Agent Publishing IA génère les rapports et documentation...\n');
+
+    await this.runAgent('Publishing AI', 'agent-publishing-ai.js');
+
+    // ========================================================================
     // RÉSUMÉ
     // ========================================================================
 
@@ -162,11 +171,16 @@ class Orchestrator {
     }
 
     console.log('\n📝 Rapports générés:');
-    console.log('   - RAPPORT-AGENT-PRODUCTEUR.md');
-    console.log('   - RAPPORT-AGENT-VISIONNAIRE.md');
-    console.log('   - RAPPORT-AGENT-RH.md');
+    console.log('   - RAPPORT-QUOTIDIEN.md (Synthèse IA)');
+    console.log('   - ORGANIGRAMME.md');
+    console.log('   - DOCUMENTATION.md');
+    console.log('   - RAPPORT-AGENT-PRODUCTEUR-AI.md');
+    console.log('   - RAPPORT-AGENT-VISIONNAIRE-AI.md');
+    console.log('   - RAPPORT-AGENT-RH-AI.md');
+    console.log('   - RAPPORT-AGENT-CHEF-AI.md');
     console.log('   - RAPPORT-AGENT-DEV.md');
     console.log('   - RAPPORT-AGENT-QA.md');
+    console.log('   - RAPPORT-AGENT-DEBUGGER.md');
     console.log('   - RAPPORT-AGENT-AIGUILLEUR-AI.md');
 
     console.log('\n💬 Communication Hub:');

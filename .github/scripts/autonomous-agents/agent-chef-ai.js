@@ -123,6 +123,9 @@ class AgentChefAI {
     console.log('=====================================\n');
 
     try {
+      // 0. Lire les directives du CEO (Grand Chef Suprême)
+      const ceoDirectives = await this.readCEODirectives();
+
       // 1. Analyser l'état actuel
       const projectState = await this.analyzeProjectState();
 
@@ -136,13 +139,16 @@ class AgentChefAI {
 
       // 4. Utiliser l'IA pour décider quoi faire
       if (this.useAI) {
-        await this.makeAIDecisions(projectState, recommendations, tasks);
+        await this.makeAIDecisions(projectState, recommendations, tasks, ceoDirectives);
       } else {
         await this.makeFallbackDecisions(recommendations);
       }
 
       // 5. Sauvegarder le rapport
       await this.saveReport();
+
+      // 6. Ajouter une entrée dans les notes de réunion CEO
+      await this.addMeetingEntry(projectState, recommendations, tasks);
 
       console.log('\n✅ Agent Chef AI - Exécution terminée');
       console.log(`📊 ${this.decisions.length} décisions prises`);
@@ -157,6 +163,68 @@ class AgentChefAI {
 
       throw error;
     }
+  }
+
+  /**
+   * Lire les directives du CEO depuis MEETING-NOTES-CEO.md
+   */
+  async readCEODirectives() {
+    console.log('👤 Lecture des directives du CEO...\n');
+
+    const meetingNotesPath = path.join(CONFIG.projectRoot, 'MEETING-NOTES-CEO.md');
+
+    if (!fs.existsSync(meetingNotesPath)) {
+      console.log('⚠️  Aucunes directives CEO trouvées');
+      return {
+        hasDirectives: false,
+        directives: [],
+        lastResponse: null
+      };
+    }
+
+    const content = fs.readFileSync(meetingNotesPath, 'utf8');
+
+    // Extraire les directives de la section "VOS DIRECTIVES STRATÉGIQUES"
+    const directivesMatch = content.match(/### Directives Actives\s*([\s\S]*?)---/);
+    let directives = [];
+
+    if (directivesMatch && directivesMatch[1]) {
+      const directivesText = directivesMatch[1].trim();
+      if (directivesText && !directivesText.includes('Ajoutez vos directives ici')) {
+        directives = directivesText
+          .split('\n')
+          .filter(line => line.trim().startsWith('-'))
+          .map(line => line.trim().substring(1).trim());
+      }
+    }
+
+    // Extraire la dernière réponse du CEO
+    const lastResponseMatch = content.match(/\*\*👤 Votre Réponse:\*\*\s*([\s\S]*?)---/);
+    let lastResponse = null;
+
+    if (lastResponseMatch && lastResponseMatch[1]) {
+      lastResponse = lastResponseMatch[1].trim();
+      if (lastResponse.includes('Écrivez votre réponse ici')) {
+        lastResponse = null;
+      }
+    }
+
+    if (directives.length > 0) {
+      console.log(`✅ ${directives.length} directives CEO actives:`);
+      directives.forEach(d => console.log(`   - ${d}`));
+    } else {
+      console.log('ℹ️  Aucune directive CEO active');
+    }
+
+    if (lastResponse) {
+      console.log(`\n💬 Réponse du CEO détectée`);
+    }
+
+    return {
+      hasDirectives: directives.length > 0 || !!lastResponse,
+      directives,
+      lastResponse
+    };
   }
 
   /**
@@ -199,7 +267,7 @@ class AgentChefAI {
   /**
    * Prendre des décisions avec l'IA Claude
    */
-  async makeAIDecisions(projectState, recommendations, tasks) {
+  async makeAIDecisions(projectState, recommendations, tasks, ceoDirectives) {
     console.log('\n🤖 Prise de décisions avec Claude AI...\n');
 
     // Filtrer les recommandations pending
@@ -213,13 +281,38 @@ class AgentChefAI {
     console.log(`📝 ${pendingRecs.length} recommandations à évaluer avec l'IA`);
 
     // Préparer le contexte pour Claude
-    const context = `État du projet:
+    let context = `État du projet:
 - ${projectState.agents.count} agents actifs
 - ${recommendations.length} recommandations totales
 - ${tasks.length} tâches en cours
 
 Recommandations pending (${pendingRecs.length}):
 ${pendingRecs.slice(0, 10).map((r, i) => `${i + 1}. [${r.priority}] ${r.title} (par ${r.from})`).join('\n')}`;
+
+    // Ajouter les directives CEO si présentes
+    if (ceoDirectives.hasDirectives) {
+      context += '\n\nDIRECTIVES DU CEO (PRIORITÉ ABSOLUE):';
+      if (ceoDirectives.directives.length > 0) {
+        context += '\n' + ceoDirectives.directives.map(d => `- ${d}`).join('\n');
+      }
+      if (ceoDirectives.lastResponse) {
+        context += `\n\nRéponse du CEO:\n${ceoDirectives.lastResponse}`;
+      }
+    }
+
+    // Construire les contraintes
+    const constraints = [
+      'Objectif: amélioration continue',
+      'Budget: raisonnable',
+      'Qualité > Rapidité'
+    ];
+
+    // Ajouter les directives CEO comme contraintes prioritaires
+    if (ceoDirectives.hasDirectives) {
+      constraints.unshift('⚠️ SUIVRE ABSOLUMENT LES DIRECTIVES DU CEO');
+    } else {
+      constraints.unshift('Carte blanche sur le projet');
+    }
 
     // Demander à Claude de prioriser et décider
     try {
@@ -231,12 +324,7 @@ ${pendingRecs.slice(0, 10).map((r, i) => `${i + 1}. [${r.priority}] ${r.title} (
           'Demander plus d\'informations avant de décider',
           'Escalader vers l\'utilisateur pour décision business'
         ],
-        [
-          'Carte blanche sur le projet',
-          'Objectif: amélioration continue',
-          'Budget: raisonnable',
-          'Qualité > Rapidité'
-        ]
+        constraints
       );
 
       console.log('\n🧠 Décision de Claude:\n');
@@ -324,6 +412,100 @@ ${pendingRecs.slice(0, 10).map((r, i) => `${i + 1}. [${r.priority}] ${r.title} (
         items: criticalRecs.map(r => r.title)
       });
     }
+  }
+
+  /**
+   * Ajouter une entrée dans les notes de réunion CEO
+   */
+  async addMeetingEntry(projectState, recommendations, tasks) {
+    console.log('\n📝 Ajout entrée dans Meeting Notes CEO...');
+
+    const meetingNotesPath = path.join(CONFIG.projectRoot, 'MEETING-NOTES-CEO.md');
+
+    if (!fs.existsSync(meetingNotesPath)) {
+      console.log('⚠️  Fichier Meeting Notes non trouvé');
+      return;
+    }
+
+    const content = fs.readFileSync(meetingNotesPath, 'utf8');
+
+    // Compter les réunions existantes
+    const meetingCount = (content.match(/### Réunion #/g) || []).length;
+
+    // Lire le score QA
+    let qaScore = 'N/A';
+    const qaReportPath = path.join(CONFIG.projectRoot, 'RAPPORT-AGENT-QA.md');
+    if (fs.existsSync(qaReportPath)) {
+      const qaReport = fs.readFileSync(qaReportPath, 'utf8');
+      const scoreMatch = qaReport.match(/Score\*\*:\s*(\d+)/);
+      if (scoreMatch) {
+        qaScore = scoreMatch[1];
+      }
+    }
+
+    // Créer la nouvelle entrée
+    const date = new Date().toLocaleDateString('fr-FR');
+    const time = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+    const pendingRecs = recommendations.filter(r => r.status === 'pending');
+    const pendingTasks = tasks.filter(t => t.status === 'pending');
+
+    // Générer des questions intelligentes basées sur l'état
+    const questions = [];
+    if (parseInt(qaScore) < 90) {
+      questions.push(`**Score QA**: Le dashboard est à ${qaScore}/100. Souhaitez-vous prioriser l'atteinte de 95/100 avant d'ajouter de nouvelles features?`);
+    }
+    if (pendingRecs.length > 30) {
+      questions.push(`**Recommandations**: ${pendingRecs.length} recommandations en attente. Faut-il augmenter la cadence d'implémentation ou prioriser différemment?`);
+    }
+    if (this.decisions.length > 0) {
+      questions.push(`**Décisions**: J'ai pris ${this.decisions.length} décision(s) aujourd'hui. Souhaitez-vous les réviser?`);
+    }
+
+    const newEntry = `
+
+### Réunion #${meetingCount} - ${date} ${time}
+
+**De**: Chef AI (CEO)
+**À**: Grand Chef Suprême
+
+**Status du Projet:**
+- Score QA Dashboard: ${qaScore}/100
+- Agents actifs: ${projectState.agents.count}
+- Recommandations en attente: ${pendingRecs.length}
+- Tâches actives: ${pendingTasks.length}
+- Décisions prises aujourd'hui: ${this.decisions.length}
+
+**Décisions Prises:**
+${this.decisions.length > 0 ?
+  this.decisions.map((d, i) => `${i + 1}. ${d.type}: ${JSON.stringify(d.decision?.decision || d, null, 2).substring(0, 100)}...`).join('\n') :
+  'Aucune décision majeure nécessaire'}
+
+**Questions pour Vous:**
+${questions.length > 0 ? questions.map((q, i) => `${i + 1}. ${q}`).join('\n') : '*(Aucune question urgente)*'}
+
+**Prochaines Actions (24h):**
+- Continuer l'implémentation des tâches en cours
+- Monitorer le score QA
+- ${pendingRecs.length > 0 ? `Évaluer les ${pendingRecs.length} recommandations pending` : 'Maintenir la qualité'}
+
+---
+
+**👤 Votre Réponse:**
+
+*(Écrivez votre réponse ici - je la lirai lors de la prochaine boucle)*
+
+---
+`;
+
+    // Insérer la nouvelle entrée après "## 📝 HISTORIQUE DES RÉUNIONS"
+    const updatedContent = content.replace(
+      /(## 📝 HISTORIQUE DES RÉUNIONS)/,
+      `$1${newEntry}`
+    );
+
+    fs.writeFileSync(meetingNotesPath, updatedContent);
+    console.log(`✅ Entrée Réunion #${meetingCount} ajoutée\n`);
   }
 
   /**
