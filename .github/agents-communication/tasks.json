@@ -68,7 +68,62 @@
       "createdBy": "Bootstrap",
       "createdAt": "2025-10-24T09:17:08.544Z",
       "status": "pending"
+    },
+    {
+      "id": "TASK-1761298130403",
+      "title": "Observable Plot",
+      "description": "Plus moderne que D3.js, plus simple, meilleure perf",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:28:50.403Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761298130407",
+      "title": "Vitest",
+      "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:28:50.407Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761298130408",
+      "title": "Turbo",
+      "description": "Build incrementiel, cache intelligent, x10 plus rapide",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:28:50.408Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761298130409",
+      "title": "Opportunité: UPSELL",
+      "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652949",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:28:50.409Z",
+      "status": "pending"
+    },
+    {
+      "id": "TASK-1761298130410",
+      "title": "Missing company data",
+      "description": "Detection: No industry OR no revenue OR no employee count",
+      "priority": "high",
+      "fromRecommendation": "REC-1761231652950",
+      "assignedTo": "Agent Développeur",
+      "createdBy": "Agent Chef (AI)",
+      "createdAt": "2025-10-24T09:28:50.410Z",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-24T09:17:08.544Z"
+  "lastUpdate": "2025-10-24T09:28:50.410Z"
 }

@@ -21,11 +21,24 @@ const https = require('https');
 
 const CONFIG = {
   apiKey: process.env.ANTHROPIC_API_KEY || '',
-  model: 'claude-3-5-sonnet-20241022', // Latest Sonnet model
+  model: 'claude-3-5-sonnet-20241022',
   maxTokens: 4096,
   temperature: 0.7,
   apiUrl: 'api.anthropic.com',
-  apiVersion: '2023-06-01'
+  apiVersion: '2023-06-01',
+  fallbackModels: [
+    // Try different model versions - Haiku works!
+    'claude-3-haiku-20240307',  // Works! Fast and cheap
+    'claude-3-sonnet-20240229',
+    'claude-3-opus-20240229',
+    'claude-3-5-sonnet-20240620',
+    'claude-3-5-sonnet-20241022'
+  ],
+  fallbackApiVersions: [
+    '2023-06-01',
+    '2024-01-01',
+    '2024-06-01'
+  ]
 };
 
 // ============================================================================
@@ -87,8 +100,13 @@ class ClaudeAIEngine {
   /**
    * Faire une requête HTTP à l'API Claude
    */
-  async makeAPIRequest(body) {
+  async makeAPIRequest(body, modelIndex = 0, versionIndex = 0) {
     return new Promise((resolve, reject) => {
+      // Try different models and API versions
+      const modelToTry = CONFIG.fallbackModels[modelIndex] || CONFIG.fallbackModels[0];
+      const apiVersionToTry = CONFIG.fallbackApiVersions[versionIndex] || CONFIG.apiVersion;
+      body.model = modelToTry;
+
       const bodyString = JSON.stringify(body);
 
       const options = {
@@ -99,7 +117,7 @@ class ClaudeAIEngine {
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': this.apiKey,
-          'anthropic-version': CONFIG.apiVersion,
+          'anthropic-version': apiVersionToTry,
           'Content-Length': Buffer.byteLength(bodyString)
         }
       };
@@ -114,12 +132,26 @@ class ClaudeAIEngine {
         res.on('end', () => {
           if (res.statusCode === 200) {
             try {
-              resolve(JSON.parse(data));
+              const result = JSON.parse(data);
+              console.log(`✅ API works with model: ${modelToTry}, version: ${apiVersionToTry}`);
+              resolve(result);
             } catch (e) {
               reject(new Error('Invalid JSON response'));
             }
           } else {
-            reject(new Error(`API Error: ${res.statusCode} - ${data}`));
+            // If model not found, try next model
+            if (res.statusCode === 404 && modelIndex < CONFIG.fallbackModels.length - 1) {
+              console.log(`⚠️  Model ${modelToTry} not found (v${apiVersionToTry}), trying next model...`);
+              this.makeAPIRequest(body, modelIndex + 1, versionIndex).then(resolve).catch(reject);
+            }
+            // If all models tried with this API version, try next API version
+            else if (res.statusCode === 404 && versionIndex < CONFIG.fallbackApiVersions.length - 1) {
+              console.log(`⚠️  All models failed with API v${apiVersionToTry}, trying next API version...`);
+              this.makeAPIRequest(body, 0, versionIndex + 1).then(resolve).catch(reject);
+            }
+            else {
+              reject(new Error(`API Error: ${res.statusCode} - ${data}`));
+            }
           }
         });
       });
