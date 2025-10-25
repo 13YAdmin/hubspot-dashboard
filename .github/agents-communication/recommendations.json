@@ -6471,7 +6471,59 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761435647682",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:40:47.682Z",
+      "type": "traffic_control",
+      "title": "⚠️ 8 workflow(s) échouent",
+      "description": "Selon les informations fournies, il y a 8 échecs récents du workflow 'Entreprise Autonome IA', qui est un workflow critique puisqu'il fait partie du dashboard HubSpot autonome avec agents IA. De plus, le contexte indique que les workflows avec un schedule doivent tourner automatiquement, et qu'un problème critique est identifié si un workflow avec un schedule ne tourne pas. Enfin, le CEO attend des résultats rapides, ce qui implique que les problèmes doivent être escaladés rapidement.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761435647688",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:40:47.688Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans la livraison des résultats attendus par le CEO",
+      "description": "Risque identifié par IA: Retard dans la livraison des résultats attendus par le CEO",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761435647693",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:40:47.693Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO dans le système automatisé",
+      "description": "Risque identifié par IA: Perte de confiance du CEO dans le système automatisé",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761435647699",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:40:47.699Z",
+      "type": "traffic_control",
+      "title": "Risque: Risque de panne du système HubSpot autonome si les workflows critiques ne fonctionnent pas",
+      "description": "Risque identifié par IA: Risque de panne du système HubSpot autonome si les workflows critiques ne fonctionnent pas",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-25T23:27:51.223Z"
+  "lastUpdate": "2025-10-25T23:40:47.699Z"
 }
