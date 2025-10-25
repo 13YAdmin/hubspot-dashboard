@@ -6432,7 +6432,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761434871213",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:27:51.213Z",
+      "type": "traffic_control",
+      "title": "⚠️ 7 workflow(s) échouent",
+      "description": "Selon l'analyse, il y a 7 échecs récents pour le workflow 'Entreprise Autonome IA', qui est un workflow critique avec un schedule. De plus, aucun autre workflow avec un schedule n'est en cours d'exécution. Cela indique un problème critique qui nécessite une escalade immédiate auprès du CEO, conformément aux contraintes de la mission.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761434871218",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:27:51.218Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans les livraisons et l'amélioration continue si les workflows critiques ne fonctionnent pas",
+      "description": "Risque identifié par IA: Retard dans les livraisons et l'amélioration continue si les workflows critiques ne fonctionnent pas",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761434871223",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T23:27:51.223Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO si le problème n'est pas résolu rapidement",
+      "description": "Risque identifié par IA: Perte de confiance du CEO si le problème n'est pas résolu rapidement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-25T22:50:53.496Z"
+  "lastUpdate": "2025-10-25T23:27:51.223Z"
 }
