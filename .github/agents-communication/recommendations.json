@@ -5912,7 +5912,59 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761410751069",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T16:45:51.069Z",
+      "type": "traffic_control",
+      "title": "⚠️ 7 workflow(s) échouent",
+      "description": "D'après les informations fournies, il y a plusieurs workflows critiques qui ne tournent pas alors qu'ils devraient. Cela représente un problème majeur qui doit être escaladé rapidement auprès du CEO. Les workflows configurés avec un schedule doivent tourner automatiquement, or 7 échecs récents ont été détectés pour le workflow 'Entreprise Autonome IA'. De plus, 2 workflows sont actuellement en cours d'exécution mais aucun autre workflow avec un schedule n'est en cours. Il s'agit donc d'une situation critique qui nécessite une intervention immédiate.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761410751074",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T16:45:51.074Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de productivité et d'efficacité si les workflows critiques ne fonctionnent pas",
+      "description": "Risque identifié par IA: Perte de productivité et d'efficacité si les workflows critiques ne fonctionnent pas",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761410751079",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T16:45:51.079Z",
+      "type": "traffic_control",
+      "title": "Risque: Insatisfaction du CEO et risque de perte de confiance dans le système",
+      "description": "Risque identifié par IA: Insatisfaction du CEO et risque de perte de confiance dans le système",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761410751082",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T16:45:51.082Z",
+      "type": "traffic_control",
+      "title": "Risque: Possibilité d'impacts business importants si les workflows ne tournent pas correctement",
+      "description": "Risque identifié par IA: Possibilité d'impacts business importants si les workflows ne tournent pas correctement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-25T15:53:01.922Z"
+  "lastUpdate": "2025-10-25T16:45:51.082Z"
 }
