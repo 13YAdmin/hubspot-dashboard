@@ -4924,7 +4924,59 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761367126871",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T04:38:46.871Z",
+      "type": "traffic_control",
+      "title": "⚠️ 6 workflow(s) échouent",
+      "description": "D'après l'analyse des données fournies, il y a plusieurs workflows critiques qui ne tournent pas alors qu'ils devraient. Le fait que 6 exécutions récentes du workflow 'Entreprise Autonome IA' aient échoué est un problème majeur qui doit être escaladé immédiatement auprès du CEO. De plus, 2 workflows sont actuellement en cours d'exécution depuis 0 minute, ce qui indique qu'ils ne fonctionnent pas correctement. Étant donné que la priorité est de détecter les workflows qui ne tournent pas comme prévu, et que les workflows avec un schedule doivent tourner automatiquement, la meilleure décision est d'alerter le CEO de cette situation critique afin qu'il puisse prendre les mesures nécessaires pour résoudre le problème rapidement.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761367126876",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T04:38:46.876Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO dans le système automatisé",
+      "description": "Risque identifié par IA: Perte de confiance du CEO dans le système automatisé",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761367126880",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T04:38:46.880Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'obtention des résultats attendus",
+      "description": "Risque identifié par IA: Retard dans l'obtention des résultats attendus",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761367126885",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T04:38:46.885Z",
+      "type": "traffic_control",
+      "title": "Risque: Impact négatif sur le business si les workflows critiques ne fonctionnent pas",
+      "description": "Risque identifié par IA: Impact négatif sur le business si les workflows critiques ne fonctionnent pas",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-25T03:15:29.544Z"
+  "lastUpdate": "2025-10-25T04:38:46.885Z"
 }
