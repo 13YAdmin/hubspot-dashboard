@@ -5249,7 +5249,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761378674657",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T07:51:14.657Z",
+      "type": "traffic_control",
+      "title": "⚠️ 8 workflow(s) échouent",
+      "description": "D'après l'analyse des données fournies, il y a 8 échecs récents du workflow 'Entreprise Autonome IA' qui est un workflow critique. De plus, aucun des workflows configurés avec un schedule ne tourne actuellement. Cela indique un problème critique qui doit être escaladé immédiatement auprès du CEO conformément aux contraintes données.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761378674662",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T07:51:14.662Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de productivité et d'efficacité si les workflows critiques ne fonctionnent pas",
+      "description": "Risque identifié par IA: Perte de productivité et d'efficacité si les workflows critiques ne fonctionnent pas",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761378674667",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-25T07:51:14.667Z",
+      "type": "traffic_control",
+      "title": "Risque: Mécontentement du CEO si le problème n'est pas résolu rapidement",
+      "description": "Risque identifié par IA: Mécontentement du CEO si le problème n'est pas résolu rapidement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-25T07:39:48.702Z"
+  "lastUpdate": "2025-10-25T07:51:14.667Z"
 }
