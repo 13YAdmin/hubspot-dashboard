@@ -7602,7 +7602,59 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761493339250",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T15:42:19.250Z",
+      "type": "traffic_control",
+      "title": "⚠️ 7 workflow(s) échouent",
+      "description": "D'après les informations fournies, il y a plusieurs workflows critiques qui ne tournent pas alors qu'ils devraient. Cela représente un problème majeur car la mission est que tous les workflows doivent tourner automatiquement. De plus, le CEO attend des résultats rapides et un problème de ce type doit être remonté immédiatement. Il est donc nécessaire d'escalader cette situation au CEO pour qu'il puisse prendre les mesures nécessaires.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761493339256",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T15:42:19.256Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'exécution des workflows critiques",
+      "description": "Risque identifié par IA: Retard dans l'exécution des workflows critiques",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761493339261",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T15:42:19.261Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO envers l'équipe",
+      "description": "Risque identifié par IA: Perte de confiance du CEO envers l'équipe",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761493339266",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T15:42:19.266Z",
+      "type": "traffic_control",
+      "title": "Risque: Impact négatif sur les résultats attendus",
+      "description": "Risque identifié par IA: Impact négatif sur les résultats attendus",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-26T15:35:46.335Z"
+  "lastUpdate": "2025-10-26T15:42:19.266Z"
 }
