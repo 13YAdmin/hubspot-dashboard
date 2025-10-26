@@ -1,6 +1,6 @@
 # 🏢 ORGANIGRAMME - ENTREPRISE AUTONOME IA
 
-**Dernière mise à jour**: 26/10/2025 21:49:40
+**Dernière mise à jour**: 26/10/2025 21:57:57
 
 ---
 
