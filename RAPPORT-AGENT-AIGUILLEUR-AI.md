@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 26/10/2025 06:48:58
+**Date**: 26/10/2025 07:27:45
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -8,7 +8,7 @@
 ## 📊 ÉTAT WORKFLOWS
 
 - **Total runs analysés**: 30
-- **En cours**: 2
+- **En cours**: 3
 - **Échecs récents**: 7
 - **Score de santé**: 30/100
 
@@ -34,35 +34,28 @@ Aucun conflit ✅
 
 ## 💡 RECOMMANDATIONS
 
-Total: 4
+Total: 3
 
 
 ### 1. ⚠️ 7 workflow(s) échouent
 
 - **Type**: workflows_failing
 - **Priorité**: high
-- **Description**: D'après les informations fournies, il y a 7 workflows configurés, dont 2 en cours d'exécution. Cependant, il y a 7 échecs récents sur le workflow 'Entreprise Autonome IA', qui est un workflow critique puisqu'il fait partie du dashboard HubSpot autonome avec des agents IA. De plus, ce workflow a un schedule mais ne tourne pas, ce qui est un problème critique selon le contexte. Étant donné que le CEO attend des résultats rapides, il est nécessaire d'escalader immédiatement cette situation au CEO pour qu'il puisse prendre les mesures appropriées.
+- **Description**: D'après l'analyse des données fournies, il y a 3 workflows en cours d'exécution actuellement, mais 0 workflow avec un schedule qui ne tourne pas. Cependant, le workflow 'Entreprise Autonome IA' a échoué 7 fois récemment, ce qui est critique car il s'agit d'un workflow essentiel pour l'entreprise. De plus, ce workflow n'a pas tourné depuis plus de 15 minutes, ce qui nécessite une escalade immédiate auprès du CEO conformément aux contraintes.
 
 
-### 2. Risque: Perte de confiance du CEO si les workflows critiques ne fonctionnent pas
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte de confiance du CEO si les workflows critiques ne fonctionnent pas
-
-
-### 3. Risque: Retard dans l'obtention des résultats attendus par le CEO
+### 2. Risque: Retard dans l'exécution des workflows critiques pour l'entreprise
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Retard dans l'obtention des résultats attendus par le CEO
+- **Description**: Risque identifié par IA: Retard dans l'exécution des workflows critiques pour l'entreprise
 
 
-### 4. Risque: Risque de dysfonctionnement du dashboard HubSpot autonome avec les agents IA
+### 3. Risque: Perte de confiance du CEO si les problèmes ne sont pas résolus rapidement
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Risque de dysfonctionnement du dashboard HubSpot autonome avec les agents IA
+- **Description**: Risque identifié par IA: Perte de confiance du CEO si les problèmes ne sont pas résolus rapidement
 
 
 
