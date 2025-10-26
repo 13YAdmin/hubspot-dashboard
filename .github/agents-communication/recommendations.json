@@ -11412,7 +11412,59 @@
       "autoGenerate": true,
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761522814579",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T23:53:34.579Z",
+      "type": "traffic_control",
+      "title": "⚠️ 1 workflow(s) échouent",
+      "description": "Selon les informations fournies, il y a un problème critique avec les workflows qui ne tournent pas alors qu'ils devraient. En effet, le dashboard HubSpot est censé être autonome avec des agents IA, et les workflows avec un schedule doivent tourner automatiquement. Or, on constate qu'il y a 0 workflow avec un schedule qui ne tournent pas, ce qui est un problème majeur. De plus, le CEO attend des résultats rapides, donc il faut escalader immédiatement cette situation.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761522814588",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T23:53:34.588Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO",
+      "description": "Risque identifié par IA: Perte de confiance du CEO",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761522814596",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T23:53:34.596Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans la livraison des résultats attendus",
+      "description": "Risque identifié par IA: Retard dans la livraison des résultats attendus",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761522814603",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T23:53:34.603Z",
+      "type": "traffic_control",
+      "title": "Risque: Problèmes de fiabilité du système autonome",
+      "description": "Risque identifié par IA: Problèmes de fiabilité du système autonome",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-26T23:50:37.611Z"
+  "lastUpdate": "2025-10-26T23:53:34.603Z"
 }
