@@ -1,6 +1,6 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 26/10/2025 03:33:10
+**Date**: 26/10/2025 03:58:31
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
@@ -8,9 +8,9 @@
 ## 📊 ÉTAT WORKFLOWS
 
 - **Total runs analysés**: 30
-- **En cours**: 2
-- **Échecs récents**: 7
-- **Score de santé**: 30/100
+- **En cours**: 3
+- **Échecs récents**: 6
+- **Score de santé**: 40/100
 
 ---
 
@@ -34,35 +34,28 @@ Aucun conflit ✅
 
 ## 💡 RECOMMANDATIONS
 
-Total: 4
+Total: 3
 
 
-### 1. ⚠️ 7 workflow(s) échouent
+### 1. ⚠️ 6 workflow(s) échouent
 
 - **Type**: workflows_failing
 - **Priorité**: high
-- **Description**: D'après l'analyse des workflows, il y a 7 échecs récents du workflow 'Entreprise Autonome IA' qui est un workflow critique. De plus, il y a 2 workflows en cours depuis 3 minutes seulement, alors que 0 workflow avec schedule ne tourne pas. Cela indique un problème critique avec les workflows qui ne tournent pas alors qu'ils devraient. Conformément aux contraintes, cette situation nécessite une escalade immédiate au CEO car les workflows critiques ne tournent pas depuis plus de 15 minutes.
+- **Description**: D'après l'analyse des workflows, il y a 3 workflows en cours mais aucun workflow avec un schedule n'est actuellement exécuté. De plus, il y a eu 6 échecs récents du workflow 'Entreprise Autonome IA' qui est un workflow critique. Cela indique clairement un problème avec l'exécution automatique des workflows, ce qui est une priorité critique selon le contexte fourni. Étant donné que les workflows critiques ne tournent pas depuis plus de 15 minutes, il est nécessaire d'escalader immédiatement au CEO pour résoudre ce problème urgent.
 
 
-### 2. Risque: Perte de productivité et de performance si les workflows critiques ne tournent pas
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte de productivité et de performance si les workflows critiques ne tournent pas
-
-
-### 3. Risque: Risque de non-conformité et de non-respect des objectifs business si les workflows ne fonctionnent pas correctement
+### 2. Risque: Retard dans l'exécution des workflows critiques pouvant avoir un impact négatif sur les performances de l'entreprise
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Risque de non-conformité et de non-respect des objectifs business si les workflows ne fonctionnent pas correctement
+- **Description**: Risque identifié par IA: Retard dans l'exécution des workflows critiques pouvant avoir un impact négatif sur les performances de l'entreprise
 
 
-### 4. Risque: Risque de dégradation de l'image de l'entreprise et de la confiance des clients si les workflows ne sont pas fiables
+### 3. Risque: Perte de confiance du CEO si le problème n'est pas résolu rapidement
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Risque de dégradation de l'image de l'entreprise et de la confiance des clients si les workflows ne sont pas fiables
+- **Description**: Risque identifié par IA: Perte de confiance du CEO si le problème n'est pas résolu rapidement
 
 
 
@@ -87,7 +80,7 @@ Les décisions sont basées sur analyse contextuelle, pas règles fixes.
 
 🔴 CRITIQUE
 
-Score: 30/100
+Score: 40/100
 
 ---
 

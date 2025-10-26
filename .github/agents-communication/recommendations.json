@@ -6614,7 +6614,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761451111022",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T03:58:31.022Z",
+      "type": "traffic_control",
+      "title": "⚠️ 6 workflow(s) échouent",
+      "description": "D'après l'analyse des workflows, il y a 3 workflows en cours mais aucun workflow avec un schedule n'est actuellement exécuté. De plus, il y a eu 6 échecs récents du workflow 'Entreprise Autonome IA' qui est un workflow critique. Cela indique clairement un problème avec l'exécution automatique des workflows, ce qui est une priorité critique selon le contexte fourni. Étant donné que les workflows critiques ne tournent pas depuis plus de 15 minutes, il est nécessaire d'escalader immédiatement au CEO pour résoudre ce problème urgent.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761451111027",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T03:58:31.027Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'exécution des workflows critiques pouvant avoir un impact négatif sur les performances de l'entreprise",
+      "description": "Risque identifié par IA: Retard dans l'exécution des workflows critiques pouvant avoir un impact négatif sur les performances de l'entreprise",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761451111033",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T03:58:31.033Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO si le problème n'est pas résolu rapidement",
+      "description": "Risque identifié par IA: Perte de confiance du CEO si le problème n'est pas résolu rapidement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-26T03:33:10.650Z"
+  "lastUpdate": "2025-10-26T03:58:31.033Z"
 }
