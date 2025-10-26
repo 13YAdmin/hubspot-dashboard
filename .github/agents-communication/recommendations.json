@@ -8720,7 +8720,46 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761515496965",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T21:51:36.965Z",
+      "type": "traffic_control",
+      "title": "⚠️ 5 workflow(s) échouent",
+      "description": "D'après l'analyse des workflows, il y a 5 échecs récents du workflow 'Entreprise Autonome IA' qui est un workflow critique. De plus, il y a 0 workflow avec un schedule qui tourne actuellement, ce qui est un problème critique. Étant donné que les workflows critiques ne tournent pas depuis plus de 15 minutes, il est nécessaire d'escalader immédiatement au CEO pour résoudre ce problème urgent.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761515496972",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T21:51:36.972Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'exécution des workflows critiques pouvant impacter les performances de l'entreprise",
+      "description": "Risque identifié par IA: Retard dans l'exécution des workflows critiques pouvant impacter les performances de l'entreprise",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761515496977",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T21:51:36.977Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO si le problème n'est pas résolu rapidement",
+      "description": "Risque identifié par IA: Perte de confiance du CEO si le problème n'est pas résolu rapidement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-26T21:49:36.481Z"
+  "lastUpdate": "2025-10-26T21:51:36.977Z"
 }

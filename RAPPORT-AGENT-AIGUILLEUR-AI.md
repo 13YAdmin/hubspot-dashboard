@@ -1,16 +1,16 @@
 # 🚦 RAPPORT AIGUILLEUR - AI-Powered (Traffic Controller)
 
-**Date**: 26/10/2025 21:49:36
+**Date**: 26/10/2025 21:51:36
 **Mode**: ✅ Intelligence Artificielle (Claude)
 
 ---
 
 ## 📊 ÉTAT WORKFLOWS
 
-- **Total runs analysés**: 0
-- **En cours**: 0
-- **Échecs récents**: 0
-- **Score de santé**: 100/100
+- **Total runs analysés**: 30
+- **En cours**: 1
+- **Échecs récents**: 5
+- **Score de santé**: 50/100
 
 ---
 
@@ -37,25 +37,25 @@ Aucun conflit ✅
 Total: 3
 
 
-### 1. Risque: Perte de productivité et d'efficacité si les workflows ne fonctionnent pas comme prévu
+### 1. ⚠️ 5 workflow(s) échouent
+
+- **Type**: workflows_failing
+- **Priorité**: high
+- **Description**: D'après l'analyse des workflows, il y a 5 échecs récents du workflow 'Entreprise Autonome IA' qui est un workflow critique. De plus, il y a 0 workflow avec un schedule qui tourne actuellement, ce qui est un problème critique. Étant donné que les workflows critiques ne tournent pas depuis plus de 15 minutes, il est nécessaire d'escalader immédiatement au CEO pour résoudre ce problème urgent.
+
+
+### 2. Risque: Retard dans l'exécution des workflows critiques pouvant impacter les performances de l'entreprise
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Perte de productivité et d'efficacité si les workflows ne fonctionnent pas comme prévu
+- **Description**: Risque identifié par IA: Retard dans l'exécution des workflows critiques pouvant impacter les performances de l'entreprise
 
 
-### 2. Risque: Insatisfaction du CEO et de la direction si les résultats attendus ne sont pas atteints
-
-- **Type**: risk
-- **Priorité**: medium
-- **Description**: Risque identifié par IA: Insatisfaction du CEO et de la direction si les résultats attendus ne sont pas atteints
-
-
-### 3. Risque: Risque de perdre la confiance des parties prenantes si le problème n'est pas résolu rapidement
+### 3. Risque: Perte de confiance du CEO si le problème n'est pas résolu rapidement
 
 - **Type**: risk
 - **Priorité**: medium
-- **Description**: Risque identifié par IA: Risque de perdre la confiance des parties prenantes si le problème n'est pas résolu rapidement
+- **Description**: Risque identifié par IA: Perte de confiance du CEO si le problème n'est pas résolu rapidement
 
 
 
@@ -78,9 +78,9 @@ Les décisions sont basées sur analyse contextuelle, pas règles fixes.
 
 ## 🔄 ÉTAT GLOBAL
 
-🟢 SAIN
+🟠 DÉGRADÉ
 
-Score: 100/100
+Score: 50/100
 
 ---
 
