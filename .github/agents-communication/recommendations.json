@@ -7758,7 +7758,59 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761500147096",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T17:35:47.096Z",
+      "type": "traffic_control",
+      "title": "⚠️ 7 workflow(s) échouent",
+      "description": "D'après l'analyse des workflows, il y a un problème critique car 7 workflows avec un schedule ne tournent pas alors qu'ils devraient. Cela inclut des workflows importants comme l'Entreprise Autonome IA, le Code Quality, la Performance Optimization, etc. Étant donné que ces workflows ne tournent pas depuis plus de 15 minutes, cela nécessite une escalade immédiate auprès du CEO pour résoudre ce problème urgent.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761500147102",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T17:35:47.102Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'exécution des workflows critiques",
+      "description": "Risque identifié par IA: Retard dans l'exécution des workflows critiques",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761500147107",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T17:35:47.107Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de productivité et d'efficacité opérationnelle",
+      "description": "Risque identifié par IA: Perte de productivité et d'efficacité opérationnelle",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761500147112",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-26T17:35:47.112Z",
+      "type": "traffic_control",
+      "title": "Risque: Risque de non-conformité et de problèmes de sécurité",
+      "description": "Risque identifié par IA: Risque de non-conformité et de problèmes de sécurité",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-26T16:46:55.419Z"
+  "lastUpdate": "2025-10-26T17:35:47.112Z"
 }
