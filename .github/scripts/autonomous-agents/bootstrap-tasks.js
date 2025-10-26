@@ -20,11 +20,11 @@ const correctionsPath = path.join(process.cwd(), 'CORRECTIONS-IMMEDIATES.md');
 const auditPath = path.join(process.cwd(), 'RAPPORT-FINAL-AUDIT.md');
 
 if (!fs.existsSync(correctionsPath)) {
-  console.log('❌ CORRECTIONS-IMMEDIATES.md introuvable');
-  process.exit(1);
+  console.log('⚠️  CORRECTIONS-IMMEDIATES.md introuvable (archivé)');
+  console.log('📋 Création des tâches depuis les specs hardcodées...\n');
+} else {
+  console.log('📖 Lecture du rapport d\'audit...\n');
 }
-
-console.log('📖 Lecture du rapport d\'audit...\n');
 
 // Créer les tasks basées sur les bugs identifiés
 const tasks = {
