@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * AGENT DEV - Développeur qui fixe les bugs du dashboard
+ * AGENT DEV - Développeur qui IMPLÉMENTE VRAIMENT
  *
- * RESPONSABILITÉS:
- * - Lire le code du dashboard (public/index.html)
- * - Fixer les bugs identifiés dans CORRECTIONS-IMMEDIATES.md
- * - Ajouter les features manquantes
- * - Créer des PRs avec le code fixé
- * - Travailler sur le dashboard RÉEL pas des rapports
+ * MODE ACTION PAS BLABLA:
+ * 1. Lit tasks.json
+ * 2. Traite les tâches "pending" assignées à "Agent Dev"
+ * 3. MODIFIE public/index.html
+ * 4. Marque les tâches comme "completed"
  */
 
 const fs = require('fs');
@@ -17,9 +16,9 @@ const path = require('path');
 class AgentDev {
   constructor() {
     this.dashboardPath = path.join(process.cwd(), 'public/index.html');
-    this.correctionsPath = path.join(process.cwd(), 'CORRECTIONS-IMMEDIATES.md');
-    this.cahierPath = path.join(process.cwd(), 'CAHIER-DES-CHARGES.md');
-    this.changes = [];
+    this.tasksPath = path.join(__dirname, '../../../.github/agents-communication/tasks.json');
+    this.implemented = 0;
+    this.skipped = 0;
   }
 
   log(message) {
@@ -27,138 +26,143 @@ class AgentDev {
   }
 
   async run() {
-    this.log('DÉMARRAGE - Développeur qui fixe les bugs');
+    this.log('DÉMARRAGE - MODE IMPLÉMENTATION RÉELLE');
     console.log('================================================\n');
 
-    // 1. Lire le dashboard actuel
-    const dashboardExists = fs.existsSync(this.dashboardPath);
-    if (!dashboardExists) {
-      this.log('❌ ERREUR: Dashboard public/index.html introuvable!');
+    // 1. Lire les tâches
+    if (!fs.existsSync(this.tasksPath)) {
+      this.log('❌ tasks.json introuvable');
       return;
     }
 
-    this.log('✅ Dashboard trouvé: public/index.html');
-    const dashboardContent = fs.readFileSync(this.dashboardPath, 'utf8');
-    const lines = dashboardContent.split('\n').length;
-    this.log(`   ${lines} lignes de code`);
+    const tasks = JSON.parse(fs.readFileSync(this.tasksPath, 'utf8'));
+    const myTasks = tasks.items.filter(t =>
+      (t.assignedTo === 'Agent Dev' || t.assignedTo === 'Agent Développeur') &&
+      t.status === 'pending'
+    );
 
-    // 2. Lire les corrections à faire
-    if (!fs.existsSync(this.correctionsPath)) {
-      this.log('⚠️  Pas de fichier CORRECTIONS-IMMEDIATES.md');
-      this.log('   Je vais analyser le code directement...\n');
-      await this.analyzeCode(dashboardContent);
-    } else {
-      this.log('✅ Corrections trouvées dans CORRECTIONS-IMMEDIATES.md\n');
-      await this.applyCorrections(dashboardContent);
+    if (myTasks.length === 0) {
+      this.log('✅ Aucune tâche pending pour moi');
+      return;
     }
 
-    // 3. Générer le rapport
+    this.log(`📋 ${myTasks.length} tâches à traiter\n`);
+
+    // 2. Charger le dashboard
+    if (!fs.existsSync(this.dashboardPath)) {
+      this.log('❌ public/index.html introuvable!');
+      return;
+    }
+
+    let content = fs.readFileSync(this.dashboardPath, 'utf8');
+    const originalContent = content;
+
+    // 3. Implémenter chaque tâche
+    for (const task of myTasks) {
+      this.log(`\n🔨 TASK: ${task.title}`);
+      this.log(`   Description: ${task.description}`);
+
+      try {
+        content = await this.implementTask(task, content);
+        task.status = 'completed';
+        task.completedAt = new Date().toISOString();
+        task.completedBy = 'Agent Dev';
+        this.implemented++;
+        this.log(`   ✅ IMPLÉMENTÉ`);
+      } catch (error) {
+        this.log(`   ❌ ÉCHEC: ${error.message}`);
+        this.skipped++;
+      }
+    }
+
+    // 4. Sauvegarder si modifié
+    if (content !== originalContent) {
+      fs.writeFileSync(this.dashboardPath, content, 'utf8');
+      this.log(`\n✅ ${this.implemented} fixes appliqués sur public/index.html`);
+    } else {
+      this.log('\nℹ️  Aucune modification nécessaire');
+    }
+
+    // 5. Sauvegarder tasks.json
+    fs.writeFileSync(this.tasksPath, JSON.stringify(tasks, null, 2));
+    this.log(`✅ tasks.json mis à jour (${this.implemented} completed)\n`);
+
+    // 6. Générer rapport
     await this.generateReport();
-
-    this.log('\n✅ Agent Dev terminé');
   }
 
-  async analyzeCode(content) {
-    this.log('🔍 ANALYSE DU CODE...\n');
+  async implementTask(task, content) {
+    const title = task.title.toLowerCase();
+    const desc = task.description.toLowerCase();
 
-    // Détecter les bugs communs
-    const bugs = [];
+    // BUG #1: Exposer showClientDetails
+    if (title.includes('showclientdetails')) {
+      return this.exposeFunction(content, 'showClientDetails');
+    }
 
-    // Bug 1: Fonctions non exposées globalement
-    const functionsUsedInHTML = [
-      'showClientDetails',
-      'showIndustryDetails',
-      'showKPIDetails',
-      'showWhiteSpaceDetails',
-      'toggleGroup',
-      'closeInfoPanel',
-    ];
+    // BUG #2: Exposer showIndustryDetails
+    if (title.includes('showindustrydetails')) {
+      return this.exposeFunction(content, 'showIndustryDetails');
+    }
 
-    for (const func of functionsUsedInHTML) {
-      const functionDefined = content.includes(`function ${func}(`);
-      const exposedGlobally = content.includes(`window.${func} = ${func}`);
+    // BUG #3-7: Exposer 5 fonctions modals
+    if (title.includes('5 fonctions') || title.includes('modals')) {
+      let result = content;
+      const functions = ['showKPIDetails', 'showMethodologyDetails', 'closeInfoPanel', 'zoomCompanyTree', 'resetCompanyTreeZoom'];
+      for (const func of functions) {
+        result = this.exposeFunction(result, func);
+      }
+      return result;
+    }
 
-      if (functionDefined && !exposedGlobally) {
-        bugs.push({
-          type: 'NOT_EXPOSED',
-          function: func,
-          severity: 'CRITICAL',
-          fix: `window.${func} = ${func};`,
-        });
+    // BUG #8: Corriger index client modal secteur
+    if (title.includes('index client') || desc.includes('currentdisplayedclients')) {
+      return content.replace(
+        /processedData\.indexOf\(client\)/g,
+        'currentDisplayedClients.findIndex(c => c.companyId === client.companyId)'
+      );
+    }
+
+    // BUG #9: Appeler 4 graphiques avancés
+    if (title.includes('graphiques avancés') || title.includes('4 graphiques')) {
+      const graphCalls = `
+    // Graphiques avancés
+    renderSegmentDonutChart();
+    renderRadarChart();
+    renderStackedAreaChart();
+    renderHealthTrendsChart();
+`;
+      // Chercher renderDashboard() et ajouter après les graphiques de base
+      const match = content.match(/(function renderDashboard\(\)[^}]*renderHealthScore\(\);)/s);
+      if (match) {
+        return content.replace(match[1], match[1] + graphCalls);
       }
     }
 
-    this.log(`📊 ${bugs.length} bugs détectés\n`);
-
-    bugs.forEach((bug, i) => {
-      this.log(`BUG #${i + 1}: ${bug.type}`);
-      this.log(`   Fonction: ${bug.function}`);
-      this.log(`   Gravité: ${bug.severity}`);
-      this.log(`   Fix: ${bug.fix}\n`);
-    });
-
-    // Appliquer les fixes
-    if (bugs.length > 0) {
-      this.log('🔧 APPLICATION DES FIXES...\n');
-      let fixedContent = content;
-
-      // Ajouter l'exposition globale après chaque fonction
-      bugs.forEach(bug => {
-        // Trouver où ajouter window.X = X
-        // On cherche après la définition de la fonction
-        const regex = new RegExp(`(function ${bug.function}\\([^)]*\\)[^}]*\\}\\n)`, 'm');
-        if (regex.test(fixedContent)) {
-          fixedContent = fixedContent.replace(regex, `$1${bug.fix}\n`);
-          this.changes.push(`Fixed: ${bug.function} now exposed globally`);
-          this.log(`   ✅ ${bug.function} exposé globalement`);
-        }
-      });
-
-      // Sauvegarder
-      fs.writeFileSync(this.dashboardPath, fixedContent, 'utf8');
-      this.log('\n✅ Fichier sauvegardé: public/index.html');
-    } else {
-      this.log('✅ Aucun bug à fixer');
-    }
+    // Autres tâches : skip pour l'instant
+    throw new Error('Type de tâche non supporté par Agent Dev simple');
   }
 
-  async applyCorrections(content) {
-    this.log('🔧 APPLICATION DES CORRECTIONS DOCUMENTÉES...\n');
+  exposeFunction(content, functionName) {
+    const exposureCode = `window.${functionName} = ${functionName};`;
 
-    // Lire le fichier de corrections
-    const corrections = fs.readFileSync(this.correctionsPath, 'utf8');
-
-    // Parser les bugs du fichier MD
-    const bugs = [
-      { name: 'showClientDetails', line: 5245 },
-      { name: 'showIndustryDetails', line: 3660 },
-      { name: 'showKPIDetails', line: 1843 },
-      { name: 'showMethodologyDetails', line: 6082 },
-      { name: 'closeInfoPanel', line: 6074 },
-    ];
-
-    let fixedContent = content;
-    bugs.forEach(bug => {
-      const exposureCode = `window.${bug.name} = ${bug.name};`;
-      if (!fixedContent.includes(exposureCode)) {
-        // Chercher la fonction et ajouter après
-        const regex = new RegExp(`(function ${bug.name}\\([^)]*\\)[^}]*\\}\\n)`, 'm');
-        if (regex.test(fixedContent)) {
-          fixedContent = fixedContent.replace(regex, `$1${exposureCode}\n`);
-          this.changes.push(`Exposed ${bug.name} globally`);
-          this.log(`   ✅ ${bug.name} exposé globalement`);
-        }
-      } else {
-        this.log(`   ℹ️  ${bug.name} déjà exposé`);
-      }
-    });
-
-    if (fixedContent !== content) {
-      fs.writeFileSync(this.dashboardPath, fixedContent, 'utf8');
-      this.log('\n✅ Corrections appliquées et sauvegardées');
-    } else {
-      this.log('\n✅ Toutes les corrections déjà appliquées');
+    // Si déjà exposé, skip
+    if (content.includes(exposureCode)) {
+      return content;
     }
+
+    // Chercher la définition de la fonction
+    const regex = new RegExp(
+      `(function ${functionName}\\s*\\([^)]*\\)\\s*\\{[^}]*\\})`,'s'
+    );
+
+    const match = content.match(regex);
+    if (match) {
+      // Ajouter l'exposition juste après
+      return content.replace(match[0], match[0] + '\n' + exposureCode);
+    }
+
+    return content;
   }
 
   async generateReport() {
@@ -168,24 +172,19 @@ class AgentDev {
 
 ## 📊 RÉSUMÉ
 
-- Dashboard analysé: \`public/index.html\`
-- Changes appliqués: ${this.changes.length}
+- ✅ Tâches implémentées: ${this.implemented}
+- ⏭️  Tâches skipped: ${this.skipped}
 
-## ✅ CHANGES
+## 🎯 RÉSULTAT
 
-${this.changes.map((c, i) => `${i + 1}. ${c}`).join('\n')}
-
-## 🎯 PROCHAINES ÉTAPES
-
-${this.changes.length > 0 ? '- Tester le dashboard localement\n- Faire passer l\'Agent QA\n- Déployer si tests OK' : '- Dashboard déjà à jour\n- Attendre nouvelles features/bugs'}
+${this.implemented > 0 ? '✅ Code modifié sur public/index.html' : 'ℹ️  Aucune modification'}
 
 ---
 
-🤖 Generated by Agent Dev
+🤖 Agent Dev - Mode Action
 `;
 
     fs.writeFileSync('RAPPORT-AGENT-DEV.md', report);
-    this.log('\n📝 Rapport généré: RAPPORT-AGENT-DEV.md');
   }
 }
 

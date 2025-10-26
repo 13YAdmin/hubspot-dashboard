@@ -2680,7 +2680,7 @@ function renderRadarChart() {
 
   const normalized = topClients.map(client => ({
     name: client.name,
-    color: ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6'][processedData.indexOf(client) % 5],
+    color: ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6'][currentDisplayedClients.findIndex(c => c.companyId === client.companyId) % 5],
     values: [
       normalize(client.totalRevenue, 200000), // CA max 200k
       client.avgHealthScore, // déjà sur 100
