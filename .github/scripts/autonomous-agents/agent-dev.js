@@ -139,6 +139,36 @@ class AgentDev {
       }
     }
 
+    // QA FIX #1: Ajouter meta viewport
+    if (title.includes('viewport') || desc.includes('viewport') || desc.includes('responsive')) {
+      return this.addViewportMeta(content);
+    }
+
+    // QA FIX #2: Nettoyer console.log
+    if (title.includes('console') || desc.includes('console.log') || desc.includes('console.error')) {
+      return this.cleanConsoleLogs(content);
+    }
+
+    // QA FIX #3: Ajouter focus indicators
+    if (title.includes('focus') || desc.includes('focus indicator') || desc.includes('accessibilité')) {
+      return this.addFocusIndicators(content);
+    }
+
+    // QA FIX #4: Importer Chart.js
+    if (title.includes('chart.js') || desc.includes('chart.js') || desc.includes('graphiques')) {
+      return this.addChartJs(content);
+    }
+
+    // QA FIX #5: Ajouter meta description
+    if (title.includes('meta description') || desc.includes('seo')) {
+      return this.addMetaDescription(content);
+    }
+
+    // QA FIX #6: Ajouter favicon
+    if (title.includes('favicon')) {
+      return this.addFavicon(content);
+    }
+
     // Autres tâches : skip pour l'instant
     throw new Error('Type de tâche non supporté par Agent Dev simple');
   }
@@ -163,6 +193,78 @@ class AgentDev {
     }
 
     return content;
+  }
+
+  // === MÉTHODES QA FIXES ===
+
+  addViewportMeta(content) {
+    if (content.includes('name="viewport"')) {
+      return content; // Déjà présent
+    }
+    return content.replace(
+      /(<meta charset="utf-8"\/>)/,
+      '$1\n<meta name="viewport" content="width=device-width, initial-scale=1.0"/>'
+    );
+  }
+
+  cleanConsoleLogs(content) {
+    // Commenter tous les console.log, console.error, console.warn
+    return content
+      .replace(/^(\s*)console\.log\(/gm, '$1// console.log(')
+      .replace(/^(\s*)console\.error\(/gm, '$1// console.error(')
+      .replace(/^(\s*)console\.warn\(/gm, '$1// console.warn(');
+  }
+
+  addFocusIndicators(content) {
+    if (content.includes('*:focus')) {
+      return content; // Déjà présent
+    }
+    const focusCSS = `
+/* Focus indicators for accessibility */
+*:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus, a:focus, input:focus, select:focus {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 2px;
+}
+`;
+    return content.replace(
+      /(\* \{ margin: 0; padding: 0; box-sizing: border-box; \})/,
+      '$1\n' + focusCSS
+    );
+  }
+
+  addChartJs(content) {
+    if (content.includes('chart.js') || content.includes('Chart.js')) {
+      return content; // Déjà présent
+    }
+    return content.replace(
+      /(<\/style>)/,
+      '$1\n\n<!-- Chart.js for data visualization -->\n<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>'
+    );
+  }
+
+  addMetaDescription(content) {
+    if (content.includes('name="description"')) {
+      return content; // Déjà présent
+    }
+    return content.replace(
+      /(<meta name="viewport"[^>]*>)/,
+      '$1\n<meta name="description" content="Dashboard HubSpot pour Account Managers - Visualisation des clients, KPIs et opportunités"/>'
+    );
+  }
+
+  addFavicon(content) {
+    if (content.includes('rel="icon"')) {
+      return content; // Déjà présent
+    }
+    return content.replace(
+      /(<\/head>)/,
+      '<link rel="icon" href="data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><text y=\'.9em\' font-size=\'90\'>📊</text></svg>"/>\n$1'
+    );
   }
 
   async generateReport() {
