@@ -75,7 +75,9 @@
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
       "createdAt": "2025-10-27T12:00:01.570Z",
-      "status": "pending"
+      "status": "completed",
+      "completedAt": "2025-10-27T15:27:54.127Z",
+      "completedBy": "Agent Dev"
     },
     {
       "id": "TASK-1761566431333",
@@ -86,7 +88,9 @@
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
       "createdAt": "2025-10-27T12:00:31.333Z",
-      "status": "pending"
+      "status": "completed",
+      "completedAt": "2025-10-27T15:27:54.128Z",
+      "completedBy": "Agent Dev"
     },
     {
       "id": "TASK-1761566431347",
@@ -97,7 +101,9 @@
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
       "createdAt": "2025-10-27T12:00:31.347Z",
-      "status": "pending"
+      "status": "completed",
+      "completedAt": "2025-10-27T15:27:54.128Z",
+      "completedBy": "Agent Dev"
     },
     {
       "id": "TASK-1761566431360",
@@ -108,7 +114,9 @@
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
       "createdAt": "2025-10-27T12:00:31.360Z",
-      "status": "pending"
+      "status": "completed",
+      "completedAt": "2025-10-27T15:27:54.128Z",
+      "completedBy": "Agent Dev"
     },
     {
       "id": "TASK-1761566431371",
@@ -119,7 +127,9 @@
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
       "createdAt": "2025-10-27T12:00:31.371Z",
-      "status": "pending"
+      "status": "completed",
+      "completedAt": "2025-10-27T15:27:54.129Z",
+      "completedBy": "Agent Dev"
     },
     {
       "id": "TASK-1761566431382",
@@ -130,7 +140,9 @@
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
       "createdAt": "2025-10-27T12:00:31.382Z",
-      "status": "pending"
+      "status": "completed",
+      "completedAt": "2025-10-27T15:27:54.129Z",
+      "completedBy": "Agent Dev"
     }
   ],
   "lastUpdate": "2025-10-27T13:55:00.000Z",
