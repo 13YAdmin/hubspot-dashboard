@@ -15795,7 +15795,46 @@
       "autoGenerate": true,
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761558797226",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T09:53:17.226Z",
+      "type": "traffic_control",
+      "title": "⚠️ 3 workflow(s) échouent",
+      "description": "D'après l'analyse des workflows, il y a 3 échecs récents du workflow 'Entreprise Autonome IA' qui est configuré pour tourner manuellement. De plus, il y a 0 workflow avec un schedule qui ne tourne pas, ce qui est considéré comme un problème critique. Étant donné que la mission est que tous les workflows doivent tourner automatiquement, et que le CEO attend des résultats rapides, la meilleure décision est d'escalader immédiatement au CEO pour l'alerter de cette situation bloquante.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761558797238",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T09:53:17.238Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de confiance du CEO si la situation n'est pas prise en charge rapidement",
+      "description": "Risque identifié par IA: Perte de confiance du CEO si la situation n'est pas prise en charge rapidement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761558797250",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T09:53:17.250Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'avancement des projets si les workflows ne tournent pas correctement",
+      "description": "Risque identifié par IA: Retard dans l'avancement des projets si les workflows ne tournent pas correctement",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-27T09:52:28.706Z"
+  "lastUpdate": "2025-10-27T09:53:17.250Z"
 }
