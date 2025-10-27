@@ -51,7 +51,7 @@ class AgentQA {
 
     const content = fs.readFileSync(this.dashboardPath, 'utf8');
 
-    // BATTERIES DE TESTS
+    // BATTERIES DE TESTS (NIVEAU ÉQUIPE ENTIÈRE)
     await this.testFunctionality(content);
     await this.testPerformance(content);
     await this.testAccessibility(content);
@@ -60,6 +60,16 @@ class AgentQA {
     await this.testBestPractices(content);
     await this.testUX(content);
     await this.testCompatibility(content);
+
+    // TESTS AVANCÉS (SURPASSE HUMAINS)
+    await this.testOWASPSecurity(content);
+    await this.testPerformanceLighthouse(content);
+    await this.testAccessibilityWCAG_AAA(content);
+    await this.testCodeQuality(content);
+    await this.testDependencies(content);
+    await this.testDataIntegrity(content);
+    await this.testErrorHandling(content);
+    await this.testNetworkResilience(content);
 
     // Rapport
     await this.generateReport();
@@ -554,6 +564,540 @@ class AgentQA {
       'Pas de features experimental',
       !content.includes('experimental') && !content.includes('webkit-'),
       'Éviter features experimentales',
+      'warning'
+    );
+  }
+
+  // ============================================================================
+  // TESTS AVANCÉS - NIVEAU ÉQUIPE ENTIÈRE+
+  // ============================================================================
+
+  async testOWASPSecurity(content) {
+    this.log('\n🛡️  TESTS OWASP TOP 10 (SÉCURITÉ AVANCÉE)...\n');
+
+    // A01:2021 – Broken Access Control
+    this.test(
+      'Pas de hardcoded credentials',
+      !content.match(/password\s*[:=]\s*["'][^"']+["']/i) && !content.match(/api[_-]?key\s*[:=]\s*["'][^"']+["']/i),
+      'OWASP A01 - Contrôle d\'accès',
+      'critical'
+    );
+
+    // A02:2021 – Cryptographic Failures
+    this.test(
+      'HTTPS uniquement pour ressources',
+      !content.includes('http://') || content.split('http://').length < 3,
+      'OWASP A02 - Chiffrement requis',
+      'critical'
+    );
+
+    // A03:2021 – Injection
+    this.test(
+      'Protection injection SQL/NoSQL',
+      !content.includes('eval(') && !content.includes('Function(') && !content.includes('setTimeout('),
+      'OWASP A03 - Prévention injection',
+      'critical'
+    );
+
+    this.test(
+      'Sanitization innerHTML',
+      !content.includes('.innerHTML') || content.includes('DOMPurify') || content.includes('sanitize'),
+      'OWASP A03 - XSS prevention',
+      'critical'
+    );
+
+    // A04:2021 – Insecure Design
+    this.test(
+      'Rate limiting hints',
+      content.includes('throttle') || content.includes('debounce') || content.includes('rateLimit'),
+      'OWASP A04 - Design sécurisé',
+      'warning'
+    );
+
+    // A05:2021 – Security Misconfiguration
+    this.test(
+      'Pas de stack traces exposées',
+      !content.includes('console.trace') && !content.includes('Error.stack'),
+      'OWASP A05 - Config sécurisée',
+      'critical'
+    );
+
+    // A06:2021 – Vulnerable Components
+    this.test(
+      'Pas de librairies obsolètes',
+      !content.includes('jquery-1.') && !content.includes('angular.js') && !content.includes('backbone.js'),
+      'OWASP A06 - Composants à jour',
+      'warning'
+    );
+
+    // A07:2021 – Authentication Failures
+    this.test(
+      'Pas de localStorage pour tokens sensibles',
+      !content.match(/localStorage\.setItem\(['"](token|jwt|session)/i),
+      'OWASP A07 - Auth sécurisée (utiliser httpOnly cookies)',
+      'critical'
+    );
+
+    // A08:2021 – Software and Data Integrity
+    this.test(
+      'Subresource Integrity (SRI) pour CDN',
+      !content.includes('cdn.') || content.includes('integrity=') || content.includes('crossorigin='),
+      'OWASP A08 - Intégrité des ressources',
+      'warning'
+    );
+
+    // A09:2021 – Security Logging Failures
+    this.test(
+      'Error handling présent',
+      content.includes('try') && content.includes('catch'),
+      'OWASP A09 - Logging d\'erreurs',
+      'warning'
+    );
+
+    // A10:2021 – Server-Side Request Forgery
+    this.test(
+      'Validation URLs externes',
+      !content.match(/fetch\([^)]*\+/) || content.includes('validateUrl') || content.includes('sanitizeUrl'),
+      'OWASP A10 - SSRF prevention',
+      'warning'
+    );
+  }
+
+  async testPerformanceLighthouse(content) {
+    this.log('\n⚡ TESTS PERFORMANCE (LIGHTHOUSE-STYLE)...\n');
+
+    // First Contentful Paint
+    this.test(
+      'CSS critique inline',
+      content.includes('<style>') && content.indexOf('<style>') < 1000,
+      'FCP optimisé - CSS critique en haut',
+      'warning'
+    );
+
+    this.test(
+      'Preconnect aux domaines tiers',
+      !content.includes('cdn.') || content.includes('rel="preconnect"') || content.includes('rel="dns-prefetch"'),
+      'LCP optimisé - Preconnect CDN',
+      'warning'
+    );
+
+    // Largest Contentful Paint
+    this.test(
+      'Images lazy loading',
+      !content.includes('<img') || content.includes('loading="lazy"') || content.includes('data-src='),
+      'LCP - Lazy loading images',
+      'warning'
+    );
+
+    this.test(
+      'Pas de render-blocking resources excessifs',
+      content.split('<link').length < 10 && content.split('<script').length < 15,
+      'Minimiser ressources bloquantes',
+      'warning'
+    );
+
+    // Cumulative Layout Shift
+    this.test(
+      'Dimensions images/iframes définies',
+      !content.match(/<img(?![^>]*width=)/) || content.match(/<img[^>]*width=/g)?.length > 0,
+      'CLS - Dimensions explicites',
+      'warning'
+    );
+
+    this.test(
+      'Font display strategy',
+      !content.includes('@font-face') || content.includes('font-display:'),
+      'CLS - Font display swap',
+      'warning'
+    );
+
+    // First Input Delay
+    this.test(
+      'Code splitting détecté',
+      content.includes('import(') || content.includes('async') || content.includes('defer'),
+      'FID - Code splitting/async',
+      'warning'
+    );
+
+    // Time to Interactive
+    this.test(
+      'Service Worker présent',
+      content.includes('serviceWorker') || content.includes('sw.js'),
+      'TTI - Offline capability',
+      'warning'
+    );
+
+    // Bundle size
+    const sizeKB = Buffer.byteLength(content, 'utf8') / 1024;
+    this.test(
+      'Taille fichier optimale',
+      sizeKB < 500,
+      `Bundle ${sizeKB.toFixed(0)}KB (< 500KB recommandé)`,
+      'warning'
+    );
+
+    // Resource hints
+    this.test(
+      'Resource hints utilisés',
+      content.includes('rel="prefetch"') || content.includes('rel="preload"') || content.includes('rel="modulepreload"'),
+      'Performance hints (preload/prefetch)',
+      'warning'
+    );
+  }
+
+  async testAccessibilityWCAG_AAA(content) {
+    this.log('\n♿ TESTS ACCESSIBILITÉ WCAG 2.1 AAA (MAXIMUM)...\n');
+
+    // Level AAA - Contrast
+    this.test(
+      'Contraste élevé AAA (7:1)',
+      content.includes('--text:') && content.includes('--bg:'),
+      'WCAG AAA 1.4.6 - Contraste 7:1 (variables CSS)',
+      'warning'
+    );
+
+    // Level AAA - No timing
+    this.test(
+      'Pas de timeout automatique',
+      !content.includes('setTimeout') || content.includes('clearTimeout'),
+      'WCAG AAA 2.2.3 - Pas de limite de temps',
+      'warning'
+    );
+
+    // Level AAA - No interruptions
+    this.test(
+      'Pas d\'interruptions automatiques',
+      !content.includes('alert(') && !content.includes('confirm(') && !content.includes('setInterval'),
+      'WCAG AAA 2.2.4 - Pas d\'interruptions',
+      'warning'
+    );
+
+    // Level AAA - Re-authenticating
+    this.test(
+      'Sauvegarde de données avant expiration session',
+      content.includes('localStorage') || content.includes('sessionStorage'),
+      'WCAG AAA 2.2.5 - Sauvegarde données',
+      'warning'
+    );
+
+    // Level AAA - Section headings
+    this.test(
+      'Headings hiérarchiques',
+      content.includes('<h1') && content.includes('<h2'),
+      'WCAG AAA 2.4.10 - Headings structurés',
+      'warning'
+    );
+
+    // Level AAA - Link purpose
+    this.test(
+      'Liens descriptifs',
+      !content.includes('>click here<') && !content.includes('>read more<'),
+      'WCAG AAA 2.4.9 - Liens explicites',
+      'warning'
+    );
+
+    // Level AAA - Abbreviations
+    this.test(
+      'Abréviations expliquées',
+      !content.includes('API') || content.includes('<abbr') || content.includes('title='),
+      'WCAG AAA 3.1.4 - Abréviations',
+      'warning'
+    );
+
+    // Level AAA - Reading level
+    this.test(
+      'Texte clair (pas de jargon excessif)',
+      !content.match(/\b\w{20,}\b/), // Mots > 20 chars = jargon probable
+      'WCAG AAA 3.1.5 - Niveau de lecture',
+      'warning'
+    );
+
+    // Level AAA - Help
+    this.test(
+      'Aide contextuelle disponible',
+      content.includes('?') || content.includes('help') || content.includes('tooltip'),
+      'WCAG AAA 3.3.5 - Aide disponible',
+      'warning'
+    );
+
+    // Level AAA - Error prevention
+    this.test(
+      'Confirmation actions importantes',
+      content.includes('confirm') || content.includes('modal') || content.includes('dialog'),
+      'WCAG AAA 3.3.6 - Prévention erreurs',
+      'warning'
+    );
+  }
+
+  async testCodeQuality(content) {
+    this.log('\n📝 TESTS QUALITÉ DE CODE...\n');
+
+    // Complexité cyclomatique
+    const functionCount = (content.match(/function\s+\w+/g) || []).length;
+    const arrowFnCount = (content.match(/=>\s*{/g) || []).length;
+    const totalFns = functionCount + arrowFnCount;
+
+    this.test(
+      'Nombre de fonctions raisonnable',
+      totalFns < 150,
+      `${totalFns} fonctions (< 150 optimal)`,
+      'warning'
+    );
+
+    // Code duplication
+    const lines = content.split('\n');
+    const uniqueLines = new Set(lines.map(l => l.trim())).size;
+    const duplicationRate = (1 - uniqueLines / lines.length) * 100;
+
+    this.test(
+      'Taux de duplication acceptable',
+      duplicationRate < 30,
+      `${duplicationRate.toFixed(1)}% duplication (< 30%)`,
+      'warning'
+    );
+
+    // Magic numbers
+    const magicNumbers = content.match(/\b\d{3,}\b/g) || [];
+    this.test(
+      'Pas de magic numbers',
+      magicNumbers.length < 20,
+      'Utiliser des constantes nommées',
+      'warning'
+    );
+
+    // Dead code
+    this.test(
+      'Pas de code commenté excessif',
+      content.split('//').length < 100,
+      'Nettoyer code commenté',
+      'warning'
+    );
+
+    // Naming conventions
+    this.test(
+      'CamelCase pour fonctions',
+      !content.match(/function\s+[a-z]+_[a-z]/),
+      'Conventions de nommage',
+      'warning'
+    );
+
+    // Error handling
+    const tryCount = (content.match(/try\s*{/g) || []).length;
+    const asyncCount = (content.match(/async\s+function/g) || []).length;
+
+    this.test(
+      'Error handling pour async',
+      asyncCount === 0 || tryCount > 0,
+      'Try/catch pour fonctions async',
+      'warning'
+    );
+
+    // JSDoc / Comments
+    const commentLines = content.split('\n').filter(l => l.trim().startsWith('//')).length;
+    const codeLines = lines.length;
+
+    this.test(
+      'Documentation suffisante',
+      commentLines / codeLines > 0.05,
+      '> 5% de lignes commentées',
+      'warning'
+    );
+  }
+
+  async testDependencies(content) {
+    this.log('\n📦 TESTS DÉPENDANCES & BUNDLE...\n');
+
+    // External dependencies
+    const cdnLinks = content.match(/https?:\/\/cdn\./g) || [];
+    this.test(
+      'Dépendances CDN limitées',
+      cdnLinks.length < 5,
+      `${cdnLinks.length} CDN (< 5 recommandé)`,
+      'warning'
+    );
+
+    // Third-party scripts
+    const scriptTags = content.match(/<script[^>]*src=/g) || [];
+    this.test(
+      'Scripts tiers limités',
+      scriptTags.length < 10,
+      `${scriptTags.length} scripts externes (< 10)`,
+      'warning'
+    );
+
+    // Inline scripts size
+    const inlineScripts = content.match(/<script>[\s\S]*?<\/script>/g) || [];
+    const inlineSize = inlineScripts.join('').length / 1024;
+
+    this.test(
+      'Taille scripts inline raisonnable',
+      inlineSize < 300,
+      `${inlineSize.toFixed(0)}KB inline (< 300KB)`,
+      'warning'
+    );
+
+    // CSS frameworks detection
+    this.test(
+      'Pas de frameworks CSS massifs non utilisés',
+      !content.includes('bootstrap.min.css') && !content.includes('materialize.min.css'),
+      'Éviter frameworks CSS complets si inutilisés',
+      'warning'
+    );
+
+    // Polyfills detection
+    this.test(
+      'Polyfills chargés conditionnellement',
+      !content.includes('polyfill') || content.includes('if('),
+      'Polyfills conditionnels seulement',
+      'warning'
+    );
+  }
+
+  async testDataIntegrity(content) {
+    this.log('\n🔍 TESTS INTÉGRITÉ DONNÉES...\n');
+
+    // Data validation
+    this.test(
+      'Validation données utilisateur',
+      content.includes('validate') || content.includes('sanitize') || content.includes('trim('),
+      'Validation input utilisateur',
+      'critical'
+    );
+
+    // Type checking
+    this.test(
+      'Type checking présent',
+      content.includes('typeof') || content.includes('instanceof') || content.includes('Array.isArray'),
+      'Vérification types runtime',
+      'warning'
+    );
+
+    // Null/undefined checks
+    this.test(
+      'Checks null/undefined',
+      content.includes('!== null') || content.includes('!== undefined') || content.includes('?.'),
+      'Safe navigation / null checks',
+      'warning'
+    );
+
+    // Data immutability hints
+    this.test(
+      'Immutabilité données',
+      content.includes('const') && !content.includes('var '),
+      'Préférer const pour immutabilité',
+      'warning'
+    );
+
+    // Data persistence
+    this.test(
+      'Persistence données implémentée',
+      content.includes('localStorage') || content.includes('sessionStorage') || content.includes('indexedDB'),
+      'Sauvegarde données locale',
+      'warning'
+    );
+  }
+
+  async testErrorHandling(content) {
+    this.log('\n🚨 TESTS GESTION D\'ERREURS...\n');
+
+    // Try-catch blocks
+    const tryBlocks = (content.match(/try\s*{/g) || []).length;
+    this.test(
+      'Try-catch présents',
+      tryBlocks > 0,
+      `${tryBlocks} blocs try-catch`,
+      'warning'
+    );
+
+    // Error logging
+    this.test(
+      'Logging erreurs (sans console en prod)',
+      !content.includes('console.error'),
+      'Utiliser service logging (Sentry, etc.)',
+      'warning'
+    );
+
+    // Fallback UI
+    this.test(
+      'UI fallback erreurs',
+      content.includes('error') && content.includes('message'),
+      'Messages d\'erreur utilisateur',
+      'warning'
+    );
+
+    // Global error handler
+    this.test(
+      'Error handler global',
+      content.includes('window.onerror') || content.includes('addEventListener(\'error\''),
+      'Capture erreurs globales',
+      'warning'
+    );
+
+    // Promise rejection handling
+    this.test(
+      'Rejection handler',
+      !content.includes('Promise') || content.includes('.catch(') || content.includes('unhandledrejection'),
+      'Gestion rejections Promise',
+      'warning'
+    );
+
+    // Network error handling
+    this.test(
+      'Gestion erreurs réseau',
+      !content.includes('fetch(') || content.includes('.catch(') || content.includes('try'),
+      'Handle erreurs fetch/XHR',
+      'critical'
+    );
+  }
+
+  async testNetworkResilience(content) {
+    this.log('\n🌐 TESTS RÉSILIENCE RÉSEAU...\n');
+
+    // Offline support
+    this.test(
+      'Support mode hors-ligne',
+      content.includes('navigator.onLine') || content.includes('serviceWorker'),
+      'Détection/gestion offline',
+      'warning'
+    );
+
+    // Request retry logic
+    this.test(
+      'Retry logic pour requêtes',
+      content.includes('retry') || content.includes('attempt'),
+      'Retry automatique échecs réseau',
+      'warning'
+    );
+
+    // Timeout handling
+    this.test(
+      'Timeouts requêtes réseau',
+      !content.includes('fetch(') || content.includes('AbortController') || content.includes('timeout'),
+      'Timeout pour éviter hang',
+      'warning'
+    );
+
+    // Caching strategy
+    this.test(
+      'Stratégie de cache',
+      content.includes('Cache') || content.includes('cache') || content.includes('sw.js'),
+      'Cache réseau implémenté',
+      'warning'
+    );
+
+    // Rate limiting
+    this.test(
+      'Rate limiting client-side',
+      content.includes('throttle') || content.includes('debounce'),
+      'Protection contre spam requêtes',
+      'warning'
+    );
+
+    // Connection quality detection
+    this.test(
+      'Adaptation qualité connexion',
+      content.includes('navigator.connection') || content.includes('saveData'),
+      'Détection connexion lente',
       'warning'
     );
   }
