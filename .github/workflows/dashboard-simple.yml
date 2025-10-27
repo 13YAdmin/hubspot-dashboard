@@ -1,11 +1,11 @@
 name: 🎯 Dashboard Simple (Dev + QA)
 
 # Workflow ultra-simple : Dev implémente, QA teste
-# Tourne 1x/jour (pas toutes les 5 min)
+# Tourne toutes les 15 min (fréquence max sans conflit)
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Tous les jours à 9h
+    - cron: '*/15 * * * *'  # Toutes les 15 minutes
   workflow_dispatch:  # Manuel
   push:
     branches: [main]
