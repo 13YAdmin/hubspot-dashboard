@@ -13942,7 +13942,72 @@
       "actionType": "risk",
       "targetAgent": "Agent Chef",
       "status": "pending"
+    },
+    {
+      "id": "REC-1761550377276",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T07:32:57.276Z",
+      "type": "traffic_control",
+      "title": "⚠️ 1 workflow(s) échouent",
+      "description": "D'après l'analyse des workflows, il y a un problème critique car le workflow 'Entreprise Autonome IA' qui a un schedule configuré ne tourne pas depuis 1 minute. Cela représente un risque important pour l'entreprise car ce workflow est essentiel au fonctionnement autonome du dashboard HubSpot. Conformément aux contraintes, cette situation doit être escaladée immédiatement au CEO car un workflow critique ne tourne pas depuis plus de 15 minutes.",
+      "priority": "high",
+      "category": "Workflow Management",
+      "actionType": "workflows_failing",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761550377286",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T07:32:57.286Z",
+      "type": "traffic_control",
+      "title": "Risque: Perte de fonctionnalités critiques du dashboard HubSpot",
+      "description": "Risque identifié par IA: Perte de fonctionnalités critiques du dashboard HubSpot",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761550377297",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T07:32:57.297Z",
+      "type": "traffic_control",
+      "title": "Risque: Manque d'automatisation et de continuité des processus clés",
+      "description": "Risque identifié par IA: Manque d'automatisation et de continuité des processus clés",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761550377306",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T07:32:57.306Z",
+      "type": "traffic_control",
+      "title": "Risque: Retard dans l'exécution des tâches essentielles",
+      "description": "Risque identifié par IA: Retard dans l'exécution des tâches essentielles",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
+    },
+    {
+      "id": "REC-1761550377315",
+      "from": "Agent Aiguilleur (AI)",
+      "timestamp": "2025-10-27T07:32:57.315Z",
+      "type": "traffic_control",
+      "title": "Risque: Insatisfaction du CEO et perte de confiance",
+      "description": "Risque identifié par IA: Insatisfaction du CEO et perte de confiance",
+      "priority": "medium",
+      "category": "Workflow Management",
+      "actionType": "risk",
+      "targetAgent": "Agent Chef",
+      "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-27T06:58:23.198Z"
+  "lastUpdate": "2025-10-27T07:32:57.315Z"
 }
