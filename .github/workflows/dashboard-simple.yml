@@ -9,9 +9,6 @@ on:
   workflow_dispatch:  # Manuel
   push:
     branches: [main]
-    paths:
-      - 'public/index.html'
-      - '.github/agents-communication/tasks.json'
 
 permissions:
   contents: write
