@@ -1,17 +1,17 @@
 # ✅ RAPPORT AGENT QA - INSPECTEUR QUALITÉ
 
-**Date**: 27/10/2025 15:05:55
-**Score**: 38/100 🔴 BLOQUÉ - Ne pas déployer
+**Date**: 27/10/2025 15:28:49
+**Score**: 36/100 🔴 BLOQUÉ - Ne pas déployer
 **Standard**: 95/100 MINIMUM pour production
 
 ---
 
 ## 📊 RÉSUMÉ
 
-- ✅ Tests passés: 89
-- ❌ Tests échoués: 27
+- ✅ Tests passés: 88
+- ❌ Tests échoués: 28
 - ⚠️  Échecs critiques: 3
-- ⚡ Avertissements: 24
+- ⚡ Avertissements: 25
 - 📝 Total: 116 tests
 
 ---
@@ -43,13 +43,13 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 - ❌ Persistence données implémentée - Sauvegarde données locale
 
 ### Performance
-- ✅ Taille fichier raisonnable - 6612 lignes (max 10000)
+- ✅ Taille fichier raisonnable - 6679 lignes (max 10000)
 - ✅ Pas de boucles infinies apparentes - Éviter while(true)
 - ✅ Debouncing sur resize - Optimiser resize listeners
 - ✅ Pas de console.log en production - ZÉRO console.log autorisé (strict)
 - ✅ Pas de console.error excessifs - ZÉRO console.error autorisé (strict)
 - ✅ Pas de console.warn - ZÉRO console.warn autorisé (strict)
-- ✅ Taille fichier optimale - Bundle 253KB (< 500KB recommandé)
+- ✅ Taille fichier optimale - Bundle 255KB (< 500KB recommandé)
 - ✅ Taille scripts inline raisonnable - 223KB inline (< 300KB)
 - ✅ Logging erreurs (sans console en prod) - Utiliser service logging (Sentry, etc.)
 
@@ -166,41 +166,44 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 17. 🟡 WARNING: **Confirmation actions importantes**
    - WCAG AAA 3.3.6 - Prévention erreurs
 
-18. 🟡 WARNING: **Taux de duplication acceptable**
-   - 42.8% duplication (< 30%)
+18. 🟡 WARNING: **Nombre de fonctions raisonnable**
+   - 150 fonctions (< 150 optimal)
 
-19. 🟡 WARNING: **Pas de magic numbers**
+19. 🟡 WARNING: **Taux de duplication acceptable**
+   - 43.0% duplication (< 30%)
+
+20. 🟡 WARNING: **Pas de magic numbers**
    - Utiliser des constantes nommées
 
-20. 🟡 WARNING: **Pas de code commenté excessif**
+21. 🟡 WARNING: **Pas de code commenté excessif**
    - Nettoyer code commenté
 
-21. 🟡 WARNING: **Persistence données implémentée**
+22. 🟡 WARNING: **Persistence données implémentée**
    - Sauvegarde données locale
 
-22. 🟡 WARNING: **Error handler global**
+23. 🟡 WARNING: **Error handler global**
    - Capture erreurs globales
 
-23. 🟡 WARNING: **Support mode hors-ligne**
+24. 🟡 WARNING: **Support mode hors-ligne**
    - Détection/gestion offline
 
-24. 🟡 WARNING: **Retry logic pour requêtes**
+25. 🟡 WARNING: **Retry logic pour requêtes**
    - Retry automatique échecs réseau
 
-25. 🟡 WARNING: **Timeouts requêtes réseau**
+26. 🟡 WARNING: **Timeouts requêtes réseau**
    - Timeout pour éviter hang
 
-26. 🟡 WARNING: **Rate limiting client-side**
+27. 🟡 WARNING: **Rate limiting client-side**
    - Protection contre spam requêtes
 
-27. 🟡 WARNING: **Adaptation qualité connexion**
+28. 🟡 WARNING: **Adaptation qualité connexion**
    - Détection connexion lente
 
 ---
 
 ## 📈 HISTORIQUE SCORES
 
-- Actuel: **38/100**
+- Actuel: **36/100**
 - Objectif: **95+/100**
 - Minimum acceptable: **95/100**
 
