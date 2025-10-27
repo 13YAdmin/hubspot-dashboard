@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "id": "TASK-1761551533718-1",
+      "id": "TASK-1761552014669-1",
       "title": "Fix Bug #1: Exposer showClientDetails globalement",
       "description": "Ajouter window.showClientDetails = showClientDetails après la ligne 5245",
       "type": "bugfix",
@@ -11,13 +11,13 @@
       "estimatedTime": "2 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-27T07:52:13.718Z",
+      "createdAt": "2025-10-27T08:00:14.669Z",
       "status": "completed",
-      "completedAt": "2025-10-27T07:52:47.252Z",
+      "completedAt": "2025-10-27T08:00:45.339Z",
       "completedBy": "Agent Dev"
     },
     {
-      "id": "TASK-1761551533718-2",
+      "id": "TASK-1761552014669-2",
       "title": "Fix Bug #2: Exposer showIndustryDetails globalement",
       "description": "Ajouter window.showIndustryDetails = showIndustryDetails après la ligne 3660",
       "type": "bugfix",
@@ -27,13 +27,13 @@
       "estimatedTime": "2 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-27T07:52:13.718Z",
+      "createdAt": "2025-10-27T08:00:14.669Z",
       "status": "completed",
-      "completedAt": "2025-10-27T07:52:47.252Z",
+      "completedAt": "2025-10-27T08:00:45.340Z",
       "completedBy": "Agent Dev"
     },
     {
-      "id": "TASK-1761551533718-3",
+      "id": "TASK-1761552014669-3",
       "title": "Fix Bug #3-7: Exposer 5 fonctions modals",
       "description": "Exposer showKPIDetails, showMethodologyDetails, closeInfoPanel, zoomCompanyTree, resetCompanyTreeZoom",
       "type": "bugfix",
@@ -42,13 +42,13 @@
       "estimatedTime": "5 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-27T07:52:13.718Z",
+      "createdAt": "2025-10-27T08:00:14.669Z",
       "status": "completed",
-      "completedAt": "2025-10-27T07:52:47.252Z",
+      "completedAt": "2025-10-27T08:00:45.340Z",
       "completedBy": "Agent Dev"
     },
     {
-      "id": "TASK-1761551533718-4",
+      "id": "TASK-1761552014669-4",
       "title": "Fix Bug #8: Corriger index client dans modal secteur",
       "description": "Remplacer processedData.indexOf(client) par currentDisplayedClients.findIndex(c => c.companyId === client.companyId) ligne 3634",
       "type": "bugfix",
@@ -58,13 +58,13 @@
       "estimatedTime": "5 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-27T07:52:13.718Z",
+      "createdAt": "2025-10-27T08:00:14.669Z",
       "status": "completed",
-      "completedAt": "2025-10-27T07:52:47.253Z",
+      "completedAt": "2025-10-27T08:00:45.340Z",
       "completedBy": "Agent Dev"
     },
     {
-      "id": "TASK-1761551533718-5",
+      "id": "TASK-1761552014669-5",
       "title": "Fix Bug #9: Appeler 4 graphiques avancés",
       "description": "Ajouter renderSegmentDonutChart(), renderRadarChart(), renderStackedAreaChart(), renderHealthTrendsChart() dans renderDashboard() après ligne 1764",
       "type": "feature",
@@ -74,64 +74,64 @@
       "estimatedTime": "2 minutes",
       "assignedTo": "Agent Dev",
       "createdBy": "Bootstrap",
-      "createdAt": "2025-10-27T07:52:13.718Z",
+      "createdAt": "2025-10-27T08:00:14.669Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761551567155",
+      "id": "TASK-1761552045244",
       "title": "Vitest",
       "description": "Tests ultra-rapides (Vite-powered), meilleur DX",
       "priority": "high",
       "fromRecommendation": "REC-1761231652949",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-27T07:52:47.155Z",
+      "createdAt": "2025-10-27T08:00:45.244Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761551567167",
+      "id": "TASK-1761552045256",
       "title": "Turbo",
       "description": "Build incrementiel, cache intelligent, x10 plus rapide",
       "priority": "high",
       "fromRecommendation": "REC-1761231652949",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-27T07:52:47.167Z",
+      "createdAt": "2025-10-27T08:00:45.256Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761551567177",
+      "id": "TASK-1761552045266",
       "title": "Opportunité: UPSELL",
       "description": "Signal: Revenue > 50k + Health Score > 80 + No recent deal",
       "priority": "high",
       "fromRecommendation": "REC-1761231652949",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-27T07:52:47.177Z",
+      "createdAt": "2025-10-27T08:00:45.266Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761551567187",
+      "id": "TASK-1761552045276",
       "title": "Missing company data",
       "description": "Detection: No industry OR no revenue OR no employee count",
       "priority": "high",
       "fromRecommendation": "REC-1761231652950",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-27T07:52:47.187Z",
+      "createdAt": "2025-10-27T08:00:45.276Z",
       "status": "pending"
     },
     {
-      "id": "TASK-1761551567196",
+      "id": "TASK-1761552045284",
       "title": "Invalid emails",
       "description": "Detection: Email bounce rate > 5%",
       "priority": "high",
       "fromRecommendation": "REC-1761231652950",
       "assignedTo": "Agent Développeur",
       "createdBy": "Agent Chef (AI)",
-      "createdAt": "2025-10-27T07:52:47.196Z",
+      "createdAt": "2025-10-27T08:00:45.284Z",
       "status": "pending"
     }
   ],
-  "lastUpdate": "2025-10-27T07:52:47.196Z"
+  "lastUpdate": "2025-10-27T08:00:45.284Z"
 }
