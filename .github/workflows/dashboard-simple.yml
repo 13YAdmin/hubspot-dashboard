@@ -51,18 +51,21 @@ jobs:
 
           if [ -n "$(git status --porcelain)" ]; then
             git add -A
-            git commit -m "fix: Agent Dev - Implémentation automatique
+            git commit -m "$(cat <<'EOF'
+          fix: Agent Dev - Implémentation automatique
 
-Tâches traitées par Agent Dev
-Score QA généré par Agent QA
+          Tâches traitées par Agent Dev
+          Score QA généré par Agent QA
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>"
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          EOF
+          )"
 
             # Pull avec rebase pour éviter conflits
             git pull --rebase origin main || {
-              echo "⚠️  Conflit détecté, résolution..."
+              echo "Conflit détecté, résolution..."
               git rebase --abort
               git pull --no-rebase origin main
               git add -A
@@ -70,9 +73,9 @@ Co-Authored-By: Claude <noreply@anthropic.com>"
             }
 
             git push origin main
-            echo "✅ Changements pushés"
+            echo "Changements pushés"
           else
-            echo "ℹ️  Pas de changements"
+            echo "Pas de changements"
           fi
 
       - name: Upload rapports
