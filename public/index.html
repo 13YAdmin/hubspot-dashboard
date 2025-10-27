@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Dashboard HubSpot pour Account Managers - Visualisation des clients, KPIs et opportunités"/>
 <title>HubSpot CRM - Dashboard Account Manager</title>
 
 <style>
@@ -25,6 +27,17 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Focus indicators for accessibility */
+*:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus, a:focus, input:focus, select:focus {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 2px;
+}
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -765,6 +778,10 @@ details[open] summary {
   padding-left: 40px !important;
 }
 </style>
+
+<!-- Chart.js for data visualization -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>"/>
 </head>
 
 <body>
@@ -1101,13 +1118,13 @@ async function loadHubSpotData() {
 
       // Stocker les companies pour la cartographie des relations
       window.hubspotCompanies = result.companies || {};
-      console.log('Données chargées:', result.data.length, 'deals,', Object.keys(window.hubspotCompanies).length, 'companies');
+// console.log('Données chargées:', result.data.length, 'deals,', Object.keys(window.hubspotCompanies).length, 'companies');
 
       processData();
-      console.log('✅ Données traitées:', processedData.length, 'clients');
+// console.log('✅ Données traitées:', processedData.length, 'clients');
 
       renderDashboard();
-      console.log('✅ Dashboard rendu');
+// console.log('✅ Dashboard rendu');
 
       // Hide loading, show dashboard
       statusEl.style.display = 'none';
@@ -1117,7 +1134,7 @@ async function loadHubSpotData() {
       throw new Error('Format de données invalide');
     }
   } catch (error) {
-    console.error('❌ Erreur:', error);
+// console.error('❌ Erreur:', error);
     statusEl.innerHTML = `<div style="color: var(--red); font-size: 16px;">❌ Erreur: ${error.message}</div>
       <p style="font-size: 13px; margin-top: 8px; color: var(--text-muted);">
         Impossible de charger les données. Vérifie que le workflow GitHub Actions s'est exécuté.
@@ -1127,7 +1144,7 @@ async function loadHubSpotData() {
 
 // Chargement automatique au démarrage
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('🔄 Chargement automatique des données...');
+// console.log('🔄 Chargement automatique des données...');
   loadHubSpotData();
 });
 
@@ -1318,7 +1335,7 @@ function processData() {
   });
 
   processedData = sortedByHealthScore;
-  console.log('✅ Données enrichies traitées:', processedData);
+// console.log('✅ Données enrichies traitées:', processedData);
 }
 
 // ============================================================================
@@ -1326,7 +1343,7 @@ function processData() {
 // ============================================================================
 function processGroupedData() {
   if (!window.hubspotCompanies) {
-    console.warn('⚠️ Pas de données companies disponibles, retour aux données non groupées');
+// console.warn('⚠️ Pas de données companies disponibles, retour aux données non groupées');
     return processedData.map(client => ({
       type: 'standalone',
       ...client
@@ -1336,10 +1353,10 @@ function processGroupedData() {
   const grouped = [];
   const processedClientNames = new Set();
 
-  console.log('🏢 Début processing des groupes parent/filiales...');
+// console.log('🏢 Début processing des groupes parent/filiales...');
 
   // PASSE 1: Identifier tous les groupes parents et traiter leurs enfants
-  console.log('🔍 PASSE 1: Identification des groupes parents');
+// console.log('🔍 PASSE 1: Identification des groupes parents');
   processedData.forEach(client => {
     const company = window.hubspotCompanies[client.companyId];
     if (!company) return;
@@ -1348,7 +1365,7 @@ function processGroupedData() {
     if (company.childCompanyIds && company.childCompanyIds.length > 0) {
       // Vérifier qu'on ne l'a pas déjà traité
       if (processedClientNames.has(client.name)) return;
-      console.log(`👪 Groupe parent détecté: ${client.name} (ID: ${client.companyId}) avec ${company.childCompanyIds.length} filiale(s):`, company.childCompanyIds);
+// console.log(`👪 Groupe parent détecté: ${client.name} (ID: ${client.companyId}) avec ${company.childCompanyIds.length} filiale(s):`, company.childCompanyIds);
 
       // C'est un groupe parent
       const group = {
@@ -1387,7 +1404,7 @@ function processGroupedData() {
         const childClient = processedData.find(c => c.companyId === childId);
 
         if (childClient) {
-          console.log(`  ✓ Filiale trouvée dans processedData: ${childClient.name} (ID: ${childId}, CA: ${formatCurrency(childClient.totalRevenue)})`);
+// console.log(`  ✓ Filiale trouvée dans processedData: ${childClient.name} (ID: ${childId}, CA: ${formatCurrency(childClient.totalRevenue)})`);
 
           group.children.push({
             type: 'child',
@@ -1410,7 +1427,7 @@ function processGroupedData() {
           // La filiale existe dans HubSpot mais n'a pas de deals
           const childCompany = window.hubspotCompanies[childId];
           if (childCompany) {
-            console.log(`  ⚠️ Filiale sans deals (company existe): ${childCompany.name} (ID: ${childId})`);
+// console.log(`  ⚠️ Filiale sans deals (company existe): ${childCompany.name} (ID: ${childId})`);
             group.children.push({
               type: 'child',
               parentGroupId: client.companyId,
@@ -1426,7 +1443,7 @@ function processGroupedData() {
               isProspect: true
             });
           } else {
-            console.warn(`  ❌ Filiale ID ${childId} non trouvée dans hubspotCompanies!`);
+// console.warn(`  ❌ Filiale ID ${childId} non trouvée dans hubspotCompanies!`);
           }
         }
       });
@@ -1475,17 +1492,17 @@ function processGroupedData() {
       group.segment = bestSegment;
       group.segmentColor = bestColor;
 
-      console.log(`✅ Groupe ${client.name}: CA total ${formatCurrency(group.totalGroupRevenue)} (parent: ${formatCurrency(group.parentRevenue)}, filiales: ${formatCurrency(group.childrenRevenue)})`);
+// console.log(`✅ Groupe ${client.name}: CA total ${formatCurrency(group.totalGroupRevenue)} (parent: ${formatCurrency(group.parentRevenue)}, filiales: ${formatCurrency(group.childrenRevenue)})`);
 
       grouped.push(group);
       processedClientNames.add(client.name);
     }
   });
 
-  console.log(`✅ Passe 1 terminée: ${grouped.filter(g => g.type === 'group').length} groupes créés`);
+// console.log(`✅ Passe 1 terminée: ${grouped.filter(g => g.type === 'group').length} groupes créés`);
 
   // PASSE 2: Ajouter les standalone (qui ne sont NI parents NI enfants)
-  console.log('🔍 PASSE 2: Ajout des clients standalone');
+// console.log('🔍 PASSE 2: Ajout des clients standalone');
   processedData.forEach(client => {
     // Si déjà traité (groupe parent ou filiale), skip
     if (processedClientNames.has(client.name)) {
@@ -1505,11 +1522,11 @@ function processGroupedData() {
       if (parentHasDeals) {
         // Le parent a des deals, donc cette filiale DOIT être dans le groupe parent
         // NE PAS l'ajouter en standalone
-        console.log(`   → Filiale ignorée (déjà dans groupe parent): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
+// console.log(`   → Filiale ignorée (déjà dans groupe parent): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
         processedClientNames.add(client.name);
       } else {
         // Le parent n'a PAS de deals, donc cette filiale devient standalone
-        console.log(`   → Filiale standalone (parent sans deals): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
+// console.log(`   → Filiale standalone (parent sans deals): ${client.name} (parent IDs: ${company.parentCompanyIds})`);
         grouped.push({
           type: 'standalone',
           ...client
@@ -1518,7 +1535,7 @@ function processGroupedData() {
       }
     } else {
       // Pas de parent = standalone
-      console.log(`   → Standalone: ${client.name}`);
+// console.log(`   → Standalone: ${client.name}`);
       grouped.push({
         type: 'standalone',
         ...client
@@ -1527,7 +1544,7 @@ function processGroupedData() {
     }
   });
 
-  console.log(`✅ Groupes créés: ${grouped.filter(g => g.type === 'group').length} groupes, ${grouped.filter(g => g.type === 'standalone').length} standalone`);
+// console.log(`✅ Groupes créés: ${grouped.filter(g => g.type === 'group').length} groupes, ${grouped.filter(g => g.type === 'standalone').length} standalone`);
 
   return grouped;
 }
@@ -1540,7 +1557,7 @@ function toggleGroup(groupIndex) {
   const group = currentDisplayedClients[groupIndex];
 
   if (!group || group.type !== 'group') {
-    console.warn('Impossible de toggle: pas un groupe ou index invalide', groupIndex);
+// console.warn('Impossible de toggle: pas un groupe ou index invalide', groupIndex);
     return;
   }
 
@@ -1548,7 +1565,7 @@ function toggleGroup(groupIndex) {
   const newState = !groupExpandedStates[group.groupId];
   groupExpandedStates[group.groupId] = newState;
 
-  console.log(`${newState ? '▼' : '▶'} Groupe ${group.groupName} ${newState ? 'ouvert' : 'fermé'}`);
+// console.log(`${newState ? '▼' : '▶'} Groupe ${group.groupName} ${newState ? 'ouvert' : 'fermé'}`);
 
   // Re-render le tableau pour afficher/masquer les enfants
   renderSegmentationTable();
@@ -1750,9 +1767,9 @@ function getPriority(client) {
 // Dashboard Rendering
 // ============================================================================
 function renderDashboard() {
-  console.log('🚀 [v3.0 EVENT DELEGATION] Rendering dashboard...');
-  console.log('📊 Filtres année secteurs: ACTIVÉS');
-  console.log('🔄 Event delegation expand/collapse: ACTIVÉ');
+// console.log('🚀 [v3.0 EVENT DELEGATION] Rendering dashboard...');
+// console.log('📊 Filtres année secteurs: ACTIVÉS');
+// console.log('🔄 Event delegation expand/collapse: ACTIVÉ');
 
   renderKPIs();
   renderRevenueGlobalChart();
@@ -1770,20 +1787,20 @@ function renderDashboard() {
   renderRadarChart();
   renderStackedAreaChart();
   renderHealthTrendsChart();
-  console.log('✅ 4 graphiques avancés ajoutés');
+// console.log('✅ 4 graphiques avancés ajoutés');
 
   // Vérifier que les boutons de filtre année sont bien présents
   setTimeout(() => {
     const filterButtons = document.querySelectorAll('[data-industry-year]');
-    console.log(`🔍 Vérification boutons filtre année: ${filterButtons.length} boutons trouvés`);
+// console.log(`🔍 Vérification boutons filtre année: ${filterButtons.length} boutons trouvés`);
     if (filterButtons.length === 0) {
-      console.error('❌ ERREUR: Aucun bouton de filtre année trouvé dans le DOM!');
+// console.error('❌ ERREUR: Aucun bouton de filtre année trouvé dans le DOM!');
     } else {
-      console.log('   → Boutons:', Array.from(filterButtons).map(b => b.getAttribute('data-industry-year')));
+// console.log('   → Boutons:', Array.from(filterButtons).map(b => b.getAttribute('data-industry-year')));
     }
   }, 500);
 
-  console.log('✅ Dashboard rendu complet');
+// console.log('✅ Dashboard rendu complet');
 }
 
 // ============================================================================
@@ -3039,14 +3056,14 @@ function renderHealthTrendsChart() {
 let industryChartYear = 'all';
 
 function renderIndustryPieChart(filterYear = 'all') {
-  console.log(`📊 renderIndustryPieChart appelée avec filterYear: ${filterYear}`);
+// console.log(`📊 renderIndustryPieChart appelée avec filterYear: ${filterYear}`);
 
   // Filtrer les données par année si nécessaire
   let dataToUse = processedData;
   if (filterYear !== 'all') {
-    console.log(`   → Filtrage par année ${filterYear}`);
+// console.log(`   → Filtrage par année ${filterYear}`);
     dataToUse = processedData.filter(client => client.years[filterYear] > 0);
-    console.log(`   → ${dataToUse.length} clients après filtrage`);
+// console.log(`   → ${dataToUse.length} clients après filtrage`);
   }
 
   // Mapping COMPLET EN→FR des industries HubSpot standards
@@ -3287,7 +3304,7 @@ function renderIndustryPieChart(filterYear = 'all') {
       allIndustries.add(client.companyIndustry);
     }
   });
-  console.log('🔍 Industries EN trouvées (année: ' + filterYear + '):', Array.from(allIndustries).sort());
+// console.log('🔍 Industries EN trouvées (année: ' + filterYear + '):', Array.from(allIndustries).sort());
 
   // Regrouper par secteur avec mapping EN→FR
   const industryCounts = {};
@@ -3304,7 +3321,7 @@ function renderIndustryPieChart(filterYear = 'all') {
     industryRevenues[frenchIndustry] = (industryRevenues[frenchIndustry] || 0) + revenue; // FIX: Utiliser revenue filtré
   });
 
-  console.log('📊 Industries FR après mapping:', Object.keys(industryCounts).sort());
+// console.log('📊 Industries FR après mapping:', Object.keys(industryCounts).sort());
 
   // Calculer le CA total pour les pourcentages
   const totalRevenue = Object.values(industryRevenues).reduce((sum, rev) => sum + rev, 0);
@@ -3429,7 +3446,7 @@ function renderIndustryPieChart(filterYear = 'all') {
 
     // Click event pour afficher les détails du secteur
     slice.addEventListener('click', function() {
-      console.log(`🖱️ Clic sur secteur: ${industry.name}`);
+// console.log(`🖱️ Clic sur secteur: ${industry.name}`);
       showIndustryDetails(industry.name, filterYear);
     });
 
@@ -3469,7 +3486,7 @@ function renderIndustryPieChart(filterYear = 'all') {
 // Show Industry Details - Afficher détails d'un secteur au clic
 // ============================================================================
 function showIndustryDetails(industryNameFr, filterYear = 'all') {
-  console.log(`📊 showIndustryDetails: ${industryNameFr}, année: ${filterYear}`);
+// console.log(`📊 showIndustryDetails: ${industryNameFr}, année: ${filterYear}`);
 
   // Filtrer les clients de ce secteur
   let dataToUse = processedData;
@@ -3582,7 +3599,7 @@ function showIndustryDetails(industryNameFr, filterYear = 'all') {
     );
   });
 
-  console.log(`   → ${clientsInIndustry.length} clients trouvés dans ${industryNameFr}`);
+// console.log(`   → ${clientsInIndustry.length} clients trouvés dans ${industryNameFr}`);
 
   // Calculer le CA total
   const totalRevenue = clientsInIndustry.reduce((sum, client) => {
@@ -3668,12 +3685,12 @@ function showIndustryDetails(industryNameFr, filterYear = 'all') {
 
 // Exposition globale pour compatibilité onclick HTML
 window.showIndustryDetails = showIndustryDetails;
-console.log('✅ window.showIndustryDetails exposée globalement');
+// console.log('✅ window.showIndustryDetails exposée globalement');
 
 // Fonction de filtrage par année pour le graphique des secteurs
 function filterIndustryChart(year) {
-  console.log(`🎯 filterIndustryChart APPELÉE avec année: ${year}`);
-  console.log(`   → Type de year: ${typeof year}`);
+// console.log(`🎯 filterIndustryChart APPELÉE avec année: ${year}`);
+// console.log(`   → Type de year: ${typeof year}`);
 
   // Mettre à jour les styles des boutons
   const buttons = document.querySelectorAll('[data-industry-year]');
@@ -3699,17 +3716,17 @@ function filterIndustryChart(year) {
 
 // Exposer globalement pour les onclick HTML
 window.filterIndustryChart = filterIndustryChart;
-console.log('✅ window.filterIndustryChart exposée globalement');
+// console.log('✅ window.filterIndustryChart exposée globalement');
 
 // ============================================================================
 // Company Relationships Tree - Organigramme des relations (CROSS-SELL)
 // ============================================================================
 function renderCompanyTree() {
   // Utiliser les VRAIES associations parent/child HubSpot + détecter opportunités cross-sell
-  console.log('🔗 Construction arbre relations avec détection opportunités cross-sell');
+// console.log('🔗 Construction arbre relations avec détection opportunités cross-sell');
 
   if (!window.hubspotCompanies) {
-    console.warn('⚠️ Aucune donnée companies disponible');
+// console.warn('⚠️ Aucune donnée companies disponible');
     const svg = document.getElementById('chartCompanyTree');
     svg.innerHTML = '';
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -3748,7 +3765,7 @@ function renderCompanyTree() {
   }
 
   // NOUVEAU: Construire composantes connexes pour éliminer doublons
-  console.log(`📊 Début analyse: ${Object.keys(window.hubspotCompanies).length} companies HubSpot, ${processedData.length} clients`);
+// console.log(`📊 Début analyse: ${Object.keys(window.hubspotCompanies).length} companies HubSpot, ${processedData.length} clients`);
 
   // 1. Construire un graphe de toutes les relations
   const graph = {}; // companyId → Set(companyIds liés)
@@ -3815,7 +3832,7 @@ function renderCompanyTree() {
     }
   });
 
-  console.log(`🔗 ${components.length} groupes d'entreprises liées détectés (sans doublons)`);
+// console.log(`🔗 ${components.length} groupes d'entreprises liées détectés (sans doublons)`);
 
   // 3. Pour chaque composante, construire UN SEUL arbre (élimine vraiment les doublons)
   const companyGroups = [];
@@ -3823,7 +3840,7 @@ function renderCompanyTree() {
 
   components.forEach((component, idx) => {
     const companyIds = Array.from(component);
-    console.log(`📊 Groupe ${idx + 1}: ${companyIds.length} entreprises`);
+// console.log(`📊 Groupe ${idx + 1}: ${companyIds.length} entreprises`);
 
     // Trouver la VRAIE racine (company sans aucun parent dans le groupe)
     const allChildren = new Set();
@@ -3840,7 +3857,7 @@ function renderCompanyTree() {
 
     // La vraie racine = pas enfant de personne dans ce groupe
     const trueRoots = companyIds.filter(id => !allChildren.has(id));
-    console.log(`  Racines ultimes: ${trueRoots.length}`);
+// console.log(`  Racines ultimes: ${trueRoots.length}`);
 
     // Si plusieurs racines, prendre la première qui est cliente (sinon la première tout court)
     const rootId = trueRoots.find(id => companyIdToClient[id]) || trueRoots[0];
@@ -3918,7 +3935,7 @@ function renderCompanyTree() {
     });
   });
 
-  console.log(`✅ ${companyGroups.length} arbres générés, ${opportunitiesCount} opportunités cross-sell détectées`);
+// console.log(`✅ ${companyGroups.length} arbres générés, ${opportunitiesCount} opportunités cross-sell détectées`);
 
   const svg = document.getElementById('chartCompanyTree');
   svg.innerHTML = '';
@@ -4796,11 +4813,11 @@ function renderSegmentationTable() {
   // ========================================================================
   // ÉTAPE 3: Attacher les event listeners après le rendering
   // ========================================================================
-  console.log(`🔗 Attachement event listeners sur ${flattenedForDisplay.length} lignes`);
+// console.log(`🔗 Attachement event listeners sur ${flattenedForDisplay.length} lignes`);
 
   // Récupérer toutes les lignes TR
   const allRows = tbody.querySelectorAll('tr[data-row-index]');
-  console.log(`   → ${allRows.length} lignes trouvées dans le DOM`);
+// console.log(`   → ${allRows.length} lignes trouvées dans le DOM`);
 
   allRows.forEach((row, idx) => {
     const rowIndex = parseInt(row.getAttribute('data-row-index'));
@@ -4811,7 +4828,7 @@ function renderSegmentationTable() {
       // Ignorer si c'est un bouton
       if (event.target.tagName === 'BUTTON') return;
 
-      console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
+// console.log(`🖱️ Clic ligne ${rowIndex}, type: ${rowType}`);
 
       // Vérifier si on a cliqué sur l'icône toggle ou un de ses enfants
       let clickedElement = event.target;
@@ -4828,52 +4845,52 @@ function renderSegmentationTable() {
 
       // Si clic sur toggle → toggle uniquement
       if (isToggleClick && rowType === 'group') {
-        console.log(`🔄 TOGGLE groupe ${rowIndex} (clic sur icône)`);
+// console.log(`🔄 TOGGLE groupe ${rowIndex} (clic sur icône)`);
         event.stopPropagation(); // Empêcher la propagation
         toggleGroup(rowIndex);
         return;
       }
 
       // Sinon → ouvrir les détails (pour tout type: group, child, standalone)
-      console.log(`📋 Détails ${rowType} ${rowIndex}`);
+// console.log(`📋 Détails ${rowType} ${rowIndex}`);
       showClientDetails(rowIndex);
     });
   });
 
-  console.log(`✅ Event listeners attachés sur toutes les lignes`);
+// console.log(`✅ Event listeners attachés sur toutes les lignes`);
 }
 
 // ============================================================================
 // Show Client Details - VERSION ENRICHIE
 // ============================================================================
 function showClientDetails(clientIndex) {
-  console.log('📋 showClientDetails APPELÉE avec index:', clientIndex);
-  console.log('   → currentDisplayedClients.length:', currentDisplayedClients.length);
+// console.log('📋 showClientDetails APPELÉE avec index:', clientIndex);
+// console.log('   → currentDisplayedClients.length:', currentDisplayedClients.length);
 
   // Récupérer le client depuis la liste affichée
   const client = currentDisplayedClients[clientIndex];
 
   if (!client) {
-    console.error('❌ Client non trouvé à l\'index:', clientIndex);
-    console.error('   → currentDisplayedClients:', currentDisplayedClients);
+// console.error('❌ Client non trouvé à l\'index:', clientIndex);
+// console.error('   → currentDisplayedClients:', currentDisplayedClients);
     return;
   }
 
-  console.log('✓ Client trouvé:', client.name || client.groupName);
-  console.log('   → Type:', client.type);
-  console.log('Affichage détails client:', client);
+// console.log('✓ Client trouvé:', client.name || client.groupName);
+// console.log('   → Type:', client.type);
+// console.log('Affichage détails client:', client);
 
   // Vérification de sécurité pour les propriétés manquantes
   if (!client.years) {
-    console.warn('⚠️ client.years manquant, initialisation...');
+// console.warn('⚠️ client.years manquant, initialisation...');
     client.years = { '2022': 0, '2023': 0, '2024': 0, '2025': 0 };
   }
   if (client.totalRevenue === undefined) {
-    console.warn('⚠️ client.totalRevenue manquant, initialisation à 0');
+// console.warn('⚠️ client.totalRevenue manquant, initialisation à 0');
     client.totalRevenue = 0;
   }
   if (client.avgHealthScore === undefined) {
-    console.warn('⚠️ client.avgHealthScore manquant, initialisation à 0');
+// console.warn('⚠️ client.avgHealthScore manquant, initialisation à 0');
     client.avgHealthScore = 0;
   }
 
@@ -5245,41 +5262,41 @@ function showClientDetails(clientIndex) {
   `;
 
   const clientName = client.name || client.groupName || 'Client inconnu';
-  console.log('🔓 Ouverture du panel avec:', clientName);
+// console.log('🔓 Ouverture du panel avec:', clientName);
 
   try {
     openInfoPanel(`Détails Client - ${clientName}`, infoContent);
-    console.log('✅ Panel ouvert avec succès');
+// console.log('✅ Panel ouvert avec succès');
   } catch (error) {
-    console.error('❌ Erreur lors de l\'ouverture du panel:', error);
+// console.error('❌ Erreur lors de l\'ouverture du panel:', error);
   }
 }
 
 // Exposition globale pour compatibilité onclick HTML
 window.showClientDetails = showClientDetails;
-console.log('✅ window.showClientDetails exposée globalement');
+// console.log('✅ window.showClientDetails exposée globalement');
 
 // ============================================================================
 // White Spaces Opportunities Table
 // ============================================================================
 function renderWhiteSpaces() {
-  console.log('🎯 Génération tableau White Spaces...');
+// console.log('🎯 Génération tableau White Spaces...');
 
   const whiteSpaces = [];
 
   // Créer un Set de toutes les companies qui ont des deals
   const companiesWithDeals = new Set(processedData.map(client => client.companyId));
-  console.log(`   → ${companiesWithDeals.size} companies avec deals`);
+// console.log(`   → ${companiesWithDeals.size} companies avec deals`);
 
   // DEBUG: Logger les IDs pour debug
-  console.log('   → Exemple companyIds dans processedData:',
+// console.log('   → Exemple companyIds dans processedData:',
     processedData.slice(0, 3).map(c => ({ name: c.name, id: c.companyId, type: typeof c.companyId })));
 
   // Parcourir TOUTES les companies dans HubSpot pour trouver les relations parent/child
   Object.values(window.hubspotCompanies).forEach(company => {
     // Si cette company a des enfants (childCompanyIds)
     if (company.childCompanyIds && company.childCompanyIds.length > 0) {
-      console.log(`   → Parent trouvé: ${company.name} (ID: ${company.id}, type: ${typeof company.id}) avec ${company.childCompanyIds.length} filiales`);
+// console.log(`   → Parent trouvé: ${company.name} (ID: ${company.id}, type: ${typeof company.id}) avec ${company.childCompanyIds.length} filiales`);
 
       // Trouver le parent dans processedData pour obtenir son CA et health score
       // Convertir les IDs en string pour la comparaison (au cas où l'un est number et l'autre string)
@@ -5288,7 +5305,7 @@ function renderWhiteSpaces() {
       const parentHealthScore = parentDeal ? parentDeal.avgHealthScore : 50;
 
       // DEBUG: Logger le résultat de la recherche
-      console.log(`     → Parent deal trouvé: ${parentDeal ? 'OUI' : 'NON'}, CA: ${parentRevenue}, Health: ${parentHealthScore}`);
+// console.log(`     → Parent deal trouvé: ${parentDeal ? 'OUI' : 'NON'}, CA: ${parentRevenue}, Health: ${parentHealthScore}`);
 
       // Parcourir chaque filiale
       company.childCompanyIds.forEach(childId => {
@@ -5318,10 +5335,10 @@ function renderWhiteSpaces() {
               }
 
               sector = parentSector;
-              console.log(`     → Secteur filiale vide/invalide ("${childCompany.industry}"), utilisation secteur parent: ${sector}`);
+// console.log(`     → Secteur filiale vide/invalide ("${childCompany.industry}"), utilisation secteur parent: ${sector}`);
             }
 
-            console.log(`     ✓ WHITE SPACE trouvé: ${childCompany.name} (filiale de ${company.name}) - Secteur: ${sector}`);
+// console.log(`     ✓ WHITE SPACE trouvé: ${childCompany.name} (filiale de ${company.name}) - Secteur: ${sector}`);
             whiteSpaces.push({
               name: childCompany.name || 'Filiale sans nom',
               parentName: company.name,
@@ -5338,7 +5355,7 @@ function renderWhiteSpaces() {
     }
   });
 
-  console.log(`   → ${whiteSpaces.length} white spaces identifiés`);
+// console.log(`   → ${whiteSpaces.length} white spaces identifiés`);
 
   // Calculer le potentiel estimé pour chaque white space
   whiteSpaces.forEach(ws => {
@@ -5451,7 +5468,7 @@ function renderWhiteSpacesTable(whiteSpaces) {
   // Remplir le tableau
   const tbody = document.getElementById('whiteSpacesBody');
   if (!tbody) {
-    console.warn('⚠️ Element whiteSpacesBody non trouvé');
+// console.warn('⚠️ Element whiteSpacesBody non trouvé');
     return;
   }
 
@@ -5617,7 +5634,7 @@ function renderWhiteSpacesTable(whiteSpaces) {
   wsRows.forEach(row => {
     row.addEventListener('click', function() {
       const wsIndex = parseInt(this.getAttribute('data-ws-index'));
-      console.log(`🖱️ Clic White Space index ${wsIndex}`);
+// console.log(`🖱️ Clic White Space index ${wsIndex}`);
       showWhiteSpaceDetails(wsIndex);
     });
   });
@@ -5627,7 +5644,7 @@ function renderWhiteSpacesTable(whiteSpaces) {
 
   // Vérifier si les listeners sont déjà attachés (éviter les doublons)
   if (!window.whiteSpacesHeadersInitialized) {
-    console.log('🔧 Initialisation listeners headers White Spaces (première fois uniquement)');
+// console.log('🔧 Initialisation listeners headers White Spaces (première fois uniquement)');
 
     headers.forEach(header => {
       header.addEventListener('click', function() {
@@ -5641,7 +5658,7 @@ function renderWhiteSpacesTable(whiteSpaces) {
           window.whiteSpacesSortState.direction = 'desc';
         }
 
-        console.log(`📊 Tri White Spaces: ${sortKey} ${window.whiteSpacesSortState.direction}`);
+// console.log(`📊 Tri White Spaces: ${sortKey} ${window.whiteSpacesSortState.direction}`);
 
         // Re-trier et re-rendre
         renderWhiteSpacesTable();
@@ -5663,7 +5680,7 @@ function renderWhiteSpacesTable(whiteSpaces) {
     }
   });
 
-  console.log(`✅ Tableau White Spaces rendu avec ${wsRows.length} lignes, tri: ${window.whiteSpacesSortState.key} ${window.whiteSpacesSortState.direction}`);
+// console.log(`✅ Tableau White Spaces rendu avec ${wsRows.length} lignes, tri: ${window.whiteSpacesSortState.key} ${window.whiteSpacesSortState.direction}`);
 }
 
 // ============================================================================
@@ -5673,7 +5690,7 @@ function showWhiteSpaceDetails(wsIndex) {
   const ws = window.currentWhiteSpaces[wsIndex];
 
   if (!ws) {
-    console.error('❌ White space non trouvé:', wsIndex);
+// console.error('❌ White space non trouvé:', wsIndex);
     return;
   }
 
@@ -6672,7 +6689,7 @@ window.showCompanyDetails = showCompanyDetails;
 window.zoomCompanyTree = zoomCompanyTree;
 window.resetCompanyTreeZoom = resetCompanyTreeZoom;
 
-console.log('✅ Toutes les fonctions modals exposées globalement');
+// console.log('✅ Toutes les fonctions modals exposées globalement');
 </script>
 </body>
 </html>
