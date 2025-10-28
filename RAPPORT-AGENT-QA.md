@@ -1,6 +1,6 @@
 # ✅ RAPPORT AGENT QA - INSPECTEUR QUALITÉ
 
-**Date**: 28/10/2025 12:54:59
+**Date**: 28/10/2025 12:55:42
 **Score**: 0/100 🔴 BLOQUÉ - Ne pas déployer
 **Standard**: 95/100 MINIMUM pour production
 
@@ -8,11 +8,11 @@
 
 ## 📊 RÉSUMÉ
 
-- ✅ Tests passés: 237
-- ❌ Tests échoués: 55
+- ✅ Tests passés: 242
+- ❌ Tests échoués: 57
 - ⚠️  Échecs critiques: 12
-- ⚡ Avertissements: 43
-- 📝 Total: 292 tests
+- ⚡ Avertissements: 45
+- 📝 Total: 299 tests
 
 ---
 
@@ -232,109 +232,115 @@ gh: To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment
 20. 🟡 WARNING: **Cache optimisé: dashboard-simple.yml**
    - Manque cache (lenteur)
 
-21. 🟡 WARNING: **Timeout défini: fetch-hubspot-data.yml**
+21. 🟡 WARNING: **Timeout défini: deploy-dashboard-only.yml**
    - Manque timeout-minutes
 
-22. 🟡 WARNING: **Cache optimisé: fetch-hubspot-data.yml**
+22. 🟡 WARNING: **Gestion erreurs: deploy-dashboard-only.yml**
+   - Pas de fallback erreurs
+
+23. 🟡 WARNING: **Timeout défini: fetch-hubspot-data.yml**
+   - Manque timeout-minutes
+
+24. 🟡 WARNING: **Cache optimisé: fetch-hubspot-data.yml**
    - Manque cache (lenteur)
 
-23. 🟡 WARNING: **Date mise à jour: README.md**
+25. 🟡 WARNING: **Date mise à jour: README.md**
    - Pas de date MAJ
 
-24. 🟡 WARNING: **Date mise à jour: ARCHITECTURE.md**
+26. 🟡 WARNING: **Date mise à jour: ARCHITECTURE.md**
    - Pas de date MAJ
 
-25. 🟡 WARNING: **Date mise à jour: package.json**
+27. 🟡 WARNING: **Date mise à jour: package.json**
    - Pas de date MAJ
 
-26. 🟡 WARNING: **package.json: Repository défini**
+28. 🟡 WARNING: **package.json: Repository défini**
    - Repository manquant
 
-27. 🔴 CRITIQUE: **.gitignore: Ignore node_modules**
+29. 🔴 CRITIQUE: **.gitignore: Ignore node_modules**
    - node_modules ignoré
 
-28. 🔴 CRITIQUE: **COHÉRENCE: Workflow status vs rapport**
+30. 🔴 CRITIQUE: **COHÉRENCE: Workflow status vs rapport**
    - INCOHÉRENCE détectée
 
-29. 🟡 WARNING: **Event listeners nettoyés**
+31. 🟡 WARNING: **Event listeners nettoyés**
    - Prévenir memory leaks
 
-30. 🟡 WARNING: **Structure sémantique HTML5**
+32. 🟡 WARNING: **Structure sémantique HTML5**
    - Utiliser HTML5 sémantique
 
-31. 🟡 WARNING: **JavaScript en fin de body ou defer**
+33. 🟡 WARNING: **JavaScript en fin de body ou defer**
    - Script en fin ou avec defer
 
-32. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
+34. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-33. 🔴 CRITIQUE: **Sanitization innerHTML**
+35. 🔴 CRITIQUE: **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
-34. 🟡 WARNING: **Rate limiting hints**
+36. 🟡 WARNING: **Rate limiting hints**
    - OWASP A04 - Design sécurisé
 
-35. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
+37. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
    - OWASP A08 - Intégrité des ressources
 
-36. 🟡 WARNING: **Validation URLs externes**
+38. 🟡 WARNING: **Validation URLs externes**
    - OWASP A10 - SSRF prevention
 
-37. 🟡 WARNING: **Preconnect aux domaines tiers**
+39. 🟡 WARNING: **Preconnect aux domaines tiers**
    - LCP optimisé - Preconnect CDN
 
-38. 🟡 WARNING: **Service Worker présent**
+40. 🟡 WARNING: **Service Worker présent**
    - TTI - Offline capability
 
-39. 🟡 WARNING: **Resource hints utilisés**
+41. 🟡 WARNING: **Resource hints utilisés**
    - Performance hints (preload/prefetch)
 
-40. 🟡 WARNING: **Pas de timeout automatique**
+42. 🟡 WARNING: **Pas de timeout automatique**
    - WCAG AAA 2.2.3 - Pas de limite de temps
 
-41. 🟡 WARNING: **Sauvegarde de données avant expiration session**
+43. 🟡 WARNING: **Sauvegarde de données avant expiration session**
    - WCAG AAA 2.2.5 - Sauvegarde données
 
-42. 🟡 WARNING: **Headings hiérarchiques**
+44. 🟡 WARNING: **Headings hiérarchiques**
    - WCAG AAA 2.4.10 - Headings structurés
 
-43. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
+45. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
    - WCAG AAA 3.1.5 - Niveau de lecture
 
-44. 🟡 WARNING: **Confirmation actions importantes**
+46. 🟡 WARNING: **Confirmation actions importantes**
    - WCAG AAA 3.3.6 - Prévention erreurs
 
-45. 🟡 WARNING: **Nombre de fonctions raisonnable**
+47. 🟡 WARNING: **Nombre de fonctions raisonnable**
    - 150 fonctions (< 150 optimal)
 
-46. 🟡 WARNING: **Taux de duplication acceptable**
+48. 🟡 WARNING: **Taux de duplication acceptable**
    - 43.0% duplication (< 30%)
 
-47. 🟡 WARNING: **Pas de magic numbers**
+49. 🟡 WARNING: **Pas de magic numbers**
    - Utiliser des constantes nommées
 
-48. 🟡 WARNING: **Pas de code commenté excessif**
+50. 🟡 WARNING: **Pas de code commenté excessif**
    - Nettoyer code commenté
 
-49. 🟡 WARNING: **Persistence données implémentée**
+51. 🟡 WARNING: **Persistence données implémentée**
    - Sauvegarde données locale
 
-50. 🟡 WARNING: **Error handler global**
+52. 🟡 WARNING: **Error handler global**
    - Capture erreurs globales
 
-51. 🟡 WARNING: **Support mode hors-ligne**
+53. 🟡 WARNING: **Support mode hors-ligne**
    - Détection/gestion offline
 
-52. 🟡 WARNING: **Retry logic pour requêtes**
+54. 🟡 WARNING: **Retry logic pour requêtes**
    - Retry automatique échecs réseau
 
-53. 🟡 WARNING: **Timeouts requêtes réseau**
+55. 🟡 WARNING: **Timeouts requêtes réseau**
    - Timeout pour éviter hang
 
-54. 🟡 WARNING: **Rate limiting client-side**
+56. 🟡 WARNING: **Rate limiting client-side**
    - Protection contre spam requêtes
 
-55. 🟡 WARNING: **Adaptation qualité connexion**
+57. 🟡 WARNING: **Adaptation qualité connexion**
    - Détection connexion lente
 
 ---
