@@ -5278,7 +5278,7 @@ window.showClientDetails = showClientDetails;
 // White Spaces Opportunities Table
 // ============================================================================
 function renderWhiteSpaces() {
-  console.log('[DEBUG] renderWhiteSpaces start');
+  // console.log('[DEBUG] renderWhiteSpaces start');
 
   const whiteSpaces = [];
 
@@ -5291,7 +5291,7 @@ function renderWhiteSpaces() {
     processedDataMap.set(String(client.companyId), client);
   });
 
-  console.log(`[DEBUG] Processing ${Object.keys(window.hubspotCompanies).length} companies`);
+  // console.log(`[DEBUG] Processing ${Object.keys(window.hubspotCompanies).length} companies`);
 
   // Parcourir TOUTES les companies dans HubSpot pour trouver les relations parent/child
   Object.values(window.hubspotCompanies).forEach(company => {
@@ -5416,7 +5416,7 @@ function renderWhiteSpaces() {
   // Stocker les white spaces globalement AVANT le tri
   window.allWhiteSpaces = whiteSpaces;
 
-  console.log(`[DEBUG] Found ${whiteSpaces.length} white spaces`);
+  // console.log(`[DEBUG] Found ${whiteSpaces.length} white spaces`);
 
   // Appliquer le tri
   sortWhiteSpacesArray(whiteSpaces, window.whiteSpacesSortState.key, window.whiteSpacesSortState.direction);
@@ -5424,7 +5424,7 @@ function renderWhiteSpaces() {
   // Appeler la fonction de rendu
   renderWhiteSpacesTable(whiteSpaces);
 
-  console.log('[DEBUG] renderWhiteSpaces done');
+  // console.log('[DEBUG] renderWhiteSpaces done');
 }
 
 // ============================================================================
