@@ -1179,14 +1179,18 @@ async function loadHubSpotData() {
       // Stocker les companies pour la cartographie des relations
       window.hubspotCompanies = result.companies || {};
 
+      console.log('[DEBUG] Starting processData...');
       processData();
+      console.log('[DEBUG] processData done, starting renderDashboard...');
 
       renderDashboard();
+      console.log('[DEBUG] renderDashboard done');
 
       // Hide loading, show dashboard
       statusEl.style.display = 'none';
       document.getElementById('loadingState').classList.add('hidden');
       document.getElementById('dashboardContent').classList.remove('hidden');
+      console.log('[DEBUG] Dashboard visible');
     } else {
       throw new Error('Format de données invalide');
     }
