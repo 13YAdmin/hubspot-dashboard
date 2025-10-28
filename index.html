@@ -841,7 +841,7 @@ function invalidEmails(company) {
 window.invalidEmails = invalidEmails;
 
 </script>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='https://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>"/>
 </head>
 
 <body>
@@ -2134,20 +2134,20 @@ function renderRevenueGlobalChart() {
   const minRevenue = Math.min(...revenues, 0);
 
   // Define gradient for area under curve
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-  const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  const defs = document.createElementNS('https://www.w3.org/2000/svg', 'defs');
+  const gradient = document.createElementNS('https://www.w3.org/2000/svg', 'linearGradient');
   gradient.setAttribute('id', 'areaGradient');
   gradient.setAttribute('x1', '0%');
   gradient.setAttribute('y1', '0%');
   gradient.setAttribute('x2', '0%');
   gradient.setAttribute('y2', '100%');
 
-  const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+  const stop1 = document.createElementNS('https://www.w3.org/2000/svg', 'stop');
   stop1.setAttribute('offset', '0%');
   stop1.setAttribute('style', 'stop-color:#6366f1;stop-opacity:0.4');
   gradient.appendChild(stop1);
 
-  const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+  const stop2 = document.createElementNS('https://www.w3.org/2000/svg', 'stop');
   stop2.setAttribute('offset', '100%');
   stop2.setAttribute('style', 'stop-color:#6366f1;stop-opacity:0.05');
   gradient.appendChild(stop2);
@@ -2159,7 +2159,7 @@ function renderRevenueGlobalChart() {
   const gridLines = 5;
   for (let i = 0; i <= gridLines; i++) {
     const y = padding + (height - 2 * padding) * i / gridLines;
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', padding);
     line.setAttribute('y1', y);
     line.setAttribute('x2', width - padding);
@@ -2171,7 +2171,7 @@ function renderRevenueGlobalChart() {
 
     // Add value labels on left
     const value = maxRevenue - (maxRevenue * i / gridLines);
-    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const label = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     label.setAttribute('x', padding - 10);
     label.setAttribute('y', y + 4);
     label.setAttribute('text-anchor', 'end');
@@ -2199,13 +2199,13 @@ function renderRevenueGlobalChart() {
   }
 
   // Draw filled area under curve
-  const areaPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const areaPath = document.createElementNS('https://www.w3.org/2000/svg', 'path');
   areaPath.setAttribute('d', `${pathD} L ${points[points.length - 1].x} ${height - padding} L ${points[0].x} ${height - padding} Z`);
   areaPath.setAttribute('fill', 'url(#areaGradient)');
   svg.appendChild(areaPath);
 
   // Draw the main curve
-  const curvePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const curvePath = document.createElementNS('https://www.w3.org/2000/svg', 'path');
   curvePath.setAttribute('d', pathD);
   curvePath.setAttribute('stroke', '#6366f1');
   curvePath.setAttribute('stroke-width', '3');
@@ -2215,21 +2215,21 @@ function renderRevenueGlobalChart() {
   svg.appendChild(curvePath);
 
   // Create tooltip
-  const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const tooltip = document.createElementNS('https://www.w3.org/2000/svg', 'g');
   tooltip.setAttribute('id', 'globalChartTooltip');
   tooltip.style.opacity = '0';
   tooltip.style.pointerEvents = 'none';
   tooltip.style.transition = 'opacity 0.2s';
   svg.appendChild(tooltip);
 
-  const tooltipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  const tooltipRect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
   tooltipRect.setAttribute('rx', 8);
   tooltipRect.setAttribute('fill', '#1d2342');
   tooltipRect.setAttribute('stroke', '#6366f1');
   tooltipRect.setAttribute('stroke-width', 2);
   tooltip.appendChild(tooltipRect);
 
-  const tooltipText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  const tooltipText = document.createElementNS('https://www.w3.org/2000/svg', 'text');
   tooltipText.setAttribute('fill', '#f1f5f9');
   tooltipText.setAttribute('font-size', '13');
   tooltipText.setAttribute('font-weight', '600');
@@ -2240,7 +2240,7 @@ function renderRevenueGlobalChart() {
     const { x, y, year, revenue, index } = point;
 
     // Outer circle (glow effect)
-    const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    const outerCircle = document.createElementNS('https://www.w3.org/2000/svg', 'circle');
     outerCircle.setAttribute('cx', x);
     outerCircle.setAttribute('cy', y);
     outerCircle.setAttribute('r', '8');
@@ -2249,7 +2249,7 @@ function renderRevenueGlobalChart() {
     svg.appendChild(outerCircle);
 
     // Main point circle
-    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    const circle = document.createElementNS('https://www.w3.org/2000/svg', 'circle');
     circle.setAttribute('cx', x);
     circle.setAttribute('cy', y);
     circle.setAttribute('r', '5');
@@ -2349,7 +2349,7 @@ function renderRevenueGlobalChart() {
     });
 
     // Year label below X axis
-    const yearText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const yearText = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     yearText.setAttribute('x', x);
     yearText.setAttribute('y', height - padding + 25);
     yearText.setAttribute('text-anchor', 'middle');
@@ -2360,7 +2360,7 @@ function renderRevenueGlobalChart() {
     svg.appendChild(yearText);
 
     // Value label above point
-    const valueText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const valueText = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     valueText.setAttribute('x', x);
     valueText.setAttribute('y', y - 15);
     valueText.setAttribute('text-anchor', 'middle');
@@ -2398,21 +2398,21 @@ function renderClientEvolutionChart() {
   const colors = ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899', '#f97316', '#84cc16', '#a855f7'];
 
   // Create tooltip
-  const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const tooltip = document.createElementNS('https://www.w3.org/2000/svg', 'g');
   tooltip.setAttribute('id', 'chartTooltip');
   tooltip.style.opacity = '0';
   tooltip.style.pointerEvents = 'none';
   tooltip.style.transition = 'opacity 0.2s';
   svg.appendChild(tooltip);
 
-  const tooltipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  const tooltipRect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
   tooltipRect.setAttribute('rx', 8);
   tooltipRect.setAttribute('fill', '#1d2342');
   tooltipRect.setAttribute('stroke', '#6366f1');
   tooltipRect.setAttribute('stroke-width', 2);
   tooltip.appendChild(tooltipRect);
 
-  const tooltipText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  const tooltipText = document.createElementNS('https://www.w3.org/2000/svg', 'text');
   tooltipText.setAttribute('fill', '#f1f5f9');
   tooltipText.setAttribute('font-size', '13');
   tooltipText.setAttribute('font-weight', '600');
@@ -2421,7 +2421,7 @@ function renderClientEvolutionChart() {
   // Draw grid lines
   for (let i = 0; i <= 5; i++) {
     const y = padding + (chartHeight / 5) * i;
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', padding);
     line.setAttribute('y1', y);
     line.setAttribute('x2', width - padding);
@@ -2445,7 +2445,7 @@ function renderClientEvolutionChart() {
       const x = padding + yearIdx * barGroupWidth + clientIdx * (barWidth + barGap) + (barGroupWidth * 0.1);
       const y = padding + chartHeight - barHeight;
 
-      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      const rect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
       rect.setAttribute('x', x);
       rect.setAttribute('y', y);
       rect.setAttribute('width', barWidth);
@@ -2571,7 +2571,7 @@ function renderClientEvolutionChart() {
 
     // X-axis labels
     const labelX = padding + yearIdx * barGroupWidth + barGroupWidth / 2;
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', labelX);
     text.setAttribute('y', height - padding + 25);
     text.setAttribute('text-anchor', 'middle');
@@ -2654,7 +2654,7 @@ function renderSegmentDonutChart() {
       'Z'
     ].join(' ');
 
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const path = document.createElementNS('https://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', pathData);
     path.setAttribute('fill', segment.color);
     path.setAttribute('stroke', '#0f172a');
@@ -2678,7 +2678,7 @@ function renderSegmentDonutChart() {
     const labelX = cx + Math.cos(midAngle) * labelRadius;
     const labelY = cy + Math.sin(midAngle) * labelRadius;
 
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', labelX);
     text.setAttribute('y', labelY);
     text.setAttribute('text-anchor', 'middle');
@@ -2692,7 +2692,7 @@ function renderSegmentDonutChart() {
   });
 
   // Centre - afficher le total
-  const centerText1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  const centerText1 = document.createElementNS('https://www.w3.org/2000/svg', 'text');
   centerText1.setAttribute('x', cx);
   centerText1.setAttribute('y', cy - 10);
   centerText1.setAttribute('text-anchor', 'middle');
@@ -2702,7 +2702,7 @@ function renderSegmentDonutChart() {
   centerText1.textContent = 'CA Total';
   svg.appendChild(centerText1);
 
-  const centerText2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  const centerText2 = document.createElementNS('https://www.w3.org/2000/svg', 'text');
   centerText2.setAttribute('x', cx);
   centerText2.setAttribute('y', cy + 15);
   centerText2.setAttribute('text-anchor', 'middle');
@@ -2753,7 +2753,7 @@ function renderRadarChart() {
       const y = cy + Math.sin(angle) * maxRadius * ratio;
       points.push(`${x},${y}`);
     }
-    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    const polygon = document.createElementNS('https://www.w3.org/2000/svg', 'polygon');
     polygon.setAttribute('points', points.join(' '));
     polygon.setAttribute('fill', 'none');
     polygon.setAttribute('stroke', 'rgba(148, 163, 184, 0.2)');
@@ -2767,7 +2767,7 @@ function renderRadarChart() {
     const x = cx + Math.cos(angle) * maxRadius;
     const y = cy + Math.sin(angle) * maxRadius;
 
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', cx);
     line.setAttribute('y1', cy);
     line.setAttribute('x2', x);
@@ -2779,7 +2779,7 @@ function renderRadarChart() {
     // Labels
     const labelX = cx + Math.cos(angle) * (maxRadius + 30);
     const labelY = cy + Math.sin(angle) * (maxRadius + 30);
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', labelX);
     text.setAttribute('y', labelY);
     text.setAttribute('text-anchor', 'middle');
@@ -2801,7 +2801,7 @@ function renderRadarChart() {
       points.push(`${x},${y}`);
     }
 
-    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    const polygon = document.createElementNS('https://www.w3.org/2000/svg', 'polygon');
     polygon.setAttribute('points', points.join(' '));
     polygon.setAttribute('fill', client.color);
     polygon.setAttribute('fill-opacity', '0.2');
@@ -2814,7 +2814,7 @@ function renderRadarChart() {
   // Légende
   normalized.forEach((client, i) => {
     const legendY = 30 + i * 20;
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const rect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', 20);
     rect.setAttribute('y', legendY);
     rect.setAttribute('width', 15);
@@ -2822,7 +2822,7 @@ function renderRadarChart() {
     rect.setAttribute('fill', client.color);
     svg.appendChild(rect);
 
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', 40);
     text.setAttribute('y', legendY + 12);
     text.setAttribute('fill', 'var(--text)');
@@ -2880,7 +2880,7 @@ function renderStackedAreaChart() {
   // Grille
   [0, 0.25, 0.5, 0.75, 1].forEach(ratio => {
     const y = padding + chartHeight - ratio * chartHeight;
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', padding);
     line.setAttribute('y1', y);
     line.setAttribute('x2', width - padding);
@@ -2889,7 +2889,7 @@ function renderStackedAreaChart() {
     line.setAttribute('stroke-width', '1');
     svg.appendChild(line);
 
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', padding - 10);
     text.setAttribute('y', y + 4);
     text.setAttribute('text-anchor', 'end');
@@ -2918,7 +2918,7 @@ function renderStackedAreaChart() {
       points.push(`${x},${y}`);
     }
 
-    const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    const polygon = document.createElementNS('https://www.w3.org/2000/svg', 'polygon');
     polygon.setAttribute('points', points.join(' '));
     polygon.setAttribute('fill', segmentColors[segment] || '#94a3b8');
     polygon.setAttribute('fill-opacity', '0.7');
@@ -2930,7 +2930,7 @@ function renderStackedAreaChart() {
   // Labels années
   years.forEach((year, i) => {
     const x = padding + (i / (years.length - 1)) * chartWidth;
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', x);
     text.setAttribute('y', padding + chartHeight + 25);
     text.setAttribute('text-anchor', 'middle');
@@ -2946,7 +2946,7 @@ function renderStackedAreaChart() {
     const legendX = 50 + Math.floor(i / 2) * 150;
     const legendY = height - 25 + (i % 2) * 20;
 
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const rect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', legendX);
     rect.setAttribute('y', legendY);
     rect.setAttribute('width', 15);
@@ -2954,7 +2954,7 @@ function renderStackedAreaChart() {
     rect.setAttribute('fill', segmentColors[segment] || '#94a3b8');
     svg.appendChild(rect);
 
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', legendX + 20);
     text.setAttribute('y', legendY + 12);
     text.setAttribute('fill', 'var(--text)');
@@ -2985,7 +2985,7 @@ function renderHealthTrendsChart() {
   // Grille
   [0, 25, 50, 75, 100].forEach(value => {
     const y = padding + chartHeight - (value / 100) * chartHeight;
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', padding);
     line.setAttribute('y1', y);
     line.setAttribute('x2', width - padding);
@@ -2994,7 +2994,7 @@ function renderHealthTrendsChart() {
     line.setAttribute('stroke-width', '1');
     svg.appendChild(line);
 
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', padding - 10);
     text.setAttribute('y', y + 4);
     text.setAttribute('text-anchor', 'end');
@@ -3027,7 +3027,7 @@ function renderHealthTrendsChart() {
       `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`
     ).join(' ');
 
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const path = document.createElementNS('https://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', pathData);
     path.setAttribute('fill', 'none');
     path.setAttribute('stroke', colors[clientIdx]);
@@ -3037,7 +3037,7 @@ function renderHealthTrendsChart() {
 
     // Points
     points.forEach(p => {
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      const circle = document.createElementNS('https://www.w3.org/2000/svg', 'circle');
       circle.setAttribute('cx', p.x);
       circle.setAttribute('cy', p.y);
       circle.setAttribute('r', '4');
@@ -3052,7 +3052,7 @@ function renderHealthTrendsChart() {
   // Labels années
   years.forEach((year, i) => {
     const x = padding + (i / (years.length - 1)) * chartWidth;
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', x);
     text.setAttribute('y', padding + chartHeight + 25);
     text.setAttribute('text-anchor', 'middle');
@@ -3068,7 +3068,7 @@ function renderHealthTrendsChart() {
     const legendX = 60 + Math.floor(i / 2) * 150;
     const legendY = height - 30 + (i % 2) * 18;
 
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const rect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', legendX);
     rect.setAttribute('y', legendY);
     rect.setAttribute('width', 12);
@@ -3076,7 +3076,7 @@ function renderHealthTrendsChart() {
     rect.setAttribute('fill', colors[i]);
     svg.appendChild(rect);
 
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', legendX + 18);
     text.setAttribute('y', legendY + 10);
     text.setAttribute('fill', 'var(--text)');
@@ -3396,21 +3396,21 @@ function renderIndustryPieChart(filterYear = 'all') {
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
   // Create tooltip
-  const tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  const tooltip = document.createElementNS('https://www.w3.org/2000/svg', 'g');
   tooltip.setAttribute('id', 'industryTooltip');
   tooltip.style.opacity = '0';
   tooltip.style.pointerEvents = 'none';
   tooltip.style.transition = 'opacity 0.2s';
   svg.appendChild(tooltip);
 
-  const tooltipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  const tooltipRect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
   tooltipRect.setAttribute('rx', 8);
   tooltipRect.setAttribute('fill', '#1d2342');
   tooltipRect.setAttribute('stroke', '#6366f1');
   tooltipRect.setAttribute('stroke-width', 2);
   tooltip.appendChild(tooltipRect);
 
-  const tooltipText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  const tooltipText = document.createElementNS('https://www.w3.org/2000/svg', 'text');
   tooltipText.setAttribute('fill', '#f1f5f9');
   tooltipText.setAttribute('font-size', '12');
   tooltipText.setAttribute('font-weight', '600');
@@ -3439,7 +3439,7 @@ function renderIndustryPieChart(filterYear = 'all') {
       'Z'
     ].join(' ');
 
-    const slice = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const slice = document.createElementNS('https://www.w3.org/2000/svg', 'path');
     slice.setAttribute('d', pathData);
     slice.setAttribute('fill', colors[idx % colors.length]);
     slice.style.cursor = 'pointer';
@@ -3489,7 +3489,7 @@ function renderIndustryPieChart(filterYear = 'all') {
       const labelX = centerX + labelRadius * Math.cos(midAngle);
       const labelY = centerY + labelRadius * Math.sin(midAngle);
 
-      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      const label = document.createElementNS('https://www.w3.org/2000/svg', 'text');
       label.setAttribute('x', labelX);
       label.setAttribute('y', labelY);
       label.setAttribute('text-anchor', 'middle');
@@ -3752,7 +3752,7 @@ function renderCompanyTree() {
   if (!window.hubspotCompanies) {
     const svg = document.getElementById('chartCompanyTree');
     svg.innerHTML = '';
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', '50%');
     text.setAttribute('y', '50%');
     text.setAttribute('text-anchor', 'middle');
@@ -3959,7 +3959,7 @@ function renderCompanyTree() {
   svg.innerHTML = '';
 
   // FOND NOIR pour dark mode
-  const background = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  const background = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
   background.setAttribute('width', '100%');
   background.setAttribute('height', '100%');
   background.setAttribute('fill', '#0f172a'); // Slate-900 dark
@@ -3967,7 +3967,7 @@ function renderCompanyTree() {
 
   if (companyGroups.length === 0) {
     // Message si aucune relation détectée
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const text = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', '50%');
     text.setAttribute('y', '50%');
     text.setAttribute('text-anchor', 'middle');
@@ -3980,10 +3980,10 @@ function renderCompanyTree() {
   }
 
   // Créer les dégradés SVG (plus sexy!)
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  const defs = document.createElementNS('https://www.w3.org/2000/svg', 'defs');
 
   // Gradient bleu-violet pour clients
-  const gradientClient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  const gradientClient = document.createElementNS('https://www.w3.org/2000/svg', 'linearGradient');
   gradientClient.setAttribute('id', 'gradientClient');
   gradientClient.setAttribute('x1', '0%');
   gradientClient.setAttribute('y1', '0%');
@@ -3996,7 +3996,7 @@ function renderCompanyTree() {
   defs.appendChild(gradientClient);
 
   // Gradient orange-rose pour prospects
-  const gradientProspect = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  const gradientProspect = document.createElementNS('https://www.w3.org/2000/svg', 'linearGradient');
   gradientProspect.setAttribute('id', 'gradientProspect');
   gradientProspect.setAttribute('x1', '0%');
   gradientProspect.setAttribute('y1', '0%');
@@ -4009,7 +4009,7 @@ function renderCompanyTree() {
   defs.appendChild(gradientProspect);
 
   // Gradient parent (plus foncé)
-  const gradientParent = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  const gradientParent = document.createElementNS('https://www.w3.org/2000/svg', 'linearGradient');
   gradientParent.setAttribute('id', 'gradientParent');
   gradientParent.setAttribute('x1', '0%');
   gradientParent.setAttribute('y1', '0%');
@@ -4022,7 +4022,7 @@ function renderCompanyTree() {
   defs.appendChild(gradientParent);
 
   // Gradient enfant (plus clair)
-  const gradientChild = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+  const gradientChild = document.createElementNS('https://www.w3.org/2000/svg', 'linearGradient');
   gradientChild.setAttribute('id', 'gradientChild');
   gradientChild.setAttribute('x1', '0%');
   gradientChild.setAttribute('y1', '0%');
@@ -4038,7 +4038,7 @@ function renderCompanyTree() {
 
   // Helper pour dessiner un nœud avec PLUS D'INFOS
   function drawNode(x, y, nodeData, label, nodeType = 'center') {
-    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    const g = document.createElementNS('https://www.w3.org/2000/svg', 'g');
     g.style.cursor = 'pointer';
     g.classList.add('company-node'); // Marquer pour éviter le pan
 
@@ -4069,7 +4069,7 @@ function renderCompanyTree() {
     });
 
     // Rectangle avec gradient (PLUS GRAND pour plus d'infos)
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const rect = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', x);
     rect.setAttribute('y', y);
     rect.setAttribute('width', 280); // 220 → 280
@@ -4082,7 +4082,7 @@ function renderCompanyTree() {
     g.appendChild(rect);
 
     // Nom
-    const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const name = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     name.setAttribute('x', x + 140);
     name.setAttribute('y', y + 22);
     name.setAttribute('text-anchor', 'middle');
@@ -4094,7 +4094,7 @@ function renderCompanyTree() {
     g.appendChild(name);
 
     // Industrie (NOUVEAU)
-    const industry = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const industry = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     industry.setAttribute('x', x + 140);
     industry.setAttribute('y', y + 40);
     industry.setAttribute('text-anchor', 'middle');
@@ -4107,7 +4107,7 @@ function renderCompanyTree() {
     g.appendChild(industry);
 
     // CA
-    const ca = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const ca = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     ca.setAttribute('x', x + 140);
     ca.setAttribute('y', y + 60);
     ca.setAttribute('text-anchor', 'middle');
@@ -4119,7 +4119,7 @@ function renderCompanyTree() {
 
     // Domaine (NOUVEAU)
     if (nodeData.domain) {
-      const domain = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      const domain = document.createElementNS('https://www.w3.org/2000/svg', 'text');
       domain.setAttribute('x', x + 140);
       domain.setAttribute('y', y + 78);
       domain.setAttribute('text-anchor', 'middle');
@@ -4131,7 +4131,7 @@ function renderCompanyTree() {
     }
 
     // Badge
-    const badge = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const badge = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     badge.setAttribute('x', x + 140);
     badge.setAttribute('y', y + 96);
     badge.setAttribute('text-anchor', 'middle');
@@ -4183,7 +4183,7 @@ function renderCompanyTree() {
     let currentY = 100; // Position Y courante (on empile verticalement)
 
     // RECTANGLE DE FOND pour séparer visuellement chaque groupe
-    const groupBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    const groupBg = document.createElementNS('https://www.w3.org/2000/svg', 'rect');
     groupBg.setAttribute('x', baseX - 40);
     groupBg.setAttribute('y', 50);
     groupBg.setAttribute('width', groupSpacing - 100);
@@ -4195,7 +4195,7 @@ function renderCompanyTree() {
     svg.appendChild(groupBg);
 
     // Titre du groupe
-    const groupTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    const groupTitle = document.createElementNS('https://www.w3.org/2000/svg', 'text');
     groupTitle.setAttribute('x', baseX + (groupSpacing - 100) / 2 - 40);
     groupTitle.setAttribute('y', 80);
     groupTitle.setAttribute('text-anchor', 'middle');
@@ -4224,7 +4224,7 @@ function renderCompanyTree() {
     // Lignes des parents vers le centre
     group.parents.forEach((parent, idx) => {
       const parentYPos = 100 + idx * (nodeHeight + verticalSpacing);
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', baseX + nodeWidth / 2);
       line.setAttribute('y1', parentYPos + nodeHeight);
       line.setAttribute('x2', baseX + nodeWidth / 2);
@@ -4243,7 +4243,7 @@ function renderCompanyTree() {
       let y = startY;
       children.forEach((child) => {
         // Ligne du parent vers cet enfant
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        const line = document.createElementNS('https://www.w3.org/2000/svg', 'line');
         line.setAttribute('x1', baseX + nodeWidth / 2);
         line.setAttribute('y1', startY - verticalSpacing);
         line.setAttribute('x2', baseX + nodeWidth / 2 + indent);
