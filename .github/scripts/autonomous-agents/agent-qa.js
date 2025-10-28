@@ -52,6 +52,9 @@ class AgentQA {
     // TESTS INFRASTRUCTURE & DATA (NOUVEAU)
     await this.testInfrastructureAndData();
 
+    // TESTS DE TOUS LES SCRIPTS BACKEND
+    await this.testAllBackendScripts();
+
     const content = fs.readFileSync(this.dashboardPath, 'utf8');
 
     // BATTERIES DE TESTS (NIVEAU ÉQUIPE ENTIÈRE)
@@ -1524,6 +1527,164 @@ ${failedTests.length === 0
         );
       }
     }
+  }
+
+  // ============================================================================
+  // TESTS SCRIPTS BACKEND (FULL PROJECT SCAN)
+  // ============================================================================
+
+  async testAllBackendScripts() {
+    this.log('\n🔧 TESTS SCRIPTS BACKEND (FULL PROJECT)...\n');
+    this.log('   Analyse de TOUS les scripts Node.js du projet\n');
+
+    const scriptsToTest = [
+      '.github/scripts/fetch-hubspot.js',
+      '.github/scripts/lib/api.js',
+      '.github/scripts/lib/health-score.js',
+      '.github/scripts/lib/notes-analyzer.js',
+      '.github/scripts/lib/segment-detector.js',
+      '.github/scripts/lib/industry-detector.js',
+      '.github/scripts/lib/industry-cache.js',
+      '.github/scripts/create-custom-properties.js',
+      '.github/scripts/push-scores.js'
+    ];
+
+    const projectRoot = process.cwd();
+    let totalScripts = 0;
+    let totalIssues = 0;
+
+    for (const scriptPath of scriptsToTest) {
+      const fullPath = path.join(projectRoot, scriptPath);
+
+      if (!fs.existsSync(fullPath)) {
+        this.test(
+          `Script existe: ${scriptPath}`,
+          false,
+          `Script manquant: ${scriptPath}`,
+          'warning'
+        );
+        continue;
+      }
+
+      totalScripts++;
+      const content = fs.readFileSync(fullPath, 'utf8');
+
+      // 1. Pas de console.log/error/warn en production
+      const hasConsoleLogs = /console\.(log|error|warn|info|debug)\(/.test(content);
+      if (hasConsoleLogs) {
+        // Pour les scripts backend, console.log est OK (pas en production browser)
+        // On vérifie juste qu'il n'y a pas TROP de logs
+        const logCount = (content.match(/console\.(log|error|warn|info|debug)\(/g) || []).length;
+        this.test(
+          `Logging modéré: ${path.basename(scriptPath)}`,
+          logCount < 50,
+          logCount < 50 ? `${logCount} console logs (OK pour backend)` : `${logCount} console logs (trop verbeux)`,
+          logCount < 50 ? 'normal' : 'warning'
+        );
+      }
+
+      // 2. Gestion d'erreurs try-catch
+      const hasTryCatch = /try\s*\{[\s\S]*?\}\s*catch/.test(content);
+      this.test(
+        `Error handling: ${path.basename(scriptPath)}`,
+        hasTryCatch || content.includes('.catch('),
+        hasTryCatch ? 'Try-catch présent' : 'Manque gestion erreurs',
+        'critical'
+      );
+
+      // 3. Pas de token/secret hardcodé (autre que process.env)
+      const hasHardcodedSecrets = /['"](?:sk-ant-|xoxb-|ghp_|AKIA)[a-zA-Z0-9\-_]{20,}['"]/.test(content);
+      this.test(
+        `Pas de secrets hardcodés: ${path.basename(scriptPath)}`,
+        !hasHardcodedSecrets,
+        hasHardcodedSecrets ? 'SECRETS DÉTECTÉS!' : 'Aucun secret hardcodé',
+        'critical'
+      );
+
+      // 4. Utilise const/let (pas var)
+      const usesVar = /\bvar\s+\w+\s*=/.test(content);
+      this.test(
+        `Utilise const/let: ${path.basename(scriptPath)}`,
+        !usesVar,
+        usesVar ? 'Utilise var (déprécié)' : 'const/let uniquement',
+        'warning'
+      );
+
+      // 5. Pas de eval()
+      const usesEval = /\beval\(/.test(content);
+      this.test(
+        `Pas de eval(): ${path.basename(scriptPath)}`,
+        !usesEval,
+        'eval() est dangereux',
+        'critical'
+      );
+
+      // 6. Timeout pour fetch/requêtes (si présent)
+      if (content.includes('fetch(') || content.includes('await fetch')) {
+        const hasTimeout = content.includes('timeout') || content.includes('AbortController');
+        this.test(
+          `Timeout fetch: ${path.basename(scriptPath)}`,
+          hasTimeout,
+          hasTimeout ? 'Timeout implémenté' : 'Manque timeout pour fetch',
+          'critical'
+        );
+      }
+
+      // 7. Retry logic (si appels API externes)
+      if ((content.includes('fetch(') || content.includes('axios')) && content.includes('api')) {
+        const hasRetry = content.includes('retry') || content.includes('retries') || /for.*\(.*retry/i.test(content);
+        this.test(
+          `Retry logic: ${path.basename(scriptPath)}`,
+          hasRetry,
+          hasRetry ? 'Retry implémenté' : 'Manque retry pour résilience',
+          'warning'
+        );
+      }
+
+      // 8. Rate limiting (si API calls)
+      if (content.includes('api.hubapi.com') || content.includes('hubspot')) {
+        const hasRateLimit = /rate.*limit/i.test(content) || /throttle/i.test(content);
+        this.test(
+          `Rate limiting: ${path.basename(scriptPath)}`,
+          hasRateLimit,
+          hasRateLimit ? 'Rate limiting présent' : 'Manque rate limiting',
+          'warning'
+        );
+      }
+
+      // 9. Documentation (commentaires)
+      const commentLines = (content.match(/^\s*\/\/.*/gm) || []).length;
+      const codeLines = content.split('\n').filter(l => l.trim() && !l.trim().startsWith('//')).length;
+      const commentRatio = commentLines / codeLines;
+      this.test(
+        `Documentation: ${path.basename(scriptPath)}`,
+        commentRatio > 0.05,
+        `${Math.round(commentRatio * 100)}% commentaires`,
+        commentRatio > 0.05 ? 'normal' : 'warning'
+      );
+
+      // 10. Pas de dépendances manquantes (requires)
+      const requires = content.match(/require\(['"]([^'"]+)['"]\)/g) || [];
+      for (const req of requires) {
+        const moduleName = req.match(/require\(['"]([^'"]+)['"]\)/)[1];
+
+        // Si c'est un module relatif, vérifier qu'il existe
+        if (moduleName.startsWith('.')) {
+          const moduleDir = path.dirname(fullPath);
+          const modulePath = path.resolve(moduleDir, moduleName + (moduleName.endsWith('.js') ? '' : '.js'));
+          const moduleExists = fs.existsSync(modulePath);
+
+          this.test(
+            `Dépendance existe: ${moduleName}`,
+            moduleExists,
+            moduleExists ? `Module ${moduleName} trouvé` : `Module ${moduleName} MANQUANT`,
+            'critical'
+          );
+        }
+      }
+    }
+
+    this.log(`\n✅ ${totalScripts} scripts backend analysés\n`);
   }
 }
 
