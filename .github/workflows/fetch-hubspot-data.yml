@@ -5,9 +5,9 @@ on:
   schedule:
     - cron: '0 */2 * * *'  # Toutes les 2 heures
   workflow_dispatch:  # Permet de lancer manuellement depuis GitHub
-  push:
-    branches:
-      - main  # Lance aussi à chaque push sur main
+  # push:  # TEMPORAIRE: Désactivé car trop de requêtes API (1962 companies)
+  #   branches:
+  #     - main
 
 concurrency:
   group: fetch-hubspot-data
