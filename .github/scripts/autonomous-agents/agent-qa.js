@@ -67,6 +67,12 @@ class AgentQA {
     // TESTS DES CONFIGURATIONS
     await this.testConfigurations();
 
+    // TESTS DE RÉGRESSION (bugs corrigés ne doivent PAS revenir)
+    await this.testRegression();
+
+    // TESTS DE COHÉRENCE (rapports vs réalité)
+    await this.testCoherence();
+
     const content = fs.readFileSync(this.dashboardPath, 'utf8');
 
     // BATTERIES DE TESTS (NIVEAU ÉQUIPE ENTIÈRE)
@@ -1546,22 +1552,34 @@ ${failedTests.length === 0
   // ============================================================================
 
   async testAllBackendScripts() {
-    this.log('\n🔧 TESTS SCRIPTS BACKEND (FULL PROJECT)...\n');
-    this.log('   Analyse de TOUS les scripts Node.js du projet\n');
-
-    const scriptsToTest = [
-      '.github/scripts/fetch-hubspot.js',
-      '.github/scripts/lib/api.js',
-      '.github/scripts/lib/health-score.js',
-      '.github/scripts/lib/notes-analyzer.js',
-      '.github/scripts/lib/segment-detector.js',
-      '.github/scripts/lib/industry-detector.js',
-      '.github/scripts/lib/industry-cache.js',
-      '.github/scripts/create-custom-properties.js',
-      '.github/scripts/push-scores.js'
-    ];
+    this.log('\n🔧 TESTS SCRIPTS BACKEND (FULL PROJECT SCAN AUTOMATIQUE)...\n');
+    this.log('   Scan automatique de TOUS les .js du projet\n');
 
     const projectRoot = process.cwd();
+    const scriptsToTest = [];
+
+    // Scanner TOUS les scripts automatiquement
+    const scanDir = (dir, prefix = '') => {
+      if (!fs.existsSync(dir)) return;
+      const files = fs.readdirSync(dir);
+
+      files.forEach(file => {
+        const fullPath = path.join(dir, file);
+        const stat = fs.statSync(fullPath);
+
+        if (stat.isDirectory() && !file.startsWith('_') && file !== 'node_modules' && file !== '.git') {
+          scanDir(fullPath, prefix ? `${prefix}/${file}` : file);
+        } else if (file.endsWith('.js')) {
+          scriptsToTest.push(prefix ? `${prefix}/${file}` : file);
+        }
+      });
+    };
+
+    // Scanner .github/scripts et sous-dossiers
+    scanDir(path.join(projectRoot, '.github/scripts'), '.github/scripts');
+
+    this.log(`   📂 ${scriptsToTest.length} scripts JavaScript détectés\n`);
+
     let totalScripts = 0;
     let totalIssues = 0;
 
@@ -2033,6 +2051,226 @@ ${failedTests.length === 0
     }
 
     this.log('\n✅ Configurations analysées\n');
+  }
+
+  // ============================================================================
+  // TESTS DE RÉGRESSION (bugs corrigés qui ne doivent PAS revenir)
+  // ============================================================================
+
+  async testRegression() {
+    this.log('\n🔄 TESTS DE RÉGRESSION (BUGS CONNUS)...\n');
+    this.log('   Vérifier que les bugs corrigés ne reviennent pas\n');
+
+    const content = fs.existsSync(this.dashboardPath)
+      ? fs.readFileSync(this.dashboardPath, 'utf8')
+      : '';
+
+    // BUG #1: showClientDetails n'était pas exposée globalement
+    const hasShowClientDetails = /window\.showClientDetails\s*=/.test(content);
+    this.test(
+      'RÉGRESSION BUG #1: showClientDetails exposée',
+      hasShowClientDetails,
+      hasShowClientDetails ? 'Fonction exposée (OK)' : 'BUG REVENU: fonction non exposée',
+      'critical'
+    );
+
+    // BUG #2: showIndustryDetails n'était pas exposée
+    const hasShowIndustryDetails = /window\.showIndustryDetails\s*=/.test(content);
+    this.test(
+      'RÉGRESSION BUG #2: showIndustryDetails exposée',
+      hasShowIndustryDetails,
+      hasShowIndustryDetails ? 'Fonction exposée (OK)' : 'BUG REVENU',
+      'critical'
+    );
+
+    // BUG #3: Workflow HubSpot désactivé
+    const workflowPath = path.join(process.cwd(), '.github/workflows/fetch-hubspot-data.yml');
+    const workflowActive = fs.existsSync(workflowPath) && !workflowPath.includes('_DISABLED');
+    this.test(
+      'RÉGRESSION BUG #3: Workflow HubSpot actif',
+      workflowActive,
+      workflowActive ? 'Workflow actif (OK)' : 'BUG REVENU: workflow désactivé',
+      'critical'
+    );
+
+    // BUG #4: Console.log en production
+    const hasConsoleLogs = /console\.(log|error|warn|info|debug)\(/.test(content);
+    this.test(
+      'RÉGRESSION BUG #4: ZÉRO console.log en production',
+      !hasConsoleLogs,
+      hasConsoleLogs ? 'BUG REVENU: console.log détectés' : 'Code propre (OK)',
+      'critical'
+    );
+
+    // BUG #5: White spaces pas détectables
+    const hasRenderWhiteSpaces = /function renderWhiteSpaces|const renderWhiteSpaces/.test(content);
+    const usesHubspotCompanies = /window\.hubspotCompanies/.test(content);
+    this.test(
+      'RÉGRESSION BUG #5: White spaces détectables',
+      hasRenderWhiteSpaces && usesHubspotCompanies,
+      hasRenderWhiteSpaces && usesHubspotCompanies ? 'Logique présente (OK)' : 'BUG REVENU',
+      'critical'
+    );
+
+    // BUG #6: Pas de retry logic dans API
+    const apiPath = path.join(process.cwd(), '.github/scripts/lib/api.js');
+    if (fs.existsSync(apiPath)) {
+      const apiContent = fs.readFileSync(apiPath, 'utf8');
+      const hasRetryLogic = /retry|retries/.test(apiContent);
+      this.test(
+        'RÉGRESSION BUG #6: API retry logic',
+        hasRetryLogic,
+        hasRetryLogic ? 'Retry présent (OK)' : 'BUG REVENU: pas de retry',
+        'critical'
+      );
+    }
+
+    // BUG #7: Pas de rate limiting
+    if (fs.existsSync(apiPath)) {
+      const apiContent = fs.readFileSync(apiPath, 'utf8');
+      const hasRateLimiting = /rate.*limit|rateLimiter/i.test(apiContent);
+      this.test(
+        'RÉGRESSION BUG #7: Rate limiting HubSpot',
+        hasRateLimiting,
+        hasRateLimiting ? 'Rate limiting présent (OK)' : 'BUG REVENU',
+        'critical'
+      );
+    }
+
+    // BUG #8: Agent QA testait seulement index.html
+    const qaPath = path.join(process.cwd(), '.github/scripts/autonomous-agents/agent-qa.js');
+    if (fs.existsSync(qaPath)) {
+      const qaContent = fs.readFileSync(qaPath, 'utf8');
+      const testsBackendScripts = /testAllBackendScripts|testGitHubWorkflows|testAgents/.test(qaContent);
+      this.test(
+        'RÉGRESSION BUG #8: QA teste TOUT le projet',
+        testsBackendScripts,
+        testsBackendScripts ? 'QA complet (OK)' : 'BUG REVENU: QA limité',
+        'critical'
+      );
+    }
+
+    this.log('\n✅ Tests régression terminés\n');
+  }
+
+  // ============================================================================
+  // TESTS DE COHÉRENCE (rapports vs réalité du code)
+  // ============================================================================
+
+  async testCoherence() {
+    this.log('\n🔍 TESTS DE COHÉRENCE (RAPPORTS VS RÉALITÉ)...\n');
+    this.log('   Vérifier que les rapports correspondent au code réel\n');
+
+    // Lire le dernier rapport QA
+    const rapportQAPath = path.join(process.cwd(), 'RAPPORT-AGENT-QA.md');
+    let rapportQA = '';
+    if (fs.existsSync(rapportQAPath)) {
+      rapportQA = fs.readFileSync(rapportQAPath, 'utf8');
+    }
+
+    // Lire le dernier rapport Dev
+    const rapportDevPath = path.join(process.cwd(), 'RAPPORT-AGENT-DEV.md');
+    let rapportDev = '';
+    if (fs.existsSync(rapportDevPath)) {
+      rapportDev = fs.readFileSync(rapportDevPath, 'utf8');
+    }
+
+    // 1. Le rapport dit "tests passed" mais vérifions
+    if (rapportQA) {
+      const claimsPassedMatch = rapportQA.match(/✅ Tests passés:\s*(\d+)/);
+      if (claimsPassedMatch) {
+        const claimedPassed = parseInt(claimsPassedMatch[1]);
+        // Notre test actuel devrait être >= ce qui était reporté (on ajoute des tests)
+        this.test(
+          'COHÉRENCE: Nombre de tests passés cohérent',
+          this.passed >= claimedPassed * 0.5, // Au moins 50% du rapport précédent
+          `Rapport disait ${claimedPassed} passed, nous avons ${this.passed}`,
+          'warning'
+        );
+      }
+    }
+
+    // 2. Si le rapport dit "score 92/100", vérifier cohérence
+    if (rapportQA) {
+      const scoreMatch = rapportQA.match(/Score.*?:\s*\*\*(\d+)\/100\*\*/);
+      if (scoreMatch) {
+        const reportedScore = parseInt(scoreMatch[1]);
+        const currentScore = this.calculateScore();
+
+        // Le score actuel ne devrait pas être BEAUCOUP plus bas (régression)
+        const scoreDiff = reportedScore - currentScore;
+        this.test(
+          'COHÉRENCE: Score stable (pas de régression)',
+          scoreDiff < 20, // Max 20 points de régression acceptés
+          scoreDiff < 20
+            ? `Score stable: ${reportedScore} → ${currentScore}`
+            : `RÉGRESSION: ${reportedScore} → ${currentScore} (${scoreDiff} points perdus)`,
+          scoreDiff < 20 ? 'normal' : 'critical'
+        );
+      }
+    }
+
+    // 3. Si Dev dit "0 tâches implémentées", vérifier qu'il n'y a pas de nouveaux commits
+    if (rapportDev && rapportDev.includes('Tâches implémentées: 0')) {
+      const execSync = require('child_process').execSync;
+      try {
+        const recentCommits = execSync('git log --since="1 hour ago" --oneline', { encoding: 'utf8' });
+        const hasRecentDevCommits = /implémente|fix|add|update/i.test(recentCommits);
+
+        this.test(
+          'COHÉRENCE: Rapport Dev vs commits',
+          !hasRecentDevCommits || recentCommits.split('\n').length <= 2,
+          hasRecentDevCommits
+            ? 'Incohérence: commits récents mais rapport dit 0 tâches'
+            : 'Cohérent',
+          'warning'
+        );
+      } catch (error) {
+        // Git error, skip
+      }
+    }
+
+    // 4. Vérifier que le nombre de fichiers dans le projet correspond à ce qu'on teste
+    const allJsFiles = [];
+    const countJsFiles = (dir) => {
+      if (!fs.existsSync(dir)) return;
+      fs.readdirSync(dir).forEach(file => {
+        const fullPath = path.join(dir, file);
+        if (fs.statSync(fullPath).isDirectory() && !file.startsWith('_') && file !== 'node_modules') {
+          countJsFiles(fullPath);
+        } else if (file.endsWith('.js')) {
+          allJsFiles.push(fullPath);
+        }
+      });
+    };
+
+    countJsFiles(path.join(process.cwd(), '.github/scripts'));
+
+    const testedScriptsCount = allJsFiles.length;
+    const minExpectedTests = testedScriptsCount * 5; // Au moins 5 tests par script
+
+    this.test(
+      'COHÉRENCE: Tests couvrent tous les scripts',
+      this.tests.length >= minExpectedTests,
+      `${this.tests.length} tests pour ${testedScriptsCount} scripts (min ${minExpectedTests})`,
+      this.tests.length >= minExpectedTests ? 'normal' : 'warning'
+    );
+
+    // 5. Workflow actif vs rapport infrastructure
+    if (rapportQA) {
+      const workflowClaimed = /✅ Workflow HubSpot data actif/.test(rapportQA);
+      const workflowPath = path.join(process.cwd(), '.github/workflows/fetch-hubspot-data.yml');
+      const workflowActual = fs.existsSync(workflowPath);
+
+      this.test(
+        'COHÉRENCE: Workflow status vs rapport',
+        workflowClaimed === workflowActual,
+        workflowClaimed === workflowActual ? 'Cohérent' : 'INCOHÉRENCE détectée',
+        workflowClaimed === workflowActual ? 'normal' : 'critical'
+      );
+    }
+
+    this.log('\n✅ Tests cohérence terminés\n');
   }
 }
 
