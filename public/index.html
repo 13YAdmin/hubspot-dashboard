@@ -2841,7 +2841,7 @@ function renderStackedAreaChart() {
   svg.innerHTML = '';
 
   const years = ['2022', '2023', '2024', '2025'];
-  const segments = [...new Set(processedData.map(c => c.segment)].filter(Boolean);
+  const segments = [...new Set(processedData.map(c => c.segment))].filter(Boolean);
 
   // Données par segment et année
   const data = years.map(year => {
