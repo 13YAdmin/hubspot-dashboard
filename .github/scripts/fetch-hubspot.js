@@ -376,8 +376,29 @@ async function main() {
     industryCache.printStats();
 
   } catch (error) {
-    console.error('\n❌ ERREUR:', error);
-    console.error(error.stack);
+    console.error('\n❌ ERREUR FATALE:', error.message);
+    console.error('📍 Stack trace:', error.stack);
+
+    // Créer un fichier d'erreur pour debugging
+    const errorReport = {
+      success: false,
+      error: error.message,
+      stack: error.stack,
+      timestamp: new Date().toISOString(),
+      environment: {
+        hasToken: !!HUBSPOT_TOKEN,
+        nodeVersion: process.version,
+        platform: process.platform
+      }
+    };
+
+    try {
+      const errorPath = path.join(__dirname, '../../public/error.json');
+      fs.writeFileSync(errorPath, JSON.stringify(errorReport, null, 2), 'utf-8');
+      console.log(`💾 Rapport d'erreur sauvegardé: ${errorPath}`);
+    } catch (writeError) {
+      console.error('⚠️  Impossible de sauvegarder le rapport d\'erreur:', writeError.message);
+    }
 
     // Sauvegarder le cache même en cas d'erreur
     try {
