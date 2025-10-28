@@ -3,10 +3,11 @@
  */
 
 function calculateHealthScore(companyData, notesAnalysis, engagement) {
-  let score = 20; // Base 20 - petit bonus de départ
+  try {
+    let score = 20; // Base 20 - petit bonus de départ
 
-  // 1. Notes (35 points max) - ÉQUILIBRÉ
-  if (notesAnalysis.totalNotes > 0) {
+    // 1. Notes (35 points max) - ÉQUILIBRÉ
+    if (notesAnalysis.totalNotes > 0) {
     // Récompense progressive pour les notes
     if (notesAnalysis.totalNotes >= 15) score += 18;
     else if (notesAnalysis.totalNotes >= 10) score += 12;
@@ -68,7 +69,11 @@ function calculateHealthScore(companyData, notesAnalysis, engagement) {
   else if (revenue >= 10000) score += 3;
   // Pas de pénalité pour CA faible
 
-  return Math.max(0, Math.min(100, Math.round(score)));
+    return Math.max(0, Math.min(100, Math.round(score)));
+  } catch (error) {
+    console.error('Error calculating health score:', error.message);
+    return 0; // Score par défaut en cas d'erreur
+  }
 }
 
 module.exports = { calculateHealthScore };

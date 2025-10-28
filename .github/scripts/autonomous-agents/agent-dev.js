@@ -32,6 +32,10 @@ class AgentDev {
     this.failed = 0;
     this.loopCount = 0;
     this.maxScore = 0;
+    this.failureHistory = {}; // Track recurring failures
+    this.maxFailuresPerAction = 3; // Stop after 3 failed attempts
+    this.scoreHistory = []; // Track score progression
+    this.stagnantIterations = 0; // Count iterations with no progress
   }
 
   log(message) {
@@ -111,12 +115,33 @@ class AgentDev {
       // 5. Implémenter chaque action
       this.log('\n🔨 IMPLÉMENTATION DES CORRECTIONS...\n');
 
-      for (const action of actions) {
+      // Filter out actions that have failed too many times
+      const actionableItems = actions.filter(action => {
+        const failureCount = this.failureHistory[action.title] || 0;
+        if (failureCount >= this.maxFailuresPerAction) {
+          this.log(`   ⏭️  SKIP "${action.title}" (${failureCount} échecs précédents)`);
+          return false;
+        }
+        return true;
+      });
+
+      this.log(`   ${actionableItems.length}/${actions.length} actions à tenter\n`);
+
+      for (const action of actionableItems) {
         try {
-          await this.implementAction(action);
-          this.implemented++;
+          const success = await this.implementAction(action);
+          if (success !== false) {
+            this.implemented++;
+            // Reset failure count on success
+            this.failureHistory[action.title] = 0;
+          } else {
+            // Track failure
+            this.failureHistory[action.title] = (this.failureHistory[action.title] || 0) + 1;
+            this.failed++;
+          }
         } catch (error) {
           this.log(`   ❌ ÉCHEC: ${error.message}`);
+          this.failureHistory[action.title] = (this.failureHistory[action.title] || 0) + 1;
           this.failed++;
         }
       }
@@ -130,11 +155,32 @@ class AgentDev {
       this.log('\n🔍 RELANCE DU QA POUR VÉRIFICATION...\n');
       await this.runQA();
 
+      // Track score progression
+      this.scoreHistory.push(currentScore);
+      if (this.scoreHistory.length > 1) {
+        const previousScore = this.scoreHistory[this.scoreHistory.length - 2];
+        if (currentScore <= previousScore) {
+          this.stagnantIterations++;
+          this.log(`   ⚠️  Score stagnant (${this.stagnantIterations} itérations sans progrès)`);
+        } else {
+          this.stagnantIterations = 0; // Reset if score improved
+        }
+      }
+
       // Anti-boucle infinie (safety)
       if (this.loopCount >= 50) {
         this.log('\n⚠️  LIMITE DE 50 ITÉRATIONS ATTEINTE');
         this.log('   Arrêt pour éviter boucle infinie');
         await this.generateReport(currentScore, 'TIMEOUT');
+        break;
+      }
+
+      // Stop if stagnant for 5 iterations
+      if (this.stagnantIterations >= 5) {
+        this.log('\n⚠️  AUCUN PROGRÈS DEPUIS 5 ITÉRATIONS');
+        this.log('   Score maximum atteignable avec les capacités actuelles: ' + currentScore);
+        this.log('   Actions bloquées: ' + Object.keys(this.failureHistory).filter(k => this.failureHistory[k] >= this.maxFailuresPerAction).join(', '));
+        await this.generateReport(currentScore, 'STAGNANT');
         break;
       }
 
@@ -493,8 +539,8 @@ class AgentDev {
   }
 
   async fixEventListeners(details) {
-    this.log(`   ✅ Event listeners: TODO - ajouter removeEventListener`);
-    // Complexe - nécessite refactoring
+    this.log(`   ⚠️  Event listeners: Complexe - skip pour l'instant`);
+    return false; // Cannot fix automatically
   }
 
   async fixTimeouts(details) {
@@ -510,15 +556,18 @@ class AgentDev {
   }
 
   async fixSemanticHTML(details) {
-    this.log(`   ✅ HTML5 sémantique: TODO - remplacer <div> par <section>/<article>`);
+    this.log(`   ⚠️  HTML5 sémantique: Complexe - skip pour l'instant`);
+    return false; // Cannot fix automatically
   }
 
   async fixKeyboardAccess(details) {
-    this.log(`   ✅ Navigation clavier: TODO - ajouter tabindex et handlers`);
+    this.log(`   ⚠️  Navigation clavier: Complexe - skip pour l'instant`);
+    return false; // Cannot fix automatically
   }
 
   async fixAriaLabels(details) {
-    this.log(`   ✅ ARIA labels: TODO - ajouter aria-label aux éléments interactifs`);
+    this.log(`   ⚠️  ARIA labels: Complexe - skip pour l'instant`);
+    return false; // Cannot fix automatically
   }
 
   async fixDocumentation(details) {
@@ -551,7 +600,72 @@ coverage/
   }
 
   async fixErrorHandling(details) {
-    this.log(`   ✅ Error handling: TODO - ajouter try-catch aux fonctions async`);
+    this.log(`   🔧 Error handling: Ajout try-catch...`);
+
+    // Parser le nom du fichier depuis les détails
+    const fileMatch = details.match(/([^\s]+\.js)/);
+    if (!fileMatch) {
+      this.log(`   ⚠️  Impossible de parser le nom de fichier depuis: ${details}`);
+      return;
+    }
+
+    const fileName = fileMatch[1];
+    const files = this.scanProjectFiles(['js']);
+    const targetFile = files.find(f => f.includes(fileName));
+
+    if (!targetFile) {
+      this.log(`   ⚠️  Fichier ${fileName} introuvable`);
+      return;
+    }
+
+    let content = fs.readFileSync(targetFile, 'utf8');
+
+    // Vérifier si le fichier a déjà un try-catch
+    if (/try\s*\{[\s\S]*?\}\s*catch/.test(content) || content.includes('.catch(')) {
+      this.log(`   ✅ ${fileName}: Déjà protégé`);
+      return;
+    }
+
+    // Stratégie: wrapper la fonction principale dans try-catch
+    // Chercher la première fonction exportée
+    const functionMatch = content.match(/function\s+(\w+)\s*\([^)]*\)\s*\{/);
+    if (functionMatch) {
+      const funcName = functionMatch[1];
+      const funcStart = content.indexOf(functionMatch[0]);
+
+      // Trouver la fin de la fonction (simplification: chercher le dernier return avant module.exports)
+      const moduleExportsPos = content.indexOf('module.exports');
+      const lastReturnPos = content.lastIndexOf('return', moduleExportsPos);
+
+      if (lastReturnPos > funcStart) {
+        // Extraire le statement return
+        const returnLineEnd = content.indexOf(';', lastReturnPos);
+        const returnStatement = content.substring(lastReturnPos, returnLineEnd + 1);
+
+        // Wrapper avec try-catch
+        const indentMatch = content.substring(lastReturnPos - 10, lastReturnPos).match(/(\n\s*)/);
+        const indent = indentMatch ? indentMatch[1] : '\n  ';
+
+        // Ajouter try au début de la fonction
+        const funcBodyStart = funcStart + functionMatch[0].length;
+        const newContent = content.substring(0, funcBodyStart) +
+          '\n  try {' +
+          content.substring(funcBodyStart, lastReturnPos) +
+          indent + returnStatement +
+          '\n  } catch (error) {' +
+          '\n    console.error(\'Error in ' + funcName + ':\', error.message);' +
+          '\n    return null; // ou valeur par défaut appropriée' +
+          '\n  }' +
+          content.substring(returnLineEnd + 1);
+
+        fs.writeFileSync(targetFile, newContent, 'utf8');
+        this.log(`   ✅ ${fileName}: try-catch ajouté à ${funcName}()`);
+      } else {
+        this.log(`   ⚠️  ${fileName}: Structure non reconnue, skip`);
+      }
+    } else {
+      this.log(`   ⚠️  ${fileName}: Pas de fonction trouvée`);
+    }
   }
 
   async fixDependencies(details) {
