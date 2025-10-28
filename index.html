@@ -1409,7 +1409,7 @@ function processGroupedData() {
 
   // PASSE 1: Identifier tous les groupes parents et traiter leurs enfants
   processedData.forEach(client => {
-    const company = window.hubspotCompanies[client.companyId];
+    const company = window.hubspotCompanies[String(client.companyId)];
     if (!company) return;
 
     // Si c'est un parent (a des filiales), traiter maintenant
@@ -1474,7 +1474,7 @@ function processGroupedData() {
           processedClientNames.add(childClient.name);
         } else {
           // La filiale existe dans HubSpot mais n'a pas de deals
-          const childCompany = window.hubspotCompanies[childId];
+          const childCompany = window.hubspotCompanies[String(childId)];
           if (childCompany) {
             group.children.push({
               type: 'child',
@@ -1553,7 +1553,7 @@ function processGroupedData() {
       return;
     }
 
-    const company = window.hubspotCompanies[client.companyId];
+    const company = window.hubspotCompanies[String(client.companyId)];
 
     // Vérifier si c'est une filiale (a des parentCompanyIds)
     if (company && company.parentCompanyIds && company.parentCompanyIds.length > 0) {
@@ -3774,7 +3774,7 @@ function renderCompanyTree() {
 
   // Fonction helper pour créer un objet "prospect" depuis les données brutes HubSpot
   function createProspectFromCompany(companyId) {
-    const company = window.hubspotCompanies[companyId];
+    const company = window.hubspotCompanies[String(companyId))];
     if (!company) return null;
 
     return {
@@ -3865,7 +3865,7 @@ function renderCompanyTree() {
     // Trouver la VRAIE racine (company sans aucun parent dans le groupe)
     const allChildren = new Set();
     companyIds.forEach(id => {
-      const company = window.hubspotCompanies[id];
+      const company = window.hubspotCompanies[String(id))];
       if (company && company.childCompanyIds) {
         company.childCompanyIds.forEach(childId => {
           if (component.has(childId)) {
@@ -3882,7 +3882,7 @@ function renderCompanyTree() {
     const rootId = trueRoots.find(id => companyIdToClient[id]) || trueRoots[0];
     if (!rootId) return;
 
-    const rootCompany = window.hubspotCompanies[rootId];
+    const rootCompany = window.hubspotCompanies[String(rootId))];
     if (!rootCompany) return;
 
     // Construire le nœud racine
@@ -3902,7 +3902,7 @@ function renderCompanyTree() {
       visited.add(parentId);
 
       const children = [];
-      const parent = window.hubspotCompanies[parentId];
+      const parent = window.hubspotCompanies[String(parentId))];
       if (!parent || !parent.childCompanyIds) return children;
 
       parent.childCompanyIds.forEach(childId => {
@@ -5304,7 +5304,7 @@ function renderWhiteSpaces() {
       company.childCompanyIds.forEach(childId => {
         // Si cette filiale N'A PAS de deals (n'est pas dans companiesWithDeals)
         if (!companiesWithDeals.has(childId)) {
-          const childCompany = window.hubspotCompanies[childId];
+          const childCompany = window.hubspotCompanies[String(childId)];
           if (childCompany) {
             // Lifecycle stages à ignorer (ne sont pas des secteurs d'activité)
             const lifecycleStages = ['Prospect', 'Lead', 'Customer', 'Evangelist', 'Subscriber', 'Other'];
