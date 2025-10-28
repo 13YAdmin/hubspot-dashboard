@@ -2841,7 +2841,7 @@ function renderStackedAreaChart() {
   svg.innerHTML = '';
 
   const years = ['2022', '2023', '2024', '2025'];
-  const segments = [...new Set(processedData.map(c => c.segment))].filter(Boolean);
+  const segments = [...new Set(processedData.map(c => c.segment)].filter(Boolean);
 
   // Données par segment et année
   const data = years.map(year => {
@@ -3774,7 +3774,7 @@ function renderCompanyTree() {
 
   // Fonction helper pour créer un objet "prospect" depuis les données brutes HubSpot
   function createProspectFromCompany(companyId) {
-    const company = window.hubspotCompanies[String(companyId))];
+    const company = window.hubspotCompanies[String(companyId)];
     if (!company) return null;
 
     return {
@@ -3865,7 +3865,7 @@ function renderCompanyTree() {
     // Trouver la VRAIE racine (company sans aucun parent dans le groupe)
     const allChildren = new Set();
     companyIds.forEach(id => {
-      const company = window.hubspotCompanies[String(id))];
+      const company = window.hubspotCompanies[String(id)];
       if (company && company.childCompanyIds) {
         company.childCompanyIds.forEach(childId => {
           if (component.has(childId)) {
@@ -3882,7 +3882,7 @@ function renderCompanyTree() {
     const rootId = trueRoots.find(id => companyIdToClient[id]) || trueRoots[0];
     if (!rootId) return;
 
-    const rootCompany = window.hubspotCompanies[String(rootId))];
+    const rootCompany = window.hubspotCompanies[String(rootId)];
     if (!rootCompany) return;
 
     // Construire le nœud racine
@@ -3902,7 +3902,7 @@ function renderCompanyTree() {
       visited.add(parentId);
 
       const children = [];
-      const parent = window.hubspotCompanies[String(parentId))];
+      const parent = window.hubspotCompanies[String(parentId)];
       if (!parent || !parent.childCompanyIds) return children;
 
       parent.childCompanyIds.forEach(childId => {
