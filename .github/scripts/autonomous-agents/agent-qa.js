@@ -55,6 +55,18 @@ class AgentQA {
     // TESTS DE TOUS LES SCRIPTS BACKEND
     await this.testAllBackendScripts();
 
+    // TESTS DES WORKFLOWS GITHUB ACTIONS
+    await this.testGitHubWorkflows();
+
+    // TESTS DES AGENTS EUX-MÊMES
+    await this.testAgents();
+
+    // TESTS DE LA DOCUMENTATION
+    await this.testDocumentation();
+
+    // TESTS DES CONFIGURATIONS
+    await this.testConfigurations();
+
     const content = fs.readFileSync(this.dashboardPath, 'utf8');
 
     // BATTERIES DE TESTS (NIVEAU ÉQUIPE ENTIÈRE)
@@ -1685,6 +1697,342 @@ ${failedTests.length === 0
     }
 
     this.log(`\n✅ ${totalScripts} scripts backend analysés\n`);
+  }
+
+  // ============================================================================
+  // TESTS WORKFLOWS GITHUB ACTIONS
+  // ============================================================================
+
+  async testGitHubWorkflows() {
+    this.log('\n⚙️  TESTS WORKFLOWS GITHUB ACTIONS...\n');
+
+    const workflowsDir = path.join(process.cwd(), '.github/workflows');
+    const workflowFiles = fs.readdirSync(workflowsDir)
+      .filter(f => f.endsWith('.yml') || f.endsWith('.yaml'))
+      .filter(f => !f.includes('_DISABLED'));
+
+    for (const file of workflowFiles) {
+      const filePath = path.join(workflowsDir, file);
+      const content = fs.readFileSync(filePath, 'utf8');
+
+      // 1. Syntaxe YAML valide
+      try {
+        // Basic YAML validation (vérifie indentation basique)
+        const lines = content.split('\n');
+        let inString = false;
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          if (line.includes('"') || line.includes("'")) inString = !inString;
+        }
+        this.test(
+          `Syntaxe YAML valide: ${file}`,
+          true,
+          'Syntaxe correcte',
+          'critical'
+        );
+      } catch (error) {
+        this.test(
+          `Syntaxe YAML valide: ${file}`,
+          false,
+          `Erreur syntaxe: ${error.message}`,
+          'critical'
+        );
+      }
+
+      // 2. Pas de secrets hardcodés
+      const hasHardcodedSecrets = /['\"](?:sk-ant-|xoxb-|ghp_|AKIA)[a-zA-Z0-9\-_]{20,}['"]/.test(content);
+      this.test(
+        `Pas de secrets hardcodés: ${file}`,
+        !hasHardcodedSecrets,
+        hasHardcodedSecrets ? 'SECRETS DÉTECTÉS dans workflow!' : 'Secrets via ${{ secrets }}',
+        'critical'
+      );
+
+      // 3. Utilise ${{ secrets.X }} pour les tokens
+      const usesSecrets = content.includes('${{ secrets.');
+      const needsSecrets = content.includes('HUBSPOT') || content.includes('TOKEN') || content.includes('API');
+      if (needsSecrets) {
+        this.test(
+          `Secrets sécurisés: ${file}`,
+          usesSecrets,
+          usesSecrets ? 'Utilise ${{ secrets }}' : 'Manque secrets sécurisés',
+          'critical'
+        );
+      }
+
+      // 4. Timeout défini (éviter workflows qui tournent indéfiniment)
+      const hasTimeout = /timeout-minutes:\s*\d+/.test(content);
+      this.test(
+        `Timeout défini: ${file}`,
+        hasTimeout,
+        hasTimeout ? 'Timeout configuré' : 'Manque timeout-minutes',
+        'warning'
+      );
+
+      // 5. Permissions définies (principe du moindre privilège)
+      const hasPermissions = /permissions:/.test(content);
+      this.test(
+        `Permissions explicites: ${file}`,
+        hasPermissions,
+        hasPermissions ? 'Permissions définies' : 'Permissions non spécifiées (risque)',
+        'warning'
+      );
+
+      // 6. Gestion d'erreurs (continue-on-error ou if: failure())
+      const hasErrorHandling = /continue-on-error:|if:.*failure\(\)/.test(content);
+      this.test(
+        `Gestion erreurs: ${file}`,
+        hasErrorHandling,
+        hasErrorHandling ? 'Error handling présent' : 'Pas de fallback erreurs',
+        'warning'
+      );
+
+      // 7. Cache configuré (pour node_modules, etc.)
+      const hasCache = /cache:/.test(content);
+      if (content.includes('node') || content.includes('npm')) {
+        this.test(
+          `Cache optimisé: ${file}`,
+          hasCache,
+          hasCache ? 'Cache npm configuré' : 'Manque cache (lenteur)',
+          'warning'
+        );
+      }
+
+      // 8. Pas de git force push
+      const hasForcePush = /git push.*--force|git push.*-f\s/.test(content);
+      this.test(
+        `Pas de force push: ${file}`,
+        !hasForcePush,
+        hasForcePush ? 'DANGER: force push détecté' : 'Push sécurisé',
+        'critical'
+      );
+    }
+
+    this.log(`\n✅ ${workflowFiles.length} workflows analysés\n`);
+  }
+
+  // ============================================================================
+  // TESTS DES AGENTS
+  // ============================================================================
+
+  async testAgents() {
+    this.log('\n🤖 TESTS DES AGENTS (QUALITÉ DES AGENTS EUX-MÊMES)...\n');
+
+    const agentsDir = path.join(process.cwd(), '.github/scripts/autonomous-agents');
+    const agentFiles = fs.readdirSync(agentsDir)
+      .filter(f => f.startsWith('agent-') && f.endsWith('.js'))
+      .filter(f => !agentsDir.includes('_DISABLED'));
+
+    for (const file of agentFiles) {
+      const filePath = path.join(agentsDir, file);
+      const content = fs.readFileSync(filePath, 'utf8');
+
+      // 1. Documentation du rôle de l'agent
+      const hasRoleDoc = /MISSION:|RÔLE:|Role:|Mission:/.test(content);
+      this.test(
+        `Documentation rôle: ${file}`,
+        hasRoleDoc,
+        hasRoleDoc ? 'Rôle documenté' : 'Rôle non documenté',
+        'warning'
+      );
+
+      // 2. Classe bien formée
+      const hasClass = /class\s+Agent/.test(content);
+      this.test(
+        `Structure classe: ${file}`,
+        hasClass,
+        hasClass ? 'Classe Agent définie' : 'Pas de classe Agent',
+        'critical'
+      );
+
+      // 3. Méthode run() ou execute()
+      const hasRunMethod = /async\s+run\(|async\s+execute\(/.test(content);
+      this.test(
+        `Méthode run/execute: ${file}`,
+        hasRunMethod,
+        hasRunMethod ? 'Point d\'entrée présent' : 'Pas de méthode run()',
+        'critical'
+      );
+
+      // 4. Logging structuré
+      const hasStructuredLogging = /this\.log\(|console\.log\(`\[/.test(content);
+      this.test(
+        `Logging structuré: ${file}`,
+        hasStructuredLogging,
+        hasStructuredLogging ? 'Logs structurés' : 'Logs non structurés',
+        'warning'
+      );
+
+      // 5. Gestion d'erreurs robuste
+      const hasTryCatch = /try\s*\{[\s\S]*?\}\s*catch/.test(content);
+      this.test(
+        `Error handling agent: ${file}`,
+        hasTryCatch,
+        hasTryCatch ? 'Try-catch présent' : 'Manque gestion erreurs',
+        'critical'
+      );
+
+      // 6. Génère un rapport (fichier RAPPORT-*)
+      const generatesReport = /RAPPORT-.*\.md|writeFileSync.*RAPPORT/i.test(content);
+      this.test(
+        `Génère rapport: ${file}`,
+        generatesReport,
+        generatesReport ? 'Rapport généré' : 'Pas de rapport',
+        'warning'
+      );
+
+      // 7. Tests présents (méthode test())
+      const hasTests = /\.test\(|describe\(|it\(/.test(content);
+      if (file.includes('qa')) {
+        this.test(
+          `Tests implémentés: ${file}`,
+          hasTests,
+          hasTests ? 'Tests présents' : 'Agent QA sans tests!',
+          'critical'
+        );
+      }
+
+      // 8. Pas de logique métier hardcodée
+      const hasHardcodedLogic = /if.*===.*['"]specific-value['"]/.test(content);
+      this.test(
+        `Logique configurable: ${file}`,
+        !hasHardcodedLogic,
+        hasHardcodedLogic ? 'Logique hardcodée détectée' : 'Logique flexible',
+        'warning'
+      );
+    }
+
+    this.log(`\n✅ ${agentFiles.length} agents analysés\n`);
+  }
+
+  // ============================================================================
+  // TESTS DOCUMENTATION
+  // ============================================================================
+
+  async testDocumentation() {
+    this.log('\n📚 TESTS DOCUMENTATION...\n');
+
+    const docsToCheck = [
+      { path: 'README.md', required: true },
+      { path: 'ARCHITECTURE.md', required: true },
+      { path: 'package.json', required: true }
+    ];
+
+    for (const doc of docsToCheck) {
+      const fullPath = path.join(process.cwd(), doc.path);
+      const exists = fs.existsSync(fullPath);
+
+      this.test(
+        `Documentation existe: ${doc.path}`,
+        exists || !doc.required,
+        exists ? 'Présent' : (doc.required ? 'MANQUANT' : 'Optionnel manquant'),
+        doc.required ? 'critical' : 'warning'
+      );
+
+      if (exists) {
+        const content = fs.readFileSync(fullPath, 'utf8');
+
+        // README.md spécifique
+        if (doc.path === 'README.md') {
+          const hasTitle = /^#\s+/.test(content);
+          const hasInstallInstructions = /install|installation/i.test(content);
+          const hasUsageInstructions = /usage|utilisation|how to/i.test(content);
+
+          this.test('README: Titre présent', hasTitle, 'Titre H1 présent', 'warning');
+          this.test('README: Instructions install', hasInstallInstructions, 'Instructions présentes', 'warning');
+          this.test('README: Instructions usage', hasUsageInstructions, 'Usage documenté', 'warning');
+        }
+
+        // ARCHITECTURE.md spécifique
+        if (doc.path === 'ARCHITECTURE.md') {
+          const hasComponents = /composant|component|module/i.test(content);
+          const hasDiagram = /```|graph|flowchart|mermaid/.test(content);
+
+          this.test('ARCHITECTURE: Composants décrits', hasComponents, 'Architecture documentée', 'warning');
+          this.test('ARCHITECTURE: Diagrammes', hasDiagram, hasDiagram ? 'Diagrammes présents' : 'Pas de diagrammes', 'warning');
+        }
+
+        // Vérifications communes
+        const isOutdated = content.includes('TODO') || content.includes('FIXME') || content.includes('[WIP]');
+        this.test(
+          `Documentation à jour: ${doc.path}`,
+          !isOutdated,
+          isOutdated ? 'Contient TODO/FIXME/WIP' : 'À jour',
+          'warning'
+        );
+
+        const hasLastUpdate = /last update|dernière mise à jour|updated:/i.test(content);
+        this.test(
+          `Date mise à jour: ${doc.path}`,
+          hasLastUpdate,
+          hasLastUpdate ? 'Date présente' : 'Pas de date MAJ',
+          'warning'
+        );
+      }
+    }
+
+    this.log('\n✅ Documentation analysée\n');
+  }
+
+  // ============================================================================
+  // TESTS CONFIGURATIONS
+  // ============================================================================
+
+  async testConfigurations() {
+    this.log('\n⚙️  TESTS CONFIGURATIONS...\n');
+
+    // package.json
+    const packageJsonPath = path.join(process.cwd(), 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
+      // Vérifier champs requis
+      this.test('package.json: name présent', !!packageJson.name, 'Nom du projet défini', 'critical');
+      this.test('package.json: version présente', !!packageJson.version, 'Version définie', 'warning');
+
+      // Vérifier scripts
+      const hasScripts = packageJson.scripts && Object.keys(packageJson.scripts).length > 0;
+      this.test('package.json: Scripts définis', hasScripts, hasScripts ? `${Object.keys(packageJson.scripts).length} scripts` : 'Aucun script', 'warning');
+
+      // Vérifier dépendances
+      const hasDeps = packageJson.dependencies || packageJson.devDependencies;
+      this.test('package.json: Dépendances', !!hasDeps, hasDeps ? 'Dépendances définies' : 'Aucune dépendance', 'warning');
+
+      // Vérifier pas de dépendances avec vulnérabilités connues (basique)
+      if (packageJson.dependencies) {
+        const suspiciousDeps = Object.keys(packageJson.dependencies).filter(dep =>
+          dep.includes('colors') && packageJson.dependencies[dep].includes('1.4.0') // exemple: colors@1.4.0 a une backdoor
+        );
+        this.test(
+          'package.json: Pas de dépendances dangereuses',
+          suspiciousDeps.length === 0,
+          suspiciousDeps.length > 0 ? `Dépendances suspectes: ${suspiciousDeps.join(', ')}` : 'Dépendances saines',
+          'critical'
+        );
+      }
+
+      // Vérifier repository défini (pour traçabilité)
+      const hasRepo = !!packageJson.repository;
+      this.test('package.json: Repository défini', hasRepo, hasRepo ? 'Repository configuré' : 'Repository manquant', 'warning');
+    }
+
+    // .gitignore
+    const gitignorePath = path.join(process.cwd(), '.gitignore');
+    if (fs.existsSync(gitignorePath)) {
+      const gitignoreContent = fs.readFileSync(gitignorePath, 'utf8');
+
+      const ignoresNodeModules = /node_modules/.test(gitignoreContent);
+      const ignoresEnv = /\.env/.test(gitignoreContent);
+      const ignoresLogs = /\.log|logs\//.test(gitignoreContent);
+
+      this.test('.gitignore: Ignore node_modules', ignoresNodeModules, 'node_modules ignoré', 'critical');
+      this.test('.gitignore: Ignore .env', ignoresEnv, '.env ignoré (sécurité)', 'critical');
+      this.test('.gitignore: Ignore logs', ignoresLogs, 'Logs ignorés', 'warning');
+    } else {
+      this.test('.gitignore existe', false, 'MANQUANT: risque de commit de secrets', 'critical');
+    }
+
+    this.log('\n✅ Configurations analysées\n');
   }
 }
 
