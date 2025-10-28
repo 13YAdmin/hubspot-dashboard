@@ -1,6 +1,6 @@
 # ✅ RAPPORT AGENT QA - INSPECTEUR QUALITÉ
 
-**Date**: 28/10/2025 10:48:28
+**Date**: 28/10/2025 11:56:44
 **Score**: 0/100 🔴 BLOQUÉ - Ne pas déployer
 **Standard**: 95/100 MINIMUM pour production
 
@@ -8,11 +8,11 @@
 
 ## 📊 RÉSUMÉ
 
-- ✅ Tests passés: 235
-- ❌ Tests échoués: 56
+- ✅ Tests passés: 238
+- ❌ Tests échoués: 55
 - ⚠️  Échecs critiques: 13
-- ⚡ Avertissements: 43
-- 📝 Total: 291 tests
+- ⚡ Avertissements: 42
+- 📝 Total: 293 tests
 
 ---
 
@@ -59,11 +59,12 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 
 ### Accessibilité
 - ✅ Dépendance existe: ./lib/health-score - Module ./lib/health-score trouvé
-- ❌ Error handling: health-score.js - Manque gestion erreurs
+- ✅ Logging modéré: health-score.js - 1 console logs (OK pour backend)
+- ✅ Error handling: health-score.js - Try-catch présent
 - ✅ Pas de secrets hardcodés: health-score.js - Aucun secret hardcodé
 - ✅ Utilise const/let: health-score.js - const/let uniquement
 - ✅ Pas de eval(): health-score.js - eval() est dangereux
-- ✅ Documentation: health-score.js - 28% commentaires
+- ✅ Documentation: health-score.js - 25% commentaires
 - ✅ renderHealthTrendsChart implémenté - Graphique health trends
 - ✅ Attribut lang sur <html> - WCAG 3.1.1 - Requis
 - ✅ Boutons avec aria-label ou texte - Tous les boutons doivent avoir du texte ou aria-label
@@ -127,20 +128,20 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 
 ## ⚠️  ÉCHECS CRITIQUES
 
-1. **Fichier data.json existe**
+1. **Workflow HubSpot succès**
+   - Status: 
+
+2. **Fichier data.json existe**
    - public/data.json doit être généré par fetch-hubspot-data.yml
 
-2. **Pas de eval(): agent-qa.js**
+3. **Pas de eval(): agent-qa.js**
    - eval() est dangereux
 
-3. **Timeout fetch: debug-properties.js**
+4. **Timeout fetch: debug-properties.js**
    - Manque timeout pour fetch
 
-4. **Timeout fetch: fetch-hubspot.js**
+5. **Timeout fetch: fetch-hubspot.js**
    - Manque timeout pour fetch
-
-5. **Error handling: health-score.js**
-   - Manque gestion erreurs
 
 6. **Error handling: industry-detector.js**
    - Manque gestion erreurs
@@ -170,12 +171,8 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 
 ## 🔧 ACTIONS REQUISES
 
-1. 🟡 WARNING: **Vérification runs workflow**
-   - Impossible de vérifier (gh CLI requis): Command failed: gh run list --workflow=fetch-hubspot-data.yml --limit 1 --json status,conclusion,createdAt
-gh: To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable. Example:
-  env:
-    GH_TOKEN: ${{ github.token }}
-
+1. 🔴 CRITIQUE: **Workflow HubSpot succès**
+   - Status: 
 
 2. 🔴 CRITIQUE: **Fichier data.json existe**
    - public/data.json doit être généré par fetch-hubspot-data.yml
@@ -210,136 +207,133 @@ gh: To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment
 12. 🟡 WARNING: **Rate limiting: fetch-hubspot.js**
    - Manque rate limiting
 
-13. 🔴 CRITIQUE: **Error handling: health-score.js**
-   - Manque gestion erreurs
-
-14. 🟡 WARNING: **Documentation: industry-cache.js**
+13. 🟡 WARNING: **Documentation: industry-cache.js**
    - 2% commentaires
 
-15. 🔴 CRITIQUE: **Error handling: industry-detector.js**
+14. 🔴 CRITIQUE: **Error handling: industry-detector.js**
    - Manque gestion erreurs
 
-16. 🔴 CRITIQUE: **Error handling: notes-analyzer.js**
+15. 🔴 CRITIQUE: **Error handling: notes-analyzer.js**
    - Manque gestion erreurs
 
-17. 🔴 CRITIQUE: **Error handling: segment-detector.js**
+16. 🔴 CRITIQUE: **Error handling: segment-detector.js**
    - Manque gestion erreurs
 
-18. 🔴 CRITIQUE: **Error handling: test-detector.js**
+17. 🔴 CRITIQUE: **Error handling: test-detector.js**
    - Manque gestion erreurs
 
-19. 🟡 WARNING: **Timeout défini: dashboard-simple.yml**
+18. 🟡 WARNING: **Timeout défini: dashboard-simple.yml**
    - Manque timeout-minutes
 
-20. 🟡 WARNING: **Gestion erreurs: dashboard-simple.yml**
+19. 🟡 WARNING: **Gestion erreurs: dashboard-simple.yml**
    - Pas de fallback erreurs
 
-21. 🟡 WARNING: **Cache optimisé: dashboard-simple.yml**
+20. 🟡 WARNING: **Cache optimisé: dashboard-simple.yml**
    - Manque cache (lenteur)
 
-22. 🟡 WARNING: **Timeout défini: fetch-hubspot-data.yml**
+21. 🟡 WARNING: **Timeout défini: fetch-hubspot-data.yml**
    - Manque timeout-minutes
 
-23. 🟡 WARNING: **Cache optimisé: fetch-hubspot-data.yml**
+22. 🟡 WARNING: **Cache optimisé: fetch-hubspot-data.yml**
    - Manque cache (lenteur)
 
-24. 🟡 WARNING: **Date mise à jour: README.md**
+23. 🟡 WARNING: **Date mise à jour: README.md**
    - Pas de date MAJ
 
-25. 🟡 WARNING: **Date mise à jour: ARCHITECTURE.md**
+24. 🟡 WARNING: **Date mise à jour: ARCHITECTURE.md**
    - Pas de date MAJ
 
-26. 🟡 WARNING: **Date mise à jour: package.json**
+25. 🟡 WARNING: **Date mise à jour: package.json**
    - Pas de date MAJ
 
-27. 🟡 WARNING: **package.json: Repository défini**
+26. 🟡 WARNING: **package.json: Repository défini**
    - Repository manquant
 
-28. 🔴 CRITIQUE: **.gitignore: Ignore node_modules**
+27. 🔴 CRITIQUE: **.gitignore: Ignore node_modules**
    - node_modules ignoré
 
-29. 🔴 CRITIQUE: **COHÉRENCE: Workflow status vs rapport**
+28. 🔴 CRITIQUE: **COHÉRENCE: Workflow status vs rapport**
    - INCOHÉRENCE détectée
 
-30. 🟡 WARNING: **Event listeners nettoyés**
+29. 🟡 WARNING: **Event listeners nettoyés**
    - Prévenir memory leaks
 
-31. 🟡 WARNING: **Structure sémantique HTML5**
+30. 🟡 WARNING: **Structure sémantique HTML5**
    - Utiliser HTML5 sémantique
 
-32. 🟡 WARNING: **JavaScript en fin de body ou defer**
+31. 🟡 WARNING: **JavaScript en fin de body ou defer**
    - Script en fin ou avec defer
 
-33. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
+32. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-34. 🔴 CRITIQUE: **Sanitization innerHTML**
+33. 🔴 CRITIQUE: **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
-35. 🟡 WARNING: **Rate limiting hints**
+34. 🟡 WARNING: **Rate limiting hints**
    - OWASP A04 - Design sécurisé
 
-36. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
+35. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
    - OWASP A08 - Intégrité des ressources
 
-37. 🟡 WARNING: **Validation URLs externes**
+36. 🟡 WARNING: **Validation URLs externes**
    - OWASP A10 - SSRF prevention
 
-38. 🟡 WARNING: **Preconnect aux domaines tiers**
+37. 🟡 WARNING: **Preconnect aux domaines tiers**
    - LCP optimisé - Preconnect CDN
 
-39. 🟡 WARNING: **Service Worker présent**
+38. 🟡 WARNING: **Service Worker présent**
    - TTI - Offline capability
 
-40. 🟡 WARNING: **Resource hints utilisés**
+39. 🟡 WARNING: **Resource hints utilisés**
    - Performance hints (preload/prefetch)
 
-41. 🟡 WARNING: **Pas de timeout automatique**
+40. 🟡 WARNING: **Pas de timeout automatique**
    - WCAG AAA 2.2.3 - Pas de limite de temps
 
-42. 🟡 WARNING: **Sauvegarde de données avant expiration session**
+41. 🟡 WARNING: **Sauvegarde de données avant expiration session**
    - WCAG AAA 2.2.5 - Sauvegarde données
 
-43. 🟡 WARNING: **Headings hiérarchiques**
+42. 🟡 WARNING: **Headings hiérarchiques**
    - WCAG AAA 2.4.10 - Headings structurés
 
-44. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
+43. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
    - WCAG AAA 3.1.5 - Niveau de lecture
 
-45. 🟡 WARNING: **Confirmation actions importantes**
+44. 🟡 WARNING: **Confirmation actions importantes**
    - WCAG AAA 3.3.6 - Prévention erreurs
 
-46. 🟡 WARNING: **Nombre de fonctions raisonnable**
+45. 🟡 WARNING: **Nombre de fonctions raisonnable**
    - 150 fonctions (< 150 optimal)
 
-47. 🟡 WARNING: **Taux de duplication acceptable**
+46. 🟡 WARNING: **Taux de duplication acceptable**
    - 43.0% duplication (< 30%)
 
-48. 🟡 WARNING: **Pas de magic numbers**
+47. 🟡 WARNING: **Pas de magic numbers**
    - Utiliser des constantes nommées
 
-49. 🟡 WARNING: **Pas de code commenté excessif**
+48. 🟡 WARNING: **Pas de code commenté excessif**
    - Nettoyer code commenté
 
-50. 🟡 WARNING: **Persistence données implémentée**
+49. 🟡 WARNING: **Persistence données implémentée**
    - Sauvegarde données locale
 
-51. 🟡 WARNING: **Error handler global**
+50. 🟡 WARNING: **Error handler global**
    - Capture erreurs globales
 
-52. 🟡 WARNING: **Support mode hors-ligne**
+51. 🟡 WARNING: **Support mode hors-ligne**
    - Détection/gestion offline
 
-53. 🟡 WARNING: **Retry logic pour requêtes**
+52. 🟡 WARNING: **Retry logic pour requêtes**
    - Retry automatique échecs réseau
 
-54. 🟡 WARNING: **Timeouts requêtes réseau**
+53. 🟡 WARNING: **Timeouts requêtes réseau**
    - Timeout pour éviter hang
 
-55. 🟡 WARNING: **Rate limiting client-side**
+54. 🟡 WARNING: **Rate limiting client-side**
    - Protection contre spam requêtes
 
-56. 🟡 WARNING: **Adaptation qualité connexion**
+55. 🟡 WARNING: **Adaptation qualité connexion**
    - Détection connexion lente
 
 ---
