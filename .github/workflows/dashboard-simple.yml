@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: dashboard-simple
-  cancel-in-progress: false
+  cancel-in-progress: true  # Annule les runs en cours si nouveau lancé
 
 jobs:
   dev-and-qa:
@@ -52,7 +52,7 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git add -A
             git commit -m "$(cat <<'EOF'
-          fix: Agent Dev - Implémentation automatique
+          fix: Agent Dev - Implémentation automatique [skip ci]
 
           Tâches traitées par Agent Dev
           Score QA généré par Agent QA

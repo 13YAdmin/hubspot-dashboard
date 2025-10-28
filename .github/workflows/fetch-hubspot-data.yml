@@ -9,6 +9,10 @@ on:
     branches:
       - main  # Lance aussi à chaque push sur main
 
+concurrency:
+  group: fetch-hubspot-data
+  cancel-in-progress: true  # Annule les runs en cours si nouveau lancé
+
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
