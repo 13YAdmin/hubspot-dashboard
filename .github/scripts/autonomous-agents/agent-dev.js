@@ -606,8 +606,10 @@ coverage/
     this.log('🔍 Exécution de l\'Agent QA...');
 
     try {
+      // Utiliser le path absolu vers le root du projet
+      const projectRoot = path.join(__dirname, '../../..');
       execSync('node .github/scripts/autonomous-agents/agent-qa.js', {
-        cwd: process.cwd(),
+        cwd: projectRoot,
         stdio: 'inherit'
       });
       this.log('✅ QA terminé\n');
