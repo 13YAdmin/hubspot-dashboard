@@ -1,6 +1,6 @@
 # ✅ RAPPORT AGENT QA - INSPECTEUR QUALITÉ
 
-**Date**: 28/10/2025 11:56:44
+**Date**: 28/10/2025 11:40:31
 **Score**: 0/100 🔴 BLOQUÉ - Ne pas déployer
 **Standard**: 95/100 MINIMUM pour production
 
@@ -8,11 +8,11 @@
 
 ## 📊 RÉSUMÉ
 
-- ✅ Tests passés: 238
+- ✅ Tests passés: 237
 - ❌ Tests échoués: 55
-- ⚠️  Échecs critiques: 13
-- ⚡ Avertissements: 42
-- 📝 Total: 293 tests
+- ⚠️  Échecs critiques: 12
+- ⚡ Avertissements: 43
+- 📝 Total: 292 tests
 
 ---
 
@@ -128,51 +128,52 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 
 ## ⚠️  ÉCHECS CRITIQUES
 
-1. **Workflow HubSpot succès**
-   - Status: 
-
-2. **Fichier data.json existe**
+1. **Fichier data.json existe**
    - public/data.json doit être généré par fetch-hubspot-data.yml
 
-3. **Pas de eval(): agent-qa.js**
+2. **Pas de eval(): agent-qa.js**
    - eval() est dangereux
 
-4. **Timeout fetch: debug-properties.js**
+3. **Timeout fetch: debug-properties.js**
    - Manque timeout pour fetch
 
-5. **Timeout fetch: fetch-hubspot.js**
+4. **Timeout fetch: fetch-hubspot.js**
    - Manque timeout pour fetch
 
-6. **Error handling: industry-detector.js**
+5. **Error handling: industry-detector.js**
    - Manque gestion erreurs
 
-7. **Error handling: notes-analyzer.js**
+6. **Error handling: notes-analyzer.js**
    - Manque gestion erreurs
 
-8. **Error handling: segment-detector.js**
+7. **Error handling: segment-detector.js**
    - Manque gestion erreurs
 
-9. **Error handling: test-detector.js**
+8. **Error handling: test-detector.js**
    - Manque gestion erreurs
 
-10. **.gitignore: Ignore node_modules**
+9. **.gitignore: Ignore node_modules**
    - node_modules ignoré
 
-11. **COHÉRENCE: Workflow status vs rapport**
+10. **COHÉRENCE: Workflow status vs rapport**
    - INCOHÉRENCE détectée
 
-12. **Protection injection SQL/NoSQL**
+11. **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-13. **Sanitization innerHTML**
+12. **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
 ---
 
 ## 🔧 ACTIONS REQUISES
 
-1. 🔴 CRITIQUE: **Workflow HubSpot succès**
-   - Status: 
+1. 🟡 WARNING: **Vérification runs workflow**
+   - Impossible de vérifier (gh CLI requis): Command failed: gh run list --workflow=fetch-hubspot-data.yml --limit 1 --json status,conclusion,createdAt
+gh: To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable. Example:
+  env:
+    GH_TOKEN: ${{ github.token }}
+
 
 2. 🔴 CRITIQUE: **Fichier data.json existe**
    - public/data.json doit être généré par fetch-hubspot-data.yml
