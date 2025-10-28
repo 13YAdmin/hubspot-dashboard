@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-28T14:58:29.057Z",
+  "timestamp": "2025-10-28T17:12:34.898Z",
   "count": 81,
   "data": [
     {
@@ -276,17 +276,17 @@
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
-      "totalNotes": 118,
-      "notesAvgLength": 213,
+      "totalNotes": 120,
+      "notesAvgLength": 212,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 6,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 22,
       "notesMeetingKeywords": 2,
-      "latestNoteDate": "2025-10-28T11:18:53.354Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Echanges, visio et projets avec Cédric, Tony et Danielle. Le dernier projet date de 2024 et Tony a fait une relance cette année en septembre. </p></div>",
-      "engagementEmails": 310,
+      "latestNoteDate": "2025-10-28T14:58:50.985Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Aucune interaction passée avec 13 Years, tout nouveau contact</p></div>",
+      "engagementEmails": 312,
       "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
@@ -313,7 +313,9 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        258850478274
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -394,9 +396,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 302000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        220598428889
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -497,21 +497,21 @@
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
-      "totalNotes": 7,
-      "notesAvgLength": 1795,
+      "totalNotes": 10,
+      "notesAvgLength": 1325,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-21T12:53:30.188Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "latestNoteDate": "2025-10-28T15:34:46.263Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">La relation existe depuis 2023, 2 projets onboarding et plusieurs échanges avec Tony et Cédric en 2023, 2024 et 2025. </p></div>",
       "engagementEmails": 3,
       "engagementCalls": 6,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 78,
+      "healthScore": 83,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -574,9 +574,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -659,7 +657,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -740,9 +740,7 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        265787828419
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -797,16 +795,16 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 6,
-      "notesAvgLength": 1880,
+      "totalNotes": 9,
+      "notesAvgLength": 1329,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-21T12:53:30.188Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "latestNoteDate": "2025-10-28T15:34:46.263Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">La relation existe depuis 2023, 2 projets onboarding et plusieurs échanges avec Tony et Cédric en 2023, 2024 et 2025. </p></div>",
       "engagementEmails": 3,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -1096,17 +1094,17 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 118,
-      "notesAvgLength": 213,
+      "totalNotes": 120,
+      "notesAvgLength": 212,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 6,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 22,
       "notesMeetingKeywords": 2,
-      "latestNoteDate": "2025-10-28T11:18:53.354Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Echanges, visio et projets avec Cédric, Tony et Danielle. Le dernier projet date de 2024 et Tony a fait une relance cette année en septembre. </p></div>",
-      "engagementEmails": 310,
+      "latestNoteDate": "2025-10-28T14:58:50.985Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Aucune interaction passée avec 13 Years, tout nouveau contact</p></div>",
+      "engagementEmails": 312,
       "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
@@ -1133,7 +1131,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1427,7 +1427,9 @@
       "companyRevenue": 1130000000,
       "companyEmployees": 10000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        263648066783
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1468,7 +1470,9 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        258850478274
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1513,17 +1517,17 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 118,
-      "notesAvgLength": 213,
+      "totalNotes": 120,
+      "notesAvgLength": 212,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 6,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 22,
       "notesMeetingKeywords": 2,
-      "latestNoteDate": "2025-10-28T11:18:53.354Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Echanges, visio et projets avec Cédric, Tony et Danielle. Le dernier projet date de 2024 et Tony a fait une relance cette année en septembre. </p></div>",
-      "engagementEmails": 310,
+      "latestNoteDate": "2025-10-28T14:58:50.985Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Aucune interaction passée avec 13 Years, tout nouveau contact</p></div>",
+      "engagementEmails": 312,
       "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
@@ -1844,7 +1848,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1898,16 +1904,16 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 6,
-      "notesAvgLength": 1880,
+      "totalNotes": 9,
+      "notesAvgLength": 1329,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-21T12:53:30.188Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "latestNoteDate": "2025-10-28T15:34:46.263Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">La relation existe depuis 2023, 2 projets onboarding et plusieurs échanges avec Tony et Cédric en 2023, 2024 et 2025. </p></div>",
       "engagementEmails": 3,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -1977,7 +1983,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1000000000,
       "companyEmployees": 3000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        235135998174
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2357,9 +2365,7 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        265787828419
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2405,7 +2411,7 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 119,
+      "totalNotes": 120,
       "notesAvgLength": 212,
       "notesHasRecent": true,
       "notesSentiment": "positive",
@@ -2413,9 +2419,9 @@
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 22,
       "notesMeetingKeywords": 2,
-      "latestNoteDate": "2025-10-28T14:55:40.046Z",
+      "latestNoteDate": "2025-10-28T14:58:50.985Z",
       "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Aucune interaction passée avec 13 Years, tout nouveau contact</p></div>",
-      "engagementEmails": 311,
+      "engagementEmails": 312,
       "engagementCalls": 4,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
@@ -2485,7 +2491,9 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        258850478274
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2525,9 +2533,7 @@
       "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 389000,
       "companyEmployees": 1250,
-      "companyParentIds": [
-        263633128688
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2832,16 +2838,16 @@
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
-      "totalNotes": 6,
-      "notesAvgLength": 1880,
+      "totalNotes": 9,
+      "notesAvgLength": 1329,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 1,
       "notesNegativeKeywords": 0,
       "notesActionKeywords": 0,
       "notesMeetingKeywords": 0,
-      "latestNoteDate": "2025-10-21T12:53:30.188Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><h2>Coordonnées</h2><div style=\"text-align: start;\"><ul><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">E-MAIL</span></span></span></span><a href=\"mailto:clementine.darricau@totalenergies.com\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">clementine.darricau@totalenergies.com</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. STANDARD</span></span></span></span><a href=\"tel:01 47 44 45 46\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">01 47 44 45 46</span></span></a></p></li><li><p style=\"margin:0;\"><span style=\"color: rgb(180, 174, 164);\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\"><span style=\"font-family: GalanoGrotesque-Medium;\">TÉL. MOBILE</span></span></span></span><a href=\"tel:06 85 23 88 20\" target=\"_blank\" style=\"color: rgb(205, 201, 194); box-sizing: border-box; line-height: 1; text-decoration: none; outline: none; background-color: transparent;\"><span style=\"font-size: medium;\"><span style=\"background-color: rgb(24, 26, 27);\">06 85 23 88 20</span></span></a></p><p style=\"text-align: start;margin:0;\"><br class=\"hs-trailingbreak\"></p></li></ul></div><p style=\"margin:0;\"><br class=\"hs-trailingbreak\"></p></div>",
+      "latestNoteDate": "2025-10-28T15:34:46.263Z",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">La relation existe depuis 2023, 2 projets onboarding et plusieurs échanges avec Tony et Cédric en 2023, 2024 et 2025. </p></div>",
       "engagementEmails": 3,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -2991,9 +2997,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3122,7 +3126,10 @@
       "companyRevenue": 20000000000,
       "companyEmployees": 72500,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264204131577,
+        264581917912
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3410,9 +3417,7 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        265787828419
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -4058,9 +4063,7 @@
       "employees": 49000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        225530064080
-      ]
+      "childCompanyIds": []
     },
     "220598428890": {
       "id": "220598428890",
@@ -4269,7 +4272,9 @@
       "employees": 124600,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090717
+      ]
     },
     "220607386867": {
       "id": "220607386867",
@@ -4719,9 +4724,7 @@
       "revenue": 302000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220598428889
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "225635140816": {
@@ -4743,7 +4746,9 @@
       "revenue": 4400000000,
       "employees": 14200,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "226285007091": {
@@ -4799,9 +4804,7 @@
       "employees": 83100,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        245933664460
-      ]
+      "childCompanyIds": []
     },
     "226285019338": {
       "id": "226285019338",
@@ -5983,9 +5986,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -7421,9 +7422,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211629": {
@@ -8582,7 +8581,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226911567073": {
@@ -8989,7 +8990,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220593061109
+      ],
       "childCompanyIds": []
     },
     "226913359045": {
@@ -10544,7 +10547,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226922255601": {
@@ -11715,9 +11720,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226962201787": {
@@ -11948,9 +11951,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007115": {
@@ -12768,9 +12769,7 @@
       "revenue": 163180400000,
       "employees": 8279,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226965808366": {
@@ -13641,7 +13640,9 @@
       "revenue": 1000000000,
       "employees": 3000,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        235135998174
+      ],
       "childCompanyIds": []
     },
     "230096330991": {
@@ -13675,7 +13676,10 @@
       "employees": 72500,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204131577,
+        264581917912
+      ]
     },
     "230386516181": {
       "id": "230386516181",
@@ -14066,9 +14070,7 @@
       "revenue": 14000000000,
       "employees": 52000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "232131152093": {
@@ -14143,7 +14145,9 @@
       "revenue": 5000000000,
       "employees": 12000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        249838914787
+      ],
       "childCompanyIds": []
     },
     "233139578076": {
@@ -16776,9 +16780,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234992537830": {
@@ -19281,7 +19283,9 @@
       "revenue": 0,
       "employees": 21505,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "235010292941": {
@@ -20802,7 +20806,9 @@
       "employees": 10000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        263648066783
+      ]
     },
     "235051015374": {
       "id": "235051015374",
@@ -21110,7 +21116,9 @@
       "employees": 34000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        230072877254
+      ]
     },
     "235137799405": {
       "id": "235137799405",
@@ -21357,10 +21365,10 @@
     "235511680221": {
       "id": "235511680221",
       "name": "MSD FRANCE",
-      "domain": "msd-france.fr",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "domain": "msd-france.com",
+      "industry": "PHARMACEUTICALS",
+      "revenue": 2900000000,
+      "employees": 3000,
       "ownerId": "",
       "parentCompanyIds": [
         226922256592
@@ -21683,7 +21691,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260804494551
+      ],
       "childCompanyIds": []
     },
     "235542906101": {
@@ -22530,9 +22540,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        226922256592
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235592339680": {
@@ -23016,7 +23024,9 @@
       "revenue": 0,
       "employees": 1500,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        235052258498
+      ],
       "childCompanyIds": []
     },
     "235725744326": {
@@ -24349,9 +24359,7 @@
       "revenue": 6069000000,
       "employees": 2525,
       "ownerId": "",
-      "parentCompanyIds": [
-        226285017278
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "246784900287": {
@@ -24462,7 +24470,9 @@
       "employees": 95442,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        233096890562
+      ]
     },
     "249843254517": {
       "id": "249843254517",
@@ -24595,7 +24605,9 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "258156739774": {
@@ -24690,7 +24702,9 @@
       "employees": 150000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        258850478274
+      ]
     },
     "260128816334": {
       "id": "260128816334",
@@ -24701,7 +24715,10 @@
       "employees": 34000,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204846315,
+        264205568248
+      ]
     },
     "260804494551": {
       "id": "260804494551",
@@ -24803,9 +24820,7 @@
       "revenue": 389000,
       "employees": 1250,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262613919992": {
@@ -24897,9 +24912,7 @@
       "revenue": 606014800,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263566089435": {
@@ -24922,7 +24935,11 @@
       "employees": 6000,
       "ownerId": "29974261",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        262469511370,
+        263425988855,
+        263434090717
+      ]
     },
     "263648066783": {
       "id": "263648066783",
@@ -24991,9 +25008,7 @@
       "revenue": 19500000000,
       "employees": 4000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        260128816334
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204852443": {
@@ -25015,7 +25030,9 @@
       "revenue": 970000000,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220612714702
+      ],
       "childCompanyIds": []
     },
     "264205568248": {
@@ -25037,9 +25054,7 @@
       "revenue": 15794000000,
       "employees": 3000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        220612714702
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264240320709": {
@@ -25085,7 +25100,9 @@
       "revenue": 1700000000,
       "employees": 33300,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        230109082847
+      ],
       "childCompanyIds": []
     },
     "265447607502": {
@@ -25108,9 +25125,7 @@
       "employees": 32500,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        265788546273
-      ]
+      "childCompanyIds": []
     },
     "265787828441": {
       "id": "265787828441",
@@ -25142,9 +25157,7 @@
       "revenue": 240000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        265787828419
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "266679153870": {
@@ -25196,7 +25209,7 @@
     "totalOwners": 11,
     "totalCompanies": 1963,
     "totalDeals": 81,
-    "totalRelations": 97,
+    "totalRelations": 103,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 2,
