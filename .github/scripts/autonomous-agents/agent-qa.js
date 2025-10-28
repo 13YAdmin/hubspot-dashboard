@@ -1233,6 +1233,8 @@ ${failedTests.length === 0
 
   async testInfrastructureAndData() {
     this.log('\n🏗️  TESTS INFRASTRUCTURE & DATA (CRITIQUE)...\n');
+    this.log('   📋 Vision: Dashboard pour Account Managers');
+    this.log('   🎯 But: Identifier white spaces (filiales/parents non exploités)\n');
 
     const exec = require('child_process').execSync;
 
@@ -1423,6 +1425,105 @@ ${failedTests.length === 0
       'fetch-hubspot.js et push-scores-to-hubspot.js requis',
       'critical'
     );
+
+    // === TESTS MÉTIER (VISION DU PROJET) ===
+    this.log('\n🎯 TESTS MÉTIER - VISION DU PROJET...\n');
+    this.log('   Le dashboard DOIT permettre d\'identifier les white spaces\n');
+
+    if (dataExists) {
+      try {
+        const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+        // 11. WHITE SPACES: Vérifier que les filiales sans deals sont détectables
+        const allCompanies = Object.values(data.companies || {});
+        const companiesWithDeals = new Set(data.data.map(d => d.associations?.companies?.[0]?.id).filter(Boolean));
+
+        const potentialWhiteSpaces = allCompanies.filter(company => {
+          // Vérifier si cette company a des parents dans les clients
+          const hasParentWithDeals = company.parentCompanyIds &&
+            company.parentCompanyIds.some(parentId => companiesWithDeals.has(parentId));
+
+          // C'est un white space si: a un parent client ET n'a pas de deals
+          return hasParentWithDeals && !companiesWithDeals.has(company.id);
+        });
+
+        this.test(
+          'White spaces détectables (filiales sans deals)',
+          potentialWhiteSpaces.length > 0 || allCompanies.length === 0,
+          `${potentialWhiteSpaces.length} filiales sans deals détectées (white spaces potentiels)`,
+          'critical'
+        );
+
+        // 12. Vérifier que les groupes parent/filiales sont exploitables
+        const groupsWithChildren = allCompanies.filter(c =>
+          c.childCompanyIds && c.childCompanyIds.length > 0 && companiesWithDeals.has(c.id)
+        );
+
+        this.test(
+          'Groupes parent/filiales exploitables',
+          groupsWithChildren.length > 0 || allCompanies.length === 0,
+          `${groupsWithChildren.length} groupes clients avec filiales (opportunités d'expansion)`,
+          'critical'
+        );
+
+        // 13. Vérifier que le dashboard peut calculer le potentiel
+        const clientsWithRevenue = data.data.filter(d => d.properties.amount && parseFloat(d.properties.amount) > 0);
+        const revenueRate = (clientsWithRevenue.length / data.data.length) * 100;
+
+        this.test(
+          'Données revenue pour calculer potentiel',
+          revenueRate > 70,
+          `${revenueRate.toFixed(0)}% des deals ont un montant (nécessaire pour estimer potentiel white spaces)`,
+          'critical'
+        );
+
+        // 14. Vérifier health scores pour priorisation
+        const dealsWithHealth = data.data.filter(d =>
+          d.properties.hs_deal_health_score || d.properties.healthscore
+        );
+
+        this.test(
+          'Health scores pour prioriser white spaces',
+          dealsWithHealth.length > 0 || data.data.length === 0,
+          `${dealsWithHealth.length}/${data.data.length} deals ont un health score (priorisation opportunités)`,
+          'warning'
+        );
+
+        // 15. Vérifier que les secteurs sont mappés (pour ciblage)
+        const companiesWithSector = allCompanies.filter(c => c.industry && c.industry !== '');
+        const sectorRate = allCompanies.length > 0 ? (companiesWithSector.length / allCompanies.length) * 100 : 0;
+
+        this.test(
+          'Secteurs d\'activité mappés (ciblage)',
+          sectorRate > 60,
+          `${sectorRate.toFixed(0)}% des companies ont un secteur (nécessaire pour cibler white spaces par industrie)`,
+          'warning'
+        );
+
+        // 16. TEST ULTIME: Le dashboard peut-il VRAIMENT aider l'Account Manager?
+        const dashboardUsable =
+          potentialWhiteSpaces.length > 0 &&
+          groupsWithChildren.length > 0 &&
+          revenueRate > 50;
+
+        this.test(
+          'DASHBOARD UTILISABLE PAR ACCOUNT MANAGER',
+          dashboardUsable,
+          dashboardUsable
+            ? 'Dashboard opérationnel: white spaces détectés, groupes mappés, revenue présent'
+            : 'Dashboard INUTILISABLE: données manquantes ou incomplètes',
+          'critical'
+        );
+
+      } catch (error) {
+        this.test(
+          'Tests métier',
+          false,
+          `Impossible d'analyser la data: ${error.message}`,
+          'critical'
+        );
+      }
+    }
   }
 }
 
