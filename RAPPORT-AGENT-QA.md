@@ -1,6 +1,6 @@
 # ✅ RAPPORT AGENT QA - INSPECTEUR QUALITÉ
 
-**Date**: 28/10/2025 13:54:18
+**Date**: 28/10/2025 14:02:05
 **Score**: 0/100 🔴 BLOQUÉ - Ne pas déployer
 **Standard**: 95/100 MINIMUM pour production
 
@@ -8,9 +8,9 @@
 
 ## 📊 RÉSUMÉ
 
-- ✅ Tests passés: 242
-- ❌ Tests échoués: 57
-- ⚠️  Échecs critiques: 12
+- ✅ Tests passés: 240
+- ❌ Tests échoués: 59
+- ⚠️  Échecs critiques: 14
 - ⚡ Avertissements: 45
 - 📝 Total: 299 tests
 
@@ -46,11 +46,11 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 - ❌ Persistence données implémentée - Sauvegarde données locale
 
 ### Performance
-- ✅ RÉGRESSION BUG #4: ZÉRO console.log en production - Code propre (OK)
-- ✅ Taille fichier raisonnable - 6679 lignes (max 10000)
+- ❌ RÉGRESSION BUG #4: ZÉRO console.log en production - BUG REVENU: console.log détectés
+- ✅ Taille fichier raisonnable - 6688 lignes (max 10000)
 - ✅ Pas de boucles infinies apparentes - Éviter while(true)
 - ✅ Debouncing sur resize - Optimiser resize listeners
-- ✅ Pas de console.log en production - ZÉRO console.log autorisé (strict)
+- ❌ Pas de console.log en production - ZÉRO console.log autorisé (strict)
 - ✅ Pas de console.error excessifs - ZÉRO console.error autorisé (strict)
 - ✅ Pas de console.warn - ZÉRO console.warn autorisé (strict)
 - ✅ Taille fichier optimale - Bundle 255KB (< 500KB recommandé)
@@ -155,13 +155,19 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 9. **.gitignore: Ignore node_modules**
    - node_modules ignoré
 
-10. **COHÉRENCE: Workflow status vs rapport**
+10. **RÉGRESSION BUG #4: ZÉRO console.log en production**
+   - BUG REVENU: console.log détectés
+
+11. **COHÉRENCE: Workflow status vs rapport**
    - INCOHÉRENCE détectée
 
-11. **Protection injection SQL/NoSQL**
+12. **Pas de console.log en production**
+   - ZÉRO console.log autorisé (strict)
+
+13. **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-12. **Sanitization innerHTML**
+14. **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
 ---
@@ -259,88 +265,94 @@ gh: To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment
 29. 🔴 CRITIQUE: **.gitignore: Ignore node_modules**
    - node_modules ignoré
 
-30. 🔴 CRITIQUE: **COHÉRENCE: Workflow status vs rapport**
+30. 🔴 CRITIQUE: **RÉGRESSION BUG #4: ZÉRO console.log en production**
+   - BUG REVENU: console.log détectés
+
+31. 🔴 CRITIQUE: **COHÉRENCE: Workflow status vs rapport**
    - INCOHÉRENCE détectée
 
-31. 🟡 WARNING: **Event listeners nettoyés**
+32. 🔴 CRITIQUE: **Pas de console.log en production**
+   - ZÉRO console.log autorisé (strict)
+
+33. 🟡 WARNING: **Event listeners nettoyés**
    - Prévenir memory leaks
 
-32. 🟡 WARNING: **Structure sémantique HTML5**
+34. 🟡 WARNING: **Structure sémantique HTML5**
    - Utiliser HTML5 sémantique
 
-33. 🟡 WARNING: **JavaScript en fin de body ou defer**
+35. 🟡 WARNING: **JavaScript en fin de body ou defer**
    - Script en fin ou avec defer
 
-34. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
+36. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-35. 🔴 CRITIQUE: **Sanitization innerHTML**
+37. 🔴 CRITIQUE: **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
-36. 🟡 WARNING: **Rate limiting hints**
+38. 🟡 WARNING: **Rate limiting hints**
    - OWASP A04 - Design sécurisé
 
-37. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
+39. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
    - OWASP A08 - Intégrité des ressources
 
-38. 🟡 WARNING: **Validation URLs externes**
+40. 🟡 WARNING: **Validation URLs externes**
    - OWASP A10 - SSRF prevention
 
-39. 🟡 WARNING: **Preconnect aux domaines tiers**
+41. 🟡 WARNING: **Preconnect aux domaines tiers**
    - LCP optimisé - Preconnect CDN
 
-40. 🟡 WARNING: **Service Worker présent**
+42. 🟡 WARNING: **Service Worker présent**
    - TTI - Offline capability
 
-41. 🟡 WARNING: **Resource hints utilisés**
+43. 🟡 WARNING: **Resource hints utilisés**
    - Performance hints (preload/prefetch)
 
-42. 🟡 WARNING: **Pas de timeout automatique**
+44. 🟡 WARNING: **Pas de timeout automatique**
    - WCAG AAA 2.2.3 - Pas de limite de temps
 
-43. 🟡 WARNING: **Sauvegarde de données avant expiration session**
+45. 🟡 WARNING: **Sauvegarde de données avant expiration session**
    - WCAG AAA 2.2.5 - Sauvegarde données
 
-44. 🟡 WARNING: **Headings hiérarchiques**
+46. 🟡 WARNING: **Headings hiérarchiques**
    - WCAG AAA 2.4.10 - Headings structurés
 
-45. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
+47. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
    - WCAG AAA 3.1.5 - Niveau de lecture
 
-46. 🟡 WARNING: **Confirmation actions importantes**
+48. 🟡 WARNING: **Confirmation actions importantes**
    - WCAG AAA 3.3.6 - Prévention erreurs
 
-47. 🟡 WARNING: **Nombre de fonctions raisonnable**
-   - 150 fonctions (< 150 optimal)
+49. 🟡 WARNING: **Nombre de fonctions raisonnable**
+   - 151 fonctions (< 150 optimal)
 
-48. 🟡 WARNING: **Taux de duplication acceptable**
+50. 🟡 WARNING: **Taux de duplication acceptable**
    - 43.0% duplication (< 30%)
 
-49. 🟡 WARNING: **Pas de magic numbers**
+51. 🟡 WARNING: **Pas de magic numbers**
    - Utiliser des constantes nommées
 
-50. 🟡 WARNING: **Pas de code commenté excessif**
+52. 🟡 WARNING: **Pas de code commenté excessif**
    - Nettoyer code commenté
 
-51. 🟡 WARNING: **Persistence données implémentée**
+53. 🟡 WARNING: **Persistence données implémentée**
    - Sauvegarde données locale
 
-52. 🟡 WARNING: **Error handler global**
+54. 🟡 WARNING: **Error handler global**
    - Capture erreurs globales
 
-53. 🟡 WARNING: **Support mode hors-ligne**
+55. 🟡 WARNING: **Support mode hors-ligne**
    - Détection/gestion offline
 
-54. 🟡 WARNING: **Retry logic pour requêtes**
+56. 🟡 WARNING: **Retry logic pour requêtes**
    - Retry automatique échecs réseau
 
-55. 🟡 WARNING: **Timeouts requêtes réseau**
+57. 🟡 WARNING: **Timeouts requêtes réseau**
    - Timeout pour éviter hang
 
-56. 🟡 WARNING: **Rate limiting client-side**
+58. 🟡 WARNING: **Rate limiting client-side**
    - Protection contre spam requêtes
 
-57. 🟡 WARNING: **Adaptation qualité connexion**
+59. 🟡 WARNING: **Adaptation qualité connexion**
    - Détection connexion lente
 
 ---
