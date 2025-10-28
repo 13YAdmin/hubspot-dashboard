@@ -49,6 +49,9 @@ class AgentQA {
       return;
     }
 
+    // TESTS INFRASTRUCTURE & DATA (NOUVEAU)
+    await this.testInfrastructureAndData();
+
     const content = fs.readFileSync(this.dashboardPath, 'utf8');
 
     // BATTERIES DE TESTS (NIVEAU ÉQUIPE ENTIÈRE)
@@ -1224,6 +1227,202 @@ ${failedTests.length === 0
 
     fs.writeFileSync('RAPPORT-AGENT-QA.md', report);
     this.log('\n📝 Rapport généré: RAPPORT-AGENT-QA.md');
+  }
+
+  // === TESTS INFRASTRUCTURE & DATA ===
+
+  async testInfrastructureAndData() {
+    this.log('\n🏗️  TESTS INFRASTRUCTURE & DATA (CRITIQUE)...\n');
+
+    const exec = require('child_process').execSync;
+
+    // 1. Vérifier que le workflow HubSpot existe et est actif
+    const workflowPath = path.join(process.cwd(), '.github/workflows/fetch-hubspot-data.yml');
+    this.test(
+      'Workflow HubSpot data actif',
+      fs.existsSync(workflowPath),
+      'fetch-hubspot-data.yml doit exister et être actif',
+      'critical'
+    );
+
+    // 2. Vérifier que le workflow a tourné récemment
+    try {
+      const result = exec('gh run list --workflow=fetch-hubspot-data.yml --limit 1 --json status,conclusion,createdAt', { encoding: 'utf8' });
+      const runs = JSON.parse(result);
+
+      if (runs.length > 0) {
+        const lastRun = runs[0];
+        const lastRunDate = new Date(lastRun.createdAt);
+        const now = new Date();
+        const hoursSince = (now - lastRunDate) / (1000 * 60 * 60);
+
+        this.test(
+          'Workflow HubSpot exécuté récemment',
+          hoursSince < 3, // Moins de 3h
+          `Dernier run: ${hoursSince.toFixed(1)}h (doit être < 3h car schedule 2h)`,
+          'critical'
+        );
+
+        this.test(
+          'Workflow HubSpot succès',
+          lastRun.conclusion === 'success',
+          `Status: ${lastRun.conclusion}`,
+          'critical'
+        );
+      } else {
+        this.test(
+          'Workflow HubSpot a déjà tourné',
+          false,
+          'Aucun run trouvé - workflow jamais exécuté',
+          'critical'
+        );
+      }
+    } catch (error) {
+      this.test(
+        'Vérification runs workflow',
+        false,
+        `Impossible de vérifier (gh CLI requis): ${error.message}`,
+        'warning'
+      );
+    }
+
+    // 3. Vérifier que data.json existe (généré par workflow)
+    const dataPath = path.join(process.cwd(), 'public/data.json');
+    const dataExists = fs.existsSync(dataPath);
+
+    this.test(
+      'Fichier data.json existe',
+      dataExists,
+      'public/data.json doit être généré par fetch-hubspot-data.yml',
+      'critical'
+    );
+
+    if (dataExists) {
+      try {
+        const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+
+        // 4. Vérifier structure data
+        this.test(
+          'Data contient deals',
+          data.data && Array.isArray(data.data) && data.data.length > 0,
+          `${data.data?.length || 0} deals trouvés`,
+          'critical'
+        );
+
+        this.test(
+          'Data contient companies',
+          data.companies && Object.keys(data.companies).length > 0,
+          `${Object.keys(data.companies || {}).length} companies trouvées`,
+          'critical'
+        );
+
+        // 5. Vérifier relations parent/filiales
+        const companiesWithChildren = Object.values(data.companies || {})
+          .filter(c => c.childCompanyIds && c.childCompanyIds.length > 0);
+
+        this.test(
+          'Relations parent/filiales mappées',
+          companiesWithChildren.length > 0,
+          `${companiesWithChildren.length} groupes parent/filiales détectés`,
+          'critical'
+        );
+
+        // 6. Vérifier freshness des données
+        if (data.fetchedAt) {
+          const fetchedAt = new Date(data.fetchedAt);
+          const now = new Date();
+          const hoursSince = (now - fetchedAt) / (1000 * 60 * 60);
+
+          this.test(
+            'Données fraîches',
+            hoursSince < 4, // Moins de 4h
+            `Données fetchées il y a ${hoursSince.toFixed(1)}h`,
+            'warning'
+          );
+        }
+
+        // 7. Vérifier qualité des données companies
+        const companiesWithIndustry = Object.values(data.companies || {})
+          .filter(c => c.industry && c.industry !== '');
+
+        const industryRate = (companiesWithIndustry.length / Object.keys(data.companies || {}).length) * 100;
+
+        this.test(
+          'Qualité données companies (industry)',
+          industryRate > 50, // Au moins 50% ont un secteur
+          `${industryRate.toFixed(0)}% des companies ont un secteur`,
+          'warning'
+        );
+
+        // 8. Vérifier que les deals ont les champs requis
+        const dealsComplete = data.data.filter(d =>
+          d.properties.dealname &&
+          d.properties.amount &&
+          d.properties.dealstage
+        );
+
+        const completionRate = (dealsComplete.length / data.data.length) * 100;
+
+        this.test(
+          'Complétude deals (name, amount, stage)',
+          completionRate > 80,
+          `${completionRate.toFixed(0)}% des deals sont complets`,
+          'warning'
+        );
+
+      } catch (error) {
+        this.test(
+          'Parsing data.json',
+          false,
+          `Erreur parsing: ${error.message}`,
+          'critical'
+        );
+      }
+    }
+
+    // 9. Vérifier que le dashboard est accessible
+    try {
+      const https = require('https');
+      await new Promise((resolve, reject) => {
+        https.get('https://13yadmin.github.io/hubspot-dashboard/', (res) => {
+          this.test(
+            'Dashboard accessible en ligne',
+            res.statusCode === 200,
+            `HTTP ${res.statusCode}`,
+            'critical'
+          );
+          resolve();
+        }).on('error', (error) => {
+          this.test(
+            'Dashboard accessible en ligne',
+            false,
+            `Erreur: ${error.message}`,
+            'critical'
+          );
+          resolve();
+        });
+      });
+    } catch (error) {
+      this.test(
+        'Test accessibilité dashboard',
+        false,
+        `Impossible de tester: ${error.message}`,
+        'warning'
+      );
+    }
+
+    // 10. Vérifier scripts HubSpot existent
+    const scriptsExist = [
+      '.github/scripts/fetch-hubspot.js',
+      '.github/scripts/push-scores-to-hubspot.js'
+    ].every(p => fs.existsSync(path.join(process.cwd(), p)));
+
+    this.test(
+      'Scripts HubSpot présents',
+      scriptsExist,
+      'fetch-hubspot.js et push-scores-to-hubspot.js requis',
+      'critical'
+    );
   }
 }
 
