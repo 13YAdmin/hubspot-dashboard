@@ -5282,23 +5282,28 @@ window.showClientDetails = showClientDetails;
 // White Spaces Opportunities Table
 // ============================================================================
 function renderWhiteSpaces() {
+  console.log('[DEBUG] renderWhiteSpaces start');
 
   const whiteSpaces = [];
 
   // Créer un Set de toutes les companies qui ont des deals
   const companiesWithDeals = new Set(processedData.map(client => client.companyId));
 
-  // DEBUG: Logger les IDs pour debug
-    processedData.slice(0, 3).map(c => ({ name: c.name, id: c.companyId, type: typeof c.companyId })));
+  // OPTIMISATION: Créer un Map pour lookup O(1) au lieu de find() O(n)
+  const processedDataMap = new Map();
+  processedData.forEach(client => {
+    processedDataMap.set(String(client.companyId), client);
+  });
+
+  console.log(`[DEBUG] Processing ${Object.keys(window.hubspotCompanies).length} companies`);
 
   // Parcourir TOUTES les companies dans HubSpot pour trouver les relations parent/child
   Object.values(window.hubspotCompanies).forEach(company => {
     // Si cette company a des enfants (childCompanyIds)
     if (company.childCompanyIds && company.childCompanyIds.length > 0) {
 
-      // Trouver le parent dans processedData pour obtenir son CA et health score
-      // Convertir les IDs en string pour la comparaison (au cas où l'un est number et l'autre string)
-      const parentDeal = processedData.find(client => String(client.companyId) === String(company.id));
+      // OPTIMISATION: Utiliser Map au lieu de find()
+      const parentDeal = processedDataMap.get(String(company.id));
       const parentRevenue = parentDeal ? parentDeal.totalRevenue : 0;
       const parentHealthScore = parentDeal ? parentDeal.avgHealthScore : 50;
 
@@ -5415,11 +5420,15 @@ function renderWhiteSpaces() {
   // Stocker les white spaces globalement AVANT le tri
   window.allWhiteSpaces = whiteSpaces;
 
+  console.log(`[DEBUG] Found ${whiteSpaces.length} white spaces`);
+
   // Appliquer le tri
   sortWhiteSpacesArray(whiteSpaces, window.whiteSpacesSortState.key, window.whiteSpacesSortState.direction);
 
   // Appeler la fonction de rendu
   renderWhiteSpacesTable(whiteSpaces);
+
+  console.log('[DEBUG] renderWhiteSpaces done');
 }
 
 // ============================================================================
