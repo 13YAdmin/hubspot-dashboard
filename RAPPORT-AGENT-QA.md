@@ -1,18 +1,18 @@
 # ✅ RAPPORT AGENT QA - INSPECTEUR QUALITÉ
 
-**Date**: 28/10/2025 09:57:39
-**Score**: 36/100 🔴 BLOQUÉ - Ne pas déployer
+**Date**: 28/10/2025 10:05:34
+**Score**: 29/100 🔴 BLOQUÉ - Ne pas déployer
 **Standard**: 95/100 MINIMUM pour production
 
 ---
 
 ## 📊 RÉSUMÉ
 
-- ✅ Tests passés: 88
-- ❌ Tests échoués: 28
-- ⚠️  Échecs critiques: 3
-- ⚡ Avertissements: 25
-- 📝 Total: 116 tests
+- ✅ Tests passés: 91
+- ❌ Tests échoués: 30
+- ⚠️  Échecs critiques: 4
+- ⚡ Avertissements: 26
+- 📝 Total: 121 tests
 
 ---
 
@@ -102,108 +102,121 @@ BLOQUÉ: Score trop bas. Corrections critiques requises.
 
 ## ⚠️  ÉCHECS CRITIQUES
 
-1. **HTTPS uniquement pour ressources**
+1. **Fichier data.json existe**
+   - public/data.json doit être généré par fetch-hubspot-data.yml
+
+2. **HTTPS uniquement pour ressources**
    - OWASP A02 - Chiffrement requis
 
-2. **Protection injection SQL/NoSQL**
+3. **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-3. **Sanitization innerHTML**
+4. **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
 ---
 
 ## 🔧 ACTIONS REQUISES
 
-1. 🟡 WARNING: **Event listeners nettoyés**
+1. 🟡 WARNING: **Vérification runs workflow**
+   - Impossible de vérifier (gh CLI requis): Command failed: gh run list --workflow=fetch-hubspot-data.yml --limit 1 --json status,conclusion,createdAt
+gh: To use GitHub CLI in a GitHub Actions workflow, set the GH_TOKEN environment variable. Example:
+  env:
+    GH_TOKEN: ${{ github.token }}
+
+
+2. 🔴 CRITIQUE: **Fichier data.json existe**
+   - public/data.json doit être généré par fetch-hubspot-data.yml
+
+3. 🟡 WARNING: **Event listeners nettoyés**
    - Prévenir memory leaks
 
-2. 🟡 WARNING: **Structure sémantique HTML5**
+4. 🟡 WARNING: **Structure sémantique HTML5**
    - Utiliser HTML5 sémantique
 
-3. 🟡 WARNING: **JavaScript en fin de body ou defer**
+5. 🟡 WARNING: **JavaScript en fin de body ou defer**
    - Script en fin ou avec defer
 
-4. 🔴 CRITIQUE: **HTTPS uniquement pour ressources**
+6. 🔴 CRITIQUE: **HTTPS uniquement pour ressources**
    - OWASP A02 - Chiffrement requis
 
-5. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
+7. 🔴 CRITIQUE: **Protection injection SQL/NoSQL**
    - OWASP A03 - Prévention injection
 
-6. 🔴 CRITIQUE: **Sanitization innerHTML**
+8. 🔴 CRITIQUE: **Sanitization innerHTML**
    - OWASP A03 - XSS prevention
 
-7. 🟡 WARNING: **Rate limiting hints**
+9. 🟡 WARNING: **Rate limiting hints**
    - OWASP A04 - Design sécurisé
 
-8. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
+10. 🟡 WARNING: **Subresource Integrity (SRI) pour CDN**
    - OWASP A08 - Intégrité des ressources
 
-9. 🟡 WARNING: **Validation URLs externes**
+11. 🟡 WARNING: **Validation URLs externes**
    - OWASP A10 - SSRF prevention
 
-10. 🟡 WARNING: **Preconnect aux domaines tiers**
+12. 🟡 WARNING: **Preconnect aux domaines tiers**
    - LCP optimisé - Preconnect CDN
 
-11. 🟡 WARNING: **Service Worker présent**
+13. 🟡 WARNING: **Service Worker présent**
    - TTI - Offline capability
 
-12. 🟡 WARNING: **Resource hints utilisés**
+14. 🟡 WARNING: **Resource hints utilisés**
    - Performance hints (preload/prefetch)
 
-13. 🟡 WARNING: **Pas de timeout automatique**
+15. 🟡 WARNING: **Pas de timeout automatique**
    - WCAG AAA 2.2.3 - Pas de limite de temps
 
-14. 🟡 WARNING: **Sauvegarde de données avant expiration session**
+16. 🟡 WARNING: **Sauvegarde de données avant expiration session**
    - WCAG AAA 2.2.5 - Sauvegarde données
 
-15. 🟡 WARNING: **Headings hiérarchiques**
+17. 🟡 WARNING: **Headings hiérarchiques**
    - WCAG AAA 2.4.10 - Headings structurés
 
-16. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
+18. 🟡 WARNING: **Texte clair (pas de jargon excessif)**
    - WCAG AAA 3.1.5 - Niveau de lecture
 
-17. 🟡 WARNING: **Confirmation actions importantes**
+19. 🟡 WARNING: **Confirmation actions importantes**
    - WCAG AAA 3.3.6 - Prévention erreurs
 
-18. 🟡 WARNING: **Nombre de fonctions raisonnable**
+20. 🟡 WARNING: **Nombre de fonctions raisonnable**
    - 150 fonctions (< 150 optimal)
 
-19. 🟡 WARNING: **Taux de duplication acceptable**
+21. 🟡 WARNING: **Taux de duplication acceptable**
    - 43.0% duplication (< 30%)
 
-20. 🟡 WARNING: **Pas de magic numbers**
+22. 🟡 WARNING: **Pas de magic numbers**
    - Utiliser des constantes nommées
 
-21. 🟡 WARNING: **Pas de code commenté excessif**
+23. 🟡 WARNING: **Pas de code commenté excessif**
    - Nettoyer code commenté
 
-22. 🟡 WARNING: **Persistence données implémentée**
+24. 🟡 WARNING: **Persistence données implémentée**
    - Sauvegarde données locale
 
-23. 🟡 WARNING: **Error handler global**
+25. 🟡 WARNING: **Error handler global**
    - Capture erreurs globales
 
-24. 🟡 WARNING: **Support mode hors-ligne**
+26. 🟡 WARNING: **Support mode hors-ligne**
    - Détection/gestion offline
 
-25. 🟡 WARNING: **Retry logic pour requêtes**
+27. 🟡 WARNING: **Retry logic pour requêtes**
    - Retry automatique échecs réseau
 
-26. 🟡 WARNING: **Timeouts requêtes réseau**
+28. 🟡 WARNING: **Timeouts requêtes réseau**
    - Timeout pour éviter hang
 
-27. 🟡 WARNING: **Rate limiting client-side**
+29. 🟡 WARNING: **Rate limiting client-side**
    - Protection contre spam requêtes
 
-28. 🟡 WARNING: **Adaptation qualité connexion**
+30. 🟡 WARNING: **Adaptation qualité connexion**
    - Détection connexion lente
 
 ---
 
 ## 📈 HISTORIQUE SCORES
 
-- Actuel: **36/100**
+- Actuel: **29/100**
 - Objectif: **95+/100**
 - Minimum acceptable: **95/100**
 
