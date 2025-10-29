@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-29T13:56:13.466Z",
+  "timestamp": "2025-10-29T15:04:56.376Z",
   "count": 81,
   "data": [
     {
@@ -101,9 +101,7 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264196399312
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -392,7 +390,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 302000000,
       "companyEmployees": 500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220598428889
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -494,15 +494,15 @@
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
       "totalNotes": 16,
-      "notesAvgLength": 1026,
+      "notesAvgLength": 1042,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 3,
       "notesNegativeKeywords": 0,
-      "notesActionKeywords": 2,
+      "notesActionKeywords": 3,
       "notesMeetingKeywords": 0,
       "latestNoteDate": "2025-10-29T09:38:43.818Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquel Lamia avait été consulté. En gros le contrat cadre des agences de Com. va finir en décembre 2025. Donc à partir de janvier 2026 il va falloir </p></div>",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquels Lamia Hamidi était en CC. En gros le contrat cadre des agences de Com. interne va finir en septembre 2026. Donc dès janvier 2026 ils vont faire un appel d'offre pour les agences sous contrat-cadre de référencement. Il semble compliqué pour une agence externe d'être référencée directement sans contrat-cadre. On va creuser, Lamia Hamidi semble celle qui est la responsable de cette appel d'offre.</p></div>",
       "engagementEmails": 12,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -570,7 +570,9 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -792,15 +794,15 @@
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
       "totalNotes": 15,
-      "notesAvgLength": 1009,
+      "notesAvgLength": 1026,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 3,
       "notesNegativeKeywords": 0,
-      "notesActionKeywords": 2,
+      "notesActionKeywords": 3,
       "notesMeetingKeywords": 0,
       "latestNoteDate": "2025-10-29T09:38:43.818Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquel Lamia avait été consulté. En gros le contrat cadre des agences de Com. va finir en décembre 2025. Donc à partir de janvier 2026 il va falloir </p></div>",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquels Lamia Hamidi était en CC. En gros le contrat cadre des agences de Com. interne va finir en septembre 2026. Donc dès janvier 2026 ils vont faire un appel d'offre pour les agences sous contrat-cadre de référencement. Il semble compliqué pour une agence externe d'être référencée directement sans contrat-cadre. On va creuser, Lamia Hamidi semble celle qui est la responsable de cette appel d'offre.</p></div>",
       "engagementEmails": 12,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -1041,9 +1043,7 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264196399312
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1868,36 +1868,27 @@
       "stage": "3442211051",
       "pipeline": "2496239810",
       "probability": "1",
-      "companyId": 233004872904,
-      "companyName": "Total Energies",
-      "companyDomain": "totalenergies.com",
-      "companyIndustry": "OIL_ENERGY",
-      "companyRevenue": 280999000000,
-      "companyEmployees": 100000,
+      "companyId": 278124902593,
+      "companyName": "",
+      "companyDomain": "",
+      "companyIndustry": "",
+      "companyRevenue": 0,
+      "companyEmployees": 0,
       "companyParentIds": [],
-      "companyChildIds": [
-        226897211627,
-        226920490173,
-        235012095188,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
       "totalNotes": 15,
-      "notesAvgLength": 1009,
+      "notesAvgLength": 1026,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 3,
       "notesNegativeKeywords": 0,
-      "notesActionKeywords": 2,
+      "notesActionKeywords": 3,
       "notesMeetingKeywords": 0,
       "latestNoteDate": "2025-10-29T09:38:43.818Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquel Lamia avait été consulté. En gros le contrat cadre des agences de Com. va finir en décembre 2025. Donc à partir de janvier 2026 il va falloir </p></div>",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquels Lamia Hamidi était en CC. En gros le contrat cadre des agences de Com. interne va finir en septembre 2026. Donc dès janvier 2026 ils vont faire un appel d'offre pour les agences sous contrat-cadre de référencement. Il semble compliqué pour une agence externe d'être référencée directement sans contrat-cadre. On va creuser, Lamia Hamidi semble celle qui est la responsable de cette appel d'offre.</p></div>",
       "engagementEmails": 12,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -1925,9 +1916,7 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264581201087
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1967,7 +1956,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1000000000,
       "companyEmployees": 3000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        235135998174
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2431,7 +2422,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1532803000,
       "companyEmployees": 2500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2513,9 +2506,7 @@
       "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 389000,
       "companyEmployees": 1250,
-      "companyParentIds": [
-        263633128688
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2680,9 +2671,7 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264581201087
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2764,10 +2753,7 @@
       "companyRevenue": 58221850000,
       "companyEmployees": 168000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264204857580,
-        264205578471
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2801,36 +2787,27 @@
       "stage": "3451949272",
       "pipeline": "2522471620",
       "probability": "1",
-      "companyId": 233004872904,
-      "companyName": "Total Energies",
-      "companyDomain": "totalenergies.com",
-      "companyIndustry": "OIL_ENERGY",
-      "companyRevenue": 280999000000,
-      "companyEmployees": 100000,
+      "companyId": 278641737954,
+      "companyName": "",
+      "companyDomain": "",
+      "companyIndustry": "",
+      "companyRevenue": 0,
+      "companyEmployees": 0,
       "companyParentIds": [],
-      "companyChildIds": [
-        226897211627,
-        226920490173,
-        235012095188,
-        257704494304,
-        258156739774,
-        258569825511,
-        262224526524,
-        262613919992
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
       "totalNotes": 15,
-      "notesAvgLength": 1009,
+      "notesAvgLength": 1026,
       "notesHasRecent": true,
       "notesSentiment": "positive",
       "notesPositiveKeywords": 3,
       "notesNegativeKeywords": 0,
-      "notesActionKeywords": 2,
+      "notesActionKeywords": 3,
       "notesMeetingKeywords": 0,
       "latestNoteDate": "2025-10-29T09:38:43.818Z",
-      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquel Lamia avait été consulté. En gros le contrat cadre des agences de Com. va finir en décembre 2025. Donc à partir de janvier 2026 il va falloir </p></div>",
+      "latestNoteBody": "<div style=\"\" dir=\"auto\" data-top-level=\"true\"><p style=\"margin:0;\">Je suis tombé par pur hasard sur des échanges entre Cédric et Dominique Fourrier dans lesquels Lamia Hamidi était en CC. En gros le contrat cadre des agences de Com. interne va finir en septembre 2026. Donc dès janvier 2026 ils vont faire un appel d'offre pour les agences sous contrat-cadre de référencement. Il semble compliqué pour une agence externe d'être référencée directement sans contrat-cadre. On va creuser, Lamia Hamidi semble celle qui est la responsable de cette appel d'offre.</p></div>",
       "engagementEmails": 12,
       "engagementCalls": 6,
       "engagementMeetings": 0,
@@ -2980,7 +2957,9 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3107,7 +3086,10 @@
       "companyRevenue": 20000000000,
       "companyEmployees": 72500,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264204131577,
+        264581917912
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3858,9 +3840,7 @@
       "employees": 140000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264581201087
-      ]
+      "childCompanyIds": []
     },
     "220587794626": {
       "id": "220587794626",
@@ -4041,9 +4021,7 @@
       "employees": 49000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        225530064080
-      ]
+      "childCompanyIds": []
     },
     "220598428890": {
       "id": "220598428890",
@@ -4252,7 +4230,9 @@
       "employees": 124600,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090717
+      ]
     },
     "220607386867": {
       "id": "220607386867",
@@ -4329,7 +4309,15 @@
       "employees": 170158,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090741,
+        226897212603,
+        226964007134,
+        234978104516,
+        234978104524,
+        234988938452,
+        234992537829
+      ]
     },
     "220609174728": {
       "id": "220609174728",
@@ -4472,10 +4460,7 @@
       "employees": 168000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204857580,
-        264205578471
-      ]
+      "childCompanyIds": []
     },
     "220612718805": {
       "id": "220612718805",
@@ -4694,7 +4679,9 @@
       "revenue": 302000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220598428889
+      ],
       "childCompanyIds": []
     },
     "225635140816": {
@@ -4774,9 +4761,7 @@
       "employees": 83100,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        245933664460
-      ]
+      "childCompanyIds": []
     },
     "226285019338": {
       "id": "226285019338",
@@ -6317,7 +6302,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226622786748": {
@@ -7232,9 +7219,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211614": {
@@ -7388,9 +7373,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211629": {
@@ -7500,7 +7483,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226897212606": {
@@ -7808,7 +7793,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226907993319": {
@@ -7929,7 +7916,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "226907993333": {
@@ -8545,7 +8534,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226911567073": {
@@ -8952,9 +8943,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226913359045": {
@@ -10232,9 +10221,7 @@
       "revenue": 0,
       "employees": 150,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226920490176": {
@@ -10509,9 +10496,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220610910445
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226922255601": {
@@ -11921,9 +11906,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        234999737587
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007116": {
@@ -12726,9 +12709,7 @@
       "revenue": 163180400000,
       "employees": 8279,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226965808366": {
@@ -13597,7 +13578,9 @@
       "revenue": 1000000000,
       "employees": 3000,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        235135998174
+      ],
       "childCompanyIds": []
     },
     "230096330991": {
@@ -13631,7 +13614,10 @@
       "employees": 72500,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204131577,
+        264581917912
+      ]
     },
     "230386516181": {
       "id": "230386516181",
@@ -13941,9 +13927,7 @@
       "employees": 17000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264196399312
-      ]
+      "childCompanyIds": []
     },
     "231943344369": {
       "id": "231943344369",
@@ -14011,7 +13995,9 @@
       "revenue": 14000000000,
       "employees": 52000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "232131152093": {
@@ -14086,7 +14072,9 @@
       "revenue": 5000000000,
       "employees": 12000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        249838914787
+      ],
       "childCompanyIds": []
     },
     "233139578076": {
@@ -15164,9 +15152,7 @@
       "revenue": 0,
       "employees": 130,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234978104517": {
@@ -15254,9 +15240,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234978104525": {
@@ -16191,7 +16175,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234988938453": {
@@ -16279,7 +16265,9 @@
       "revenue": 0,
       "employees": 105,
       "ownerId": "29926733",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        244815187150
+      ],
       "childCompanyIds": []
     },
     "234988938461": {
@@ -17687,9 +17675,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234997940470": {
@@ -21051,9 +21037,7 @@
       "employees": 34000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        230072877254
-      ]
+      "childCompanyIds": []
     },
     "235137799405": {
       "id": "235137799405",
@@ -21624,7 +21608,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260804494551
+      ],
       "childCompanyIds": []
     },
     "235542906101": {
@@ -22471,9 +22457,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        226922256592
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235592339680": {
@@ -22957,9 +22941,7 @@
       "revenue": 0,
       "employees": 1500,
       "ownerId": "",
-      "parentCompanyIds": [
-        235052258498
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235725744326": {
@@ -23938,9 +23920,7 @@
       "revenue": 26320000000,
       "employees": 75,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        226958605515
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "239539797219": {
@@ -24523,9 +24503,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        232131150023
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "257704494304": {
@@ -24547,9 +24525,7 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258569825511": {
@@ -24640,7 +24616,10 @@
       "employees": 34000,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204846315,
+        264205568248
+      ]
     },
     "260804494551": {
       "id": "260804494551",
@@ -24727,7 +24706,9 @@
       "revenue": 1532803000,
       "employees": 2500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "262469511370": {
@@ -24738,9 +24719,7 @@
       "revenue": 389000,
       "employees": 1250,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262613919992": {
@@ -24751,9 +24730,7 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        233004872904
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262613925050": {
@@ -24808,9 +24785,7 @@
       "revenue": 75000000,
       "employees": 570,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263431222517": {
@@ -24832,9 +24807,7 @@
       "revenue": 606014800,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263566089435": {
@@ -24902,9 +24875,7 @@
       "revenue": 19669000,
       "employees": 7500,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        231943343327
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204131577": {
@@ -24948,9 +24919,7 @@
       "revenue": 970000000,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        220612714702
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264205568248": {
@@ -24961,7 +24930,9 @@
       "revenue": 19500000000,
       "employees": 120,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260128816334
+      ],
       "childCompanyIds": []
     },
     "264205578471": {
@@ -25005,9 +24976,7 @@
       "revenue": 46629100000,
       "employees": 630,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        220587788529
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264581917912": {
@@ -25043,9 +25012,7 @@
       "employees": 32500,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        265788546273
-      ]
+      "childCompanyIds": []
     },
     "265787828441": {
       "id": "265787828441",
@@ -25126,6 +25093,94 @@
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
+    "277335982308": {
+      "id": "277335982308",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277335982309": {
+      "id": "277335982309",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277335982310": {
+      "id": "277335982310",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277446706417": {
+      "id": "277446706417",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277450327256": {
+      "id": "277450327256",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277450327257": {
+      "id": "277450327257",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277450327258": {
+      "id": "277450327258",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277471906033": {
+      "id": "277471906033",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
     "277557504219": {
       "id": "277557504219",
       "name": "if/else agency",
@@ -25136,16 +25191,753 @@
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
+    },
+    "277563155699": {
+      "id": "277563155699",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277612453068": {
+      "id": "277612453068",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "277612453069": {
+      "id": "277612453069",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278029156559": {
+      "id": "278029156559",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278029156560": {
+      "id": "278029156560",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278029156566": {
+      "id": "278029156566",
+      "name": "TotalEnergies",
+      "domain": "mail.totalenergies.com",
+      "industry": "OIL_ENERGY",
+      "revenue": 280999000000,
+      "employees": 100000,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278062212288": {
+      "id": "278062212288",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278062212289": {
+      "id": "278062212289",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278087367927": {
+      "id": "278087367927",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278087367928": {
+      "id": "278087367928",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278087367929": {
+      "id": "278087367929",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278087368890": {
+      "id": "278087368890",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278099958973": {
+      "id": "278099958973",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278161898685": {
+      "id": "278161898685",
+      "name": "Total",
+      "domain": "",
+      "industry": "",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278170914002": {
+      "id": "278170914002",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278170914003": {
+      "id": "278170914003",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278172708037": {
+      "id": "278172708037",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278178089147": {
+      "id": "278178089147",
+      "name": "Total",
+      "domain": "",
+      "industry": "",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278199081183": {
+      "id": "278199081183",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278199081184": {
+      "id": "278199081184",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278263259370": {
+      "id": "278263259370",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278394806459": {
+      "id": "278394806459",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278394806460": {
+      "id": "278394806460",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278639402176": {
+      "id": "278639402176",
+      "name": "Total",
+      "domain": "",
+      "industry": "",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278639402177": {
+      "id": "278639402177",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278649019637": {
+      "id": "278649019637",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278649019638": {
+      "id": "278649019638",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278679602364": {
+      "id": "278679602364",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278679602365": {
+      "id": "278679602365",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278679602366": {
+      "id": "278679602366",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278686705859": {
+      "id": "278686705859",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278686705860": {
+      "id": "278686705860",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278688494813": {
+      "id": "278688494813",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278688494814": {
+      "id": "278688494814",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278693893356": {
+      "id": "278693893356",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278693893357": {
+      "id": "278693893357",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278693893358": {
+      "id": "278693893358",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278693893359": {
+      "id": "278693893359",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278693893360": {
+      "id": "278693893360",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278697602270": {
+      "id": "278697602270",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278706502845": {
+      "id": "278706502845",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278706502846": {
+      "id": "278706502846",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278708307159": {
+      "id": "278708307159",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278708307160": {
+      "id": "278708307160",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278708307161": {
+      "id": "278708307161",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278715487475": {
+      "id": "278715487475",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278717284591": {
+      "id": "278717284591",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278726260965": {
+      "id": "278726260965",
+      "name": "Total",
+      "domain": "",
+      "industry": "",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278728061147": {
+      "id": "278728061147",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278728061148": {
+      "id": "278728061148",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278731654386": {
+      "id": "278731654386",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278731654387": {
+      "id": "278731654387",
+      "name": "Total",
+      "domain": "",
+      "industry": "",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278731654388": {
+      "id": "278731654388",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278735233235": {
+      "id": "278735233235",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278735233236": {
+      "id": "278735233236",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278735233237": {
+      "id": "278735233237",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278737033422": {
+      "id": "278737033422",
+      "name": "Totalenergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278737033424": {
+      "id": "278737033424",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278737033425": {
+      "id": "278737033425",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278740613358": {
+      "id": "278740613358",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278742408380": {
+      "id": "278742408380",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278742408382": {
+      "id": "278742408382",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278780448977": {
+      "id": "278780448977",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278780448978": {
+      "id": "278780448978",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278782246119": {
+      "id": "278782246119",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278782246121": {
+      "id": "278782246121",
+      "name": "Total",
+      "domain": "",
+      "industry": "",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
+    },
+    "278782246125": {
+      "id": "278782246125",
+      "name": "TotalEnergies",
+      "domain": "",
+      "industry": "Oil & Energy",
+      "revenue": 0,
+      "employees": 0,
+      "ownerId": "",
+      "parentCompanyIds": [],
+      "childCompanyIds": []
     }
   },
   "metadata": {
     "totalOwners": 11,
-    "totalCompanies": 1964,
+    "totalCompanies": 2039,
     "totalDeals": 81,
-    "totalRelations": 65,
-    "industriesFromHubSpot": 1962,
-    "industriesDetectedAuto": 0,
-    "industriesMissing": 2,
+    "totalRelations": 61,
+    "industriesFromHubSpot": 1963,
+    "industriesDetectedAuto": 68,
+    "industriesMissing": 8,
     "enrichmentComplete": true,
     "features": [
       "All notes analyzed",
