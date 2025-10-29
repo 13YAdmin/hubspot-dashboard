@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-29T03:48:32.684Z",
+  "timestamp": "2025-10-29T04:57:59.883Z",
   "count": 81,
   "data": [
     {
@@ -101,7 +101,9 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264196399312
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -141,9 +143,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -311,9 +311,7 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [
-        258850478274
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -574,9 +572,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -998,15 +994,7 @@
       "companyRevenue": 90061920000,
       "companyEmployees": 175647,
       "companyParentIds": [],
-      "companyChildIds": [
-        225635140849,
-        230029784291,
-        231940442307,
-        232131152083,
-        262216855790,
-        262224529637,
-        263431222517
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1047,7 +1035,9 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264196399312
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1212,9 +1202,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1425,7 +1413,9 @@
       "companyRevenue": 1130000000,
       "companyEmployees": 10000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        263648066783
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1466,9 +1456,7 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [
-        258850478274
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1549,9 +1537,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1939,7 +1925,9 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2272,15 +2260,7 @@
       "companyRevenue": 90061920000,
       "companyEmployees": 175647,
       "companyParentIds": [],
-      "companyChildIds": [
-        225635140849,
-        230029784291,
-        231940442307,
-        232131152083,
-        262216855790,
-        262224529637,
-        263431222517
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2443,9 +2423,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1532803000,
       "companyEmployees": 2500,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2487,9 +2465,7 @@
       "companyRevenue": 55548000000,
       "companyEmployees": 150000,
       "companyParentIds": [],
-      "companyChildIds": [
-        258850478274
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2698,7 +2674,9 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2993,9 +2971,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3036,7 +3012,9 @@
       "companyIndustry": "PROSPECT",
       "companyRevenue": 0,
       "companyEmployees": 0,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220607386866
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3122,10 +3100,7 @@
       "companyRevenue": 20000000000,
       "companyEmployees": 72500,
       "companyParentIds": [],
-      "companyChildIds": [
-        264204131577,
-        264581917912
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3692,15 +3667,7 @@
       "employees": 175647,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        225635140849,
-        230029784291,
-        231940442307,
-        232131152083,
-        262216855790,
-        262224529637,
-        263431222517
-      ]
+      "childCompanyIds": []
     },
     "220584257724": {
       "id": "220584257724",
@@ -3876,7 +3843,9 @@
       "employees": 140000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264581201087
+      ]
     },
     "220587794626": {
       "id": "220587794626",
@@ -4057,9 +4026,7 @@
       "employees": 49000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        225530064080
-      ]
+      "childCompanyIds": []
     },
     "220598428890": {
       "id": "220598428890",
@@ -4744,7 +4711,9 @@
       "revenue": 4400000000,
       "employees": 14200,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "226285007091": {
@@ -5437,7 +5406,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226454480065": {
@@ -5756,7 +5727,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220607386866
+      ],
       "childCompanyIds": []
     },
     "226458090718": {
@@ -5978,9 +5951,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -7526,7 +7497,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226897212606": {
@@ -8102,9 +8075,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226909763783": {
@@ -8478,9 +8449,7 @@
       "revenue": 0,
       "employees": 220,
       "ownerId": "",
-      "parentCompanyIds": [
-        232131150023
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226909763826": {
@@ -10242,7 +10211,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "226920490174": {
@@ -10815,7 +10786,10 @@
       "employees": 68000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235511680221,
+        235592339679
+      ]
     },
     "226922256593": {
       "id": "226922256593",
@@ -11035,9 +11009,7 @@
       "employees": 24200,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        238323565808
-      ]
+      "childCompanyIds": []
     },
     "226958605516": {
       "id": "226958605516",
@@ -11707,7 +11679,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226962201787": {
@@ -11938,9 +11912,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007115": {
@@ -11951,9 +11923,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        234999737587
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007116": {
@@ -13581,9 +13551,7 @@
       "revenue": 21707870000,
       "employees": 21280,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "230031576306": {
@@ -13663,10 +13631,7 @@
       "employees": 72500,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204131577,
-        264581917912
-      ]
+      "childCompanyIds": []
     },
     "230386516181": {
       "id": "230386516181",
@@ -13930,7 +13895,18 @@
       "employees": 165000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226454480064,
+        226458090739,
+        226622786747,
+        226897211598,
+        226897211613,
+        226911567072,
+        226920490175,
+        226962201786,
+        226964007114,
+        226965808365
+      ]
     },
     "231614068925": {
       "id": "231614068925",
@@ -13951,9 +13927,7 @@
       "revenue": 1180000000,
       "employees": 800,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "231941156027": {
@@ -13976,7 +13950,9 @@
       "employees": 17000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264196399312
+      ]
     },
     "231943344369": {
       "id": "231943344369",
@@ -14044,9 +14020,7 @@
       "revenue": 14000000000,
       "employees": 52000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "232131152093": {
@@ -14121,9 +14095,7 @@
       "revenue": 5000000000,
       "employees": 12000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        249838914787
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "233139578076": {
@@ -16756,9 +16728,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234992537830": {
@@ -20778,7 +20748,9 @@
       "employees": 10000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        263648066783
+      ]
     },
     "235051015374": {
       "id": "235051015374",
@@ -21088,9 +21060,7 @@
       "employees": 34000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        230072877254
-      ]
+      "childCompanyIds": []
     },
     "235137799405": {
       "id": "235137799405",
@@ -21826,9 +21796,9 @@
       "id": "235547016407",
       "name": "RAFFIN MEDICAL",
       "domain": "raffin-medical.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22398,9 +22368,9 @@
       "id": "235557632208",
       "name": "THE FRAGRANCE FOUNDATION FRANCE",
       "domain": "fragrancefoundation.fr",
-      "industry": "PROSPECT",
+      "industry": "CONSUMER_GOODS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23979,9 +23949,7 @@
       "revenue": 26320000000,
       "employees": 75,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        226958605515
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "239539797219": {
@@ -24301,7 +24269,9 @@
       "employees": 2250,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        234988938460
+      ]
     },
     "245032334561": {
       "id": "245032334561",
@@ -24333,9 +24303,7 @@
       "revenue": 6069000000,
       "employees": 2525,
       "ownerId": "",
-      "parentCompanyIds": [
-        226285017278
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "246784900287": {
@@ -24603,7 +24571,9 @@
       "revenue": 280999000000,
       "employees": 100000,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        233004872904
+      ],
       "childCompanyIds": []
     },
     "258837299441": {
@@ -24670,9 +24640,7 @@
       "employees": 150000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        258850478274
-      ]
+      "childCompanyIds": []
     },
     "260128816334": {
       "id": "260128816334",
@@ -24776,9 +24744,7 @@
       "revenue": 1532803000,
       "employees": 2500,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262469511370": {
@@ -24955,9 +24921,7 @@
       "revenue": 19669000,
       "employees": 7500,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        231943343327
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204131577": {
@@ -25188,7 +25152,7 @@
     "totalOwners": 11,
     "totalCompanies": 1963,
     "totalDeals": 81,
-    "totalRelations": 88,
+    "totalRelations": 84,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 2,
