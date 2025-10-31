@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-31T14:40:32.869Z",
+  "timestamp": "2025-10-31T15:54:52.706Z",
   "count": 81,
   "data": [
     {
@@ -37,11 +37,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 68,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 204k€, relation stable",
+      "healthScore": 59,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2024
     },
     {
@@ -78,7 +78,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 48,
+      "healthScore": 24,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -119,11 +119,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 65,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 62,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -141,9 +141,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -162,11 +160,11 @@
       "engagementCalls": 1,
       "engagementMeetings": 3,
       "engagementLastActivity": "",
-      "healthScore": 78,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 184k€, relation stable",
+      "healthScore": 70,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2024
     },
     {
@@ -206,11 +204,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 57,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 30,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -247,7 +245,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 25,
+      "healthScore": 18,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -288,11 +286,11 @@
       "engagementCalls": 11,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 100,
-      "segment": "Stratégique",
-      "segmentColor": "#9b59b6",
-      "segmentPriority": 1,
-      "segmentReason": "CA 163k€, excellent health",
+      "healthScore": 86,
+      "segment": "Clé",
+      "segmentColor": "#3498db",
+      "segmentPriority": 2,
+      "segmentReason": "CA 163k€, relation stable",
       "year": 2024
     },
     {
@@ -331,11 +329,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 51,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 55,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -372,7 +370,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 48,
+      "healthScore": 36,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -394,9 +392,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 302000000,
       "companyEmployees": 500,
-      "companyParentIds": [
-        220598428889
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -415,11 +411,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 55,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 40,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -438,12 +434,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -461,11 +452,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 71,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 411k€, relation stable",
+      "healthScore": 44,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2024
     },
     {
@@ -511,11 +502,11 @@
       "engagementCalls": 6,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 99,
-      "segment": "Stratégique",
-      "segmentColor": "#9b59b6",
-      "segmentPriority": 1,
-      "segmentReason": "CA 411k€, excellent health",
+      "healthScore": 50,
+      "segment": "Clé",
+      "segmentColor": "#3498db",
+      "segmentPriority": 2,
+      "segmentReason": "CA 411k€, relation stable",
       "year": 2024
     },
     {
@@ -552,11 +543,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 57,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 33,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -595,11 +586,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 50,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 51,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -636,7 +627,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 36,
+      "healthScore": 11,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -659,7 +650,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -677,11 +670,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 2,
       "engagementLastActivity": "",
-      "healthScore": 80,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 687k€, relation stable",
+      "healthScore": 78,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2024
     },
     {
@@ -718,7 +711,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 49,
+      "healthScore": 22,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -761,11 +754,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 57,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 42,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -811,7 +804,7 @@
       "engagementCalls": 6,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 80,
+      "healthScore": 50,
       "segment": "Régulier",
       "segmentColor": "#2ecc71",
       "segmentPriority": 3,
@@ -852,11 +845,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 54,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 24,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -893,11 +886,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 57,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 33,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -934,11 +927,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 61,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 116k€, relation stable",
+      "healthScore": 38,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -975,7 +968,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 43,
+      "healthScore": 28,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1024,11 +1017,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 46,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 53,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2025
     },
     {
@@ -1065,11 +1058,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 56,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 62,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -1106,7 +1099,7 @@
       "engagementCalls": 11,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 100,
+      "healthScore": 86,
       "segment": "Stratégique",
       "segmentColor": "#9b59b6",
       "segmentPriority": 1,
@@ -1129,7 +1122,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1147,7 +1142,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 2,
       "engagementLastActivity": "",
-      "healthScore": 80,
+      "healthScore": 78,
       "segment": "Clé",
       "segmentColor": "#3498db",
       "segmentPriority": 2,
@@ -1188,11 +1183,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 52,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 18,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -1210,9 +1205,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1231,11 +1224,11 @@
       "engagementCalls": 1,
       "engagementMeetings": 3,
       "engagementLastActivity": "",
-      "healthScore": 71,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 104k€, relation stable",
+      "healthScore": 70,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2025
     },
     {
@@ -1272,7 +1265,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 29,
+      "healthScore": 13,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1313,11 +1306,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 57,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 33,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2025
     },
     {
@@ -1354,7 +1347,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 48,
+      "healthScore": 22,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1377,12 +1370,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1400,11 +1388,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 71,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 315k€, relation stable",
+      "healthScore": 44,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2025
     },
     {
@@ -1443,7 +1431,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 31,
+      "healthScore": 20,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1486,7 +1474,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 45,
+      "healthScore": 55,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1527,11 +1515,11 @@
       "engagementCalls": 11,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 100,
-      "segment": "Stratégique",
-      "segmentColor": "#9b59b6",
-      "segmentPriority": 1,
-      "segmentReason": "CA 101k€, excellent health",
+      "healthScore": 86,
+      "segment": "Clé",
+      "segmentColor": "#3498db",
+      "segmentPriority": 2,
+      "segmentReason": "CA 101k€, relation stable",
       "year": 2023
     },
     {
@@ -1549,9 +1537,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1570,11 +1556,11 @@
       "engagementCalls": 1,
       "engagementMeetings": 3,
       "engagementLastActivity": "",
-      "healthScore": 56,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 70,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -1611,11 +1597,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 61,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 82k€, relation stable",
+      "healthScore": 59,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -1654,7 +1640,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 46,
+      "healthScore": 33,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1695,7 +1681,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 37,
+      "healthScore": 39,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1736,11 +1722,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 41,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 26,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2022
     },
     {
@@ -1759,12 +1745,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1782,11 +1763,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 71,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 522k€, relation stable",
+      "healthScore": 44,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -1823,11 +1804,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 60,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 24,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2022
     },
     {
@@ -1846,7 +1827,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1864,11 +1847,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 2,
       "engagementLastActivity": "",
-      "healthScore": 80,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 204k€, relation stable",
+      "healthScore": 78,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2023
     },
     {
@@ -1914,11 +1897,11 @@
       "engagementCalls": 6,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 92,
-      "segment": "Stratégique",
-      "segmentColor": "#9b59b6",
-      "segmentPriority": 1,
-      "segmentReason": "CA 128k€, excellent health",
+      "healthScore": 50,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2023
     },
     {
@@ -1955,7 +1938,7 @@
       "engagementCalls": 5,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 45,
+      "healthScore": 27,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -1996,7 +1979,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 43,
+      "healthScore": 32,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2037,7 +2020,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 37,
+      "healthScore": 11,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2081,11 +2064,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 69,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 144k€, relation stable",
+      "healthScore": 30,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -2122,11 +2105,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 51,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
-      "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "healthScore": 26,
+      "segment": "À Risque",
+      "segmentColor": "#e74c3c",
+      "segmentPriority": 1,
+      "segmentReason": "Health score faible",
       "year": 2023
     },
     {
@@ -2163,11 +2146,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 4,
       "engagementLastActivity": "",
-      "healthScore": 52,
+      "healthScore": 34,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
-      "segmentReason": "Sentiment négatif",
+      "segmentReason": "Health score faible",
       "year": 2022
     },
     {
@@ -2204,7 +2187,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 32,
+      "healthScore": 13,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2245,11 +2228,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 55,
+      "healthScore": 31,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
-      "segmentReason": "Sentiment négatif",
+      "segmentReason": "Health score faible",
       "year": 2022
     },
     {
@@ -2294,11 +2277,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 43,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 53,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2022
     },
     {
@@ -2335,7 +2318,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 43,
+      "healthScore": 28,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2378,7 +2361,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 45,
+      "healthScore": 42,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -2419,7 +2402,7 @@
       "engagementCalls": 11,
       "engagementMeetings": 6,
       "engagementLastActivity": "",
-      "healthScore": 100,
+      "healthScore": 86,
       "segment": "Stratégique",
       "segmentColor": "#9b59b6",
       "segmentPriority": 1,
@@ -2441,7 +2424,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1532803000,
       "companyEmployees": 2500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2460,7 +2445,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 2,
       "engagementLastActivity": "",
-      "healthScore": 44,
+      "healthScore": 34,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -2503,11 +2488,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 48,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 55,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2022
     },
     {
@@ -2544,7 +2529,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 38,
+      "healthScore": 26,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -2585,11 +2570,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 63,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 142k€, relation stable",
+      "healthScore": 33,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
+      "segmentPriority": 3,
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2022
     },
     {
@@ -2626,7 +2611,7 @@
       "engagementCalls": 1,
       "engagementMeetings": 2,
       "engagementLastActivity": "",
-      "healthScore": 59,
+      "healthScore": 65,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -2667,11 +2652,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 46,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 28,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -2708,11 +2693,11 @@
       "engagementCalls": 5,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 70,
+      "healthScore": 27,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
-      "segmentReason": "Sentiment négatif",
+      "segmentReason": "Health score faible",
       "year": 2022
     },
     {
@@ -2749,11 +2734,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 57,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 26,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2024
     },
     {
@@ -2772,7 +2757,10 @@
       "companyRevenue": 58221850000,
       "companyEmployees": 168000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264204857580,
+        264205578471
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2790,11 +2778,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 52,
+      "healthScore": 27,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
-      "segmentReason": "Sentiment négatif",
+      "segmentReason": "Health score faible",
       "year": 2022
     },
     {
@@ -2840,11 +2828,11 @@
       "engagementCalls": 6,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 92,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 93k€, relation stable",
+      "healthScore": 50,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2022
     },
     {
@@ -2881,7 +2869,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 37,
+      "healthScore": 11,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -2922,11 +2910,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 70,
-      "segment": "Clé",
-      "segmentColor": "#3498db",
-      "segmentPriority": 2,
-      "segmentReason": "CA 208k€, relation stable",
+      "healthScore": 26,
+      "segment": "Régulier",
+      "segmentColor": "#2ecc71",
+      "segmentPriority": 3,
+      "segmentReason": "Client régulier",
       "year": 2022
     },
     {
@@ -2963,7 +2951,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 31,
+      "healthScore": 39,
       "segment": "À Risque",
       "segmentColor": "#e74c3c",
       "segmentPriority": 1,
@@ -3006,11 +2994,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 47,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 51,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2022
     },
     {
@@ -3028,9 +3016,7 @@
       "companyIndustry": "Client",
       "companyRevenue": 0,
       "companyEmployees": 0,
-      "companyParentIds": [
-        220607386866
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3049,7 +3035,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 13,
+      "healthScore": 12,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -3093,7 +3079,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 51,
+      "healthScore": 30,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -3137,11 +3123,11 @@
       "engagementCalls": 3,
       "engagementMeetings": 1,
       "engagementLastActivity": "",
-      "healthScore": 53,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 35,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2025
     },
     {
@@ -3219,7 +3205,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 40,
+      "healthScore": 18,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -3342,7 +3328,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 40,
+      "healthScore": 30,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -3383,11 +3369,11 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 46,
-      "segment": "Régulier",
-      "segmentColor": "#2ecc71",
+      "healthScore": 28,
+      "segment": "Prospect",
+      "segmentColor": "#f39c12",
       "segmentPriority": 3,
-      "segmentReason": "Client régulier",
+      "segmentReason": "Faible CA ou nouveau",
       "year": 2025
     },
     {
@@ -3426,7 +3412,7 @@
       "engagementCalls": 0,
       "engagementMeetings": 0,
       "engagementLastActivity": "",
-      "healthScore": 45,
+      "healthScore": 42,
       "segment": "Prospect",
       "segmentColor": "#f39c12",
       "segmentPriority": 3,
@@ -4002,12 +3988,7 @@
       "employees": 272367,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ]
+      "childCompanyIds": []
     },
     "220593095921": {
       "id": "220593095921",
@@ -4341,15 +4322,7 @@
       "employees": 170158,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226458090741,
-        226897212603,
-        226964007134,
-        234978104516,
-        234978104524,
-        234988938452,
-        234992537829
-      ]
+      "childCompanyIds": []
     },
     "220609174728": {
       "id": "220609174728",
@@ -4404,10 +4377,7 @@
       "employees": 156921,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226907993318,
-        226922255599
-      ]
+      "childCompanyIds": []
     },
     "220610910446": {
       "id": "220610910446",
@@ -4495,7 +4465,10 @@
       "employees": 168000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204857580,
+        264205578471
+      ]
     },
     "220612718805": {
       "id": "220612718805",
@@ -4714,9 +4687,7 @@
       "revenue": 302000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220598428889
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "225635140816": {
@@ -4738,9 +4709,7 @@
       "revenue": 4400000000,
       "employees": 14200,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226285007091": {
@@ -5435,9 +5404,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226454480065": {
@@ -5756,9 +5723,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220607386866
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090718": {
@@ -5890,9 +5855,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090731": {
@@ -5980,9 +5943,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -6004,7 +5965,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226458090742": {
@@ -7095,9 +7058,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "29926733",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211599": {
@@ -7262,7 +7223,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226897211614": {
@@ -7528,7 +7491,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226897212606": {
@@ -7836,7 +7801,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226907993319": {
@@ -8476,7 +8443,9 @@
       "revenue": 0,
       "employees": 220,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "226909763826": {
@@ -8982,9 +8951,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226913359045": {
@@ -10238,7 +10205,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        278642453704
+      ],
       "childCompanyIds": []
     },
     "226920490174": {
@@ -10260,9 +10229,7 @@
       "revenue": 0,
       "employees": 150,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226920490176": {
@@ -10537,9 +10504,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220610910445
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226922255601": {
@@ -10815,10 +10780,7 @@
       "employees": 68000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        235511680221,
-        235592339679
-      ]
+      "childCompanyIds": []
     },
     "226922256593": {
       "id": "226922256593",
@@ -11954,7 +11916,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "226964007116": {
@@ -12152,9 +12116,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226964007136": {
@@ -13586,9 +13548,7 @@
       "revenue": 21707870000,
       "employees": 21280,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "230031576306": {
@@ -14115,9 +14075,7 @@
       "revenue": 5000000000,
       "employees": 12000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        249838914787
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "233139578076": {
@@ -15195,9 +15153,7 @@
       "revenue": 0,
       "employees": 130,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234978104517": {
@@ -15285,9 +15241,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234978104525": {
@@ -17720,7 +17674,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220593061109
+      ],
       "childCompanyIds": []
     },
     "234997940470": {
@@ -17919,7 +17875,11 @@
       "employees": 21505,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226907993332,
+        226964007115,
+        235010292940
+      ]
     },
     "234999737588": {
       "id": "234999737588",
@@ -19249,9 +19209,7 @@
       "revenue": 0,
       "employees": 21505,
       "ownerId": "",
-      "parentCompanyIds": [
-        234999737587
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235010292941": {
@@ -20915,7 +20873,9 @@
       "employees": 1664,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235724247236
+      ]
     },
     "235052258499": {
       "id": "235052258499",
@@ -21080,7 +21040,9 @@
       "employees": 34000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        230072877254
+      ]
     },
     "235137799405": {
       "id": "235137799405",
@@ -21642,7 +21604,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260804494551
+      ],
       "childCompanyIds": []
     },
     "235542906101": {
@@ -22489,7 +22453,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        226922256592
+      ],
       "childCompanyIds": []
     },
     "235592339680": {
@@ -22973,9 +22939,7 @@
       "revenue": 0,
       "employees": 1500,
       "ownerId": "",
-      "parentCompanyIds": [
-        235052258498
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235725744326": {
@@ -24421,7 +24385,9 @@
       "employees": 95442,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        233096890562
+      ]
     },
     "249843254517": {
       "id": "249843254517",
@@ -24554,7 +24520,9 @@
       "revenue": 237100000000,
       "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        278642453704
+      ],
       "childCompanyIds": []
     },
     "258156739774": {
@@ -24565,9 +24533,7 @@
       "revenue": 237100000000,
       "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        278642453704
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258569825511": {
@@ -24741,9 +24707,7 @@
       "revenue": 237100000000,
       "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        278642453704
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262224529637": {
@@ -24754,7 +24718,9 @@
       "revenue": 1532803000,
       "employees": 2500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "262469511370": {
@@ -24833,7 +24799,9 @@
       "revenue": 75000000,
       "employees": 570,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        263633128688
+      ],
       "childCompanyIds": []
     },
     "263431222517": {
@@ -24844,7 +24812,9 @@
       "revenue": 90061920000,
       "employees": 1521,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "263434090717": {
@@ -24855,9 +24825,7 @@
       "revenue": 606014800,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263566089435": {
@@ -24880,11 +24848,7 @@
       "employees": 6000,
       "ownerId": "29974261",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        262469511370,
-        263425988855,
-        263434090717
-      ]
+      "childCompanyIds": []
     },
     "263648066783": {
       "id": "263648066783",
@@ -25001,7 +24965,9 @@
       "revenue": 15794000000,
       "employees": 3000,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220612714702
+      ],
       "childCompanyIds": []
     },
     "264240320709": {
@@ -25045,9 +25011,7 @@
       "revenue": 1700000000,
       "employees": 33300,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        230109082847
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "265447607502": {
@@ -25187,7 +25151,7 @@
     "totalOwners": 11,
     "totalCompanies": 1963,
     "totalDeals": 81,
-    "totalRelations": 96,
+    "totalRelations": 80,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 2,
