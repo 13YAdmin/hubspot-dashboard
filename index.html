@@ -597,6 +597,7 @@
     // ========================================
     let allData = [];
     let companies = {};
+    let companiesWithParents = []; // Optimized list of only companies with parents
     let currentFilter = { year: 'all' };
     let groupExpandedState = {};
 
@@ -620,8 +621,14 @@
         allData = json.data;
         companies = json.companies || {};
 
+        // OPTIMIZATION: Build index of companies with parents (only ~41 instead of 1963)
+        companiesWithParents = Object.values(companies).filter(c =>
+          c.parentCompanyIds && c.parentCompanyIds.length > 0
+        );
+
         console.log(`✅ ${allData.length} deals chargés`);
         console.log(`✅ ${Object.keys(companies).length} companies chargées`);
+        console.log(`✅ ${companiesWithParents.length} filiales détectées`);
 
         // Hide loading, show content
         document.getElementById('loading').classList.add('hidden');
@@ -906,21 +913,32 @@
     function renderOpportunitiesTable(data) {
       const opportunities = [];
 
-      // Find all white spaces (children companies with no deals)
-      Object.values(companies).forEach(company => {
-        const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
-        if (!hasParent) return;
+      // OPTIMIZATION: Create Set of companies with deals for O(1) lookup
+      const companiesWithDeals = new Set(data.map(deal => deal.companyId));
+
+      // Build parent deals cache to avoid recalculation
+      const parentDealsCache = {};
+      data.forEach(deal => {
+        if (!parentDealsCache[deal.companyId]) {
+          parentDealsCache[deal.companyId] = [];
+        }
+        parentDealsCache[deal.companyId].push(deal);
+      });
+
+      // OPTIMIZATION: Only iterate through companies that have parents
+      // Instead of all 1963 companies, only check the ~41 with parents
+      companiesWithParents.forEach(company => {
 
         const parentId = company.parentCompanyIds[0];
         const parentCompany = companies[parentId];
         if (!parentCompany) return;
 
-        // Check if this company has any deals
-        const hasDeals = data.some(deal => deal.companyId === company.companyId);
+        // Check if this company has any deals (O(1) lookup)
+        const hasDeals = companiesWithDeals.has(company.id);
 
         if (!hasDeals) {
-          // Calculate potential based on parent revenue
-          const parentDeals = data.filter(deal => deal.companyId === parentId);
+          // Calculate potential based on parent revenue (use cache)
+          const parentDeals = parentDealsCache[parentId] || [];
           const parentRevenue = parentDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
           const parentHealth = parentDeals.length > 0
             ? parentDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / parentDeals.length
