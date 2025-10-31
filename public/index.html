@@ -621,10 +621,18 @@
         allData = json.data;
         companies = json.companies || {};
 
-        // OPTIMIZATION: Build index of companies with parents (only ~41 instead of 1963)
-        companiesWithParents = Object.values(companies).filter(c =>
-          c.parentCompanyIds && c.parentCompanyIds.length > 0
-        );
+        // Build set of companies that have deals (clients)
+        const companiesWithDeals = new Set(allData.map(deal => deal.companyId));
+
+        // OPTIMIZATION: Build index of companies with parents WHERE the parent has deals
+        // Only include filiales if their parent is actually a client
+        companiesWithParents = Object.values(companies).filter(c => {
+          if (!c.parentCompanyIds || c.parentCompanyIds.length === 0) return false;
+
+          const parentId = c.parentCompanyIds[0];
+          // Only include if parent has deals (is a client)
+          return companiesWithDeals.has(parentId);
+        });
 
         console.log(`✅ ${allData.length} deals chargés`);
         console.log(`✅ ${Object.keys(companies).length} companies chargées`);
@@ -913,7 +921,7 @@
     function renderOpportunitiesTable(data) {
       const opportunities = [];
 
-      // OPTIMIZATION: Create Set of companies with deals for O(1) lookup
+      // Build companiesWithDeals Set for O(1) lookup
       const companiesWithDeals = new Set(data.map(deal => deal.companyId));
 
       // Build parent deals cache to avoid recalculation
@@ -925,15 +933,15 @@
         parentDealsCache[deal.companyId].push(deal);
       });
 
-      // OPTIMIZATION: Only iterate through companies that have parents
-      // Instead of all 1963 companies, only check the ~41 with parents
+      // OPTIMIZATION: companiesWithParents already filtered to only include
+      // filiales whose parent is a client (has deals)
       companiesWithParents.forEach(company => {
 
         const parentId = company.parentCompanyIds[0];
         const parentCompany = companies[parentId];
         if (!parentCompany) return;
 
-        // Check if this company has any deals (O(1) lookup)
+        // Check if this filiale has any deals (O(1) lookup)
         const hasDeals = companiesWithDeals.has(company.id);
 
         if (!hasDeals) {
