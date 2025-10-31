@@ -853,6 +853,70 @@
           </table>
         </div>
       </section>
+
+      <!-- DOCUMENTATION SECTION -->
+      <section style="margin-top: 48px; padding: 40px 0; border-top: 1px solid var(--border);">
+        <h2 style="margin: 0 0 12px 0; font-size: 32px; font-weight: 700;">📚 Méthodologie & Documentation</h2>
+        <p style="margin: 0 0 32px 0; color: var(--text-muted); font-size: 16px;">
+          Cliquez sur chaque carte pour comprendre le calcul des métriques et la logique du dashboard.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+          <!-- Health Score Card -->
+          <div onclick="showDocumentation('health')" style="cursor: pointer; padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)'">
+            <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700; color: var(--primary);">💚 Health Score (0-100)</h3>
+            <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+              Formule complète avec Revenue Trend pour évaluer la santé client
+            </p>
+            <span style="display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--primary);">Cliquez pour détails →</span>
+          </div>
+
+          <!-- Revenue Trend Card -->
+          <div onclick="showDocumentation('trend')" style="cursor: pointer; padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--secondary)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)'">
+            <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700; color: var(--secondary);">📈 Revenue Trend</h3>
+            <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+              Analyse temporelle du CA pour détecter croissance et déclin
+            </p>
+            <span style="display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--secondary);">Cliquez pour détails →</span>
+          </div>
+
+          <!-- Segments Card -->
+          <div onclick="showDocumentation('segments')" style="cursor: pointer; padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--success)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)'">
+            <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700; color: var(--success);">🏷️ Segments Clients</h3>
+            <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+              Premium vs Standard - critères de segmentation
+            </p>
+            <span style="display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--success);">Cliquez pour détails →</span>
+          </div>
+
+          <!-- White Spaces Card -->
+          <div onclick="showDocumentation('whitespace')" style="cursor: pointer; padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--warning)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)'">
+            <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700; color: var(--warning);">🎯 White Spaces</h3>
+            <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+              Détection des filiales non contactées pour opportunités
+            </p>
+            <span style="display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--warning);">Cliquez pour détails →</span>
+          </div>
+
+          <!-- KPIs Card -->
+          <div onclick="showDocumentation('kpis')" style="cursor: pointer; padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--primary)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)'">
+            <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700; color: var(--primary);">📊 KPIs</h3>
+            <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+              Définition des indicateurs clés de performance
+            </p>
+            <span style="display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--primary);">Cliquez pour détails →</span>
+          </div>
+
+          <!-- Data Sources Card -->
+          <div onclick="showDocumentation('data')" style="cursor: pointer; padding: 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s ease;" onmouseover="this.style.borderColor='var(--text)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--border)'; this.style.transform='translateY(0)'">
+            <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 700;">🔗 Sources de Données</h3>
+            <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+              Comment les données sont collectées et mises à jour
+            </p>
+            <span style="display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600;">Cliquez pour détails →</span>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- MODAL -->
@@ -2019,6 +2083,338 @@
         renderGroupsTable(filterData());
       }
     });
+
+    // ========================================
+    // DOCUMENTATION
+    // ========================================
+    function showDocumentation(type) {
+      let title = '';
+      let content = '';
+
+      switch(type) {
+        case 'health':
+          title = '💚 Health Score (0-100) - Formule Complète';
+          content = `
+            <div style="line-height: 1.8;">
+              <p style="margin-bottom: 20px;">
+                Le Health Score évalue la santé globale d'un client sur <strong>100 points</strong> en combinant
+                5 facteurs clés incluant la nouvelle composante <strong>Revenue Trend</strong>.
+              </p>
+
+              <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid var(--primary);">
+                <div style="font-weight: 700; color: var(--primary); margin-bottom: 16px; font-size: 18px;">
+                  Score = Base (15) + Notes (25) + Engagement (25) + Revenue Base (15) + Revenue Trend (20)
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                  <div style="font-weight: 700; margin-bottom: 8px;">1️⃣ Base Score: 15 points</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px;">Tous les clients partent avec 15 points</div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                  <div style="font-weight: 700; margin-bottom: 8px;">2️⃣ Notes: 25 points max</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px;">
+                    • Quantité (12 pts): Nb de notes (≥15 = 12pts, ≥10 = 8pts, ≥5 = 5pts)<br>
+                    • Qualité (5 pts): Longueur moyenne (>250 chars = 5pts, >120 = 3pts)<br>
+                    • Récence (4 pts): Notes récentes (+4pts) vs anciennes (-3pts)<br>
+                    • Sentiment (4 pts): Positive (+4pts) vs Negative (-8pts)
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                  <div style="font-weight: 700; margin-bottom: 8px;">3️⃣ Engagement: 25 points max</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px;">
+                    • Emails (7 pts): ≥15 = 7pts, ≥8 = 4pts, ≥3 = 2pts<br>
+                    • Calls (9 pts): ≥8 = 9pts, ≥4 = 6pts, ≥1 = 2pts<br>
+                    • Meetings (9 pts): ≥4 = 9pts, ≥2 = 6pts, ≥1 = 2pts
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                  <div style="font-weight: 700; margin-bottom: 8px;">4️⃣ Revenue Base: 15 points max</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px;">
+                    • ≥1M€ = 15 pts<br>
+                    • ≥500K€ = 12 pts<br>
+                    • ≥200K€ = 9 pts<br>
+                    • ≥100K€ = 6 pts<br>
+                    • ≥50K€ = 3 pts
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-weight: 700; margin-bottom: 8px;">5️⃣ Revenue Trend: 20 points max (NEW!)</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px;">
+                    Analyse temporelle du CA pour récompenser la croissance:<br>
+                    • <span style="color: var(--success);">Croissance >200%: +20 pts</span><br>
+                    • <span style="color: var(--success);">Croissance 100-200%: +18 pts</span><br>
+                    • <span style="color: var(--success);">Croissance 50-100%: +15 pts</span><br>
+                    • <span style="color: var(--success);">Croissance 20-50%: +12 pts</span><br>
+                    • Croissance 0-20%: +8 pts<br>
+                    • Stable (-10 à 0%): +5 pts<br>
+                    • <span style="color: var(--danger);">Déclin -30 à -10%: 0 pt</span><br>
+                    • <span style="color: var(--danger);">Déclin -50 à -30%: -5 pts</span><br>
+                    • <span style="color: var(--danger);">Déclin -70 à -50%: -10 pts</span><br>
+                    • <span style="color: var(--danger);">Déclin <-70%: -15 pts</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(34, 197, 94, 0.1); padding: 16px; border-radius: 8px; margin-top: 20px;">
+                <div style="font-size: 14px;">
+                  <strong>Exemple - Sanofi:</strong> Base (15) + Notes (20) + Engagement (18) + Revenue 1.9M€ (15) + Trend +393% (20) = <strong>88-94/100</strong>
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'trend':
+          title = '📈 Revenue Trend - Analyse Temporelle';
+          content = `
+            <div style="line-height: 1.8;">
+              <p style="margin-bottom: 20px;">
+                Le <strong>Revenue Trend</strong> analyse l'évolution du CA sur plusieurs années pour identifier
+                les clients en croissance ou en déclin, apportant une dimension temporelle au Health Score.
+              </p>
+
+              <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--secondary);">
+                <div style="font-weight: 700; color: var(--secondary); margin-bottom: 16px; font-size: 16px;">
+                  Méthode de Calcul
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">1️⃣ Collecte des données annuelles</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    On regroupe tous les deals par année (2022-2025) pour chaque entreprise.
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">2️⃣ Calcul de la tendance</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    Tendance = ((CA dernière année - CA première année) / CA première année) × 100
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-weight: 600; margin-bottom: 8px;">3️⃣ Attribution des points</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    Plus la croissance est forte, plus le score est élevé. Un déclin important pénalise le score.
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(34, 197, 94, 0.1); padding: 16px; border-radius: 8px;">
+                <div style="font-size: 14px;">
+                  <strong>Exemple:</strong> Total Energies avec CA 2022: 93K → 2024: 411K → 2025: 21K<br>
+                  → Tendance = ((21K - 93K) / 93K) × 100 = <strong style="color: var(--danger);">-77%</strong> → Score pénalisé de -10 à -15 pts
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'segments':
+          title = '🏷️ Segments Clients';
+          content = `
+            <div style="line-height: 1.8;">
+              <p style="margin-bottom: 20px;">
+                Les clients sont classés en <strong>2 segments principaux</strong> selon leur valeur et potentiel.
+              </p>
+
+              <div style="margin-bottom: 24px; padding: 20px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%); border-radius: 12px; border-left: 4px solid var(--primary);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                  <span class="badge premium" style="font-size: 16px;">Premium</span>
+                  <span style="font-weight: 700; color: var(--primary);">Clients à Forte Valeur</span>
+                </div>
+                <div style="font-size: 14px; margin-bottom: 12px;"><strong>Critères:</strong></div>
+                <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px; margin-bottom: 16px;">
+                  • Health Score ≥ 70/100<br>
+                  • CA annuel moyen élevé<br>
+                  • Bonne tendance d'évolution
+                </div>
+                <div style="font-size: 14px; margin-bottom: 8px;"><strong>Actions prioritaires:</strong></div>
+                <div style="font-size: 14px; color: var(--text); margin-left: 16px;">
+                  • Suivi mensuel minimum<br>
+                  • Opportunités d'upsell<br>
+                  • Relation privilégiée
+                </div>
+              </div>
+
+              <div style="padding: 20px; background: rgba(99, 102, 241, 0.1); border-radius: 12px; border-left: 4px solid var(--text-muted);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                  <span class="badge standard" style="font-size: 16px;">Standard</span>
+                  <span style="font-weight: 700;">Clients Réguliers</span>
+                </div>
+                <div style="font-size: 14px; margin-bottom: 12px;"><strong>Critères:</strong></div>
+                <div style="font-size: 14px; color: var(--text-muted); margin-left: 16px; margin-bottom: 16px;">
+                  • Health Score 50-69/100<br>
+                  • CA modéré<br>
+                  • Potentiel de croissance
+                </div>
+                <div style="font-size: 14px; margin-bottom: 8px;"><strong>Actions:</strong></div>
+                <div style="font-size: 14px; color: var(--text); margin-left: 16px;">
+                  • Suivi trimestriel<br>
+                  • Identifier opportunités de développement<br>
+                  • Maintenir la relation
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'whitespace':
+          title = '🎯 White Spaces - Opportunités Non Exploitées';
+          content = `
+            <div style="line-height: 1.8;">
+              <p style="margin-bottom: 20px;">
+                Les <strong>White Spaces</strong> sont des filiales de groupes clients qui n'ont jamais été contactées,
+                représentant des opportunités de développement commercial.
+              </p>
+
+              <div style="background: rgba(251, 191, 36, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--warning);">
+                <div style="font-weight: 700; color: var(--warning); margin-bottom: 16px; font-size: 16px;">
+                  Détection Automatique
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">1️⃣ Identification des groupes</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    Le système analyse les relations parent-filiale dans HubSpot pour identifier les groupes.
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">2️⃣ Détection des filiales non contactées</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    Pour chaque groupe client, on identifie les filiales qui n'ont aucun deal (jamais contactées).
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-weight: 600; margin-bottom: 8px;">3️⃣ Priorisation</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    Les opportunités sont classées selon:<br>
+                    • Health Score du groupe parent<br>
+                    • CA du groupe parent<br>
+                    • Nombre de filiales totales
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(34, 197, 94, 0.1); padding: 16px; border-radius: 8px;">
+                <div style="font-size: 14px;">
+                  <strong>Avantage:</strong> Ces opportunités sont "chaudes" car vous avez déjà une relation avec le groupe parent,
+                  facilitant l'approche commerciale.
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'kpis':
+          title = '📊 KPIs - Indicateurs Clés';
+          content = `
+            <div style="line-height: 1.8;">
+              <p style="margin-bottom: 20px;">
+                Les <strong>KPIs</strong> donnent une vue d'ensemble de la performance commerciale en temps réel.
+              </p>
+
+              <div style="display: grid; gap: 16px;">
+                <div style="padding: 16px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border-left: 3px solid var(--primary);">
+                  <div style="font-weight: 700; margin-bottom: 8px;">CA Total</div>
+                  <div style="font-size: 14px; color: var(--text-muted);">
+                    Somme de tous les deals fermés/gagnés, tous clients confondus.
+                  </div>
+                </div>
+
+                <div style="padding: 16px; background: rgba(251, 191, 36, 0.1); border-radius: 8px; border-left: 3px solid var(--secondary);">
+                  <div style="font-weight: 700; margin-bottom: 8px;">CA 2025</div>
+                  <div style="font-size: 14px; color: var(--text-muted);">
+                    Chiffre d'affaires de l'année en cours (2025).
+                  </div>
+                </div>
+
+                <div style="padding: 16px; background: rgba(34, 197, 94, 0.1); border-radius: 8px; border-left: 3px solid var(--success);">
+                  <div style="font-weight: 700; margin-bottom: 8px;">Nombre de Clients</div>
+                  <div style="font-size: 14px; color: var(--text-muted);">
+                    Nombre total d'entreprises avec au moins 1 deal fermé/gagné.
+                  </div>
+                </div>
+
+                <div style="padding: 16px; background: rgba(168, 85, 247, 0.1); border-radius: 8px; border-left: 3px solid #a855f7;">
+                  <div style="font-weight: 700; margin-bottom: 8px;">Health Score Moyen</div>
+                  <div style="font-size: 14px; color: var(--text-muted);">
+                    Moyenne des Health Scores de tous les clients (0-100).
+                  </div>
+                </div>
+
+                <div style="padding: 16px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border-left: 3px solid var(--danger);">
+                  <div style="font-weight: 700; margin-bottom: 8px;">Opportunités White Space</div>
+                  <div style="font-size: 14px; color: var(--text-muted);">
+                    Nombre de filiales non contactées détectées dans les groupes clients.
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+
+        case 'data':
+          title = '🔗 Sources de Données & Mise à Jour';
+          content = `
+            <div style="line-height: 1.8;">
+              <p style="margin-bottom: 20px;">
+                Le dashboard est alimenté automatiquement par <strong>HubSpot</strong> via GitHub Actions.
+              </p>
+
+              <div style="background: rgba(99, 102, 241, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--primary);">
+                <div style="font-weight: 700; color: var(--primary); margin-bottom: 16px; font-size: 16px;">
+                  Workflow Automatisé
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">1️⃣ Collecte (GitHub Actions)</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    • Exécution automatique toutes les 2 heures<br>
+                    • Récupération des deals, companies, notes, activities via HubSpot API<br>
+                    • Calcul des Health Scores côté serveur
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="font-weight: 600; margin-bottom: 8px;">2️⃣ Traitement</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    • Enrichissement avec notes et engagement<br>
+                    • Analyse des relations parent-filiale<br>
+                    • Génération du fichier data.json
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-weight: 600; margin-bottom: 8px;">3️⃣ Publication</div>
+                  <div style="font-size: 14px; color: var(--text-muted); margin-left: 12px;">
+                    • Déploiement automatique sur GitHub Pages<br>
+                    • Mise à jour instantanée du dashboard
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(34, 197, 94, 0.1); padding: 16px; border-radius: 8px;">
+                <div style="font-size: 14px;">
+                  <strong>Données en temps réel:</strong> Le badge "Live Data" en haut indique la dernière mise à jour.
+                  Toutes les métriques sont synchronisées avec HubSpot toutes les 2 heures.
+                </div>
+              </div>
+            </div>
+          `;
+          break;
+      }
+
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-body').innerHTML = content;
+      document.getElementById('modal').classList.add('active');
+    }
 
     // ========================================
     // FORMATTERS
