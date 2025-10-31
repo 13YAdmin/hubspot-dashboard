@@ -327,13 +327,13 @@ async function main() {
     console.log('🔄 ÉTAPE 4.5/5 - Recalcul health scores avec tendances CA...');
 
     // Grouper les deals par company et calculer yearlyRevenue complet
-    const companiesData = {};
+    const companyGroupsData = {};
 
     enrichedDeals.forEach(deal => {
       if (!deal.companyId) return;
 
-      if (!companiesData[deal.companyId]) {
-        companiesData[deal.companyId] = {
+      if (!companyGroupsData[deal.companyId]) {
+        companyGroupsData[deal.companyId] = {
           companyId: deal.companyId,
           companyName: deal.companyName,
           deals: [],
@@ -345,7 +345,7 @@ async function main() {
         };
       }
 
-      const companyData = companiesData[deal.companyId];
+      const companyData = companyGroupsData[deal.companyId];
       companyData.deals.push(deal);
 
       // Agréger CA par année
@@ -379,7 +379,7 @@ async function main() {
     // Recalculer les health scores avec yearlyRevenue complet
     const companyHealthScores = {};
 
-    for (const [companyId, companyData] of Object.entries(companiesData)) {
+    for (const [companyId, companyData] of Object.entries(companyGroupsData)) {
       const companyAnalysisData = {
         totalRevenue: companyData.totalRevenue,
         yearlyRevenue: companyData.yearlyRevenue
@@ -403,7 +403,7 @@ async function main() {
       }
     });
 
-    console.log(`\n✅ Health scores recalculés avec tendances CA pour ${Object.keys(companiesData).length} companies\n`);
+    console.log(`\n✅ Health scores recalculés avec tendances CA pour ${Object.keys(companyGroupsData).length} companies\n`);
 
     // ÉTAPE 5 : Générer le fichier data.json
     console.log('💾 ÉTAPE 5/5 - Génération du fichier data.json...');
