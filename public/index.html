@@ -775,6 +775,11 @@
                   <span class="sort-icon"></span>
                 </th>
                 <th class="sortable" data-sort="health">Santé<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="2022" style="text-align: right; font-size: 12px;">2022<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="2023" style="text-align: right; font-size: 12px;">2023<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="2024" style="text-align: right; font-size: 12px;">2024<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="2025" style="text-align: right; font-size: 12px;">2025<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="trend" style="text-align: center; font-size: 12px;">Tendance<span class="sort-icon"></span></th>
                 <th class="sortable" data-sort="revenue" style="text-align: right;">CA Total<span class="sort-icon"></span></th>
               </tr>
             </thead>
@@ -898,7 +903,7 @@
     let currentFilter = { year: 'all' };
     let groupExpandedState = {};
     let sortState = {
-      groups: { column: 'revenue', direction: 'desc' },
+      groups: { column: 'name', direction: 'asc' },
       opportunities: { column: 'potential', direction: 'desc' }
     };
 
@@ -1108,116 +1113,65 @@
     }
 
     // ========================================
-    // HEALTH SCORE CALCULATION (INTELLIGENT)
+    // HEALTH SCORE CALCULATION
     // ========================================
     /**
-     * Calcule un score santé intelligent pour un client basé sur 4 facteurs:
+     * Calcule la moyenne des health scores des deals.
      *
-     * 1. CA & Croissance (40 points):
-     *    - Basé sur le montant total des deals
-     *    - Bonus si croissance entre années
+     * Les health scores sont calculés côté backend (.github/scripts/lib/health-score.js)
+     * avec TOUTES les données HubSpot:
+     * - Notes complètes (deal + company)
+     * - Engagement history (emails, calls, meetings)
+     * - Sentiment analysis
+     * - Revenue et tendances
      *
-     * 2. Engagement (30 points):
-     *    - Emails, appels, réunions
-     *    - Bonus pour récence (< 30 jours)
+     * Ce sont ces scores qui sont pushés vers HubSpot comme custom property.
      *
-     * 3. Qualité Relation (20 points):
-     *    - Sentiment positif dans les notes
-     *    - Nombre de notes (indique suivi actif)
-     *
-     * 4. Récence (10 points):
-     *    - Date du dernier deal
-     *    - Pénalité si > 6 mois
-     *
-     * @param {Array} deals - Tous les deals du client
-     * @returns {Object} { score: 0-100, breakdown: {...} }
+     * @param {Array} deals - Liste des deals avec leur healthScore
+     * @returns {number} Score moyen 0-100
      */
-    function calculateIntelligentHealthScore(deals) {
-      if (!deals || deals.length === 0) {
-        return { score: 0, breakdown: { ca: 0, engagement: 0, quality: 0, recency: 0 } };
-      }
+    function calculateAverageHealthScore(deals) {
+      if (!deals || deals.length === 0) return 0;
 
-      let scoreCA = 0;
-      let scoreEngagement = 0;
-      let scoreQuality = 0;
-      let scoreRecency = 0;
+      const totalScore = deals.reduce((sum, d) => sum + (d.healthScore || 0), 0);
+      return Math.round(totalScore / deals.length);
+    }
 
-      // 1. CA & CROISSANCE (40 points)
-      const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
-      const avgRevenue = totalRevenue / deals.length;
+    // ========================================
+    // YEARLY REVENUE & TREND CALCULATION
+    // ========================================
+    /**
+     * Calcule le CA par année et la tendance globale
+     *
+     * @param {Array} deals - Liste des deals
+     * @returns {Object} { years: {2022, 2023, 2024, 2025}, trend }
+     */
+    function calculateYearlyRevenueAndTrend(deals) {
+      const years = { 2022: 0, 2023: 0, 2024: 0, 2025: 0 };
 
-      // Score basé sur montant (logarithmique pour éviter les extrêmes)
-      if (totalRevenue > 0) {
-        scoreCA = Math.min(25, Math.log10(totalRevenue / 1000) * 8);
-      }
+      deals.forEach(deal => {
+        const year = deal.year || new Date(deal.closeDate).getFullYear();
+        if (years.hasOwnProperty(year)) {
+          years[year] += (deal.amount || 0);
+        }
+      });
 
-      // Bonus croissance: comparer deals récents vs anciens
-      const sortedDeals = [...deals].sort((a, b) => new Date(a.closeDate) - new Date(b.closeDate));
-      if (sortedDeals.length >= 2) {
-        const mid = Math.floor(sortedDeals.length / 2);
-        const oldRevenue = sortedDeals.slice(0, mid).reduce((sum, d) => sum + (d.amount || 0), 0);
-        const newRevenue = sortedDeals.slice(mid).reduce((sum, d) => sum + (d.amount || 0), 0);
+      // Calculer la tendance: (dernière année active - première année active) / première année active * 100
+      const activeYears = Object.entries(years)
+        .filter(([_, revenue]) => revenue > 0)
+        .sort(([yearA], [yearB]) => yearA - yearB);
 
-        if (oldRevenue > 0 && newRevenue > oldRevenue) {
-          const growthRate = (newRevenue - oldRevenue) / oldRevenue;
-          scoreCA += Math.min(15, growthRate * 30); // Bonus jusqu'à 15 pts
+      let trend = 0;
+      if (activeYears.length >= 2) {
+        const firstYear = activeYears[0][1];
+        const lastYear = activeYears[activeYears.length - 1][1];
+
+        if (firstYear > 0) {
+          trend = ((lastYear - firstYear) / firstYear) * 100;
         }
       }
-      scoreCA = Math.round(Math.min(40, scoreCA));
 
-      // 2. ENGAGEMENT (30 points)
-      const totalEmails = deals.reduce((sum, d) => sum + (d.engagementEmails || 0), 0);
-      const totalCalls = deals.reduce((sum, d) => sum + (d.engagementCalls || 0), 0);
-      const totalMeetings = deals.reduce((sum, d) => sum + (d.engagementMeetings || 0), 0);
-
-      scoreEngagement += Math.min(10, totalEmails / 2);      // Max 10 pts pour emails
-      scoreEngagement += Math.min(10, totalCalls * 2);        // Max 10 pts pour calls
-      scoreEngagement += Math.min(10, totalMeetings * 3);     // Max 10 pts pour meetings
-      scoreEngagement = Math.round(Math.min(30, scoreEngagement));
-
-      // 3. QUALITÉ RELATION (20 points)
-      const totalNotes = deals.reduce((sum, d) => sum + (d.totalNotes || 0), 0);
-      const avgSentiment = deals.reduce((sum, d) => sum + (d.notesSentiment || 50), 0) / deals.length;
-
-      // Score basé sur nombre de notes (suivi actif)
-      scoreQuality += Math.min(10, totalNotes / 2);
-
-      // Score basé sur sentiment (50 = neutre, 100 = très positif)
-      scoreQuality += Math.min(10, (avgSentiment - 50) / 5);
-      scoreQuality = Math.round(Math.max(0, Math.min(20, scoreQuality)));
-
-      // 4. RÉCENCE (10 points)
-      const mostRecentDeal = deals.reduce((latest, d) => {
-        const date = new Date(d.closeDate);
-        return !latest || date > latest ? date : latest;
-      }, null);
-
-      if (mostRecentDeal) {
-        const daysSince = (Date.now() - mostRecentDeal) / (1000 * 60 * 60 * 24);
-
-        if (daysSince < 30) {
-          scoreRecency = 10;
-        } else if (daysSince < 90) {
-          scoreRecency = 8;
-        } else if (daysSince < 180) {
-          scoreRecency = 5;
-        } else if (daysSince < 365) {
-          scoreRecency = 2;
-        }
-        // Sinon 0
-      }
-
-      const finalScore = Math.round(scoreCA + scoreEngagement + scoreQuality + scoreRecency);
-
-      return {
-        score: Math.max(0, Math.min(100, finalScore)),
-        breakdown: {
-          ca: scoreCA,
-          engagement: scoreEngagement,
-          quality: scoreQuality,
-          recency: scoreRecency
-        }
-      };
+      return { years, trend: Math.round(trend) };
     }
 
     // ========================================
@@ -1248,8 +1202,10 @@
         // FIX DOUBLONS: Ne traiter comme groupe parent QUE si pas de parent soi-même
         if (hasChildren && !hasParent) {
           const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
-          // Utilise le nouveau calcul intelligent
-          const healthData = calculateIntelligentHealthScore(deals);
+          // Utilise les health scores calculés backend
+          const healthScore = calculateAverageHealthScore(deals);
+          // Calcule CA par année et tendance
+          const { years, trend } = calculateYearlyRevenueAndTrend(deals);
 
           const group = {
             type: 'group',
@@ -1257,8 +1213,9 @@
             companyName: deals[0].companyName,
             industry: deals[0].companyIndustry,
             segment: deals[0].segment,
-            healthScore: healthData.score,
-            healthBreakdown: healthData.breakdown, // Pour afficher détail dans modal
+            healthScore: healthScore,
+            years: years,
+            trend: trend,
             revenue: totalRevenue,
             childCount: company.childCompanyIds.length,
             children: [],
@@ -1271,8 +1228,10 @@
 
             const childDeals = companyDeals[childId] || [];
             const childRevenue = childDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
-            // Utilise le nouveau calcul intelligent pour les enfants aussi
-            const childHealthData = calculateIntelligentHealthScore(childDeals);
+            // Utilise les health scores calculés backend pour les enfants aussi
+            const childHealthScore = calculateAverageHealthScore(childDeals);
+            // Calcule CA par année et tendance pour l'enfant
+            const { years: childYears, trend: childTrend } = calculateYearlyRevenueAndTrend(childDeals);
 
             const isWhiteSpace = childDeals.length === 0;
 
@@ -1282,15 +1241,34 @@
               companyName: childCompany.name,
               industry: childCompany.industry || 'Non spécifié',
               segment: childDeals[0]?.segment || 'Prospect',
-              healthScore: childHealthData.score,
-              healthBreakdown: childHealthData.breakdown,
+              healthScore: childHealthScore,
+              years: childYears,
+              trend: childTrend,
               revenue: childRevenue,
               isWhiteSpace: isWhiteSpace
+            });
+
+            // Accumuler le CA par année dans le parent
+            Object.keys(childYears).forEach(year => {
+              group.years[year] += childYears[year];
             });
 
             group.revenue += childRevenue;
             processedCompanies.add(childId);
           });
+
+          // Recalculer la tendance du groupe avec les données complètes (parent + enfants)
+          const groupActiveYears = Object.entries(group.years)
+            .filter(([_, revenue]) => revenue > 0)
+            .sort(([yearA], [yearB]) => yearA - yearB);
+
+          if (groupActiveYears.length >= 2) {
+            const firstYear = groupActiveYears[0][1];
+            const lastYear = groupActiveYears[groupActiveYears.length - 1][1];
+            if (firstYear > 0) {
+              group.trend = Math.round(((lastYear - firstYear) / firstYear) * 100);
+            }
+          }
 
           groups.push(group);
           processedCompanies.add(companyId);
@@ -1308,8 +1286,10 @@
         if (hasParent) return;
 
         const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
-        // Utilise le nouveau calcul intelligent pour les standalone
-        const healthData = calculateIntelligentHealthScore(deals);
+        // Utilise les health scores calculés backend pour les standalone
+        const healthScore = calculateAverageHealthScore(deals);
+        // Calcule CA par année et tendance
+        const { years, trend } = calculateYearlyRevenueAndTrend(deals);
 
         groups.push({
           type: 'standalone',
@@ -1317,8 +1297,9 @@
           companyName: deals[0].companyName,
           industry: deals[0].companyIndustry,
           segment: deals[0].segment,
-          healthScore: healthData.score,
-          healthBreakdown: healthData.breakdown,
+          healthScore: healthScore,
+          years: years,
+          trend: trend,
           revenue: totalRevenue
         });
       });
@@ -1373,6 +1354,26 @@
             valA = a.healthScore || 0;
             valB = b.healthScore || 0;
             return (valA - valB) * multiplier;
+          case '2022':
+            valA = a.years?.[2022] || 0;
+            valB = b.years?.[2022] || 0;
+            return (valA - valB) * multiplier;
+          case '2023':
+            valA = a.years?.[2023] || 0;
+            valB = b.years?.[2023] || 0;
+            return (valA - valB) * multiplier;
+          case '2024':
+            valA = a.years?.[2024] || 0;
+            valB = b.years?.[2024] || 0;
+            return (valA - valB) * multiplier;
+          case '2025':
+            valA = a.years?.[2025] || 0;
+            valB = b.years?.[2025] || 0;
+            return (valA - valB) * multiplier;
+          case 'trend':
+            valA = a.trend || 0;
+            valB = b.trend || 0;
+            return (valA - valB) * multiplier;
           case 'revenue':
           default:
             valA = a.revenue || 0;
@@ -1380,6 +1381,29 @@
             return (valA - valB) * multiplier;
         }
       });
+    }
+
+    // ========================================
+    // RENDER TREND
+    // ========================================
+    function renderTrend(trend) {
+      if (!trend || trend === 0) {
+        return '<span style="color: #94a3b8;">→ 0%</span>';
+      }
+
+      let icon, color;
+      if (trend > 10) {
+        icon = '↗';
+        color = '#10b981'; // vert
+      } else if (trend < -10) {
+        icon = '↘';
+        color = '#ef4444'; // rouge
+      } else {
+        icon = '→';
+        color = '#94a3b8'; // gris
+      }
+
+      return `<span style="color: ${color}; font-weight: 600;">${icon} ${trend > 0 ? '+' : ''}${trend}%</span>`;
     }
 
     // ========================================
@@ -1412,6 +1436,11 @@
         <td>${formatIndustry(group.industry)}</td>
         <td><span class="badge badge-${group.segment.toLowerCase()}">${group.segment}</span></td>
         <td>${renderHealthScore(group.healthScore)}</td>
+        <td style="text-align: right; font-size: 13px;">${group.years?.[2022] > 0 ? formatCurrency(group.years[2022]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${group.years?.[2023] > 0 ? formatCurrency(group.years[2023]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${group.years?.[2024] > 0 ? formatCurrency(group.years[2024]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${group.years?.[2025] > 0 ? formatCurrency(group.years[2025]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: center; font-size: 13px;">${renderTrend(group.trend)}</td>
         <td style="text-align: right; font-weight: 600;">${formatCurrency(group.revenue)}</td>
       `;
 
@@ -1438,6 +1467,11 @@
         <td>${formatIndustry(child.industry)}</td>
         <td><span class="badge badge-${child.segment.toLowerCase()}">${child.segment}</span></td>
         <td>${child.healthScore > 0 ? renderHealthScore(child.healthScore) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${child.years?.[2022] > 0 ? formatCurrency(child.years[2022]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${child.years?.[2023] > 0 ? formatCurrency(child.years[2023]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${child.years?.[2024] > 0 ? formatCurrency(child.years[2024]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: right; font-size: 13px;">${child.years?.[2025] > 0 ? formatCurrency(child.years[2025]) : '<span class="text-muted">—</span>'}</td>
+        <td style="text-align: center; font-size: 13px;">${renderTrend(child.trend)}</td>
         <td style="text-align: right; font-weight: 600;">${child.revenue > 0 ? formatCurrency(child.revenue) : '<span class="text-muted">0 €</span>'}</td>
       `;
 
@@ -1778,7 +1812,7 @@
         const year = e.target.dataset.year;
         currentFilter.year = year;
 
-        renderDashboard();
+        renderGroupsTable(filterData());
       }
     });
 
