@@ -323,6 +323,88 @@ async function main() {
 
     console.log(`\n✅ ${enrichedDeals.length} deals enrichis avec toutes les données\n`);
 
+    // ÉTAPE 4.5 : Recalculer les health scores avec yearlyRevenue complet par company
+    console.log('🔄 ÉTAPE 4.5/5 - Recalcul health scores avec tendances CA...');
+
+    // Grouper les deals par company et calculer yearlyRevenue complet
+    const companiesData = {};
+
+    enrichedDeals.forEach(deal => {
+      if (!deal.companyId) return;
+
+      if (!companiesData[deal.companyId]) {
+        companiesData[deal.companyId] = {
+          companyId: deal.companyId,
+          companyName: deal.companyName,
+          deals: [],
+          yearlyRevenue: {},
+          totalRevenue: 0,
+          // Garder les données de notes et engagement du premier deal
+          notesAnalysis: null,
+          engagement: null
+        };
+      }
+
+      const companyData = companiesData[deal.companyId];
+      companyData.deals.push(deal);
+
+      // Agréger CA par année
+      const year = deal.year;
+      companyData.yearlyRevenue[year] = (companyData.yearlyRevenue[year] || 0) + deal.amount;
+      companyData.totalRevenue += deal.amount;
+
+      // Garder les données du premier deal pour notes et engagement
+      if (!companyData.notesAnalysis) {
+        companyData.notesAnalysis = {
+          totalNotes: deal.totalNotes,
+          avgLength: deal.notesAvgLength,
+          hasRecent: deal.notesHasRecent,
+          sentiment: deal.notesSentiment,
+          keywords: {
+            positive: deal.notesPositiveKeywords,
+            negative: deal.notesNegativeKeywords,
+            action: deal.notesActionKeywords,
+            meeting: deal.notesMeetingKeywords
+          }
+        };
+
+        companyData.engagement = {
+          emails: deal.engagementEmails,
+          calls: deal.engagementCalls,
+          meetings: deal.engagementMeetings
+        };
+      }
+    });
+
+    // Recalculer les health scores avec yearlyRevenue complet
+    const companyHealthScores = {};
+
+    for (const [companyId, companyData] of Object.entries(companiesData)) {
+      const companyAnalysisData = {
+        totalRevenue: companyData.totalRevenue,
+        yearlyRevenue: companyData.yearlyRevenue
+      };
+
+      const healthScore = calculateHealthScore(
+        companyAnalysisData,
+        companyData.notesAnalysis,
+        companyData.engagement
+      );
+
+      companyHealthScores[companyId] = healthScore;
+
+      console.log(`  ✓ ${companyData.companyName}: Score ${healthScore}/100 (CA: ${Object.entries(companyData.yearlyRevenue).map(([y, a]) => `${y}: ${Math.round(a/1000)}K`).join(', ')})`);
+    }
+
+    // Mettre à jour les health scores dans enrichedDeals
+    enrichedDeals.forEach(deal => {
+      if (deal.companyId && companyHealthScores[deal.companyId] !== undefined) {
+        deal.healthScore = companyHealthScores[deal.companyId];
+      }
+    });
+
+    console.log(`\n✅ Health scores recalculés avec tendances CA pour ${Object.keys(companiesData).length} companies\n`);
+
     // ÉTAPE 5 : Générer le fichier data.json
     console.log('💾 ÉTAPE 5/5 - Génération du fichier data.json...');
 
