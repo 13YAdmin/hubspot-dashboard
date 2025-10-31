@@ -717,17 +717,6 @@
         </div>
 
         <div id="kpis"></div>
-
-        <div id="filters">
-          <div class="filter-group">
-            <span class="filter-label">Année :</span>
-            <button class="filter-btn active" data-year="all">Toutes</button>
-            <button class="filter-btn" data-year="2025">2025</button>
-            <button class="filter-btn" data-year="2024">2024</button>
-            <button class="filter-btn" data-year="2023">2023</button>
-            <button class="filter-btn" data-year="2022">2022</button>
-          </div>
-        </div>
       </header>
 
       <!-- CHARTS -->
@@ -749,9 +738,19 @@
 
       <!-- GROUPS TABLE -->
       <section id="groups-section">
-        <div class="section-header">
-          <h2 class="section-title">Groupes & Clients</h2>
-          <span class="section-count" id="groups-count">0 groupes</span>
+        <div class="section-header" style="flex-wrap: wrap; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h2 class="section-title" style="margin: 0;">Groupes & Clients</h2>
+            <span class="section-count" id="groups-count">0 groupes</span>
+          </div>
+          <div id="filters" class="filter-group" style="margin: 0;">
+            <span class="filter-label">Année :</span>
+            <button class="filter-btn active" data-year="all">Toutes</button>
+            <button class="filter-btn" data-year="2025">2025</button>
+            <button class="filter-btn" data-year="2024">2024</button>
+            <button class="filter-btn" data-year="2023">2023</button>
+            <button class="filter-btn" data-year="2022">2022</button>
+          </div>
         </div>
         <div style="overflow-x: auto;">
           <table id="groups-table">
