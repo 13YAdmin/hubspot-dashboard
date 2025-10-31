@@ -802,7 +802,8 @@
                 <th class="sortable" data-sort="parent">Groupe Parent<span class="sort-icon"></span></th>
                 <th class="sortable" data-sort="industry">Secteur<span class="sort-icon"></span></th>
                 <th class="sortable" data-sort="parentRevenue">CA Parent<span class="sort-icon"></span></th>
-                <th class="sortable" data-sort="potential" style="text-align: right;">Potentiel Estimé<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="parentHealth" style="text-align: center;">Health Score Parent<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="subsidiariesCount" style="text-align: center;">Nb Filiales<span class="sort-icon"></span></th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -1015,11 +1016,11 @@
       document.getElementById('kpis').innerHTML = `
         <div class="kpi">
           <div class="kpi-label">CA Total</div>
-          <div class="kpi-value">${formatCurrency(totalRevenue)}</div>
+          <div class="kpi-value">${formatCurrencyCompact(totalRevenue)}</div>
         </div>
         <div class="kpi">
           <div class="kpi-label">CA 2025</div>
-          <div class="kpi-value">${formatCurrency(revenue2025)}</div>
+          <div class="kpi-value">${formatCurrencyCompact(revenue2025)}</div>
         </div>
         <div class="kpi">
           <div class="kpi-label">Clients</div>
@@ -1027,7 +1028,7 @@
         </div>
         <div class="kpi">
           <div class="kpi-label">Ticket Moyen</div>
-          <div class="kpi-value">${formatCurrency(avgTicket)}</div>
+          <div class="kpi-value">${formatCurrencyCompact(avgTicket)}</div>
         </div>
       `;
     }
@@ -1516,9 +1517,6 @@
             ? parentDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / parentDeals.length
             : 50;
 
-          const potentialMultiplier = parentHealth >= 70 ? 0.15 : (parentHealth >= 50 ? 0.10 : 0.05);
-          const potential = parentRevenue * potentialMultiplier;
-
           opportunities.push({
             companyId: company.id,
             companyName: company.name,
@@ -1526,10 +1524,20 @@
             parentId: parentId,
             industry: company.industry || parentDeals[0]?.companyIndustry || 'Non spécifié',
             parentRevenue: parentRevenue,
-            potential: potential,
             parentHealth: Math.round(parentHealth)
           });
         }
+      });
+
+      // Count subsidiaries per parent
+      const subsidiariesByParent = {};
+      opportunities.forEach(opp => {
+        subsidiariesByParent[opp.parentId] = (subsidiariesByParent[opp.parentId] || 0) + 1;
+      });
+
+      // Add subsidiary count to each opportunity
+      opportunities.forEach(opp => {
+        opp.subsidiariesCount = subsidiariesByParent[opp.parentId] || 1;
       });
 
       // Sort opportunities
@@ -1566,7 +1574,14 @@
           <td>${opp.parentName}</td>
           <td>${formatIndustry(opp.industry)}</td>
           <td style="font-weight: 600;">${formatCurrency(opp.parentRevenue)}</td>
-          <td style="text-align: right; font-weight: 700; color: var(--secondary);">${formatCurrency(opp.potential)}</td>
+          <td style="text-align: center;">
+            <span class="badge ${opp.parentHealth >= 70 ? 'premium' : (opp.parentHealth >= 50 ? 'standard' : 'low')}" style="font-weight: 700;">
+              ${opp.parentHealth}
+            </span>
+          </td>
+          <td style="text-align: center; font-weight: 600; color: var(--text-muted);">
+            ${opp.subsidiariesCount}
+          </td>
         `;
 
         tbody.appendChild(tr);
@@ -1600,10 +1615,14 @@
             valA = a.parentRevenue || 0;
             valB = b.parentRevenue || 0;
             return (valA - valB) * multiplier;
-          case 'potential':
+          case 'parentHealth':
+            valA = a.parentHealth || 0;
+            valB = b.parentHealth || 0;
+            return (valA - valB) * multiplier;
+          case 'subsidiariesCount':
           default:
-            valA = a.potential || 0;
-            valB = b.potential || 0;
+            valA = a.subsidiariesCount || 0;
+            valB = b.subsidiariesCount || 0;
             return (valA - valB) * multiplier;
         }
       });
@@ -1849,8 +1868,14 @@
                 <div style="font-weight: 700; font-size: 18px;">${formatCurrency(opp.parentRevenue)}</div>
               </div>
               <div>
-                <div class="text-muted" style="font-size: 13px;">Potentiel Estimé</div>
-                <div style="font-weight: 700; font-size: 18px; color: var(--secondary);">${formatCurrency(opp.potential)}</div>
+                <div class="text-muted" style="font-size: 13px;">Health Score Parent</div>
+                <div style="font-weight: 700; font-size: 18px;">
+                  <span class="badge ${opp.parentHealth >= 70 ? 'premium' : (opp.parentHealth >= 50 ? 'standard' : 'low')}">${opp.parentHealth}</span>
+                </div>
+              </div>
+              <div>
+                <div class="text-muted" style="font-size: 13px;">Nb Filiales</div>
+                <div style="font-weight: 700; font-size: 18px; color: var(--text-muted);">${opp.subsidiariesCount}</div>
               </div>
               <div>
                 <div class="text-muted" style="font-size: 13px;">Priorité</div>
@@ -1949,13 +1974,39 @@
     // ========================================
     // FORMATTERS
     // ========================================
+    /**
+     * Formate les montants en euros de manière sexy avec vraies valeurs
+     * Ex: 13450 → "13 450 €", 1250000 → "1 250 000 €"
+     */
     function formatCurrency(amount) {
+      if (!amount || amount === 0) return '—';
+
+      // Arrondir à l'euro
+      const rounded = Math.round(amount);
+
+      // Format français avec espaces comme séparateurs de milliers
+      return new Intl.NumberFormat('fr-FR', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(rounded);
+    }
+
+    /**
+     * Format compact pour KPIs et petits espaces (garde le K/M)
+     * Ex: 1250000 → "1,25 M€"
+     */
+    function formatCurrencyCompact(amount) {
+      if (!amount || amount === 0) return '—';
+
       if (amount >= 1000000) {
-        return `${(amount / 1000000).toFixed(1)}M €`;
-      } else if (amount >= 1000) {
-        return `${Math.round(amount / 1000)}K €`;
+        return `${(amount / 1000000).toFixed(2).replace('.', ',')} M€`;
+      } else if (amount >= 10000) {
+        return `${(amount / 1000).toFixed(0)} K€`;
       }
-      return `${Math.round(amount)} €`;
+
+      return formatCurrency(amount);
     }
 
     /**
