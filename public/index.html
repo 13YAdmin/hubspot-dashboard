@@ -1648,9 +1648,23 @@
 
       title.textContent = client.companyName;
 
+      // Get all deals for this client to compute full stats
+      const clientDeals = filteredData.filter(d => d.companyId === client.companyId || d.companyName === client.companyName);
+
       body.innerHTML = `
+        ${client.companyId ? `
+          <div class="modal-section" style="text-align: right;">
+            <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${client.companyId}"
+               target="_blank"
+               class="hubspot-link">
+              🔗 Ouvrir dans HubSpot
+            </a>
+          </div>
+        ` : ''}
+
+        <!-- Informations Générales -->
         <div class="modal-section">
-          <div class="modal-section-title">Informations Générales</div>
+          <div class="modal-section-title">📊 Vue d'Ensemble</div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
             <div>
               <div class="text-muted" style="font-size: 13px;">Secteur</div>
@@ -1661,32 +1675,148 @@
               <div><span class="badge badge-${client.segment.toLowerCase()}">${client.segment}</span></div>
             </div>
             <div>
-              <div class="text-muted" style="font-size: 13px;">Santé</div>
+              <div class="text-muted" style="font-size: 13px;">Health Score</div>
               <div>${renderHealthScore(client.healthScore)}</div>
             </div>
             <div>
-              <div class="text-muted" style="font-size: 13px;">CA Total</div>
-              <div style="font-weight: 700; font-size: 20px; color: var(--accent);">${formatCurrency(client.revenue)}</div>
+              <div class="text-muted" style="font-size: 13px;">Nombre de Deals</div>
+              <div style="font-weight: 600;">${clientDeals.length}</div>
             </div>
           </div>
         </div>
 
-        ${client.companyId ? `
+        <!-- CA par Année + Tendance -->
+        <div class="modal-section">
+          <div class="modal-section-title">💰 Chiffre d'Affaires</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px;">
+            ${client.years?.[2022] > 0 ? `
+              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
+                <div class="text-muted" style="font-size: 12px;">2022</div>
+                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2022])}</div>
+              </div>
+            ` : ''}
+            ${client.years?.[2023] > 0 ? `
+              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
+                <div class="text-muted" style="font-size: 12px;">2023</div>
+                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2023])}</div>
+              </div>
+            ` : ''}
+            ${client.years?.[2024] > 0 ? `
+              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
+                <div class="text-muted" style="font-size: 12px;">2024</div>
+                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2024])}</div>
+              </div>
+            ` : ''}
+            ${client.years?.[2025] > 0 ? `
+              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
+                <div class="text-muted" style="font-size: 12px;">2025</div>
+                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2025])}</div>
+              </div>
+            ` : ''}
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <div class="text-muted" style="font-size: 13px;">CA Total</div>
+              <div style="font-weight: 700; font-size: 24px; color: var(--accent);">${formatCurrency(client.revenue)}</div>
+            </div>
+            <div>
+              <div class="text-muted" style="font-size: 13px;">Tendance</div>
+              <div style="font-size: 20px;">${renderTrend(client.trend || 0)}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engagement -->
+        ${clientDeals.length > 0 && clientDeals[0].engagementEmails !== undefined ? `
           <div class="modal-section">
-            <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${client.companyId}"
-               target="_blank"
-               class="hubspot-link">
-              🔗 Voir dans HubSpot
-            </a>
+            <div class="modal-section-title">📬 Engagement</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+              <div>
+                <div class="text-muted" style="font-size: 13px;">📧 Emails</div>
+                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].engagementEmails || 0}</div>
+              </div>
+              <div>
+                <div class="text-muted" style="font-size: 13px;">📞 Appels</div>
+                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].engagementCalls || 0}</div>
+              </div>
+              <div>
+                <div class="text-muted" style="font-size: 13px;">🤝 Réunions</div>
+                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].engagementMeetings || 0}</div>
+              </div>
+              ${clientDeals[0].engagementLastActivity ? `
+                <div>
+                  <div class="text-muted" style="font-size: 13px;">Dernière Activité</div>
+                  <div style="font-weight: 600; font-size: 14px;">${new Date(clientDeals[0].engagementLastActivity).toLocaleDateString('fr-FR')}</div>
+                </div>
+              ` : ''}
+            </div>
           </div>
         ` : ''}
 
+        <!-- Notes -->
+        ${clientDeals.length > 0 && clientDeals[0].totalNotes !== undefined ? `
+          <div class="modal-section">
+            <div class="modal-section-title">📝 Notes</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+              <div>
+                <div class="text-muted" style="font-size: 13px;">Nombre Total</div>
+                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].totalNotes || 0}</div>
+              </div>
+              <div>
+                <div class="text-muted" style="font-size: 13px;">Longueur Moyenne</div>
+                <div style="font-weight: 600; font-size: 14px;">${clientDeals[0].notesAvgLength || 0} caractères</div>
+              </div>
+              <div>
+                <div class="text-muted" style="font-size: 13px;">Sentiment</div>
+                <div style="font-weight: 600; font-size: 14px;">
+                  ${clientDeals[0].notesSentiment === 'positive' ? '😊 Positif' :
+                    clientDeals[0].notesSentiment === 'negative' ? '😟 Négatif' : '😐 Neutre'}
+                </div>
+              </div>
+              ${clientDeals[0].latestNoteDate ? `
+                <div>
+                  <div class="text-muted" style="font-size: 13px;">Dernière Note</div>
+                  <div style="font-weight: 600; font-size: 14px;">${new Date(clientDeals[0].latestNoteDate).toLocaleDateString('fr-FR')}</div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Account Manager -->
+        ${clientDeals.length > 0 && clientDeals[0].ownerName ? `
+          <div class="modal-section">
+            <div class="modal-section-title">👤 Account Manager</div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(var(--primary-rgb), 0.05); border-radius: var(--radius);">
+              <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">
+                ${clientDeals[0].ownerName.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <div style="font-weight: 700;">${clientDeals[0].ownerName}</div>
+                ${clientDeals[0].ownerEmail ? `<div class="text-muted" style="font-size: 13px;">${clientDeals[0].ownerEmail}</div>` : ''}
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Relations Parent/Filiales -->
+        ${client.childCount > 0 ? `
+          <div class="modal-section">
+            <div class="modal-section-title">👨‍👩‍👧‍👦 Groupe</div>
+            <div style="background: rgba(var(--accent-rgb), 0.05); padding: 12px; border-radius: var(--radius); border-left: 4px solid var(--accent);">
+              <div style="font-weight: 600; margin-bottom: 4px;">Entreprise Parente</div>
+              <div class="text-muted" style="font-size: 14px;">${client.childCount} filiale${client.childCount > 1 ? 's' : ''}</div>
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- White Space Alert -->
         ${client.isWhiteSpace ? `
           <div class="modal-section">
             <div class="modal-section-title">🎯 Opportunité White Space</div>
             <div style="background: rgba(251, 191, 36, 0.1); padding: 16px; border-radius: var(--radius); border-left: 4px solid var(--warning);">
-              <div style="font-weight: 600; margin-bottom: 8px;">Cette filiale n'a jamais été contactée</div>
-              <div class="text-muted" style="font-size: 14px;">Opportunité de cross-sell à prioriser</div>
+              <div style="font-weight: 600; margin-bottom: 8px;">⚠️ Cette filiale n'a jamais été contactée</div>
+              <div class="text-muted" style="font-size: 14px;">Opportunité de cross-sell à prioriser avec le groupe parent</div>
             </div>
           </div>
         ` : ''}
