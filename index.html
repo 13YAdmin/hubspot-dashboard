@@ -14,29 +14,29 @@
        VARIABLES & RESET
        ======================================== */
     :root {
-      /* Dark Theme Colors */
-      --bg: #0a0e27;
-      --bg-card: #151932;
-      --bg-card-hover: #1d2342;
-      --surface: #151932;
-      --border: #1e293b;
-      --text: #f1f5f9;
+      /* Dark Theme Colors - Neutral Professional Palette */
+      --bg: #0f1419;
+      --bg-card: #1a1f26;
+      --bg-card-hover: #232930;
+      --surface: #1a1f26;
+      --border: #2d3748;
+      --text: #e2e8f0;
       --text-muted: #94a3b8;
 
-      /* Accent Colors */
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --accent: #6366f1;
-      --accent-light: #818cf8;
-      --secondary: #22c55e;
+      /* Accent Colors - Slate & Emerald */
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --accent: #10b981;
+      --accent-light: #34d399;
+      --secondary: #3b82f6;
       --danger: #ef4444;
       --warning: #f59e0b;
-      --purple: #a855f7;
+      --purple: #8b5cf6;
 
       /* Other */
       --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 20px 60px rgba(99, 102, 241, 0.4);
+      --shadow-lg: 0 20px 60px rgba(16, 185, 129, 0.2);
       --radius: 12px;
       --transition: all 0.3s ease;
     }
@@ -587,6 +587,67 @@
     }
 
     /* ========================================
+       TOOLTIPS
+       ======================================== */
+    .info-tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 6px;
+      cursor: help;
+    }
+
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .tooltip-content {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      z-index: 1000;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-card);
+      color: var(--text);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      white-space: normal;
+      width: 280px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      pointer-events: none;
+    }
+
+    .tooltip-content::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--bg-card);
+    }
+
+    .info-tooltip:hover .tooltip-content {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* ========================================
        UTILITY CLASSES
        ======================================== */
     .hidden {
@@ -648,7 +709,12 @@
     <div id="content" class="hidden">
       <!-- HEADER & KPIs -->
       <header>
-        <h1>📊 Dashboard HubSpot - Account Management</h1>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+          <h1 style="margin: 0;">📊 Dashboard HubSpot - Account Management</h1>
+          <button id="help-btn" class="info-tooltip" style="cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 50%; width: 32px; height: 32px; font-size: 16px; font-weight: 700;">
+            ?
+          </button>
+        </div>
 
         <div id="kpis"></div>
 
@@ -679,20 +745,6 @@
             <canvas id="chartIndustry"></canvas>
           </div>
         </div>
-
-        <div class="chart-card">
-          <h3>🎯 Segments Clients</h3>
-          <div class="chart-container">
-            <canvas id="chartSegments"></canvas>
-          </div>
-        </div>
-
-        <div class="chart-card">
-          <h3>👥 Évolution Nombre de Clients</h3>
-          <div class="chart-container">
-            <canvas id="chartClients"></canvas>
-          </div>
-        </div>
       </div>
 
       <!-- GROUPS TABLE -->
@@ -707,7 +759,21 @@
               <tr>
                 <th class="sortable" data-sort="name">Entreprise<span class="sort-icon"></span></th>
                 <th class="sortable" data-sort="industry">Secteur<span class="sort-icon"></span></th>
-                <th class="sortable" data-sort="segment">Segment<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="segment">
+                  Segment
+                  <span class="info-tooltip">
+                    <span class="info-icon">i</span>
+                    <div class="tooltip-content">
+                      <strong>Catégories de clients:</strong><br>
+                      • <strong>Stratégique</strong>: Excellente santé + CA élevé<br>
+                      • <strong>Clé</strong>: Relation stable + CA significatif<br>
+                      • <strong>Régulier</strong>: Client constant<br>
+                      • <strong>Prospect</strong>: Nouveau ou faible CA<br>
+                      • <strong>À Risque</strong>: Score santé bas
+                    </div>
+                  </span>
+                  <span class="sort-icon"></span>
+                </th>
                 <th class="sortable" data-sort="health">Santé<span class="sort-icon"></span></th>
                 <th class="sortable" data-sort="revenue" style="text-align: right;">CA Total<span class="sort-icon"></span></th>
               </tr>
@@ -748,6 +814,71 @@
           <button class="modal-close" onclick="closeModal()">×</button>
         </div>
         <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- HELP MODAL -->
+    <div id="help-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+      <div class="modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+        <div class="modal-header">
+          <h3>📚 Guide d'utilisation du Dashboard</h3>
+          <button class="modal-close" onclick="document.getElementById('help-modal').classList.add('hidden')">×</button>
+        </div>
+        <div class="modal-body" style="line-height: 1.8;">
+          <div class="modal-section">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">📊 Calcul du CA</h4>
+            <p>Le chiffre d'affaires est calculé en additionnant tous les deals fermés/gagnés. Il est filtrable par année pour analyser les tendances.</p>
+          </div>
+
+          <div class="modal-section">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">💚 Score Santé (0-100)</h4>
+            <p>Le score santé est calculé intelligemment selon 4 facteurs:</p>
+            <ul style="margin-left: 20px; margin-top: 8px;">
+              <li><strong>CA & Croissance (40 pts)</strong>: Montant total + bonus si croissance entre périodes</li>
+              <li><strong>Engagement (30 pts)</strong>: Nombre d'emails, d'appels, de réunions</li>
+              <li><strong>Qualité Relation (20 pts)</strong>: Sentiment des notes + suivi actif</li>
+              <li><strong>Récence (10 pts)</strong>: Date du dernier deal (pénalité si > 6 mois)</li>
+            </ul>
+            <p style="margin-top: 8px;"><strong>Interprétation:</strong></p>
+            <ul style="margin-left: 20px;">
+              <li>🟢 70-100: Excellente santé</li>
+              <li>🟡 50-69: Santé moyenne</li>
+              <li>🔴 0-49: À risque</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">🎯 Segments Clients</h4>
+            <ul style="margin-left: 20px;">
+              <li><strong>Stratégique</strong>: Excellente santé + CA élevé = priorité maximale</li>
+              <li><strong>Clé</strong>: Relation stable + CA significatif = maintenir</li>
+              <li><strong>Régulier</strong>: Client constant = surveiller</li>
+              <li><strong>Prospect</strong>: Nouveau ou faible CA = développer</li>
+              <li><strong>À Risque</strong>: Score santé bas = intervention urgente</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">👨‍👩‍👧‍👦 Groupes Parent/Filiale</h4>
+            <p>Les entreprises sont organisées hiérarchiquement:</p>
+            <ul style="margin-left: 20px; margin-top: 8px;">
+              <li>Une entreprise PARENT regroupe ses filiales</li>
+              <li>Le CA total inclut parent + toutes les filiales</li>
+              <li>Cliquez sur une ligne pour voir le détail des filiales</li>
+            </ul>
+          </div>
+
+          <div class="modal-section">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">⚪ White Spaces (Opportunités)</h4>
+            <p>Les white spaces sont des filiales d'un groupe client où nous n'avons <strong>aucun deal</strong> encore.</p>
+            <p style="margin-top: 8px;"><strong>Pourquoi c'est important?</strong> Ces filiales sont déjà dans l'écosystème d'un client existant, donc plus faciles à approcher.</p>
+          </div>
+
+          <div class="modal-section">
+            <h4 style="color: var(--primary); margin-bottom: 12px;">🔗 Liens HubSpot</h4>
+            <p>Dans les modals de détail, cliquez sur "Voir dans HubSpot" pour accéder directement à la fiche entreprise complète.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -916,8 +1047,8 @@
           datasets: [{
             label: 'CA (€)',
             data: revenueByYear,
-            borderColor: '#6366f1',
-            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
             tension: 0.4,
             fill: true
           }]
@@ -930,6 +1061,7 @@
           },
           scales: {
             y: {
+              beginAtZero: true,
               ticks: { color: '#94a3b8' },
               grid: { color: 'rgba(255,255,255,0.05)' }
             },
@@ -959,7 +1091,7 @@
           labels: topIndustries.map(i => i[0]),
           datasets: [{
             data: topIndustries.map(i => i[1]),
-            backgroundColor: ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#a855f7']
+            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6']
           }]
         },
         options: {
@@ -973,71 +1105,119 @@
           }
         }
       });
+    }
 
-      // Segments
-      const segmentData = {};
-      data.forEach(d => {
-        const segment = d.segment || 'Unknown';
-        segmentData[segment] = (segmentData[segment] || 0) + (d.amount || 0);
-      });
+    // ========================================
+    // HEALTH SCORE CALCULATION (INTELLIGENT)
+    // ========================================
+    /**
+     * Calcule un score santé intelligent pour un client basé sur 4 facteurs:
+     *
+     * 1. CA & Croissance (40 points):
+     *    - Basé sur le montant total des deals
+     *    - Bonus si croissance entre années
+     *
+     * 2. Engagement (30 points):
+     *    - Emails, appels, réunions
+     *    - Bonus pour récence (< 30 jours)
+     *
+     * 3. Qualité Relation (20 points):
+     *    - Sentiment positif dans les notes
+     *    - Nombre de notes (indique suivi actif)
+     *
+     * 4. Récence (10 points):
+     *    - Date du dernier deal
+     *    - Pénalité si > 6 mois
+     *
+     * @param {Array} deals - Tous les deals du client
+     * @returns {Object} { score: 0-100, breakdown: {...} }
+     */
+    function calculateIntelligentHealthScore(deals) {
+      if (!deals || deals.length === 0) {
+        return { score: 0, breakdown: { ca: 0, engagement: 0, quality: 0, recency: 0 } };
+      }
 
-      if (charts.segments) charts.segments.destroy();
-      charts.segments = new Chart(document.getElementById('chartSegments'), {
-        type: 'pie',
-        data: {
-          labels: Object.keys(segmentData),
-          datasets: [{
-            data: Object.values(segmentData),
-            backgroundColor: ['#8B5CF6', '#3b82f6', '#f59e0b']
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: { color: '#94a3b8', font: { size: 11 } }
-            }
-          }
+      let scoreCA = 0;
+      let scoreEngagement = 0;
+      let scoreQuality = 0;
+      let scoreRecency = 0;
+
+      // 1. CA & CROISSANCE (40 points)
+      const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
+      const avgRevenue = totalRevenue / deals.length;
+
+      // Score basé sur montant (logarithmique pour éviter les extrêmes)
+      if (totalRevenue > 0) {
+        scoreCA = Math.min(25, Math.log10(totalRevenue / 1000) * 8);
+      }
+
+      // Bonus croissance: comparer deals récents vs anciens
+      const sortedDeals = [...deals].sort((a, b) => new Date(a.closeDate) - new Date(b.closeDate));
+      if (sortedDeals.length >= 2) {
+        const mid = Math.floor(sortedDeals.length / 2);
+        const oldRevenue = sortedDeals.slice(0, mid).reduce((sum, d) => sum + (d.amount || 0), 0);
+        const newRevenue = sortedDeals.slice(mid).reduce((sum, d) => sum + (d.amount || 0), 0);
+
+        if (oldRevenue > 0 && newRevenue > oldRevenue) {
+          const growthRate = (newRevenue - oldRevenue) / oldRevenue;
+          scoreCA += Math.min(15, growthRate * 30); // Bonus jusqu'à 15 pts
         }
-      });
+      }
+      scoreCA = Math.round(Math.min(40, scoreCA));
 
-      // Clients Evolution
-      const clientsByYear = years.map(year => {
-        const yearData = data.filter(d => new Date(d.closeDate).getFullYear() === parseInt(year));
-        return new Set(yearData.map(d => d.companyId)).size;
-      });
+      // 2. ENGAGEMENT (30 points)
+      const totalEmails = deals.reduce((sum, d) => sum + (d.engagementEmails || 0), 0);
+      const totalCalls = deals.reduce((sum, d) => sum + (d.engagementCalls || 0), 0);
+      const totalMeetings = deals.reduce((sum, d) => sum + (d.engagementMeetings || 0), 0);
 
-      if (charts.clients) charts.clients.destroy();
-      charts.clients = new Chart(document.getElementById('chartClients'), {
-        type: 'bar',
-        data: {
-          labels: years,
-          datasets: [{
-            label: 'Clients',
-            data: clientsByYear,
-            backgroundColor: '#22c55e'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: {
-              ticks: { color: '#94a3b8', stepSize: 1 },
-              grid: { color: 'rgba(255,255,255,0.05)' }
-            },
-            x: {
-              ticks: { color: '#94a3b8' },
-              grid: { color: 'rgba(255,255,255,0.05)' }
-            }
-          }
+      scoreEngagement += Math.min(10, totalEmails / 2);      // Max 10 pts pour emails
+      scoreEngagement += Math.min(10, totalCalls * 2);        // Max 10 pts pour calls
+      scoreEngagement += Math.min(10, totalMeetings * 3);     // Max 10 pts pour meetings
+      scoreEngagement = Math.round(Math.min(30, scoreEngagement));
+
+      // 3. QUALITÉ RELATION (20 points)
+      const totalNotes = deals.reduce((sum, d) => sum + (d.totalNotes || 0), 0);
+      const avgSentiment = deals.reduce((sum, d) => sum + (d.notesSentiment || 50), 0) / deals.length;
+
+      // Score basé sur nombre de notes (suivi actif)
+      scoreQuality += Math.min(10, totalNotes / 2);
+
+      // Score basé sur sentiment (50 = neutre, 100 = très positif)
+      scoreQuality += Math.min(10, (avgSentiment - 50) / 5);
+      scoreQuality = Math.round(Math.max(0, Math.min(20, scoreQuality)));
+
+      // 4. RÉCENCE (10 points)
+      const mostRecentDeal = deals.reduce((latest, d) => {
+        const date = new Date(d.closeDate);
+        return !latest || date > latest ? date : latest;
+      }, null);
+
+      if (mostRecentDeal) {
+        const daysSince = (Date.now() - mostRecentDeal) / (1000 * 60 * 60 * 24);
+
+        if (daysSince < 30) {
+          scoreRecency = 10;
+        } else if (daysSince < 90) {
+          scoreRecency = 8;
+        } else if (daysSince < 180) {
+          scoreRecency = 5;
+        } else if (daysSince < 365) {
+          scoreRecency = 2;
         }
-      });
+        // Sinon 0
+      }
+
+      const finalScore = Math.round(scoreCA + scoreEngagement + scoreQuality + scoreRecency);
+
+      return {
+        score: Math.max(0, Math.min(100, finalScore)),
+        breakdown: {
+          ca: scoreCA,
+          engagement: scoreEngagement,
+          quality: scoreQuality,
+          recency: scoreRecency
+        }
+      };
     }
 
     // ========================================
@@ -1056,16 +1236,20 @@
       const groups = [];
       const processedCompanies = new Set();
 
-      // First pass: Process companies with children
+      // First pass: Process companies with children (mais PAS si elles-mêmes ont un parent!)
+      // Une entreprise ne peut être un "groupe parent" que si elle n'a pas de parent elle-même
       Object.entries(companyDeals).forEach(([companyId, deals]) => {
         const company = companies[companyId];
         if (!company) return;
 
         const hasChildren = company.childCompanyIds && company.childCompanyIds.length > 0;
+        const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
 
-        if (hasChildren) {
+        // FIX DOUBLONS: Ne traiter comme groupe parent QUE si pas de parent soi-même
+        if (hasChildren && !hasParent) {
           const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
-          const avgHealthScore = deals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / deals.length;
+          // Utilise le nouveau calcul intelligent
+          const healthData = calculateIntelligentHealthScore(deals);
 
           const group = {
             type: 'group',
@@ -1073,7 +1257,8 @@
             companyName: deals[0].companyName,
             industry: deals[0].companyIndustry,
             segment: deals[0].segment,
-            healthScore: Math.round(avgHealthScore),
+            healthScore: healthData.score,
+            healthBreakdown: healthData.breakdown, // Pour afficher détail dans modal
             revenue: totalRevenue,
             childCount: company.childCompanyIds.length,
             children: [],
@@ -1086,9 +1271,8 @@
 
             const childDeals = companyDeals[childId] || [];
             const childRevenue = childDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
-            const childHealth = childDeals.length > 0
-              ? childDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / childDeals.length
-              : 0;
+            // Utilise le nouveau calcul intelligent pour les enfants aussi
+            const childHealthData = calculateIntelligentHealthScore(childDeals);
 
             const isWhiteSpace = childDeals.length === 0;
 
@@ -1098,7 +1282,8 @@
               companyName: childCompany.name,
               industry: childCompany.industry || 'Non spécifié',
               segment: childDeals[0]?.segment || 'Prospect',
-              healthScore: Math.round(childHealth),
+              healthScore: childHealthData.score,
+              healthBreakdown: childHealthData.breakdown,
               revenue: childRevenue,
               isWhiteSpace: isWhiteSpace
             });
@@ -1123,7 +1308,8 @@
         if (hasParent) return;
 
         const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
-        const avgHealthScore = deals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / deals.length;
+        // Utilise le nouveau calcul intelligent pour les standalone
+        const healthData = calculateIntelligentHealthScore(deals);
 
         groups.push({
           type: 'standalone',
@@ -1131,7 +1317,8 @@
           companyName: deals[0].companyName,
           industry: deals[0].companyIndustry,
           segment: deals[0].segment,
-          healthScore: Math.round(avgHealthScore),
+          healthScore: healthData.score,
+          healthBreakdown: healthData.breakdown,
           revenue: totalRevenue
         });
       });
@@ -1607,22 +1794,42 @@
       return `${Math.round(amount)} €`;
     }
 
+    /**
+     * Formate les noms de secteurs d'activité de manière cohérente
+     * Applique le Title Case pour tous les secteurs
+     */
     function formatIndustry(industry) {
       if (!industry || industry === 'undefined') return 'Non spécifié';
 
+      // Mapping des codes HubSpot vers des noms français propres
       const mapping = {
         'APPAREL_FASHION': 'Mode & Textile',
         'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie',
         'INFORMATION_TECHNOLOGY_AND_SERVICES': 'IT & Services',
         'COMPUTER_SOFTWARE': 'Logiciels',
         'RETAIL': 'Retail',
-        'CONSUMER_GOODS': 'Biens de consommation',
+        'CONSUMER_GOODS': 'Biens de Consommation',
         'MARKETING_AND_ADVERTISING': 'Marketing & Publicité',
         'HOSPITALITY': 'Hôtellerie',
-        'AUTOMOTIVE': 'Automobile'
+        'AUTOMOTIVE': 'Automobile',
+        'MANAGEMENT_CONSULTING': 'Management Consulting',
+        'PHARMACEUTICALS': 'Pharmaceutique',
+        'COSMETICS': 'Cosmétique',
+        'OIL_AND_ENERGY': 'Énergie & Pétrole',
+        'FOOD_AND_BEVERAGES': 'Alimentation & Boissons'
       };
 
-      return mapping[industry] || industry.replace(/_/g, ' ');
+      // Si le secteur est dans le mapping, utiliser la version formatée
+      if (mapping[industry]) {
+        return mapping[industry];
+      }
+
+      // Sinon, convertir en Title Case propre
+      return industry
+        .replace(/_/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
     }
 
     function renderHealthScore(score) {
@@ -1640,6 +1847,18 @@
     // ========================================
     // INIT
     // ========================================
+    // Gestion du bouton d'aide
+    document.getElementById('help-btn').addEventListener('click', () => {
+      document.getElementById('help-modal').classList.remove('hidden');
+    });
+
+    // Fermeture du modal d'aide au clic sur le fond
+    document.getElementById('help-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'help-modal') {
+        document.getElementById('help-modal').classList.add('hidden');
+      }
+    });
+
     loadData();
   </script>
 </body>
