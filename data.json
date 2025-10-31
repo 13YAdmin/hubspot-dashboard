@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-30T22:52:19.895Z",
+  "timestamp": "2025-10-31T03:42:55.938Z",
   "count": 81,
   "data": [
     {
@@ -101,9 +101,7 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264196399312
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -187,7 +185,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -437,12 +438,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -611,9 +607,9 @@
       "companyId": 220236403918,
       "companyName": "Pernod Ricard",
       "companyDomain": "pernod-ricard.com",
-      "companyIndustry": "WINE_AND_SPIRITS",
+      "companyIndustry": "FOOD_BEVERAGES",
       "companyRevenue": 10746530000,
-      "companyEmployees": 18306,
+      "companyEmployees": 19480,
       "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
@@ -656,7 +652,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -991,19 +989,11 @@
       "companyId": 220584252648,
       "companyName": "LVMH",
       "companyDomain": "lvmh.com",
-      "companyIndustry": "LUXURY_GOODS_JEWELRY",
+      "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 90061920000,
-      "companyEmployees": 175647,
+      "companyEmployees": 215000,
       "companyParentIds": [],
-      "companyChildIds": [
-        225635140849,
-        230029784291,
-        231940442307,
-        232131152083,
-        262216855790,
-        262224529637,
-        263431222517
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1044,9 +1034,7 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264196399312
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1128,7 +1116,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1376,12 +1366,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1422,9 +1407,7 @@
       "companyRevenue": 1130000000,
       "companyEmployees": 10000,
       "companyParentIds": [],
-      "companyChildIds": [
-        263648066783
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1758,12 +1741,7 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1845,7 +1823,9 @@
       "companyRevenue": 48885880000,
       "companyEmployees": 95442,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        233096890562
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1936,7 +1916,9 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1976,9 +1958,7 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1000000000,
       "companyEmployees": 3000,
-      "companyParentIds": [
-        235135998174
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2016,9 +1996,9 @@
       "companyId": 220236403918,
       "companyName": "Pernod Ricard",
       "companyDomain": "pernod-ricard.com",
-      "companyIndustry": "WINE_AND_SPIRITS",
+      "companyIndustry": "FOOD_BEVERAGES",
       "companyRevenue": 10746530000,
-      "companyEmployees": 18306,
+      "companyEmployees": 19480,
       "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
@@ -2061,7 +2041,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2262,19 +2245,11 @@
       "companyId": 220584252648,
       "companyName": "LVMH",
       "companyDomain": "lvmh.com",
-      "companyIndustry": "LUXURY_GOODS_JEWELRY",
+      "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 90061920000,
-      "companyEmployees": 175647,
+      "companyEmployees": 215000,
       "companyParentIds": [],
-      "companyChildIds": [
-        225635140849,
-        230029784291,
-        231940442307,
-        232131152083,
-        262216855790,
-        262224529637,
-        263431222517
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2439,7 +2414,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1532803000,
       "companyEmployees": 2500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2690,7 +2667,9 @@
       "companyRevenue": 46629100000,
       "companyEmployees": 140000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264581201087
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2772,7 +2751,10 @@
       "companyRevenue": 58221850000,
       "companyEmployees": 168000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        264204857580,
+        264205578471
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2859,9 +2841,9 @@
       "companyId": 220236403918,
       "companyName": "Pernod Ricard",
       "companyDomain": "pernod-ricard.com",
-      "companyIndustry": "WINE_AND_SPIRITS",
+      "companyIndustry": "FOOD_BEVERAGES",
       "companyRevenue": 10746530000,
-      "companyEmployees": 18306,
+      "companyEmployees": 19480,
       "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
@@ -3026,9 +3008,7 @@
       "companyIndustry": "Client",
       "companyRevenue": 0,
       "companyEmployees": 0,
-      "companyParentIds": [
-        220607386866
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3070,7 +3050,10 @@
       "companyRevenue": 28315170000,
       "companyEmployees": 81000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226909763825,
+        257087531219
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3111,10 +3094,7 @@
       "companyRevenue": 20000000000,
       "companyEmployees": 72500,
       "companyParentIds": [],
-      "companyChildIds": [
-        264204131577,
-        264581917912
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -3469,9 +3449,9 @@
       "id": "220236403918",
       "name": "Pernod Ricard",
       "domain": "pernod-ricard.com",
-      "industry": "WINE_AND_SPIRITS",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 10746530000,
-      "employees": 18306,
+      "employees": 19480,
       "ownerId": "29974224",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -3601,9 +3581,9 @@
       "id": "220312212699",
       "name": "Nexity",
       "domain": "nexity.fr",
-      "industry": "CONSTRUCTION",
+      "industry": "REAL_ESTATE",
       "revenue": 3476159000,
-      "employees": 5750,
+      "employees": 8250,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -3678,20 +3658,12 @@
       "id": "220584252648",
       "name": "LVMH",
       "domain": "lvmh.com",
-      "industry": "LUXURY_GOODS_JEWELRY",
+      "industry": "APPAREL_FASHION",
       "revenue": 90061920000,
-      "employees": 175647,
+      "employees": 215000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        225635140849,
-        230029784291,
-        231940442307,
-        232131152083,
-        262216855790,
-        262224529637,
-        263431222517
-      ]
+      "childCompanyIds": []
     },
     "220584257724": {
       "id": "220584257724",
@@ -3785,9 +3757,9 @@
       "id": "220586031327",
       "name": "Nexans",
       "domain": "nexans.com",
-      "industry": "ELECTRICAL_ELECTRONIC_MANUFACTURING",
+      "industry": "COMPUTER_GAMES",
       "revenue": 6733978000,
-      "employees": 26000,
+      "employees": 28500,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -3851,9 +3823,9 @@
       "id": "220587788528",
       "name": "Hermes",
       "domain": "hermes.com",
-      "industry": "LUXURY_GOODS_JEWELRY",
+      "industry": "APPAREL_FASHION",
       "revenue": 14402800000,
-      "employees": 17595,
+      "employees": 25185,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -3867,7 +3839,9 @@
       "employees": 140000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264581201087
+      ]
     },
     "220587794626": {
       "id": "220587794626",
@@ -3999,12 +3973,7 @@
       "employees": 272367,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226458090730,
-        226909763782,
-        226913359044,
-        234997940469
-      ]
+      "childCompanyIds": []
     },
     "220593095921": {
       "id": "220593095921",
@@ -4102,7 +4071,7 @@
       "domain": "forvia.com",
       "industry": "AUTOMOTIVE",
       "revenue": 275240320,
-      "employees": 154000,
+      "employees": 157460,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4133,7 +4102,7 @@
       "id": "220598451420",
       "name": "Eurazeo SE",
       "domain": "eurazeo.com",
-      "industry": "FINANCIAL_SERVICES",
+      "industry": "CAPITAL_MARKETS",
       "revenue": 0,
       "employees": 410,
       "ownerId": "29926733",
@@ -4179,7 +4148,7 @@
       "domain": "soprasteria.com",
       "industry": "INFORMATION_TECHNOLOGY_AND_SERVICES",
       "revenue": 5702093000,
-      "employees": 50000,
+      "employees": 58000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4199,9 +4168,9 @@
       "id": "220605594834",
       "name": "Air France-KLM",
       "domain": "airfranceklm.com",
-      "industry": "AIRLINES_AVIATION",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 30012680000,
-      "employees": 74602,
+      "employees": 77806,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4269,7 +4238,7 @@
       "domain": "publicisgroupe.com",
       "industry": "MARKETING_AND_ADVERTISING",
       "revenue": 12104040000,
-      "employees": 75588,
+      "employees": 103000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4334,7 +4303,7 @@
       "name": "Renault Group",
       "domain": "renaultgroup.com",
       "industry": "AUTOMOTIVE",
-      "revenue": 56175900000,
+      "revenue": 61272900000,
       "employees": 170158,
       "ownerId": "29974224",
       "parentCompanyIds": [],
@@ -4387,7 +4356,7 @@
       "domain": "vinci.com",
       "industry": "CONSTRUCTION",
       "revenue": 70133440000,
-      "employees": 275000,
+      "employees": 280000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4398,13 +4367,10 @@
       "domain": "airbus.com",
       "industry": "AVIATION_AEROSPACE",
       "revenue": 66818670000,
-      "employees": 130000,
+      "employees": 156921,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226907993318,
-        226922255599
-      ]
+      "childCompanyIds": []
     },
     "220610910446": {
       "id": "220610910446",
@@ -4492,7 +4458,10 @@
       "employees": 168000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        264204857580,
+        264205578471
+      ]
     },
     "220612718805": {
       "id": "220612718805",
@@ -4630,9 +4599,9 @@
       "id": "220636951753",
       "name": "Alstom",
       "domain": "alstom.com",
-      "industry": "RAILROAD_MANUFACTURE",
+      "industry": "TRANSPORTATION_TRUCKING_RAILROAD",
       "revenue": 17591640000,
-      "employees": 74000,
+      "employees": 80000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4652,7 +4621,7 @@
       "id": "220638750927",
       "name": "Amundi",
       "domain": "amundi.com",
-      "industry": "FINANCIAL_SERVICES",
+      "industry": "CAPITAL_MARKETS",
       "revenue": 0,
       "employees": 5300,
       "ownerId": "29926733",
@@ -4735,7 +4704,9 @@
       "revenue": 4400000000,
       "employees": 14200,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "226285007091": {
@@ -4788,7 +4759,7 @@
       "domain": "astrazeneca.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 54073000000,
-      "employees": 83100,
+      "employees": 89900,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": [
@@ -5430,9 +5401,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226454480065": {
@@ -5751,9 +5720,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220607386866
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090718": {
@@ -5885,7 +5852,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220593061109
+      ],
       "childCompanyIds": []
     },
     "226458090731": {
@@ -5973,9 +5942,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -5997,9 +5964,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226458090742": {
@@ -6226,9 +6191,9 @@
       "id": "226496356570",
       "name": "Camurus AB",
       "domain": "camurus.com",
-      "industry": "BIOTECHNOLOGY",
-      "revenue": 0,
-      "employees": 200,
+      "industry": "PHARMACEUTICALS",
+      "revenue": 188870000,
+      "employees": 213,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6800,7 +6765,7 @@
       "domain": "michelin.com",
       "industry": "AUTOMOTIVE",
       "revenue": 32510990000,
-      "employees": 124760,
+      "employees": 132000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7088,7 +7053,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "29926733",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226897211599": {
@@ -7152,7 +7119,7 @@
       "domain": "parker.com",
       "industry": "MACHINERY",
       "revenue": 19850000000,
-      "employees": 54640,
+      "employees": 57950,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7253,9 +7220,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226897211614": {
@@ -7704,9 +7669,9 @@
       "id": "226907993307",
       "name": "Haulotte Group",
       "domain": "haulotte.com",
-      "industry": "PROSPECT",
+      "industry": "CONSTRUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1970,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7829,7 +7794,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226907993319": {
@@ -7950,7 +7917,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "226907993333": {
@@ -8467,7 +8436,9 @@
       "revenue": 0,
       "employees": 220,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "226909763826": {
@@ -8597,7 +8568,7 @@
       "domain": "expanscience.com",
       "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 1161,
+      "employees": 1299,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8973,9 +8944,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        220593061109
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226913359045": {
@@ -10150,7 +10119,7 @@
       "domain": "edp.com",
       "industry": "UTILITIES",
       "revenue": 16567690000,
-      "employees": 12084,
+      "employees": 13211,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10808,7 +10777,10 @@
       "employees": 68000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        235511680221,
+        235592339679
+      ]
     },
     "226922256593": {
       "id": "226922256593",
@@ -11082,7 +11054,7 @@
       "domain": "gehealthcare.com",
       "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 19672000000,
-      "employees": 50000,
+      "employees": 53000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11500,7 +11472,7 @@
       "domain": "lilly.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 450427000000,
-      "employees": 35000,
+      "employees": 47000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11654,7 +11626,7 @@
       "domain": "merckgroup.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 19672980000,
-      "employees": 60334,
+      "employees": 62557,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11946,7 +11918,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "226964007116": {
@@ -12144,7 +12118,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226964007136": {
@@ -12749,9 +12725,7 @@
       "revenue": 163180400000,
       "employees": 8279,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226965808366": {
@@ -13001,7 +12975,7 @@
       "name": "LABORATOIRE GLAXOSMITHKLINE",
       "domain": "gsk.com",
       "industry": "PHARMACEUTICALS",
-      "revenue": 39645830000,
+      "revenue": 42671360000,
       "employees": 70000,
       "ownerId": "29926733",
       "parentCompanyIds": [],
@@ -13321,7 +13295,7 @@
       "domain": "orionpharma.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 3364,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13622,9 +13596,7 @@
       "revenue": 1000000000,
       "employees": 3000,
       "ownerId": "",
-      "parentCompanyIds": [
-        235135998174
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "230096330991": {
@@ -13658,10 +13630,7 @@
       "employees": 72500,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204131577,
-        264581917912
-      ]
+      "childCompanyIds": []
     },
     "230386516181": {
       "id": "230386516181",
@@ -13957,7 +13926,9 @@
       "revenue": 1180000000,
       "employees": 800,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "231941156027": {
@@ -13980,9 +13951,7 @@
       "employees": 17000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264196399312
-      ]
+      "childCompanyIds": []
     },
     "231943344369": {
       "id": "231943344369",
@@ -14037,7 +14006,10 @@
       "employees": 81000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226909763825,
+        257087531219
+      ]
     },
     "232131152083": {
       "id": "232131152083",
@@ -14102,9 +14074,7 @@
       "revenue": 5000000000,
       "employees": 12000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        249838914787
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "233139578076": {
@@ -15182,7 +15152,9 @@
       "revenue": 0,
       "employees": 130,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234978104517": {
@@ -15640,7 +15612,7 @@
       "id": "234979905776",
       "name": "Bodycote France",
       "domain": "bodycote.com",
-      "industry": "MACHINERY",
+      "industry": "MANAGEMENT_CONSULTING",
       "revenue": 1005342000,
       "employees": 5000,
       "ownerId": "",
@@ -15895,7 +15867,7 @@
       "domain": "rexel.com",
       "industry": "ELECTRICAL_ELECTRONIC_MANUFACTURING",
       "revenue": 21264620000,
-      "employees": 26000,
+      "employees": 27000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16014,9 +15986,9 @@
       "id": "234988938435",
       "name": "DSM-Firmenich France",
       "domain": "firmenich.com",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "industry": "FOOD_BEVERAGES",
+      "revenue": 4786825000,
+      "employees": 10000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16205,7 +16177,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "234988938453": {
@@ -16293,7 +16267,9 @@
       "revenue": 0,
       "employees": 105,
       "ownerId": "29926733",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        244815187150
+      ],
       "childCompanyIds": []
     },
     "234988938461": {
@@ -16676,7 +16652,7 @@
       "domain": "bostik.com",
       "industry": "CHEMICALS",
       "revenue": 11569820000,
-      "employees": 6000,
+      "employees": 7000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16819,9 +16795,9 @@
       "id": "234992537838",
       "name": "Harley-Davidson France",
       "domain": "harley-davidson.com",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "industry": "AUTOMOTIVE",
+      "revenue": 4148264000,
+      "employees": 6400,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17703,7 +17679,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220593061109
+      ],
       "childCompanyIds": []
     },
     "234997940470": {
@@ -18420,7 +18398,7 @@
       "domain": "alpiq.com",
       "industry": "UTILITIES",
       "revenue": 16343020000,
-      "employees": 1180,
+      "employees": 1221,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19390,9 +19368,7 @@
       "revenue": 280999000000,
       "employees": 390,
       "ownerId": "29926733",
-      "parentCompanyIds": [
-        278642453704
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235012095189": {
@@ -19544,7 +19520,7 @@
       "domain": "strabag.com",
       "industry": "CONSTRUCTION",
       "revenue": 18631060000,
-      "employees": 73606,
+      "employees": 78175,
       "ownerId": "29926733",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20757,9 +20733,7 @@
       "employees": 10000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        263648066783
-      ]
+      "childCompanyIds": []
     },
     "235051015374": {
       "id": "235051015374",
@@ -20956,7 +20930,7 @@
       "domain": "rolandberger.com",
       "industry": "MANAGEMENT_CONSULTING",
       "revenue": 670000000,
-      "employees": 2400,
+      "employees": 2753,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21020,7 +20994,7 @@
       "id": "235130647796",
       "name": "Patek Philippe SA",
       "domain": "patek.com",
-      "industry": "LUXURY_GOODS_JEWELRY",
+      "industry": "APPAREL_FASHION",
       "revenue": 1500000000,
       "employees": 1750,
       "ownerId": "",
@@ -21310,9 +21284,7 @@
       "revenue": 2900000000,
       "employees": 3000,
       "ownerId": "",
-      "parentCompanyIds": [
-        226922256592
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235511680222": {
@@ -22964,7 +22936,9 @@
       "revenue": 0,
       "employees": 1500,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        235052258498
+      ],
       "childCompanyIds": []
     },
     "235725744326": {
@@ -24263,9 +24237,7 @@
       "employees": 2250,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        234988938460
-      ]
+      "childCompanyIds": []
     },
     "245032334561": {
       "id": "245032334561",
@@ -24297,7 +24269,9 @@
       "revenue": 6069000000,
       "employees": 2525,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        226285017278
+      ],
       "childCompanyIds": []
     },
     "246784900287": {
@@ -24408,7 +24382,9 @@
       "employees": 95442,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        233096890562
+      ]
     },
     "249843254517": {
       "id": "249843254517",
@@ -24528,7 +24504,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "257704494304": {
@@ -24536,12 +24514,10 @@
       "name": "TotalEnergies Lubrifiants",
       "domain": "totalenergies.com",
       "industry": "OIL_ENERGY",
-      "revenue": 280999000000,
-      "employees": 100000,
+      "revenue": 237100000000,
+      "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        278642453704
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258156739774": {
@@ -24549,12 +24525,10 @@
       "name": "TotalEnergies One Tech SAS",
       "domain": "totalenergies.com",
       "industry": "OIL_ENERGY",
-      "revenue": 280999000000,
-      "employees": 100000,
+      "revenue": 237100000000,
+      "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        278642453704
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "258569825511": {
@@ -24562,10 +24536,12 @@
       "name": "TotalEnergies Learning Solutions",
       "domain": "totalenergies.com",
       "industry": "OIL_ENERGY",
-      "revenue": 280999000000,
-      "employees": 100000,
+      "revenue": 237100000000,
+      "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        278642453704
+      ],
       "childCompanyIds": []
     },
     "258837299441": {
@@ -24645,10 +24621,7 @@
       "employees": 34000,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264204846315,
-        264205568248
-      ]
+      "childCompanyIds": []
     },
     "260804494551": {
       "id": "260804494551",
@@ -24725,10 +24698,12 @@
       "name": "TotalEnergies SE - GRP ",
       "domain": "totalenergies.com",
       "industry": "OIL_ENERGY",
-      "revenue": 280999000000,
-      "employees": 100000,
+      "revenue": 237100000000,
+      "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        278642453704
+      ],
       "childCompanyIds": []
     },
     "262224529637": {
@@ -24739,7 +24714,9 @@
       "revenue": 1532803000,
       "employees": 2500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "262469511370": {
@@ -24758,8 +24735,8 @@
       "name": "TotalEnergies Trading SA",
       "domain": "totalenergies.com",
       "industry": "OIL_ENERGY",
-      "revenue": 280999000000,
-      "employees": 100000,
+      "revenue": 237100000000,
+      "employees": 102579,
       "ownerId": "29974224",
       "parentCompanyIds": [
         278642453704
@@ -24831,9 +24808,7 @@
       "revenue": 90061920000,
       "employees": 1521,
       "ownerId": "30088765",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263434090717": {
@@ -24881,7 +24856,9 @@
       "revenue": 5681912,
       "employees": 30,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        235051012312
+      ],
       "childCompanyIds": []
     },
     "263873434871": {
@@ -24914,7 +24891,9 @@
       "revenue": 19669000,
       "employees": 7500,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231943343327
+      ],
       "childCompanyIds": []
     },
     "264204131577": {
@@ -24925,9 +24904,7 @@
       "revenue": 30000000,
       "employees": 450,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        230109082847
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204846315": {
@@ -24938,9 +24915,7 @@
       "revenue": 19500000000,
       "employees": 4000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        260128816334
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204852443": {
@@ -24962,9 +24937,7 @@
       "revenue": 970000000,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        220612714702
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264205568248": {
@@ -24975,7 +24948,9 @@
       "revenue": 19500000000,
       "employees": 120,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        260128816334
+      ],
       "childCompanyIds": []
     },
     "264205578471": {
@@ -25052,7 +25027,7 @@
       "domain": "generalmills.com",
       "industry": "FOOD_PRODUCTION",
       "revenue": 194866000000,
-      "employees": 32500,
+      "employees": 34000,
       "ownerId": "30088765",
       "parentCompanyIds": [],
       "childCompanyIds": [
@@ -25174,7 +25149,7 @@
     "totalOwners": 11,
     "totalCompanies": 1963,
     "totalDeals": 81,
-    "totalRelations": 91,
+    "totalRelations": 84,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 2,
