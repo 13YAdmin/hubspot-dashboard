@@ -5,26 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Dashboard HubSpot pour Account Management - Suivi clients, groupes parent/filiales, opportunités">
   <title>Dashboard HubSpot | Account Management</title>
+
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
   <style>
     /* ========================================
        VARIABLES & RESET
        ======================================== */
     :root {
-      --primary: #4F46E5;
-      --primary-dark: #4338CA;
-      --secondary: #10B981;
-      --danger: #EF4444;
-      --warning: #F59E0B;
-      --bg: #F9FAFB;
-      --surface: #FFFFFF;
-      --border: #E5E7EB;
-      --text: #111827;
-      --text-muted: #6B7280;
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      --radius: 8px;
-      --transition: all 0.2s ease;
+      /* Dark Theme Colors */
+      --bg: #0a0e27;
+      --bg-card: #151932;
+      --bg-card-hover: #1d2342;
+      --surface: #151932;
+      --border: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+
+      /* Accent Colors */
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --secondary: #22c55e;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --purple: #a855f7;
+
+      /* Other */
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 20px 60px rgba(99, 102, 241, 0.4);
+      --radius: 12px;
+      --transition: all 0.3s ease;
     }
 
     * {
@@ -34,34 +48,36 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, #0f1629 100%);
       color: var(--text);
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     /* ========================================
        LAYOUT
        ======================================== */
     #app {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
       padding: 20px;
     }
 
     header {
-      background: var(--surface);
-      padding: 24px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--purple) 100%);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
       margin-bottom: 20px;
     }
 
     h1 {
       font-size: 28px;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 20px;
-      color: var(--text);
+      color: white;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     /* ========================================
@@ -92,42 +108,101 @@
     #kpis {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      gap: 14px;
       margin-bottom: 20px;
     }
 
     .kpi {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: var(--bg-card);
       color: white;
       padding: 20px;
       border-radius: var(--radius);
       box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
     }
 
-    .kpi:nth-child(2) {
-      background: linear-gradient(135deg, var(--secondary), #059669);
+    .kpi:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+      border-color: var(--accent);
     }
 
-    .kpi:nth-child(3) {
-      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+    .kpi::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--purple));
     }
 
-    .kpi:nth-child(4) {
-      background: linear-gradient(135deg, #F59E0B, #D97706);
+    .kpi:nth-child(2)::before {
+      background: linear-gradient(90deg, var(--secondary), #059669);
+    }
+
+    .kpi:nth-child(3)::before {
+      background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+    }
+
+    .kpi:nth-child(4)::before {
+      background: linear-gradient(90deg, var(--warning), #D97706);
     }
 
     .kpi-label {
-      font-size: 13px;
-      opacity: 0.9;
+      font-size: 12px;
+      opacity: 0.8;
       margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      color: var(--text-muted);
     }
 
     .kpi-value {
       font-size: 32px;
-      font-weight: 700;
+      font-weight: 800;
       line-height: 1;
+      color: var(--text);
+    }
+
+    /* ========================================
+       CHARTS
+       ======================================== */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .chart-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .chart-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+    }
+
+    .chart-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .chart-container {
+      position: relative;
+      height: 300px;
     }
 
     /* ========================================
@@ -138,7 +213,7 @@
       gap: 12px;
       flex-wrap: wrap;
       padding-top: 20px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .filter-group {
@@ -150,13 +225,13 @@
     .filter-label {
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.8);
     }
 
     .filter-btn {
       padding: 8px 16px;
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: var(--bg-card);
       border-radius: 6px;
       font-size: 14px;
       cursor: pointer;
@@ -165,13 +240,14 @@
     }
 
     .filter-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: var(--bg-card-hover);
     }
 
     .filter-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
+      background: var(--accent);
+      border-color: var(--accent);
       color: white;
       font-weight: 600;
     }
@@ -180,11 +256,12 @@
        TABLES
        ======================================== */
     section {
-      background: var(--surface);
+      background: var(--bg-card);
       border-radius: var(--radius);
       box-shadow: var(--shadow-sm);
       margin-bottom: 20px;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
 
     .section-header {
@@ -202,12 +279,12 @@
     }
 
     .section-count {
-      background: var(--bg);
+      background: rgba(99, 102, 241, 0.2);
       padding: 4px 12px;
       border-radius: 12px;
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--accent-light);
     }
 
     table {
@@ -216,7 +293,7 @@
     }
 
     thead {
-      background: var(--bg);
+      background: rgba(15, 23, 42, 0.6);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -231,6 +308,40 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+    }
+
+    th:hover {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent-light);
+    }
+
+    th.sortable {
+      position: relative;
+      padding-right: 30px;
+    }
+
+    th .sort-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      opacity: 0.3;
+    }
+
+    th.sorted-asc .sort-icon::after {
+      content: '▲';
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    th.sorted-desc .sort-icon::after {
+      content: '▼';
+      opacity: 1;
+      color: var(--accent);
     }
 
     td {
@@ -245,22 +356,22 @@
     }
 
     tbody tr:hover {
-      background: var(--bg);
+      background: var(--bg-card-hover);
     }
 
     /* Group rows */
     tr.group-row {
-      background: linear-gradient(to right, #F3F4F6, var(--surface));
+      background: linear-gradient(to right, rgba(99, 102, 241, 0.1), transparent);
       font-weight: 600;
     }
 
     tr.group-row:hover {
-      background: linear-gradient(to right, #E5E7EB, var(--bg));
+      background: linear-gradient(to right, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
     }
 
     /* Child rows */
     tr.child-row {
-      background: rgba(243, 244, 246, 0.5);
+      background: rgba(15, 23, 42, 0.3);
     }
 
     tr.child-row td:first-child {
@@ -292,24 +403,24 @@
       letter-spacing: 0.3px;
     }
 
-    .badge-vip {
+    .badge-vip, .badge-stratégique {
       background: linear-gradient(135deg, #8B5CF6, #7C3AED);
       color: white;
     }
 
-    .badge-standard {
-      background: #DBEAFE;
-      color: #1E40AF;
+    .badge-standard, .badge-clé {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
     }
 
-    .badge-prospect {
-      background: #FEF3C7;
-      color: #92400E;
+    .badge-prospect, .badge-opportunité {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
     }
 
     .badge-subsidiaries {
-      background: var(--bg);
-      color: var(--text-muted);
+      background: rgba(99, 102, 241, 0.2);
+      color: var(--accent-light);
       margin-left: 8px;
     }
 
@@ -351,10 +462,6 @@
       background: linear-gradient(135deg, var(--danger), #DC2626);
     }
 
-    .health-trend {
-      font-size: 16px;
-    }
-
     /* ========================================
        EXPAND ICON
        ======================================== */
@@ -380,11 +487,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.7);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      backdrop-filter: blur(4px);
     }
 
     #modal.active {
@@ -392,13 +500,14 @@
     }
 
     .modal-content {
-      background: var(--surface);
+      background: var(--bg-card);
       border-radius: var(--radius);
       box-shadow: var(--shadow-lg);
       max-width: 800px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
+      border: 1px solid var(--border);
     }
 
     .modal-header {
@@ -412,6 +521,7 @@
     .modal-title {
       font-size: 24px;
       font-weight: 700;
+      color: var(--text);
     }
 
     .modal-close {
@@ -431,7 +541,7 @@
     }
 
     .modal-close:hover {
-      background: var(--bg);
+      background: rgba(99, 102, 241, 0.2);
       color: var(--text);
     }
 
@@ -456,6 +566,26 @@
       margin-bottom: 12px;
     }
 
+    .hubspot-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .hubspot-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+    }
+
     /* ========================================
        UTILITY CLASSES
        ======================================== */
@@ -469,10 +599,6 @@
 
     .text-center {
       text-align: center;
-    }
-
-    .mt-20 {
-      margin-top: 20px;
     }
 
     /* ========================================
@@ -493,6 +619,10 @@
 
       .kpi-value {
         font-size: 24px;
+      }
+
+      .charts-grid {
+        grid-template-columns: 1fr;
       }
 
       th, td {
@@ -534,6 +664,37 @@
         </div>
       </header>
 
+      <!-- CHARTS -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>📈 Évolution CA</h3>
+          <div class="chart-container">
+            <canvas id="chartRevenue"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>📊 Répartition par Secteur</h3>
+          <div class="chart-container">
+            <canvas id="chartIndustry"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>🎯 Segments Clients</h3>
+          <div class="chart-container">
+            <canvas id="chartSegments"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>👥 Évolution Nombre de Clients</h3>
+          <div class="chart-container">
+            <canvas id="chartClients"></canvas>
+          </div>
+        </div>
+      </div>
+
       <!-- GROUPS TABLE -->
       <section id="groups-section">
         <div class="section-header">
@@ -544,11 +705,11 @@
           <table id="groups-table">
             <thead>
               <tr>
-                <th>Entreprise</th>
-                <th>Secteur</th>
-                <th>Segment</th>
-                <th>Santé</th>
-                <th style="text-align: right;">CA Total</th>
+                <th class="sortable" data-sort="name">Entreprise<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="industry">Secteur<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="segment">Segment<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="health">Santé<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="revenue" style="text-align: right;">CA Total<span class="sort-icon"></span></th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -566,11 +727,11 @@
           <table id="opportunities-table">
             <thead>
               <tr>
-                <th>Filiale (non contactée)</th>
-                <th>Groupe Parent</th>
-                <th>Secteur</th>
-                <th>CA Parent</th>
-                <th style="text-align: right;">Potentiel Estimé</th>
+                <th class="sortable" data-sort="name">Filiale (non contactée)<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="parent">Groupe Parent<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="industry">Secteur<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="parentRevenue">CA Parent<span class="sort-icon"></span></th>
+                <th class="sortable" data-sort="potential" style="text-align: right;">Potentiel Estimé<span class="sort-icon"></span></th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -593,13 +754,30 @@
 
   <script>
     // ========================================
+    // CONFIGURATION
+    // ========================================
+    const HUBSPOT_PORTAL_ID = '146716340';
+
+    // ========================================
     // GLOBAL STATE
     // ========================================
     let allData = [];
     let companies = {};
-    let companiesWithParents = []; // Optimized list of only companies with parents
+    let companiesWithParents = [];
     let currentFilter = { year: 'all' };
     let groupExpandedState = {};
+    let sortState = {
+      groups: { column: 'revenue', direction: 'desc' },
+      opportunities: { column: 'potential', direction: 'desc' }
+    };
+
+    // Chart instances
+    let charts = {
+      revenue: null,
+      industry: null,
+      segments: null,
+      clients: null
+    };
 
     // ========================================
     // LOAD DATA
@@ -621,10 +799,15 @@
         allData = json.data;
         companies = json.companies || {};
 
-        // OPTIMIZATION: Build index of companies with parents (only ~41 instead of 1963)
-        companiesWithParents = Object.values(companies).filter(c =>
-          c.parentCompanyIds && c.parentCompanyIds.length > 0
-        );
+        // Build set of companies that have deals (clients)
+        const companiesWithDeals = new Set(allData.map(deal => deal.companyId));
+
+        // OPTIMIZATION: Build index of companies with parents WHERE the parent has deals
+        companiesWithParents = Object.values(companies).filter(c => {
+          if (!c.parentCompanyIds || c.parentCompanyIds.length === 0) return false;
+          const parentId = c.parentCompanyIds[0];
+          return companiesWithDeals.has(parentId);
+        });
 
         console.log(`✅ ${allData.length} deals chargés`);
         console.log(`✅ ${Object.keys(companies).length} companies chargées`);
@@ -656,6 +839,7 @@
       const filteredData = filterData();
 
       renderKPIs(filteredData);
+      renderCharts(filteredData);
       renderGroupsTable(filteredData);
       renderOpportunitiesTable(filteredData);
     }
@@ -713,10 +897,153 @@
     }
 
     // ========================================
+    // RENDER CHARTS
+    // ========================================
+    function renderCharts(data) {
+      // Revenue by Year
+      const years = ['2022', '2023', '2024', '2025'];
+      const revenueByYear = years.map(year => {
+        return data
+          .filter(d => new Date(d.closeDate).getFullYear() === parseInt(year))
+          .reduce((sum, d) => sum + (d.amount || 0), 0);
+      });
+
+      if (charts.revenue) charts.revenue.destroy();
+      charts.revenue = new Chart(document.getElementById('chartRevenue'), {
+        type: 'line',
+        data: {
+          labels: years,
+          datasets: [{
+            label: 'CA (€)',
+            data: revenueByYear,
+            borderColor: '#6366f1',
+            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              ticks: { color: '#94a3b8' },
+              grid: { color: 'rgba(255,255,255,0.05)' }
+            },
+            x: {
+              ticks: { color: '#94a3b8' },
+              grid: { color: 'rgba(255,255,255,0.05)' }
+            }
+          }
+        }
+      });
+
+      // Industry Distribution
+      const industryData = {};
+      data.forEach(d => {
+        const industry = formatIndustry(d.companyIndustry);
+        industryData[industry] = (industryData[industry] || 0) + (d.amount || 0);
+      });
+
+      const topIndustries = Object.entries(industryData)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+
+      if (charts.industry) charts.industry.destroy();
+      charts.industry = new Chart(document.getElementById('chartIndustry'), {
+        type: 'doughnut',
+        data: {
+          labels: topIndustries.map(i => i[0]),
+          datasets: [{
+            data: topIndustries.map(i => i[1]),
+            backgroundColor: ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#a855f7']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#94a3b8', font: { size: 11 } }
+            }
+          }
+        }
+      });
+
+      // Segments
+      const segmentData = {};
+      data.forEach(d => {
+        const segment = d.segment || 'Unknown';
+        segmentData[segment] = (segmentData[segment] || 0) + (d.amount || 0);
+      });
+
+      if (charts.segments) charts.segments.destroy();
+      charts.segments = new Chart(document.getElementById('chartSegments'), {
+        type: 'pie',
+        data: {
+          labels: Object.keys(segmentData),
+          datasets: [{
+            data: Object.values(segmentData),
+            backgroundColor: ['#8B5CF6', '#3b82f6', '#f59e0b']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: '#94a3b8', font: { size: 11 } }
+            }
+          }
+        }
+      });
+
+      // Clients Evolution
+      const clientsByYear = years.map(year => {
+        const yearData = data.filter(d => new Date(d.closeDate).getFullYear() === parseInt(year));
+        return new Set(yearData.map(d => d.companyId)).size;
+      });
+
+      if (charts.clients) charts.clients.destroy();
+      charts.clients = new Chart(document.getElementById('chartClients'), {
+        type: 'bar',
+        data: {
+          labels: years,
+          datasets: [{
+            label: 'Clients',
+            data: clientsByYear,
+            backgroundColor: '#22c55e'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              ticks: { color: '#94a3b8', stepSize: 1 },
+              grid: { color: 'rgba(255,255,255,0.05)' }
+            },
+            x: {
+              ticks: { color: '#94a3b8' },
+              grid: { color: 'rgba(255,255,255,0.05)' }
+            }
+          }
+        }
+      });
+    }
+
+    // ========================================
     // RENDER GROUPS TABLE
     // ========================================
     function renderGroupsTable(data) {
-      // Group data by company
       const companyDeals = {};
       data.forEach(deal => {
         const companyId = deal.companyId;
@@ -726,11 +1053,10 @@
         companyDeals[companyId].push(deal);
       });
 
-      // Create groups with parent/child relationships
       const groups = [];
       const processedCompanies = new Set();
 
-      // First pass: Process companies with children (groups)
+      // First pass: Process companies with children
       Object.entries(companyDeals).forEach(([companyId, deals]) => {
         const company = companies[companyId];
         if (!company) return;
@@ -754,7 +1080,6 @@
             isExpanded: groupExpandedState[companyId] || false
           };
 
-          // Add children
           company.childCompanyIds.forEach(childId => {
             const childCompany = companies[childId];
             if (!childCompany) return;
@@ -778,7 +1103,6 @@
               isWhiteSpace: isWhiteSpace
             });
 
-            // Update group totals
             group.revenue += childRevenue;
             processedCompanies.add(childId);
           });
@@ -788,7 +1112,7 @@
         }
       });
 
-      // Second pass: Standalone companies (no parent, no children)
+      // Second pass: Standalone companies
       Object.entries(companyDeals).forEach(([companyId, deals]) => {
         if (processedCompanies.has(companyId)) return;
 
@@ -796,7 +1120,7 @@
         if (!company) return;
 
         const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
-        if (hasParent) return; // Skip, will be included in parent group
+        if (hasParent) return;
 
         const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
         const avgHealthScore = deals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / deals.length;
@@ -812,8 +1136,8 @@
         });
       });
 
-      // Sort groups by revenue
-      groups.sort((a, b) => b.revenue - a.revenue);
+      // Sort groups
+      sortGroups(groups);
 
       // Update count
       document.getElementById('groups-count').textContent = `${groups.length} groupes`;
@@ -823,16 +1147,50 @@
       tbody.innerHTML = '';
 
       groups.forEach(group => {
-        // Render parent row
         const parentRow = createGroupRow(group);
         tbody.appendChild(parentRow);
 
-        // Render children if expanded
         if (group.type === 'group' && group.isExpanded) {
           group.children.forEach(child => {
             const childRow = createChildRow(child);
             tbody.appendChild(childRow);
           });
+        }
+      });
+    }
+
+    // ========================================
+    // SORT GROUPS
+    // ========================================
+    function sortGroups(groups) {
+      const { column, direction } = sortState.groups;
+      const multiplier = direction === 'asc' ? 1 : -1;
+
+      groups.sort((a, b) => {
+        let valA, valB;
+
+        switch(column) {
+          case 'name':
+            valA = a.companyName.toLowerCase();
+            valB = b.companyName.toLowerCase();
+            return valA.localeCompare(valB) * multiplier;
+          case 'industry':
+            valA = formatIndustry(a.industry).toLowerCase();
+            valB = formatIndustry(b.industry).toLowerCase();
+            return valA.localeCompare(valB) * multiplier;
+          case 'segment':
+            valA = a.segment.toLowerCase();
+            valB = b.segment.toLowerCase();
+            return valA.localeCompare(valB) * multiplier;
+          case 'health':
+            valA = a.healthScore || 0;
+            valB = b.healthScore || 0;
+            return (valA - valB) * multiplier;
+          case 'revenue':
+          default:
+            valA = a.revenue || 0;
+            valB = b.revenue || 0;
+            return (valA - valB) * multiplier;
         }
       });
     }
@@ -913,10 +1271,8 @@
     function renderOpportunitiesTable(data) {
       const opportunities = [];
 
-      // OPTIMIZATION: Create Set of companies with deals for O(1) lookup
       const companiesWithDeals = new Set(data.map(deal => deal.companyId));
 
-      // Build parent deals cache to avoid recalculation
       const parentDealsCache = {};
       data.forEach(deal => {
         if (!parentDealsCache[deal.companyId]) {
@@ -925,30 +1281,25 @@
         parentDealsCache[deal.companyId].push(deal);
       });
 
-      // OPTIMIZATION: Only iterate through companies that have parents
-      // Instead of all 1963 companies, only check the ~41 with parents
       companiesWithParents.forEach(company => {
-
         const parentId = company.parentCompanyIds[0];
         const parentCompany = companies[parentId];
         if (!parentCompany) return;
 
-        // Check if this company has any deals (O(1) lookup)
         const hasDeals = companiesWithDeals.has(company.id);
 
         if (!hasDeals) {
-          // Calculate potential based on parent revenue (use cache)
           const parentDeals = parentDealsCache[parentId] || [];
           const parentRevenue = parentDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
           const parentHealth = parentDeals.length > 0
             ? parentDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / parentDeals.length
             : 50;
 
-          // Potential = 5-15% of parent revenue based on health
           const potentialMultiplier = parentHealth >= 70 ? 0.15 : (parentHealth >= 50 ? 0.10 : 0.05);
           const potential = parentRevenue * potentialMultiplier;
 
           opportunities.push({
+            companyId: company.id,
             companyName: company.name,
             parentName: parentCompany.name,
             parentId: parentId,
@@ -960,8 +1311,8 @@
         }
       });
 
-      // Sort by potential
-      opportunities.sort((a, b) => b.potential - a.potential);
+      // Sort opportunities
+      sortOpportunities(opportunities);
 
       // Update count
       document.getElementById('opportunities-count').textContent = `${opportunities.length} opportunités`;
@@ -1002,6 +1353,71 @@
     }
 
     // ========================================
+    // SORT OPPORTUNITIES
+    // ========================================
+    function sortOpportunities(opportunities) {
+      const { column, direction } = sortState.opportunities;
+      const multiplier = direction === 'asc' ? 1 : -1;
+
+      opportunities.sort((a, b) => {
+        let valA, valB;
+
+        switch(column) {
+          case 'name':
+            valA = a.companyName.toLowerCase();
+            valB = b.companyName.toLowerCase();
+            return valA.localeCompare(valB) * multiplier;
+          case 'parent':
+            valA = a.parentName.toLowerCase();
+            valB = b.parentName.toLowerCase();
+            return valA.localeCompare(valB) * multiplier;
+          case 'industry':
+            valA = formatIndustry(a.industry).toLowerCase();
+            valB = formatIndustry(b.industry).toLowerCase();
+            return valA.localeCompare(valB) * multiplier;
+          case 'parentRevenue':
+            valA = a.parentRevenue || 0;
+            valB = b.parentRevenue || 0;
+            return (valA - valB) * multiplier;
+          case 'potential':
+          default:
+            valA = a.potential || 0;
+            valB = b.potential || 0;
+            return (valA - valB) * multiplier;
+        }
+      });
+    }
+
+    // ========================================
+    // COLUMN SORTING
+    // ========================================
+    document.querySelectorAll('th.sortable').forEach(th => {
+      th.addEventListener('click', (e) => {
+        const column = e.currentTarget.dataset.sort;
+        const table = e.currentTarget.closest('table').id;
+        const isGroupsTable = table === 'groups-table';
+        const stateKey = isGroupsTable ? 'groups' : 'opportunities';
+
+        // Toggle direction
+        if (sortState[stateKey].column === column) {
+          sortState[stateKey].direction = sortState[stateKey].direction === 'asc' ? 'desc' : 'asc';
+        } else {
+          sortState[stateKey].column = column;
+          sortState[stateKey].direction = 'desc';
+        }
+
+        // Update visual indicators
+        e.currentTarget.closest('thead').querySelectorAll('th').forEach(h => {
+          h.classList.remove('sorted-asc', 'sorted-desc');
+        });
+        e.currentTarget.classList.add('sorted-' + sortState[stateKey].direction);
+
+        // Re-render
+        renderDashboard();
+      });
+    });
+
+    // ========================================
     // SHOW CLIENT DETAILS (MODAL)
     // ========================================
     function showClientDetails(client) {
@@ -1029,10 +1445,20 @@
             </div>
             <div>
               <div class="text-muted" style="font-size: 13px;">CA Total</div>
-              <div style="font-weight: 700; font-size: 20px; color: var(--primary);">${formatCurrency(client.revenue)}</div>
+              <div style="font-weight: 700; font-size: 20px; color: var(--accent);">${formatCurrency(client.revenue)}</div>
             </div>
           </div>
         </div>
+
+        ${client.companyId ? `
+          <div class="modal-section">
+            <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${client.companyId}"
+               target="_blank"
+               class="hubspot-link">
+              🔗 Voir dans HubSpot
+            </a>
+          </div>
+        ` : ''}
 
         ${client.isWhiteSpace ? `
           <div class="modal-section">
@@ -1082,6 +1508,16 @@
             </div>
           </div>
         </div>
+
+        ${opp.companyId ? `
+          <div class="modal-section">
+            <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${opp.companyId}"
+               target="_blank"
+               class="hubspot-link">
+              🔗 Voir dans HubSpot
+            </a>
+          </div>
+        ` : ''}
 
         <div class="modal-section">
           <div class="modal-section-title">Recommandations Account Manager</div>
@@ -1136,7 +1572,6 @@
       document.getElementById('modal').classList.remove('active');
     }
 
-    // Close modal on background click
     document.getElementById('modal').addEventListener('click', (e) => {
       if (e.target.id === 'modal') {
         closeModal();
@@ -1148,17 +1583,14 @@
     // ========================================
     document.getElementById('filters').addEventListener('click', (e) => {
       if (e.target.classList.contains('filter-btn')) {
-        // Update active state
         e.target.parentElement.querySelectorAll('.filter-btn').forEach(btn => {
           btn.classList.remove('active');
         });
         e.target.classList.add('active');
 
-        // Update filter
         const year = e.target.dataset.year;
         currentFilter.year = year;
 
-        // Re-render
         renderDashboard();
       }
     });
@@ -1178,7 +1610,6 @@
     function formatIndustry(industry) {
       if (!industry || industry === 'undefined') return 'Non spécifié';
 
-      // Industry mapping (simplified)
       const mapping = {
         'APPAREL_FASHION': 'Mode & Textile',
         'LUXURY_GOODS_JEWELRY': 'Luxe & Joaillerie',
@@ -1186,7 +1617,9 @@
         'COMPUTER_SOFTWARE': 'Logiciels',
         'RETAIL': 'Retail',
         'CONSUMER_GOODS': 'Biens de consommation',
-        'MARKETING_AND_ADVERTISING': 'Marketing & Publicité'
+        'MARKETING_AND_ADVERTISING': 'Marketing & Publicité',
+        'HOSPITALITY': 'Hôtellerie',
+        'AUTOMOTIVE': 'Automobile'
       };
 
       return mapping[industry] || industry.replace(/_/g, ' ');
