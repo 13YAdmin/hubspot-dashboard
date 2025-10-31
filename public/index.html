@@ -916,7 +916,7 @@
         if (!parentCompany) return;
 
         // Check if this company has any deals
-        const hasDeals = data.some(deal => deal.companyId === company.companyId);
+        const hasDeals = data.some(deal => deal.companyId === company.id);
 
         if (!hasDeals) {
           // Calculate potential based on parent revenue
