@@ -1,6 +1,6 @@
 {
   "success": true,
-  "timestamp": "2025-10-31T18:25:46.179Z",
+  "timestamp": "2025-11-01T07:02:28.727Z",
   "count": 81,
   "data": [
     {
@@ -101,9 +101,7 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264196399312
-      ],
+      "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -143,7 +141,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -438,7 +438,12 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226458090730,
+        226909763782,
+        226913359044,
+        234997940469
+      ],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
       "ownerEmail": "raphael.cheminaud@13-years.com",
@@ -560,9 +565,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -728,7 +731,9 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        265787828419
+      ],
       "companyChildIds": [],
       "ownerId": "29974224",
       "ownerName": "Raphael Cheminaud",
@@ -975,7 +980,15 @@
       "companyRevenue": 90061920000,
       "companyEmployees": 215000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        225635140849,
+        230029784291,
+        231940442307,
+        232131152083,
+        262216855790,
+        262224529637,
+        263431222517
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1016,9 +1029,7 @@
       "companyRevenue": 27600000000,
       "companyEmployees": 17000,
       "companyParentIds": [],
-      "companyChildIds": [
-        264196399312
-      ],
+      "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1183,7 +1194,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1348,7 +1361,12 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226458090730,
+        226909763782,
+        226913359044,
+        234997940469
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -1515,7 +1533,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 21707870000,
       "companyEmployees": 21280,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -1723,7 +1743,12 @@
       "companyRevenue": 204686200000,
       "companyEmployees": 272367,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        226458090730,
+        226909763782,
+        226913359044,
+        234997940469
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2222,7 +2247,15 @@
       "companyRevenue": 90061920000,
       "companyEmployees": 215000,
       "companyParentIds": [],
-      "companyChildIds": [],
+      "companyChildIds": [
+        225635140849,
+        230029784291,
+        231940442307,
+        232131152083,
+        262216855790,
+        262224529637,
+        263431222517
+      ],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
       "ownerEmail": "ilies.bahari@13-years.com",
@@ -2303,7 +2336,9 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        265787828419
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2385,7 +2420,9 @@
       "companyIndustry": "LUXURY_GOODS_JEWELRY",
       "companyRevenue": 1532803000,
       "companyEmployees": 2500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        220584252648
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2469,7 +2506,9 @@
       "companyIndustry": "APPAREL_FASHION",
       "companyRevenue": 389000,
       "companyEmployees": 1250,
-      "companyParentIds": [],
+      "companyParentIds": [
+        263633128688
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -2927,9 +2966,7 @@
       "companyIndustry": "COSMETICS",
       "companyRevenue": 14000000000,
       "companyEmployees": 52000,
-      "companyParentIds": [
-        220584252648
-      ],
+      "companyParentIds": [],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3349,7 +3386,9 @@
       "companyIndustry": "FOOD_PRODUCTION",
       "companyRevenue": 240000000,
       "companyEmployees": 500,
-      "companyParentIds": [],
+      "companyParentIds": [
+        265787828419
+      ],
       "companyChildIds": [],
       "ownerId": "30088765",
       "ownerName": "Ilies Bahari",
@@ -3628,7 +3667,15 @@
       "employees": 215000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        225635140849,
+        230029784291,
+        231940442307,
+        232131152083,
+        262216855790,
+        262224529637,
+        263431222517
+      ]
     },
     "220584257724": {
       "id": "220584257724",
@@ -3832,7 +3879,7 @@
     },
     "220587812069": {
       "id": "220587812069",
-      "name": "ARGAN",
+      "name": "Argan",
       "domain": "argan.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -3898,7 +3945,7 @@
     },
     "220589583558": {
       "id": "220589583558",
-      "name": "CARMILA",
+      "name": "Carmila",
       "domain": "carmila.com",
       "industry": "RETAIL",
       "revenue": 98952380000,
@@ -3938,7 +3985,12 @@
       "employees": 272367,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090730,
+        226909763782,
+        226913359044,
+        234997940469
+      ]
     },
     "220593095921": {
       "id": "220593095921",
@@ -4270,7 +4322,15 @@
       "employees": 170158,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226458090741,
+        226897212603,
+        226964007134,
+        234978104516,
+        234978104524,
+        234988938452,
+        234992537829
+      ]
     },
     "220609174728": {
       "id": "220609174728",
@@ -4325,7 +4385,10 @@
       "employees": 156921,
       "ownerId": "29926733",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226907993318,
+        226922255599
+      ]
     },
     "220610910446": {
       "id": "220610910446",
@@ -4373,7 +4436,7 @@
     },
     "220610915529": {
       "id": "220610915529",
-      "name": "Rubis SCA",
+      "name": "Rubis",
       "domain": "rubis.fr",
       "industry": "OIL_ENERGY",
       "revenue": 2834406000,
@@ -4659,7 +4722,9 @@
       "revenue": 4400000000,
       "employees": 14200,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "226285007091": {
@@ -4890,7 +4955,7 @@
       "domain": "evole-energies.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4921,9 +4986,9 @@
       "id": "226447270102",
       "name": "Audi France (Volkswagen Group France)",
       "domain": "audi.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 570,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4945,7 +5010,7 @@
       "domain": "groupe-agra.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4956,7 +5021,7 @@
       "domain": "holiste.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4976,9 +5041,9 @@
       "id": "226447270108",
       "name": "Medimex",
       "domain": "medimex.fr",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -4998,9 +5063,9 @@
       "id": "226447270110",
       "name": "Escaliers Decors Esca Industrie",
       "domain": "ed-ei.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5020,9 +5085,9 @@
       "id": "226447270112",
       "name": "C R M T",
       "domain": "crmt.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5042,9 +5107,9 @@
       "id": "226447270114",
       "name": "Panaget (Bouyer Leroux)",
       "domain": "panaget.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5099,7 +5164,7 @@
       "domain": "bourgeoisetcie.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5119,9 +5184,9 @@
       "id": "226447270121",
       "name": "Sonergia",
       "domain": "sonergia.fr",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5132,7 +5197,7 @@
       "domain": "rdsfrance.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5143,7 +5208,7 @@
       "domain": "polemermediterranee.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5176,7 +5241,7 @@
       "domain": "tonnelleriedumonde.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5196,9 +5261,9 @@
       "id": "226454479089",
       "name": "AdiWatt (Caillau)",
       "domain": "adiwatt.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5275,7 +5340,7 @@
       "domain": "faupin.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5319,7 +5384,7 @@
       "domain": "greenvet.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5328,9 +5393,9 @@
       "id": "226454480062",
       "name": "Mafdel",
       "domain": "mafdel-belts.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5339,9 +5404,9 @@
       "id": "226454480063",
       "name": "Cobredia",
       "domain": "cobredia.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 720,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5350,9 +5415,9 @@
       "id": "226454480064",
       "name": "Dalkia Froid Solutions (EDF)",
       "domain": "dalkiafroidsolutions.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5385,7 +5450,7 @@
       "domain": "lapsa-lab.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5425,7 +5490,7 @@
     },
     "226454480072": {
       "id": "226454480072",
-      "name": "NEHIA",
+      "name": "Nehia Group",
       "domain": "nehia.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -5449,9 +5514,9 @@
       "id": "226454480074",
       "name": "Agence du numérique en santé (Ministère du Travail, de la Santé, des Solidarités et des Familles)",
       "domain": "esante.gouv.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5462,7 +5527,7 @@
       "domain": "scabois.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5471,9 +5536,9 @@
       "id": "226454480076",
       "name": "Proxinnov",
       "domain": "proxinnov.com",
-      "industry": "PROSPECT",
+      "industry": "INDUSTRIAL_AUTOMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5495,7 +5560,7 @@
       "domain": "ternoisfermetures.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5504,9 +5569,9 @@
       "id": "226454480079",
       "name": "Polaris",
       "domain": "polaris.fr",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5537,9 +5602,9 @@
       "id": "226454480085",
       "name": "Aubert & Duval",
       "domain": "aubertduval.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 2000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5581,9 +5646,9 @@
       "id": "226454480089",
       "name": "Sodikart",
       "domain": "sodikart.com",
-      "industry": "PROSPECT",
+      "industry": "LEISURE_TRAVEL_TOURISM",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5603,9 +5668,9 @@
       "id": "226454480091",
       "name": "SERAP Group",
       "domain": "groupeserap.com",
-      "industry": "PROSPECT",
+      "industry": "MECHANICAL_OR_INDUSTRIAL_ENGINEERING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5614,9 +5679,9 @@
       "id": "226454480093",
       "name": "Nesta",
       "domain": "nesta.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5658,9 +5723,9 @@
       "id": "226458090716",
       "name": "123 Pare-Brise",
       "domain": "123parebrise.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 300,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5739,7 +5804,7 @@
       "domain": "hdf-energy.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5761,7 +5826,7 @@
       "domain": "groupe-denis.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5770,9 +5835,9 @@
       "id": "226458090727",
       "name": "Fondation Mérieux (Institut Mérieux)",
       "domain": "fondation-merieux.org",
-      "industry": "PROSPECT",
+      "industry": "CIVIC_SOCIAL_ORGANIZATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5781,9 +5846,9 @@
       "id": "226458090728",
       "name": "IMCD France",
       "domain": "imcd.fr",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5895,7 +5960,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226458090740": {
@@ -5904,7 +5971,7 @@
       "domain": "reforestaction.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5913,9 +5980,9 @@
       "id": "226458090741",
       "name": "Alpine (Renault Group)",
       "domain": "alpinecars.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5948,7 +6015,7 @@
       "domain": "orthopus.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5957,9 +6024,9 @@
       "id": "226458090745",
       "name": "Cykleo (SNCF)",
       "domain": "cykleo.fr",
-      "industry": "PROSPECT",
+      "industry": "LOGISTICS_AND_SUPPLY_CHAIN",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -5990,9 +6057,9 @@
       "id": "226458091708",
       "name": "Jeannin Automobiles",
       "domain": "jeannin-automobiles.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6001,9 +6068,9 @@
       "id": "226458091709",
       "name": "Sphering Group",
       "domain": "sphering-group.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6012,9 +6079,9 @@
       "id": "226458091710",
       "name": "Simaero",
       "domain": "sim.aero",
-      "industry": "PROSPECT",
+      "industry": "AIRLINES_AVIATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6089,9 +6156,9 @@
       "id": "226458091723",
       "name": "Minakem (Minafin)",
       "domain": "minakem.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 420,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6102,7 +6169,7 @@
       "domain": "uimmoccitanie.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6122,9 +6189,9 @@
       "id": "226458091728",
       "name": "Samaro",
       "domain": "samaro.fr",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6135,7 +6202,7 @@
       "domain": "redex-group.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6221,9 +6288,9 @@
       "id": "226622785784",
       "name": "Centre technique de la conservation des produits agricoles",
       "domain": "ctcpa.org",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6232,9 +6299,9 @@
       "id": "226622785785",
       "name": "Alliance Marine",
       "domain": "alliancemarine.fr",
-      "industry": "PROSPECT",
+      "industry": "MARITIME",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6258,9 +6325,7 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [
-        231316462780
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226622786748": {
@@ -6276,7 +6341,7 @@
     },
     "226622786749": {
       "id": "226622786749",
-      "name": "pracartis.fr",
+      "name": "Pracartis Groupe",
       "domain": "pracartis.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -6322,9 +6387,9 @@
       "id": "226622786753",
       "name": "Comptoir Cevenol du Bois",
       "domain": "gedibois.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6333,9 +6398,9 @@
       "id": "226622786754",
       "name": "Adial France",
       "domain": "adial-france.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6355,9 +6420,9 @@
       "id": "226622786756",
       "name": "Inovie Labosud",
       "domain": "inovie.fr",
-      "industry": "PROSPECT",
+      "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 540,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6390,7 +6455,7 @@
       "domain": "ifri.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6399,9 +6464,9 @@
       "id": "226622786760",
       "name": "Terra Lacta",
       "domain": "terralacta.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6421,9 +6486,9 @@
       "id": "226622786764",
       "name": "GIROPHARM",
       "domain": "giropharm.fr",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6443,9 +6508,9 @@
       "id": "226622786766",
       "name": "SirEnergies",
       "domain": "sirenergies.com",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6454,9 +6519,9 @@
       "id": "226622786767",
       "name": "Thiot Ingenierie (Eurenco)",
       "domain": "thiot-ingenierie.com",
-      "industry": "PROSPECT",
+      "industry": "CIVIL_ENGINEERING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6476,9 +6541,9 @@
       "id": "226622786769",
       "name": "Sofareb",
       "domain": "sofareb.com",
-      "industry": "PROSPECT",
+      "industry": "TEXTILES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6487,9 +6552,9 @@
       "id": "226622786770",
       "name": "UTAC (Eurazeo)",
       "domain": "utac.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6529,7 +6594,7 @@
     },
     "226891332830": {
       "id": "226891332830",
-      "name": "Celon Pharma S.A.",
+      "name": "Celon Pharma",
       "domain": "celonpharma.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
@@ -6542,9 +6607,9 @@
       "id": "226895424750",
       "name": "Germitec",
       "domain": "germitec.com",
-      "industry": "PROSPECT",
+      "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6553,9 +6618,9 @@
       "id": "226895424751",
       "name": "Groupe Briand",
       "domain": "briand.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 900,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6575,9 +6640,9 @@
       "id": "226895424754",
       "name": "EuraMaterials",
       "domain": "euramaterials.eu",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6599,7 +6664,7 @@
       "domain": "medsmart.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6610,7 +6675,7 @@
       "domain": "medicen.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6641,9 +6706,9 @@
       "id": "226895425722",
       "name": "Chouette",
       "domain": "chouette.vision",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6665,7 +6730,7 @@
       "domain": "aertech.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6676,7 +6741,7 @@
       "domain": "energy-citoyennes.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6685,9 +6750,9 @@
       "id": "226895425726",
       "name": "JP Energie Environnement",
       "domain": "jpee.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6751,9 +6816,9 @@
       "id": "226895425733",
       "name": "Axience",
       "domain": "axience.fr",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6773,9 +6838,9 @@
       "id": "226895425735",
       "name": "SeqOne Genomics",
       "domain": "seqone.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6830,7 +6895,7 @@
       "domain": "veragrow.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6885,7 +6950,7 @@
       "domain": "demptos.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6929,7 +6994,7 @@
       "domain": "seeyousun.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6940,7 +7005,7 @@
       "domain": "plastiglas.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6949,9 +7014,9 @@
       "id": "226895425759",
       "name": "Universal Medica Group",
       "domain": "universalmedica.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -6995,7 +7060,7 @@
       "domain": "sedap.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7008,16 +7073,18 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "29926733",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226897211599": {
       "id": "226897211599",
       "name": "Cupra France (Volkswagen Group France)",
       "domain": "seat.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 6000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7028,7 +7095,7 @@
       "domain": "energiesdeloire.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7037,9 +7104,9 @@
       "id": "226897211601",
       "name": "Fermes en Vie",
       "domain": "feve.co",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7050,7 +7117,7 @@
       "domain": "etteliot.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7092,9 +7159,9 @@
       "id": "226897211606",
       "name": "Labelians",
       "domain": "labelians.fr",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7158,9 +7225,9 @@
       "id": "226897211612",
       "name": "Aramine",
       "domain": "aramine.com",
-      "industry": "PROSPECT",
+      "industry": "MINING_METALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7193,7 +7260,7 @@
       "domain": "hormann.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7213,9 +7280,9 @@
       "id": "226897211617",
       "name": "Groupe Grim",
       "domain": "groupe-grim.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7301,9 +7368,9 @@
       "id": "226897211625",
       "name": "Reden Solar",
       "domain": "reden.solar",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7312,9 +7379,9 @@
       "id": "226897211626",
       "name": "Sipa Automobiles",
       "domain": "sipa-automobiles.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7323,9 +7390,9 @@
       "id": "226897211627",
       "name": "Ombrea (TotalEnergies)",
       "domain": "ombrea.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [
         278642453704
@@ -7349,7 +7416,7 @@
       "domain": "philibertsavours.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7358,9 +7425,9 @@
       "id": "226897211631",
       "name": "Vatech Global France",
       "domain": "vatech-france.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7371,7 +7438,7 @@
       "domain": "toutfaire.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7437,7 +7504,7 @@
       "domain": "thefutureisneutral.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7457,9 +7524,9 @@
       "id": "226897212607",
       "name": "PCM (Walor)",
       "domain": "pcm.eu",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 480,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7490,9 +7557,9 @@
       "id": "226897212610",
       "name": "Irisolaris",
       "domain": "irisolaris.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7523,9 +7590,9 @@
       "id": "226907993297",
       "name": "Institut franco-allemand de recherches Saint-Louis",
       "domain": "isl.eu",
-      "industry": "PROSPECT",
+      "industry": "MARITIME",
       "revenue": 0,
-      "employees": 0,
+      "employees": 105,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7534,9 +7601,9 @@
       "id": "226907993298",
       "name": "A Plus Energies",
       "domain": "aplusenergies.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7547,7 +7614,7 @@
       "domain": "mycophyto.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7556,9 +7623,9 @@
       "id": "226907993300",
       "name": "codoc",
       "domain": "codoc.co",
-      "industry": "PROSPECT",
+      "industry": "INFORMATION_TECHNOLOGY_AND_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7600,9 +7667,9 @@
       "id": "226907993305",
       "name": "Novalix",
       "domain": "novalix.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 300,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7611,9 +7678,9 @@
       "id": "226907993306",
       "name": "Hoppen",
       "domain": "hoppen.care",
-      "industry": "PROSPECT",
+      "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7655,9 +7722,9 @@
       "id": "226907993310",
       "name": "Hygitech",
       "domain": "hygitech.fr",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7701,7 +7768,7 @@
       "domain": "samsolar.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7732,9 +7799,9 @@
       "id": "226907993317",
       "name": "Axema",
       "domain": "axema.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7756,9 +7823,9 @@
       "id": "226907993319",
       "name": "Synchrotron Soleil",
       "domain": "synchrotron-soleil.fr",
-      "industry": "PROSPECT",
+      "industry": "RESEARCH",
       "revenue": 0,
-      "employees": 0,
+      "employees": 420,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7767,9 +7834,9 @@
       "id": "226907993320",
       "name": "Terres du Sud",
       "domain": "groupe-terresdusud.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 780,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7800,9 +7867,9 @@
       "id": "226907993323",
       "name": "BW Ideol",
       "domain": "bw-ideol.com",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7811,16 +7878,16 @@
       "id": "226907993324",
       "name": "Primel Traiteur (Sill Entreprises)",
       "domain": "saveurscristal.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226907993325": {
       "id": "226907993325",
-      "name": "PROVAC",
+      "name": "Provac",
       "domain": "provac.fr",
       "industry": "AUTOMOTIVE",
       "revenue": 0,
@@ -7892,14 +7959,14 @@
       "domain": "sofraca.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226907993335": {
       "id": "226907993335",
-      "name": "TERREAL",
+      "name": "Terreal",
       "domain": "terreal.com",
       "industry": "BUILDING_MATERIALS",
       "revenue": 0,
@@ -7914,7 +7981,7 @@
       "domain": "wpd.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7925,7 +7992,7 @@
       "domain": "toopi-organics.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7934,9 +8001,9 @@
       "id": "226907994298",
       "name": "Tonnellerie Vicard",
       "domain": "groupe-vicard.com",
-      "industry": "PROSPECT",
+      "industry": "WINE_AND_SPIRITS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7947,7 +8014,7 @@
       "domain": "orionenergies.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7956,9 +8023,9 @@
       "id": "226907994300",
       "name": "Virax (Stanley Black & Decker France)",
       "domain": "virax.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -7989,9 +8056,9 @@
       "id": "226909763780",
       "name": "Axplora France",
       "domain": "axplora.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 960,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8000,9 +8067,9 @@
       "id": "226909763781",
       "name": "Afyren",
       "domain": "afyren.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8024,7 +8091,7 @@
       "domain": "keolis-sante.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8044,9 +8111,9 @@
       "id": "226909763785",
       "name": "Espace Automobiles D M O",
       "domain": "dmo42.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8055,9 +8122,9 @@
       "id": "226909763786",
       "name": "Medadom",
       "domain": "medadom.com",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8079,7 +8146,7 @@
       "domain": "pivaudran.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8090,7 +8157,7 @@
       "domain": "menuiseriescombes.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8110,9 +8177,9 @@
       "id": "226909763792",
       "name": "Oreus",
       "domain": "oreus.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8198,9 +8265,9 @@
       "id": "226909763801",
       "name": "Onduline (Kingspan Panneaux Sandwich Isolants)",
       "domain": "onduline.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8220,9 +8287,9 @@
       "id": "226909763803",
       "name": "Comax France (MET France)",
       "domain": "comaxfrance.com",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8231,9 +8298,9 @@
       "id": "226909763804",
       "name": "Pixee Medical",
       "domain": "pixee-medical.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8264,9 +8331,9 @@
       "id": "226909763808",
       "name": "Sterenn & Co (Promodis)",
       "domain": "groupe-sterenn.com",
-      "industry": "PROSPECT",
+      "industry": "WHOLESALE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8286,9 +8353,9 @@
       "id": "226909763810",
       "name": "Stockmeier France",
       "domain": "stockmeier.fr",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8308,9 +8375,9 @@
       "id": "226909763812",
       "name": "Valentin (Vinci)",
       "domain": "valentin.fr",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8330,9 +8397,9 @@
       "id": "226909763818",
       "name": "Eureden",
       "domain": "eureden.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8341,9 +8408,9 @@
       "id": "226909763821",
       "name": "mylight150",
       "domain": "mylight150.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8354,7 +8421,7 @@
       "domain": "synalaf.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8365,7 +8432,7 @@
       "domain": "nvequipment.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8374,9 +8441,9 @@
       "id": "226909763824",
       "name": "WAAT",
       "domain": "waat.fr",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8420,9 +8487,9 @@
       "id": "226911567065",
       "name": "Freyssinet (Vinci)",
       "domain": "freyssinet.com",
-      "industry": "PROSPECT",
+      "industry": "CIVIL_ENGINEERING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8431,9 +8498,9 @@
       "id": "226911567066",
       "name": "Dyneff",
       "domain": "dyneff.fr",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 420,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8510,9 +8577,9 @@
       "id": "226911567074",
       "name": "Groupe RAGT",
       "domain": "ragt.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8587,9 +8654,9 @@
       "id": "226911567081",
       "name": "PLD Automobile",
       "domain": "pldauto.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8598,9 +8665,9 @@
       "id": "226911567082",
       "name": "Precilens",
       "domain": "precilens.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8631,9 +8698,9 @@
       "id": "226911567085",
       "name": "Technique Solaire",
       "domain": "techniquesolaire.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8655,7 +8722,7 @@
       "domain": "terresunivia.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8710,7 +8777,7 @@
       "domain": "wellness-prevention.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8719,9 +8786,9 @@
       "id": "226911568061",
       "name": "Valbiotis",
       "domain": "valbiotis.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8763,9 +8830,9 @@
       "id": "226911568065",
       "name": "VitiBot (Same Deutz-Fahr France)",
       "domain": "vitibot.fr",
-      "industry": "PROSPECT",
+      "industry": "WINE_AND_SPIRITS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8785,9 +8852,9 @@
       "id": "226911568068",
       "name": "Lim Group",
       "domain": "lim-group.com",
-      "industry": "PROSPECT",
+      "industry": "CONSUMER_GOODS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8807,9 +8874,9 @@
       "id": "226911568073",
       "name": "Vinovalie",
       "domain": "vinovalie.com",
-      "industry": "PROSPECT",
+      "industry": "WINE_AND_SPIRITS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8831,7 +8898,7 @@
       "domain": "blackpepper.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8864,7 +8931,7 @@
       "domain": "c2ai.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8895,20 +8962,22 @@
       "id": "226913359044",
       "name": "Leasys Global (Stellantis)",
       "domain": "leasys.com",
-      "industry": "PROSPECT",
+      "industry": "FINANCIAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 720,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220593061109
+      ],
       "childCompanyIds": []
     },
     "226913359045": {
       "id": "226913359045",
       "name": "Nissan West Europe (Renault Group)",
       "domain": "nissan.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8939,9 +9008,9 @@
       "id": "226913359048",
       "name": "Narbonne Accessoires",
       "domain": "narbonneaccessoires.fr",
-      "industry": "PROSPECT",
+      "industry": "LEISURE_TRAVEL_TOURISM",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8952,7 +9021,7 @@
       "domain": "bea.aero",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -8974,7 +9043,7 @@
       "domain": "groupe-lempereur.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9005,9 +9074,9 @@
       "id": "226913359054",
       "name": "La Maison de l'Etancheur (Kingspan Panneaux Sandwich Isolants)",
       "domain": "maisondeletancheur.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9038,9 +9107,9 @@
       "id": "226913359057",
       "name": "Idex",
       "domain": "idex.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 2500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9126,9 +9195,9 @@
       "id": "226913359066",
       "name": "Silver Valley",
       "domain": "silvervalley.fr",
-      "industry": "PROSPECT",
+      "industry": "INTERNATIONAL_TRADE_AND_DEVELOPMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9137,9 +9206,9 @@
       "id": "226913359067",
       "name": "Idena",
       "domain": "idena.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9181,9 +9250,9 @@
       "id": "226913359072",
       "name": "Stephanix",
       "domain": "stephanix.com",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9214,9 +9283,9 @@
       "id": "226913359080",
       "name": "Cynbiose",
       "domain": "cynbiose.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9247,9 +9316,9 @@
       "id": "226913359084",
       "name": "TREEFROG THERAPEUTICS",
       "domain": "treefrog.fr",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9271,7 +9340,7 @@
       "domain": "unitec.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9280,9 +9349,9 @@
       "id": "226913359087",
       "name": "Staphyt",
       "domain": "staphyt.com",
-      "industry": "PROSPECT",
+      "industry": "RESEARCH",
       "revenue": 0,
-      "employees": 0,
+      "employees": 450,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9293,7 +9362,7 @@
       "domain": "tournaire.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9304,7 +9373,7 @@
       "domain": "meta-yachts.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9326,7 +9395,7 @@
       "domain": "sovam.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9335,9 +9404,9 @@
       "id": "226913359093",
       "name": "Vitogaz (Rubis)",
       "domain": "vitogaz.com",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9357,9 +9426,9 @@
       "id": "226913359095",
       "name": "Terrena",
       "domain": "terrena.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 2000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9368,7 +9437,7 @@
       "id": "226913359096",
       "name": "Urbanomy",
       "domain": "urbanomy.io",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
@@ -9401,9 +9470,9 @@
       "id": "226918713587",
       "name": "Dubernard",
       "domain": "dubernard.fr",
-      "industry": "PROSPECT",
+      "industry": "FACILITIES_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9412,9 +9481,9 @@
       "id": "226918713589",
       "name": "Elixir Aircraft",
       "domain": "elixir-aircraft.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9522,9 +9591,9 @@
       "id": "226918714559",
       "name": "Agropole",
       "domain": "agropole.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9533,9 +9602,9 @@
       "id": "226918714560",
       "name": "Enercal",
       "domain": "enercal.nc",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9557,7 +9626,7 @@
       "domain": "ergotech.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9579,7 +9648,7 @@
       "domain": "opisto.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9588,9 +9657,9 @@
       "id": "226918714565",
       "name": "ip sum tek",
       "domain": "ipsumtek.com",
-      "industry": "PROSPECT",
+      "industry": "INDUSTRIAL_AUTOMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9632,9 +9701,9 @@
       "id": "226918714569",
       "name": "Imadis Groupe",
       "domain": "deeplink-medical.com",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9656,7 +9725,7 @@
       "domain": "safecluster.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9665,9 +9734,9 @@
       "id": "226918714573",
       "name": "Santos",
       "domain": "santos.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9731,9 +9800,9 @@
       "id": "226918714582",
       "name": "Delachaux",
       "domain": "delachaux.com",
-      "industry": "PROSPECT",
+      "industry": "RAILROAD_MANUFACTURE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 810,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9777,7 +9846,7 @@
       "domain": "groupe-tlm.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9799,7 +9868,7 @@
       "domain": "valdegascogne.coop",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9828,7 +9897,7 @@
     },
     "226918714595": {
       "id": "226918714595",
-      "name": "Groupe Coopératif Maïsadour",
+      "name": "Maïsadour",
       "domain": "maisadour.com",
       "industry": "FARMING",
       "revenue": 0,
@@ -9876,14 +9945,14 @@
       "domain": "bcf-lifesciences.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "226920489188": {
       "id": "226920489188",
-      "name": "BENNE SA",
+      "name": "Convoyeurs Industriels - Benne S.A.",
       "domain": "benne-sa.fr",
       "industry": "MECHANICAL_OR_INDUSTRIAL_ENGINEERING",
       "revenue": 0,
@@ -9907,9 +9976,9 @@
       "id": "226920489190",
       "name": "Edilians",
       "domain": "edilians.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9940,9 +10009,9 @@
       "id": "226920489194",
       "name": "Figeac Aéro",
       "domain": "figeac-aero.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 2000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9951,9 +10020,9 @@
       "id": "226920489195",
       "name": "Léko",
       "domain": "leko-organisme.fr",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9964,7 +10033,7 @@
       "domain": "lhyfe.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9975,7 +10044,7 @@
       "domain": "alphadiab.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -9984,7 +10053,7 @@
       "id": "226920489198",
       "name": "La Tour Du Valat",
       "domain": "tourduvalat.org",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
@@ -10050,9 +10119,9 @@
       "id": "226920489204",
       "name": "BPM Group",
       "domain": "bpmgroup.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 990,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10107,7 +10176,7 @@
       "domain": "groupe-carre.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10162,7 +10231,7 @@
       "domain": "qinomic.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10184,9 +10253,9 @@
       "id": "226920490176",
       "name": "Sidas",
       "domain": "sidas.com",
-      "industry": "PROSPECT",
+      "industry": "APPAREL_FASHION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10195,9 +10264,9 @@
       "id": "226920490178",
       "name": "Vivescia",
       "domain": "vivescia.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 3000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10208,7 +10277,7 @@
       "domain": "survoltage.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10294,9 +10363,9 @@
       "id": "226920490192",
       "name": "Polyvia",
       "domain": "polyvia.fr",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10307,7 +10376,7 @@
       "domain": "vallee.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10340,7 +10409,7 @@
       "domain": "unifa.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10351,7 +10420,7 @@
       "domain": "marrel.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10417,7 +10486,7 @@
       "domain": "incidence-sails.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10428,7 +10497,7 @@
       "domain": "magsi.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10452,7 +10521,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220610910445
+      ],
       "childCompanyIds": []
     },
     "226922255601": {
@@ -10470,9 +10541,9 @@
       "id": "226922255602",
       "name": "Eurea",
       "domain": "groupe-eurea.com",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10492,7 +10563,7 @@
       "id": "226922255604",
       "name": "Nutripure",
       "domain": "nutripure.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
@@ -10503,9 +10574,9 @@
       "id": "226922255605",
       "name": "Isagri",
       "domain": "isagri.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10514,9 +10585,9 @@
       "id": "226922255606",
       "name": "Coopérative Forestière Bourgogne Limousin",
       "domain": "cfbl.fr",
-      "industry": "PROSPECT",
+      "industry": "PAPER_FOREST_PRODUCTS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10582,7 +10653,7 @@
       "domain": "hengel.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10591,9 +10662,9 @@
       "id": "226922256574",
       "name": "Tchao Tchao",
       "domain": "tchao-tchao.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10602,9 +10673,9 @@
       "id": "226922256575",
       "name": "Smart Energies",
       "domain": "smart-energies.eu",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10648,7 +10719,7 @@
       "domain": "uimmlyon.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10681,7 +10752,7 @@
       "domain": "stihl.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10714,7 +10785,7 @@
       "domain": "proxelia.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10739,7 +10810,7 @@
       "domain": "zefal.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10748,9 +10819,9 @@
       "id": "226922256594",
       "name": "Audemard",
       "domain": "audemard.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10770,9 +10841,9 @@
       "id": "226958605498",
       "name": "BIOGARAN",
       "domain": "biogaran.fr",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 540,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10783,7 +10854,7 @@
       "domain": "greenimpulse.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10847,9 +10918,9 @@
       "id": "226958605505",
       "name": "Orisha Socialcare (Orisha)",
       "domain": "orisha.com",
-      "industry": "PROSPECT",
+      "industry": "COMPUTER_SOFTWARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10904,7 +10975,7 @@
       "domain": "proxis-developpement.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10913,9 +10984,9 @@
       "id": "226958605512",
       "name": "Biogroup",
       "domain": "biogroup.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10937,7 +11008,7 @@
       "domain": "coopagora.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -10951,9 +11022,7 @@
       "employees": 24200,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        238323565808
-      ]
+      "childCompanyIds": []
     },
     "226958605516": {
       "id": "226958605516",
@@ -10970,9 +11039,9 @@
       "id": "226958605517",
       "name": "Alliantz (Sonepar)",
       "domain": "sonepar.fr",
-      "industry": "PROSPECT",
+      "industry": "ELECTRICAL_ELECTRONIC_MANUFACTURING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 930,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11014,9 +11083,9 @@
       "id": "226958605521",
       "name": "Fondation FondaMental",
       "domain": "fondation-fondamental.org",
-      "industry": "PROSPECT",
+      "industry": "CIVIC_SOCIAL_ORGANIZATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11069,9 +11138,9 @@
       "id": "226958605529",
       "name": "Groupe Installux",
       "domain": "groupe-installux.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11082,7 +11151,7 @@
       "domain": "gscm-groupe.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11135,9 +11204,9 @@
       "id": "226958605538",
       "name": "Separative",
       "domain": "separative.net",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11148,7 +11217,7 @@
       "domain": "setic-pourtier.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11159,7 +11228,7 @@
       "domain": "lumelio.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11188,7 +11257,7 @@
     },
     "226958605543": {
       "id": "226958605543",
-      "name": "SIMOP",
+      "name": "Simop France",
       "domain": "simop.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -11212,9 +11281,9 @@
       "id": "226958605547",
       "name": "SERF (Stryker France)",
       "domain": "serf.fr",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11267,9 +11336,9 @@
       "id": "226960400623",
       "name": "Addiplast",
       "domain": "addiplast-group.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11280,7 +11349,7 @@
       "domain": "naturalis.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11289,9 +11358,9 @@
       "id": "226960400625",
       "name": "Abelio",
       "domain": "abelio.io",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11311,9 +11380,9 @@
       "id": "226960400627",
       "name": "Fame",
       "domain": "fame.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11324,7 +11393,7 @@
       "domain": "airbooster.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11344,9 +11413,9 @@
       "id": "226960400630",
       "name": "Ordoclic",
       "domain": "ordoclic.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11412,7 +11481,7 @@
       "domain": "ovinalp.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11434,7 +11503,7 @@
       "domain": "adelphe.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11454,9 +11523,9 @@
       "id": "226960401601",
       "name": "Roole",
       "domain": "roole.fr",
-      "industry": "PROSPECT",
+      "industry": "TRANSPORTATION_TRUCKING_RAILROAD",
       "revenue": 0,
-      "employees": 0,
+      "employees": 300,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11498,9 +11567,9 @@
       "id": "226962200814",
       "name": "BMW France (BMW Group)",
       "domain": "bmw.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 960,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11520,9 +11589,9 @@
       "id": "226962200816",
       "name": "EBG",
       "domain": "ebg.net",
-      "industry": "PROSPECT",
+      "industry": "EVENTS_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11533,7 +11602,7 @@
       "domain": "atulam.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11566,7 +11635,7 @@
       "domain": "groupechavigny.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 390,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11586,9 +11655,9 @@
       "id": "226962200822",
       "name": "France gaz",
       "domain": "francegaz.fr",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11597,9 +11666,9 @@
       "id": "226962200823",
       "name": "Institut de myologie",
       "domain": "institut-myologie.org",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11623,7 +11692,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226962201787": {
@@ -11674,9 +11745,9 @@
       "id": "226962201791",
       "name": "Elements",
       "domain": "elements.green",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11696,9 +11767,9 @@
       "id": "226962201793",
       "name": "Spectaculaires",
       "domain": "spectaculaires.fr",
-      "industry": "PROSPECT",
+      "industry": "ENTERTAINMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11729,9 +11800,9 @@
       "id": "226962201802",
       "name": "Prophesee",
       "domain": "prophesee.ai",
-      "industry": "PROSPECT",
+      "industry": "SEMICONDUCTORS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11740,9 +11811,9 @@
       "id": "226962201803",
       "name": "Les Amanins",
       "domain": "lesamanins.com",
-      "industry": "PROSPECT",
+      "industry": "LEISURE_TRAVEL_TOURISM",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11753,7 +11824,7 @@
       "domain": "learnylib.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11762,9 +11833,9 @@
       "id": "226964007105",
       "name": "Asten Santé (Groupe Caisse des dépôts)",
       "domain": "astensante.com",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 720,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11795,9 +11866,9 @@
       "id": "226964007108",
       "name": "Alara group",
       "domain": "alara-group.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11817,9 +11888,9 @@
       "id": "226964007111",
       "name": "Ciuch",
       "domain": "ciuch.com",
-      "industry": "PROSPECT",
+      "industry": "LOGISTICS_AND_SUPPLY_CHAIN",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11854,7 +11925,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        231316462780
+      ],
       "childCompanyIds": []
     },
     "226964007115": {
@@ -11896,7 +11969,7 @@
       "domain": "buisard.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11929,7 +12002,7 @@
       "domain": "lhers.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -11971,9 +12044,9 @@
       "id": "226964007126",
       "name": "Algo Paint",
       "domain": "peinture-algo.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12004,9 +12077,9 @@
       "id": "226964007129",
       "name": "European Synchrotron Radiation Facility",
       "domain": "esrf.fr",
-      "industry": "PROSPECT",
+      "industry": "RESEARCH",
       "revenue": 0,
-      "employees": 0,
+      "employees": 506,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12028,7 +12101,7 @@
       "domain": "qualit-enr.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12059,11 +12132,13 @@
       "id": "226964007134",
       "name": "Verkor (Renault Group)",
       "domain": "verkor.com",
-      "industry": "PROSPECT",
+      "industry": "ELECTRICAL_ELECTRONIC_MANUFACTURING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220609174727
+      ],
       "childCompanyIds": []
     },
     "226964007136": {
@@ -12081,9 +12156,9 @@
       "id": "226964007137",
       "name": "Mc Automobiles",
       "domain": "mcautomobiles.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12136,9 +12211,9 @@
       "id": "226964007145",
       "name": "Staff Decor",
       "domain": "staffdecor.fr",
-      "industry": "PROSPECT",
+      "industry": "DESIGN",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12147,9 +12222,9 @@
       "id": "226964007146",
       "name": "Trouillet 85",
       "domain": "groupe-trouillet.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12160,7 +12235,7 @@
       "domain": "prad.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12193,7 +12268,7 @@
       "domain": "morbihan-auto.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12226,7 +12301,7 @@
       "domain": "sterimed.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12235,9 +12310,9 @@
       "id": "226964007154",
       "name": "Symbiose Environnement",
       "domain": "symbiose-environnement.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12259,7 +12334,7 @@
       "domain": "efficacity.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12367,9 +12442,9 @@
       "id": "226965808330",
       "name": "Natup",
       "domain": "natup.coop",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 900,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12380,7 +12455,7 @@
       "domain": "aplusglass.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12400,9 +12475,9 @@
       "id": "226965808333",
       "name": "Cotrolia",
       "domain": "cotrolia.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12433,9 +12508,9 @@
       "id": "226965808336",
       "name": "QuantifiCare",
       "domain": "quantificare.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12488,9 +12563,9 @@
       "id": "226965808341",
       "name": "Rubis Photosol (Rubis)",
       "domain": "photosol.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12512,7 +12587,7 @@
       "domain": "quaglia-diffusion.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12521,9 +12596,9 @@
       "id": "226965808344",
       "name": "Schoolab",
       "domain": "theschoolab.com",
-      "industry": "PROSPECT",
+      "industry": "EDUCATION_MANAGEMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12543,9 +12618,9 @@
       "id": "226965808350",
       "name": "Nexdot",
       "domain": "nexdot.fr",
-      "industry": "PROSPECT",
+      "industry": "NANOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12554,9 +12629,9 @@
       "id": "226965808352",
       "name": "Mutuelle Générale des Affaires Sociales",
       "domain": "mgas.fr",
-      "industry": "PROSPECT",
+      "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12576,9 +12651,9 @@
       "id": "226965808354",
       "name": "Mesoigner (Comet Software)",
       "domain": "mesoigner.fr",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12587,9 +12662,9 @@
       "id": "226965808355",
       "name": "Polynt Composites France",
       "domain": "polynt.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 2000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12600,7 +12675,7 @@
       "domain": "sofida.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12609,9 +12684,9 @@
       "id": "226965808359",
       "name": "Profine France",
       "domain": "profine-group.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 930,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12620,9 +12695,9 @@
       "id": "226965808361",
       "name": "Transpolis",
       "domain": "transpolis.fr",
-      "industry": "PROSPECT",
+      "industry": "INTERNATIONAL_TRADE_AND_DEVELOPMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12653,9 +12728,9 @@
       "id": "226965808364",
       "name": "Volvo Holding France",
       "domain": "proximis.ca",
-      "industry": "PROSPECT",
+      "industry": "MARKETING_AND_ADVERTISING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12710,9 +12785,9 @@
       "id": "226965808369",
       "name": "Groupe Thomas Plants",
       "domain": "groupethomasplants.com",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12745,7 +12820,7 @@
       "domain": "rouepepinieres.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12754,9 +12829,9 @@
       "id": "226965808373",
       "name": "Livi France",
       "domain": "livi.co.uk",
-      "industry": "PROSPECT",
+      "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12765,9 +12840,9 @@
       "id": "226965808374",
       "name": "Trapil",
       "domain": "trapil.com",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 600,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12789,7 +12864,7 @@
       "domain": "rijkzwaan.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -12961,7 +13036,7 @@
     },
     "227193966824": {
       "id": "227193966824",
-      "name": "FAES FARMA",
+      "name": "Faes Farma",
       "domain": "faesfarma.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
@@ -13495,7 +13570,9 @@
       "revenue": 21707870000,
       "employees": 21280,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "230031576306": {
@@ -13591,11 +13668,11 @@
     },
     "230631659736": {
       "id": "230631659736",
-      "name": "MENARINI FRANCE",
+      "name": "Menarini",
       "domain": "menarini.fr",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13604,9 +13681,9 @@
       "id": "230658214126",
       "name": "Bluepharma",
       "domain": "bluepharmagroup.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 570,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13626,9 +13703,9 @@
       "id": "230723622123",
       "name": "Krka",
       "domain": "krka.biz",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "industry": "PHARMACEUTICALS",
+      "revenue": 1598276000,
+      "employees": 11390,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13679,11 +13756,11 @@
     },
     "230772527335": {
       "id": "230772527335",
-      "name": "CHEPLAPHARM FRANCE",
+      "name": "Cheplapharm",
       "domain": "cheplapharm.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13734,7 +13811,7 @@
     },
     "230800697569": {
       "id": "230800697569",
-      "name": "LEO Pharma FR",
+      "name": "LEO Pharma",
       "domain": "leo-pharma.fr",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
@@ -13778,11 +13855,11 @@
     },
     "230864116953": {
       "id": "230864116953",
-      "name": "Fagron Nederland",
+      "name": "Fagron",
       "domain": "fagron.nl",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13793,7 +13870,7 @@
       "domain": "farmfaes.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -13840,7 +13917,18 @@
       "employees": 165000,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        226454480064,
+        226458090739,
+        226622786747,
+        226897211598,
+        226897211613,
+        226911567072,
+        226920490175,
+        226962201786,
+        226964007114,
+        226965808365
+      ]
     },
     "231614068925": {
       "id": "231614068925",
@@ -13886,9 +13974,7 @@
       "employees": 17000,
       "ownerId": "29974224",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        264196399312
-      ]
+      "childCompanyIds": []
     },
     "231943344369": {
       "id": "231943344369",
@@ -13956,9 +14042,7 @@
       "revenue": 14000000000,
       "employees": 52000,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        220584252648
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "232131152093": {
@@ -14130,7 +14214,7 @@
     },
     "234943051969": {
       "id": "234943051969",
-      "name": "Alter Eco Santé",
+      "name": "Les Experts Du Transfert",
       "domain": "alterecosante.net",
       "industry": "MEDICAL_DEVICES",
       "revenue": 0,
@@ -14165,9 +14249,9 @@
       "id": "234972703980",
       "name": "Air Support",
       "domain": "airsupport-mro.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14200,7 +14284,7 @@
       "domain": "donecle.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14222,7 +14306,7 @@
       "domain": "adesia.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14266,7 +14350,7 @@
       "domain": "innoval.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14286,9 +14370,9 @@
       "id": "234972703991",
       "name": "Selectarc",
       "domain": "selectarc.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14308,9 +14392,9 @@
       "id": "234972703993",
       "name": "Chemica (Flexdev Group)",
       "domain": "chemica.fr",
-      "industry": "PROSPECT",
+      "industry": "TEXTILES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14365,7 +14449,7 @@
       "domain": "iterg.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14374,9 +14458,9 @@
       "id": "234972704959",
       "name": "Rockwool France",
       "domain": "rockfon.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14398,7 +14482,7 @@
       "domain": "sopral.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14420,7 +14504,7 @@
       "domain": "atlantem.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 360,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14484,9 +14568,9 @@
       "id": "234974506183",
       "name": "KNF Neuberger",
       "domain": "knf.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14497,14 +14581,14 @@
       "domain": "nextmove.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234974506185": {
       "id": "234974506185",
-      "name": "JOUANEL INDUSTRIE",
+      "name": "Jouanel",
       "domain": "jouanel.com",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -14517,9 +14601,9 @@
       "id": "234974506186",
       "name": "Profils Systèmes",
       "domain": "profils-systemes.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14530,7 +14614,7 @@
       "domain": "evolis.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14563,7 +14647,7 @@
       "domain": "gautiersemences.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14616,9 +14700,9 @@
       "id": "234974506196",
       "name": "Forécreu",
       "domain": "forecreu.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14660,9 +14744,9 @@
       "id": "234974506200",
       "name": "TSG Group",
       "domain": "tsg-solutions.com",
-      "industry": "PROSPECT",
+      "industry": "FACILITIES_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14671,9 +14755,9 @@
       "id": "234974506201",
       "name": "Profalux Industrie (StellaGroup)",
       "domain": "profalux.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14684,7 +14768,7 @@
       "domain": "sitour.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14726,9 +14810,9 @@
       "id": "234974506206",
       "name": "Titanobel",
       "domain": "titanobel.com",
-      "industry": "PROSPECT",
+      "industry": "MINING_METALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14737,9 +14821,9 @@
       "id": "234976304340",
       "name": "Carrières Daniel (Groupe Daniel)",
       "domain": "groupe-daniel.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14748,9 +14832,9 @@
       "id": "234976304341",
       "name": "Compagnie nationale du Rhône (Groupe Caisse des dépôts)",
       "domain": "cnr.tm.fr",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14781,9 +14865,9 @@
       "id": "234976304344",
       "name": "Chryso France (Saint-Gobain)",
       "domain": "chryso.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14794,7 +14878,7 @@
       "domain": "figarol.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14814,9 +14898,9 @@
       "id": "234976304347",
       "name": "Freshmile (Rexel Group)",
       "domain": "freshmile.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14926,7 +15010,7 @@
       "domain": "mint.eco",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14935,9 +15019,9 @@
       "id": "234976304359",
       "name": "Schoeck France",
       "domain": "schoeck.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 450,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14959,7 +15043,7 @@
       "domain": "i-trans.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -14990,9 +15074,9 @@
       "id": "234976304364",
       "name": "Gaz de Bordeaux (Bordeaux Métropole)",
       "domain": "gazdebordeaux.fr",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15012,9 +15096,9 @@
       "id": "234976304366",
       "name": "Océalia",
       "domain": "ocealia-groupe.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 840,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15047,7 +15131,7 @@
       "domain": "lignalpes.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15078,7 +15162,7 @@
       "id": "234978104515",
       "name": "Algeco France",
       "domain": "algeco.com",
-      "industry": "PROSPECT",
+      "industry": "CONSTRUCTION",
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
@@ -15093,9 +15177,7 @@
       "revenue": 0,
       "employees": 130,
       "ownerId": "",
-      "parentCompanyIds": [
-        220609174727
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "234978104517": {
@@ -15113,9 +15195,9 @@
       "id": "234978104518",
       "name": "Criann",
       "domain": "criann.fr",
-      "industry": "PROSPECT",
+      "industry": "INFORMATION_TECHNOLOGY_AND_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15225,9 +15307,9 @@
       "id": "234978104528",
       "name": "Eurogerm",
       "domain": "eurogerm.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 300,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15291,9 +15373,9 @@
       "id": "234978104534",
       "name": "Skyborn Renewables France",
       "domain": "skybornrenewables.com",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15302,9 +15384,9 @@
       "id": "234978104535",
       "name": "K.Line (Groupe Liébot)",
       "domain": "k-line.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15326,7 +15408,7 @@
       "domain": "sitralindustrie.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15357,9 +15439,9 @@
       "id": "234978104540",
       "name": "Mecatherm",
       "domain": "mecatherm.fr",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 420,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15390,9 +15472,9 @@
       "id": "234978104543",
       "name": "Stivent Industrie",
       "domain": "stivent.fr",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15434,9 +15516,9 @@
       "id": "234979905765",
       "name": "Biossun (StellaGroup)",
       "domain": "biossun.com",
-      "industry": "PROSPECT",
+      "industry": "ARCHITECTURE_PLANNING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15445,9 +15527,9 @@
       "id": "234979905766",
       "name": "Burban Palettes Recyclage",
       "domain": "burban-palettes.com",
-      "industry": "PROSPECT",
+      "industry": "LOGISTICS_AND_SUPPLY_CHAIN",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15480,7 +15562,7 @@
       "domain": "dijon-cereales.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15500,9 +15582,9 @@
       "id": "234979905771",
       "name": "Jean Rouyer Automobile (Sofisa)",
       "domain": "jeanrouyerautomobiles.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 960,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15513,7 +15595,7 @@
       "domain": "pasquet.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15533,9 +15615,9 @@
       "id": "234979905774",
       "name": "Solewa (Butagaz)",
       "domain": "solewa.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15546,7 +15628,7 @@
       "domain": "sothoferm.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15599,9 +15681,9 @@
       "id": "234979905781",
       "name": "Sepalumic",
       "domain": "sepalumic.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15623,7 +15705,7 @@
       "domain": "malerba.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15709,9 +15791,9 @@
       "id": "234981703918",
       "name": "Centre d'études et de recherches de l'industrie du béton",
       "domain": "cerib.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15720,9 +15802,9 @@
       "id": "234981703919",
       "name": "All Circuits",
       "domain": "allcircuits.com",
-      "industry": "PROSPECT",
+      "industry": "ELECTRICAL_ELECTRONIC_MANUFACTURING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15742,9 +15824,9 @@
       "id": "234981703921",
       "name": "Agco Finance France (Agco France)",
       "domain": "agcofinance.com",
-      "industry": "PROSPECT",
+      "industry": "FINANCIAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 300,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15755,7 +15837,7 @@
       "domain": "458energy.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15852,9 +15934,9 @@
       "id": "234981704891",
       "name": "Verescence",
       "domain": "verescence.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15863,9 +15945,9 @@
       "id": "234981704892",
       "name": "Xpeng France",
       "domain": "xiaopeng.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 3676,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15885,9 +15967,9 @@
       "id": "234988938431",
       "name": "Axyntis",
       "domain": "axyntis.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15896,9 +15978,9 @@
       "id": "234988938432",
       "name": "Aqseptence",
       "domain": "johnsonscreens.com",
-      "industry": "PROSPECT",
+      "industry": "FACILITIES_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15920,7 +16002,7 @@
       "domain": "bongard.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15942,7 +16024,7 @@
       "domain": "diager-industrie.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15973,9 +16055,9 @@
       "id": "234988938439",
       "name": "Barenbrug France",
       "domain": "barenbrug.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -15986,7 +16068,7 @@
       "domain": "boutabout.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16006,9 +16088,9 @@
       "id": "234988938442",
       "name": "Minco (Bouvet)",
       "domain": "minco.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16019,7 +16101,7 @@
       "domain": "nyco-group.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16039,9 +16121,9 @@
       "id": "234988938445",
       "name": "Tanguy Matériaux",
       "domain": "tanguy.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 450,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16061,9 +16143,9 @@
       "id": "234988938447",
       "name": "Kallista Energy (Boralex France)",
       "domain": "kallistaenergy.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16094,9 +16176,9 @@
       "id": "234988938450",
       "name": "Confédération Générale des Planteurs de Betteraves",
       "domain": "cgb-france.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16131,7 +16213,7 @@
       "domain": "frayssinet.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16140,9 +16222,9 @@
       "id": "234988938454",
       "name": "Unigrains",
       "domain": "unigrains.fr",
-      "industry": "PROSPECT",
+      "industry": "VENTURE_CAPITAL_PRIVATE_EQUITY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16153,7 +16235,7 @@
       "domain": "ascenseurs.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16164,7 +16246,7 @@
       "domain": "provost.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 420,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16241,9 +16323,9 @@
       "id": "234988938463",
       "name": "Etablissements Adrien Riquier",
       "domain": "riquier.fr",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16252,9 +16334,9 @@
       "id": "234988938464",
       "name": "Silvadec",
       "domain": "silvadec.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16263,9 +16345,9 @@
       "id": "234988938465",
       "name": "Titel",
       "domain": "groupe-titel.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16274,9 +16356,9 @@
       "id": "234988938466",
       "name": "Serge Ferrari",
       "domain": "sergeferrari.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16285,9 +16367,9 @@
       "id": "234988938467",
       "name": "Scierie Archimbaud",
       "domain": "groupe-archimbaud.com",
-      "industry": "PROSPECT",
+      "industry": "PAPER_FOREST_PRODUCTS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16342,7 +16424,7 @@
       "domain": "groupe-nadia.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16408,7 +16490,7 @@
       "domain": "kp1.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16472,9 +16554,9 @@
       "id": "234990738630",
       "name": "Oxyane (InVivo)",
       "domain": "groupe-oxyane.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 840,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16494,9 +16576,9 @@
       "id": "234990738632",
       "name": "Semin",
       "domain": "semin.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16505,9 +16587,9 @@
       "id": "234990738633",
       "name": "Tenergie",
       "domain": "tenergie.fr",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16518,7 +16600,7 @@
       "domain": "esi-agro.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16538,9 +16620,9 @@
       "id": "234990738636",
       "name": "Société d'Importation de Motos et Accessoires",
       "domain": "simamoto.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16659,9 +16741,9 @@
       "id": "234992537830",
       "name": "Promotelec",
       "domain": "promotelec.com",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16670,9 +16752,9 @@
       "id": "234992537831",
       "name": "Vital Concept (Winfarm)",
       "domain": "vital-concept.com",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16716,7 +16798,7 @@
       "domain": "latty.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16727,7 +16809,7 @@
       "domain": "fipec.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16769,9 +16851,9 @@
       "id": "234992537841",
       "name": "Materiaux Simc",
       "domain": "simc.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 360,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16912,9 +16994,9 @@
       "id": "234994338016",
       "name": "TyreDating (Groupe Michelin)",
       "domain": "tyredating.com",
-      "industry": "PROSPECT",
+      "industry": "CONSUMER_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16925,7 +17007,7 @@
       "domain": "interbev.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16958,7 +17040,7 @@
       "domain": "mltgroup-conveyor.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -16980,7 +17062,7 @@
       "domain": "laffort.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17013,7 +17095,7 @@
       "domain": "tarbouriech.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17022,9 +17104,9 @@
       "id": "234994338026",
       "name": "Groupe Agrica",
       "domain": "groupagrica.com",
-      "industry": "PROSPECT",
+      "industry": "INSURANCE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17077,9 +17159,9 @@
       "id": "234994338031",
       "name": "Texen",
       "domain": "texen.com",
-      "industry": "PROSPECT",
+      "industry": "CONSUMER_GOODS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 870,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17110,9 +17192,9 @@
       "id": "234994338034",
       "name": "Plateforme automobile",
       "domain": "pfa-auto.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17123,7 +17205,7 @@
       "domain": "110bourgogne.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17156,7 +17238,7 @@
       "domain": "benalu.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17176,9 +17258,9 @@
       "id": "234996138186",
       "name": "BIO-UV Group",
       "domain": "bio-uv.com",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17233,7 +17315,7 @@
       "domain": "lorca.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17352,9 +17434,9 @@
       "id": "234996138203",
       "name": "Thibault Bergeron",
       "domain": "thibault-bergeron.com",
-      "industry": "PROSPECT",
+      "industry": "PAPER_FOREST_PRODUCTS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17363,9 +17445,9 @@
       "id": "234996138204",
       "name": "Ifremer",
       "domain": "ifremer.fr",
-      "industry": "PROSPECT",
+      "industry": "MARITIME",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1593,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17396,9 +17478,9 @@
       "id": "234997940449",
       "name": "CETIH",
       "domain": "cetih.eu",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17442,7 +17524,7 @@
       "domain": "dipropneu.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17495,9 +17577,9 @@
       "id": "234997940458",
       "name": "Groupe Soler",
       "domain": "soler-group.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17561,9 +17643,9 @@
       "id": "234997940464",
       "name": "Solarwatt France",
       "domain": "solarwatt.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17574,7 +17656,7 @@
       "domain": "mlpc-intl.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17594,9 +17676,9 @@
       "id": "234997940467",
       "name": "Safra",
       "domain": "safra.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17627,9 +17709,9 @@
       "id": "234997940470",
       "name": "Menta",
       "domain": "menta-efpga.com",
-      "industry": "PROSPECT",
+      "industry": "SEMICONDUCTORS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17638,9 +17720,9 @@
       "id": "234997940471",
       "name": "Precia Molen",
       "domain": "preciamolen.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 930,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17649,9 +17731,9 @@
       "id": "234997940472",
       "name": "Morfo",
       "domain": "morfo.rest",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17673,7 +17755,7 @@
       "domain": "neolife.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17704,9 +17786,9 @@
       "id": "234997941437",
       "name": "Schrader",
       "domain": "schrader-pacific.fr",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17715,9 +17797,9 @@
       "id": "234997941438",
       "name": "Lisi (Compagnie Industrielle de Delle)",
       "domain": "lisi-group.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17748,9 +17830,9 @@
       "id": "234997941441",
       "name": "Monnaie de Paris",
       "domain": "monnaiedeparis.fr",
-      "industry": "PROSPECT",
+      "industry": "ARTS_AND_CRAFTS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17772,7 +17854,7 @@
       "domain": "agridees.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17819,11 +17901,7 @@
       "employees": 21505,
       "ownerId": "",
       "parentCompanyIds": [],
-      "childCompanyIds": [
-        226907993332,
-        226964007115,
-        235010292940
-      ]
+      "childCompanyIds": []
     },
     "234999737588": {
       "id": "234999737588",
@@ -17842,7 +17920,7 @@
       "domain": "coforet.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17895,9 +17973,9 @@
       "id": "234999738554",
       "name": "Coval (Piab)",
       "domain": "coval.com",
-      "industry": "PROSPECT",
+      "industry": "INDUSTRIAL_AUTOMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17919,7 +17997,7 @@
       "domain": "fenetrea.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17928,9 +18006,9 @@
       "id": "234999738558",
       "name": "Satys",
       "domain": "satys.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17972,9 +18050,9 @@
       "id": "234999738562",
       "name": "Toutenkamion",
       "domain": "toutenkamion-group.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -17994,9 +18072,9 @@
       "id": "234999738564",
       "name": "Le réseau des Carnot",
       "domain": "agrifood-transition.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18049,9 +18127,9 @@
       "id": "235001537777",
       "name": "Actiwork",
       "domain": "actiwork.fr",
-      "industry": "PROSPECT",
+      "industry": "BUSINESS_SUPPLIES_AND_EQUIPMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18060,9 +18138,9 @@
       "id": "235001537778",
       "name": "Famille Mary",
       "domain": "famillemary.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18071,9 +18149,9 @@
       "id": "235001537779",
       "name": "Enchanted Tools",
       "domain": "enchanted.tools",
-      "industry": "PROSPECT",
+      "industry": "ANIMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 50,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18095,7 +18173,7 @@
       "domain": "orsol.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18117,7 +18195,7 @@
       "domain": "sofima.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18128,7 +18206,7 @@
       "domain": "vigneronsdebuxy.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18170,9 +18248,9 @@
       "id": "235001538748",
       "name": "B Plast Industrie",
       "domain": "bplast.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18192,9 +18270,9 @@
       "id": "235001538750",
       "name": "Semae",
       "domain": "semae.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18247,9 +18325,9 @@
       "id": "235001538755",
       "name": "Nexira",
       "domain": "nexira.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18260,7 +18338,7 @@
       "domain": "saint-astier.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18280,9 +18358,9 @@
       "id": "235001538758",
       "name": "Ynovae",
       "domain": "coopynovae.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18324,9 +18402,9 @@
       "id": "235003339985",
       "name": "Daikin France",
       "domain": "daikin.fr",
-      "industry": "PROSPECT",
+      "industry": "ELECTRICAL_ELECTRONIC_MANUFACTURING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 600,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18403,7 +18481,7 @@
       "domain": "sojufel.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18425,7 +18503,7 @@
       "domain": "atlanpole.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18434,9 +18512,9 @@
       "id": "235003339995",
       "name": "De Sangosse",
       "domain": "desangosse.com",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 390,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18456,9 +18534,9 @@
       "id": "235003339998",
       "name": "Blanchon Groupe",
       "domain": "blanchon.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18533,9 +18611,9 @@
       "id": "235003340005",
       "name": "TechnicAtome",
       "domain": "technicatome.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18546,7 +18624,7 @@
       "domain": "theolaur.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18566,9 +18644,9 @@
       "id": "235008499904",
       "name": "Efinor",
       "domain": "efinor.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18579,7 +18657,7 @@
       "domain": "aresia.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 360,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18610,9 +18688,9 @@
       "id": "235008499908",
       "name": "BEA Alizay (VPK Packaging France)",
       "domain": "vpkgroup.com",
-      "industry": "PROSPECT",
+      "industry": "PAPER_FOREST_PRODUCTS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 570,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18623,7 +18701,7 @@
       "domain": "picard-serrures.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18674,7 +18752,7 @@
     },
     "235008499914": {
       "id": "235008499914",
-      "name": "LINDER SA",
+      "name": "Linder",
       "domain": "linder.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -18687,9 +18765,9 @@
       "id": "235008499915",
       "name": "Leul Menuiseries",
       "domain": "leul.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18709,9 +18787,9 @@
       "id": "235008499917",
       "name": "Coulidoor",
       "domain": "coulidoor.fr",
-      "industry": "PROSPECT",
+      "industry": "FURNITURE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 120,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18766,7 +18844,7 @@
       "domain": "scara.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18788,7 +18866,7 @@
       "domain": "wattelez.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18797,9 +18875,9 @@
       "id": "235008499925",
       "name": "Lur Berri",
       "domain": "lurberri.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18887,7 +18965,7 @@
       "domain": "wibaie.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18896,9 +18974,9 @@
       "id": "235010291957",
       "name": "CISTEO MEDICAL",
       "domain": "cisteomedical.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18907,9 +18985,9 @@
       "id": "235010291958",
       "name": "Centre technique des industries aérauliques et thermiques",
       "domain": "cetiat.fr",
-      "industry": "PROSPECT",
+      "industry": "INDUSTRIAL_AUTOMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18942,7 +19020,7 @@
       "domain": "ctifl.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -18973,9 +19051,9 @@
       "id": "235010292924",
       "name": "Difforvert",
       "domain": "difforvert.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19006,9 +19084,9 @@
       "id": "235010292927",
       "name": "Poclain",
       "domain": "poclain.com",
-      "industry": "PROSPECT",
+      "industry": "INDUSTRIAL_AUTOMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19041,7 +19119,7 @@
       "domain": "peg.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19072,9 +19150,9 @@
       "id": "235010292933",
       "name": "Fassi France",
       "domain": "fassifrance.fr",
-      "industry": "PROSPECT",
+      "industry": "MECHANICAL_OR_INDUSTRIAL_ENGINEERING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19085,7 +19163,7 @@
       "domain": "lesaffre.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19116,9 +19194,9 @@
       "id": "235010292937",
       "name": "Lapeyre",
       "domain": "lapeyre.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19138,9 +19216,9 @@
       "id": "235010292939",
       "name": "Mazda Automobiles France",
       "domain": "mazda.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19153,7 +19231,9 @@
       "revenue": 0,
       "employees": 21505,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        234999737587
+      ],
       "childCompanyIds": []
     },
     "235010292941": {
@@ -19173,7 +19253,7 @@
       "domain": "rheinzink.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19182,9 +19262,9 @@
       "id": "235010292943",
       "name": "Tubesca Comabi (Frénéhard et Michaux)",
       "domain": "tubesca-comabi.com",
-      "industry": "PROSPECT",
+      "industry": "MECHANICAL_OR_INDUSTRIAL_ENGINEERING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19195,7 +19275,7 @@
       "domain": "rossi-aero.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19226,9 +19306,9 @@
       "id": "235010292947",
       "name": "Serac",
       "domain": "serac-group.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19283,7 +19363,7 @@
       "domain": "axter.eu",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19292,9 +19372,9 @@
       "id": "235012095187",
       "name": "Ciffréo Bona",
       "domain": "ciffreobona.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19318,7 +19398,7 @@
       "domain": "elivia.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19329,7 +19409,7 @@
       "domain": "cuma.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19558,9 +19638,9 @@
       "id": "235034520777",
       "name": "Alstef Group",
       "domain": "alstefgroup.com",
-      "industry": "PROSPECT",
+      "industry": "LOGISTICS_AND_SUPPLY_CHAIN",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19569,9 +19649,9 @@
       "id": "235034520778",
       "name": "Ecofilae",
       "domain": "ecofilae.fr",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19604,7 +19684,7 @@
       "domain": "ecominero.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19613,9 +19693,9 @@
       "id": "235034520782",
       "name": "Accor Lubrifiants",
       "domain": "kennol.com",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19626,7 +19706,7 @@
       "domain": "cellulose-igloo.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19648,7 +19728,7 @@
       "domain": "ocedis.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19657,9 +19737,9 @@
       "id": "235034520786",
       "name": "Samse",
       "domain": "samse.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 810,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19668,9 +19748,9 @@
       "id": "235034520787",
       "name": "Stoelzle Masnieres Parfumerie",
       "domain": "stoelzle.com",
-      "industry": "PROSPECT",
+      "industry": "PACKAGING_AND_CONTAINERS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 990,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19679,9 +19759,9 @@
       "id": "235034520788",
       "name": "Grands Moulins de Paris (Vivescia)",
       "domain": "grandsmoulinsdeparis.com",
-      "industry": "PROSPECT",
+      "industry": "FOOD_PRODUCTION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19690,9 +19770,9 @@
       "id": "235034520789",
       "name": "Hellio",
       "domain": "hellio.com",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19723,9 +19803,9 @@
       "id": "235034520792",
       "name": "Neyret Rubans",
       "domain": "neyret.com",
-      "industry": "PROSPECT",
+      "industry": "APPAREL_FASHION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19734,9 +19814,9 @@
       "id": "235034520793",
       "name": "Macc",
       "domain": "macc.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19758,7 +19838,7 @@
       "domain": "seguin-moreau.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19789,9 +19869,9 @@
       "id": "235034520798",
       "name": "Pôle Image Magelis",
       "domain": "magelis.org",
-      "industry": "PROSPECT",
+      "industry": "ANIMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 600,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19800,9 +19880,9 @@
       "id": "235034520799",
       "name": "Hafa",
       "domain": "hafa.fr",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19822,7 +19902,7 @@
       "id": "235034520801",
       "name": "Weishardt",
       "domain": "weishardt.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
@@ -19833,9 +19913,9 @@
       "id": "235034520802",
       "name": "Innovation Plasturgie Composites",
       "domain": "ct-ipc.com",
-      "industry": "PROSPECT",
+      "industry": "INDUSTRIAL_AUTOMATION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19844,9 +19924,9 @@
       "id": "235036321993",
       "name": "Aerospace Valley",
       "domain": "aerospace-valley.com",
-      "industry": "PROSPECT",
+      "industry": "AVIATION_AEROSPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19899,9 +19979,9 @@
       "id": "235036321998",
       "name": "Azenco Groupe (Groupe Akena)",
       "domain": "azenco.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19932,9 +20012,9 @@
       "id": "235036322002",
       "name": "BestDrive France",
       "domain": "bestdrive.fr",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "industry": "AUTOMOTIVE",
+      "revenue": 42321490000,
+      "employees": 1000,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -19945,7 +20025,7 @@
       "domain": "bellanne.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20009,9 +20089,9 @@
       "id": "235036322009",
       "name": "Bureau de recherches géologiques et minières",
       "domain": "brgm.fr",
-      "industry": "PROSPECT",
+      "industry": "MINING_METALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20020,9 +20100,9 @@
       "id": "235036322010",
       "name": "Eqiom",
       "domain": "eqiom.com",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20064,9 +20144,9 @@
       "id": "235036322014",
       "name": "Autovision (Vivauto)",
       "domain": "autovision.fr",
-      "industry": "PROSPECT",
+      "industry": "AUTOMOTIVE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20086,9 +20166,9 @@
       "id": "235036322016",
       "name": "Koppert France",
       "domain": "koppert.fr",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20119,9 +20199,9 @@
       "id": "235036322019",
       "name": "Greenaffair (Vinci)",
       "domain": "greenaffair.com",
-      "industry": "PROSPECT",
+      "industry": "ENVIRONMENTAL_SERVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20132,7 +20212,7 @@
       "domain": "prosyst.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20141,9 +20221,9 @@
       "id": "235036322021",
       "name": "Picoty",
       "domain": "picoty.fr",
-      "industry": "PROSPECT",
+      "industry": "OIL_ENERGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20165,7 +20245,7 @@
       "domain": "francechimie.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20174,9 +20254,9 @@
       "id": "235036322024",
       "name": "Prométhée",
       "domain": "promethee.earth",
-      "industry": "PROSPECT",
+      "industry": "DEFENSE_SPACE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20209,7 +20289,7 @@
       "domain": "baywa-re.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1500,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20262,9 +20342,9 @@
       "id": "235038122206",
       "name": "Delabie",
       "domain": "delabie.fr",
-      "industry": "PROSPECT",
+      "industry": "BUILDING_MATERIALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20306,9 +20386,9 @@
       "id": "235038122210",
       "name": "Pronal",
       "domain": "pronal.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20319,7 +20399,7 @@
       "domain": "polymem.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20350,9 +20430,9 @@
       "id": "235038122215",
       "name": "Groupe Even",
       "domain": "even.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20374,7 +20454,7 @@
       "domain": "ifth.org",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20438,9 +20518,9 @@
       "id": "235038122223",
       "name": "R S A Cosmos",
       "domain": "rsacosmos.com",
-      "industry": "PROSPECT",
+      "industry": "ENTERTAINMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20451,7 +20531,7 @@
       "domain": "bouhyer.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20462,7 +20542,7 @@
       "domain": "vehiculedufutur.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20471,9 +20551,9 @@
       "id": "235038122226",
       "name": "IFIP Institut du porc",
       "domain": "ifip.asso.fr",
-      "industry": "PROSPECT",
+      "industry": "FOOD_BEVERAGES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20495,7 +20575,7 @@
       "domain": "viega.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 630,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20504,9 +20584,9 @@
       "id": "235038122230",
       "name": "Savéol",
       "domain": "saveol.com",
-      "industry": "PROSPECT",
+      "industry": "FARMING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 240,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20515,9 +20595,9 @@
       "id": "235038122231",
       "name": "Renater",
       "domain": "renater.fr",
-      "industry": "PROSPECT",
+      "industry": "E_LEARNING",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20702,7 +20782,7 @@
     },
     "235051944148": {
       "id": "235051944148",
-      "name": "Cancéropôle Grand Ouest",
+      "name": "Cancéropole Grand Ouest",
       "domain": "canceropole-grandouest.com",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -20781,9 +20861,9 @@
       "id": "235052258495",
       "name": "NICOX SA",
       "domain": "nicox.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -20803,9 +20883,9 @@
       "id": "235052258497",
       "name": "ARTHREX FRANCE",
       "domain": "arthrex.fr",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21115,9 +21195,9 @@
       "id": "235504326858",
       "name": "DAIICHI SANKYO FRANCE SAS",
       "domain": "daiichi-sankyo.fr",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21135,7 +21215,7 @@
     },
     "235511296219": {
       "id": "235511296219",
-      "name": "CHRYSALIS Eclairage",
+      "name": "Chrysalis",
       "domain": "chrysaliseclairage.com",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -21146,7 +21226,7 @@
     },
     "235511329991": {
       "id": "235511329991",
-      "name": "FCBA",
+      "name": "Institut Technologique FCBA",
       "domain": "fcba.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -21278,7 +21358,7 @@
     },
     "235513058552": {
       "id": "235513058552",
-      "name": "Fondation ARC pour la recherche sur le cancer",
+      "name": "Fondation ARC",
       "domain": "fondation-arc.org",
       "industry": "NON_PROFIT_ORGANIZATION_MANAGEMENT",
       "revenue": 0,
@@ -21346,9 +21426,9 @@
       "id": "235513380072",
       "name": "CUT BY FRED",
       "domain": "cutbyfred.com",
-      "industry": "PROSPECT",
+      "industry": "APPAREL_FASHION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 10,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21357,9 +21437,9 @@
       "id": "235513380073",
       "name": "DOMES PHARMA",
       "domain": "domespharma.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 180,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21465,7 +21545,7 @@
     },
     "235541284052": {
       "id": "235541284052",
-      "name": "SYNLAB France",
+      "name": "Synlab",
       "domain": "synlab.fr",
       "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
@@ -21476,7 +21556,7 @@
     },
     "235541284053": {
       "id": "235541284053",
-      "name": "PILI",
+      "name": "Pili",
       "domain": "pili.bio",
       "industry": "BIOTECHNOLOGY",
       "revenue": 0,
@@ -21524,7 +21604,7 @@
       "domain": "rampal-latour.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21533,9 +21613,9 @@
       "id": "235541582065",
       "name": "LABORATOIRES FILORGA",
       "domain": "filorga.com",
-      "industry": "PROSPECT",
-      "revenue": 0,
-      "employees": 0,
+      "industry": "COSMETICS",
+      "revenue": 17421000000,
+      "employees": 690,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21581,7 +21661,7 @@
       "domain": "maccosmetics.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21665,7 +21745,7 @@
     },
     "235546706154": {
       "id": "235546706154",
-      "name": "PSCC",
+      "name": "Paris Saclay Cancer Cluster",
       "domain": "parissaclaycancercluster.org",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -21757,7 +21837,7 @@
       "domain": "medisafe.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21788,9 +21868,9 @@
       "id": "235548772590",
       "name": "C2J",
       "domain": "evoluderm.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21801,7 +21881,7 @@
       "domain": "epiloderm.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -21995,7 +22075,7 @@
     },
     "235552045261": {
       "id": "235552045261",
-      "name": "PharmaVie",
+      "name": "Pharmavie",
       "domain": "pharmavie.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -22032,7 +22112,7 @@
       "domain": "aexalt.net",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22052,9 +22132,9 @@
       "id": "235552362719",
       "name": "GLOBAL BIOENERGIES",
       "domain": "global-bioenergies.com",
-      "industry": "PROSPECT",
+      "industry": "RENEWABLES_ENVIRONMENT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22065,7 +22145,7 @@
       "domain": "peelings.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22074,9 +22154,9 @@
       "id": "235552362721",
       "name": "LABORATOIRES FORTE PHARMA S.A.M",
       "domain": "fortepharma.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22085,9 +22165,9 @@
       "id": "235552362722",
       "name": "MEME COSMETICS",
       "domain": "memecosmetics.fr",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22107,9 +22187,9 @@
       "id": "235552362724",
       "name": "GROUPE COURREGES",
       "domain": "courreges.com",
-      "industry": "PROSPECT",
+      "industry": "APPAREL_FASHION",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22162,9 +22242,9 @@
       "id": "235555932376",
       "name": "MELCHIOR MATERIAL AND LIFE SCIENCE FRANCE",
       "domain": "m2i-lifesciences.com",
-      "industry": "PROSPECT",
+      "industry": "CHEMICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22197,7 +22277,7 @@
       "domain": "laboratoires-unisson.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22237,7 +22317,7 @@
     },
     "235557286098": {
       "id": "235557286098",
-      "name": "GROUPE FH ORTHO",
+      "name": "FH ORTHO",
       "domain": "fhortho.com",
       "industry": "MEDICAL_DEVICES",
       "revenue": 0,
@@ -22259,7 +22339,7 @@
     },
     "235557286100": {
       "id": "235557286100",
-      "name": "Magia Diagnostics",
+      "name": "MagIA Diagnostics",
       "domain": "magia-diagnostics.com",
       "industry": "BIOTECHNOLOGY",
       "revenue": 0,
@@ -22305,9 +22385,9 @@
       "id": "235557632210",
       "name": "OE",
       "domain": "oeforgood.com",
-      "industry": "PROSPECT",
+      "industry": "WINE_AND_SPIRITS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22327,9 +22407,9 @@
       "id": "235557632212",
       "name": "CELL&CO",
       "domain": "cell-and-co.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22358,7 +22438,7 @@
     },
     "235592045755": {
       "id": "235592045755",
-      "name": "Dominique Dutscher",
+      "name": "Dutscher",
       "domain": "dutscher.com",
       "industry": "CHEMICALS",
       "revenue": 0,
@@ -22371,9 +22451,9 @@
       "id": "235592339676",
       "name": "NUTRIMETICS FRANCE",
       "domain": "nutrimetics.fr",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 840,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22382,9 +22462,9 @@
       "id": "235592339678",
       "name": "KERI MEDICAL FRANCE",
       "domain": "kerimedical.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22406,9 +22486,9 @@
       "id": "235592339680",
       "name": "BIOMATLANTE",
       "domain": "biomatlante.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22560,9 +22640,9 @@
       "id": "235711831260",
       "name": "BALT EXTRUSION",
       "domain": "baltgroup.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 480,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22571,9 +22651,9 @@
       "id": "235711831261",
       "name": "PILEJE",
       "domain": "pileje.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 510,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22615,9 +22695,9 @@
       "id": "235711831266",
       "name": "OH MY CREAM",
       "domain": "ohmycream.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22628,7 +22708,7 @@
       "domain": "laboratoires-grimberg.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22692,9 +22772,9 @@
       "id": "235722468541",
       "name": "OPHTA - FRANCE",
       "domain": "ophta-france.com",
-      "industry": "PROSPECT",
+      "industry": "MEDICAL_DEVICES",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22703,9 +22783,9 @@
       "id": "235722468542",
       "name": "LABORATOIRES SICOBEL",
       "domain": "sicobel.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 90,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22725,9 +22805,9 @@
       "id": "235722468544",
       "name": "AMOEBA",
       "domain": "amoeba-nature.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22747,9 +22827,9 @@
       "id": "235722468546",
       "name": "LEMER PAX",
       "domain": "lemerpax.com",
-      "industry": "PROSPECT",
+      "industry": "WIRELESS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22758,9 +22838,9 @@
       "id": "235722468547",
       "name": "MEDESIS PHARMA S.A.",
       "domain": "medesispharma.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22802,9 +22882,9 @@
       "id": "235724247229",
       "name": "NUTRAVALIA",
       "domain": "nutravalia.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22846,9 +22926,9 @@
       "id": "235724247233",
       "name": "HYTECK (AROMA ZONE)",
       "domain": "aroma-zone.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 330,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22883,9 +22963,7 @@
       "revenue": 0,
       "employees": 1500,
       "ownerId": "",
-      "parentCompanyIds": [
-        235052258498
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "235725744326": {
@@ -22925,9 +23003,9 @@
       "id": "235727720697",
       "name": "PARFUM FRANCIS KURKDJIAN",
       "domain": "franciskurkdjian.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 270,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -22969,9 +23047,9 @@
       "id": "235727721661",
       "name": "ENTEROME",
       "domain": "enterome.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23044,7 +23122,7 @@
     },
     "235742067907": {
       "id": "235742067907",
-      "name": "EXTRACTIS",
+      "name": "Extractis",
       "domain": "extractis.com",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -23055,7 +23133,7 @@
     },
     "235742067908": {
       "id": "235742067908",
-      "name": "Naturhouse France",
+      "name": "Naturhouse",
       "domain": "naturhouse.fr",
       "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
@@ -23112,9 +23190,9 @@
       "id": "235742343409",
       "name": "LABORATOIRES DERMATOLOGIQUES D'URIAGE",
       "domain": "uriage.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23136,7 +23214,7 @@
       "domain": "mm-france.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 75,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23145,9 +23223,9 @@
       "id": "235742343412",
       "name": "SOREMA",
       "domain": "sorema.com",
-      "industry": "PROSPECT",
+      "industry": "MACHINERY",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23165,7 +23243,7 @@
     },
     "235743861956": {
       "id": "235743861956",
-      "name": "DENTALSOFT Group",
+      "name": "Dentalsoft",
       "domain": "dentalsoft.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -23209,7 +23287,7 @@
     },
     "235745666294": {
       "id": "235745666294",
-      "name": "Winncare",
+      "name": "Groupe Winncare",
       "domain": "winncare.fr",
       "industry": "MEDICAL_DEVICES",
       "revenue": 0,
@@ -23297,7 +23375,7 @@
     },
     "235749230805": {
       "id": "235749230805",
-      "name": "LILIAL",
+      "name": "Lilial",
       "domain": "lilial.fr",
       "industry": "HEALTH_WELLNESS_AND_FITNESS",
       "revenue": 0,
@@ -23323,7 +23401,7 @@
       "domain": "avogel.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23332,9 +23410,9 @@
       "id": "235749509311",
       "name": "CENTRE DE TRAITEMENT ET DE REGENERATION DU CHEVEU JF LAZARTIGUE",
       "domain": "lazartigue.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23407,7 +23485,7 @@
     },
     "235751307490": {
       "id": "235751307490",
-      "name": "Laboratoires Genevrier",
+      "name": "IBSA Pharma",
       "domain": "laboratoires-genevrier.com",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
@@ -23422,7 +23500,7 @@
       "domain": "leseauxprimordiales.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23431,9 +23509,9 @@
       "id": "235751307492",
       "name": "DESSANGE INTERNATIONAL",
       "domain": "dessange-international.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 750,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23444,7 +23522,7 @@
       "domain": "livcer.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23519,9 +23597,9 @@
       "id": "235753132226",
       "name": "STRAND COSMETICS EUROPE",
       "domain": "msbeautilab.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 210,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23530,9 +23608,9 @@
       "id": "235753132227",
       "name": "NAOS FRANCE",
       "domain": "bioderma.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 20,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23651,9 +23729,9 @@
       "id": "235765723381",
       "name": "GROSSERON",
       "domain": "grosseron.com",
-      "industry": "PROSPECT",
+      "industry": "HOSPITAL_HEALTH_CARE",
       "revenue": 0,
-      "employees": 0,
+      "employees": 150,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23664,7 +23742,7 @@
       "domain": "embryolisse.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23673,9 +23751,9 @@
       "id": "235765723383",
       "name": "INNOTHERA",
       "domain": "innothera.com",
-      "industry": "PROSPECT",
+      "industry": "PHARMACEUTICALS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 1250,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23686,7 +23764,7 @@
       "domain": "invectys.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 30,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23706,9 +23784,9 @@
       "id": "235767496934",
       "name": "SI SI LA PAILLETTE",
       "domain": "sisilapaillette.fr",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23750,9 +23828,9 @@
       "id": "235767496939",
       "name": "MANUCURIST",
       "domain": "manucurist.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 60,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23772,9 +23850,9 @@
       "id": "235769047229",
       "name": "PARFUMS CORANIA",
       "domain": "corania.com",
-      "industry": "PROSPECT",
+      "industry": "COSMETICS",
       "revenue": 0,
-      "employees": 0,
+      "employees": 45,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23785,7 +23863,7 @@
       "domain": "bysmaquillage.fr",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 15,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23807,7 +23885,7 @@
       "domain": "ilapharm.com",
       "industry": "PROSPECT",
       "revenue": 0,
-      "employees": 0,
+      "employees": 5,
       "ownerId": "",
       "parentCompanyIds": [],
       "childCompanyIds": []
@@ -23816,7 +23894,7 @@
       "id": "235769047234",
       "name": "TEBU BIO",
       "domain": "tebubio.com",
-      "industry": "PROSPECT",
+      "industry": "BIOTECHNOLOGY",
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
@@ -23864,7 +23942,9 @@
       "revenue": 26320000000,
       "employees": 75,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        226958605515
+      ],
       "childCompanyIds": []
     },
     "239539797219": {
@@ -24034,7 +24114,7 @@
     },
     "241128117497": {
       "id": "241128117497",
-      "name": "LABORATOIRES GILBERT",
+      "name": "Laboratoires Gilbert",
       "domain": "labogilbert.fr",
       "industry": "PHARMACEUTICALS",
       "revenue": 0,
@@ -24067,7 +24147,7 @@
     },
     "241147418854": {
       "id": "241147418854",
-      "name": "Arquus",
+      "name": "ARQUUS",
       "domain": "arquus-defense.com",
       "industry": "DEFENSE_SPACE",
       "revenue": 5819548000,
@@ -24111,7 +24191,7 @@
     },
     "241158332639": {
       "id": "241158332639",
-      "name": "ADOCIA",
+      "name": "Adocia",
       "domain": "adocia.com",
       "industry": "BIOTECHNOLOGY",
       "revenue": 0,
@@ -24166,7 +24246,7 @@
     },
     "244022875334": {
       "id": "244022875334",
-      "name": "TRIMET Aluminium SE",
+      "name": "TRIMET",
       "domain": "trimet.eu",
       "industry": "MINING_METALS",
       "revenue": 0,
@@ -24184,7 +24264,9 @@
       "employees": 2250,
       "ownerId": "30088765",
       "parentCompanyIds": [],
-      "childCompanyIds": []
+      "childCompanyIds": [
+        234988938460
+      ]
     },
     "245032334561": {
       "id": "245032334561",
@@ -24267,7 +24349,7 @@
     },
     "247356190935": {
       "id": "247356190935",
-      "name": "Celltrion Healthcare France",
+      "name": "CelltrionHealthcare",
       "domain": "celltrionhealthcare.fr",
       "industry": "PROSPECT",
       "revenue": 0,
@@ -24289,7 +24371,7 @@
     },
     "249331954877": {
       "id": "249331954877",
-      "name": "Silamir",
+      "name": "Silamir Group",
       "domain": "silamir.com",
       "industry": "INFORMATION_TECHNOLOGY_AND_SERVICES",
       "revenue": 0,
@@ -24390,7 +24472,7 @@
     },
     "250177533131": {
       "id": "250177533131",
-      "name": "FONDASOL",
+      "name": "Groupe Fondasol",
       "domain": "groupefondasol.com",
       "industry": "CONSTRUCTION",
       "revenue": 0,
@@ -24451,7 +24533,9 @@
       "revenue": 0,
       "employees": 0,
       "ownerId": "",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        232131150023
+      ],
       "childCompanyIds": []
     },
     "257704494304": {
@@ -24653,9 +24737,7 @@
       "revenue": 237100000000,
       "employees": 102579,
       "ownerId": "29974224",
-      "parentCompanyIds": [
-        278642453704
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "262224529637": {
@@ -24666,7 +24748,9 @@
       "revenue": 1532803000,
       "employees": 2500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        220584252648
+      ],
       "childCompanyIds": []
     },
     "262469511370": {
@@ -24677,7 +24761,9 @@
       "revenue": 389000,
       "employees": 1250,
       "ownerId": "30088765",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        263633128688
+      ],
       "childCompanyIds": []
     },
     "262613919992": {
@@ -24745,9 +24831,7 @@
       "revenue": 75000000,
       "employees": 570,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263431222517": {
@@ -24771,9 +24855,7 @@
       "revenue": 606014800,
       "employees": 2000,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        263633128688
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "263566089435": {
@@ -24810,7 +24892,9 @@
       "revenue": 5681912,
       "employees": 30,
       "ownerId": "29974261",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        235051012312
+      ],
       "childCompanyIds": []
     },
     "263873434871": {
@@ -24854,9 +24938,7 @@
       "revenue": 30000000,
       "employees": 450,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        230109082847
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264204846315": {
@@ -24904,9 +24986,7 @@
       "revenue": 19500000000,
       "employees": 120,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        260128816334
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264205578471": {
@@ -24950,9 +25030,7 @@
       "revenue": 46629100000,
       "employees": 630,
       "ownerId": "29974261",
-      "parentCompanyIds": [
-        220587788529
-      ],
+      "parentCompanyIds": [],
       "childCompanyIds": []
     },
     "264581917912": {
@@ -25022,7 +25100,9 @@
       "revenue": 240000000,
       "employees": 500,
       "ownerId": "29974224",
-      "parentCompanyIds": [],
+      "parentCompanyIds": [
+        265787828419
+      ],
       "childCompanyIds": []
     },
     "266679153870": {
@@ -25071,7 +25151,7 @@
     },
     "277557504219": {
       "id": "277557504219",
-      "name": "if/else agency",
+      "name": "ifelse agency",
       "domain": "ifelseagency.com",
       "industry": "COMPUTER_SOFTWARE",
       "revenue": 0,
@@ -25096,7 +25176,7 @@
     "totalOwners": 11,
     "totalCompanies": 1963,
     "totalDeals": 81,
-    "totalRelations": 65,
+    "totalRelations": 97,
     "industriesFromHubSpot": 1961,
     "industriesDetectedAuto": 0,
     "industriesMissing": 2,
