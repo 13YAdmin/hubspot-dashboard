@@ -590,8 +590,18 @@
       filter: brightness(1.1);
     }
 
-    /* Premium/VIP - Gradient rose matte → violet discret */
-    .badge-vip, .badge-stratégique, .badge-premium {
+    /* VIP - Gradient or matte → doré premium (500k+ CA) */
+    .badge-vip {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.9) 0%, rgba(251, 191, 36, 0.85) 50%, rgba(252, 211, 77, 0.9) 100%);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #1e293b;
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.25), 0 0 40px rgba(251, 191, 36, 0.12);
+      opacity: 0.95;
+    }
+
+    /* Stratégique/Premium - Gradient rose matte → violet discret */
+    .badge-stratégique, .badge-premium {
       background: linear-gradient(135deg, rgba(219, 108, 171, 0.85) 0%, rgba(159, 122, 234, 0.85) 50%, rgba(129, 140, 248, 0.85) 100%);
       border-color: rgba(236, 72, 153, 0.3);
       color: white;
@@ -1193,6 +1203,7 @@
                     <span class="info-icon">i</span>
                     <div class="tooltip-content">
                       <strong>Catégories de clients:</strong><br>
+                      • <strong>VIP</strong>: CA > 500k€ - Compte stratégique majeur<br>
                       • <strong>Stratégique</strong>: Excellente santé + CA élevé<br>
                       • <strong>Clé</strong>: Relation stable + CA significatif<br>
                       • <strong>Régulier</strong>: Client constant<br>
@@ -1348,11 +1359,12 @@
           <div class="modal-section">
             <h4 style="color: var(--primary); margin-bottom: 12px;">🎯 Segments Clients</h4>
             <ul style="margin-left: 20px;">
-              <li><strong>Stratégique</strong>: Excellente santé + CA élevé = priorité maximale</li>
-              <li><strong>Clé</strong>: Relation stable + CA significatif = maintenir</li>
-              <li><strong>Régulier</strong>: Client constant = surveiller</li>
+              <li><strong>VIP</strong>: CA > 500k€ + santé > 55 = compte stratégique majeur</li>
+              <li><strong>Stratégique</strong>: CA > 100k€ + santé > 60 = priorité maximale</li>
+              <li><strong>Clé</strong>: CA > 50k€ + santé > 55 = maintenir</li>
+              <li><strong>Régulier</strong>: CA > 10k€ + santé > 40 = surveiller</li>
               <li><strong>Prospect</strong>: Nouveau ou faible CA = développer</li>
-              <li><strong>À Risque</strong>: Score santé bas = intervention urgente</li>
+              <li><strong>À Risque</strong>: Score santé bas ou déclin = intervention urgente</li>
             </ul>
           </div>
 
@@ -2266,7 +2278,7 @@
       title.textContent = client.companyName;
 
       // Get all deals for this client to compute full stats
-      const clientDeals = filteredData.filter(d => d.companyId === client.companyId || d.companyName === client.companyName);
+      const clientDeals = allData.filter(d => d.companyId === client.companyId || d.companyName === client.companyName);
 
       body.innerHTML = `
         ${client.companyId ? `
