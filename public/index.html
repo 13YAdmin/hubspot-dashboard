@@ -2275,16 +2275,69 @@
       // Get company info from first deal
       const companyInfo = clientDeals.length > 0 ? clientDeals[0] : {};
 
+      // Get enriched company data from companies object
+      const enrichedCompany = companies[client.companyId] || {};
+
       body.innerHTML = `
-        ${client.companyId ? `
-          <div class="modal-section" style="text-align: right;">
-            <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${client.companyId}"
-               target="_blank"
-               class="hubspot-link">
-              🔗 Ouvrir dans HubSpot
-            </a>
+        <!-- Company Header with Enriched Info -->
+        <div class="modal-section" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 200px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+              ${enrichedCompany.employees ? `
+                <div>
+                  <div class="text-muted" style="font-size: 12px;">👥 Effectif</div>
+                  <div style="font-weight: 600; font-size: 14px;">${enrichedCompany.employees.toLocaleString()} employés</div>
+                </div>
+              ` : ''}
+              ${enrichedCompany.revenue ? `
+                <div>
+                  <div class="text-muted" style="font-size: 12px;">💰 CA Annuel</div>
+                  <div style="font-weight: 600; font-size: 14px;">${formatCurrency(enrichedCompany.revenue)}</div>
+                </div>
+              ` : ''}
+              ${enrichedCompany.foundedYear ? `
+                <div>
+                  <div class="text-muted" style="font-size: 12px;">📅 Fondée en</div>
+                  <div style="font-weight: 600; font-size: 14px;">${enrichedCompany.foundedYear}</div>
+                </div>
+              ` : ''}
+              ${enrichedCompany.city || enrichedCompany.country ? `
+                <div>
+                  <div class="text-muted" style="font-size: 12px;">📍 Localisation</div>
+                  <div style="font-weight: 600; font-size: 14px;">
+                    ${[enrichedCompany.city, enrichedCompany.state, enrichedCompany.country].filter(x => x).join(', ')}
+                  </div>
+                </div>
+              ` : ''}
+              ${enrichedCompany.phone ? `
+                <div>
+                  <div class="text-muted" style="font-size: 12px;">📞 Téléphone</div>
+                  <div style="font-weight: 600; font-size: 14px;">
+                    <a href="tel:${enrichedCompany.phone}" style="color: var(--text); text-decoration: none;">${enrichedCompany.phone}</a>
+                  </div>
+                </div>
+              ` : ''}
+              ${enrichedCompany.linkedin ? `
+                <div>
+                  <div class="text-muted" style="font-size: 12px;">💼 LinkedIn</div>
+                  <div style="font-weight: 600; font-size: 14px;">
+                    <a href="${enrichedCompany.linkedin}" target="_blank" style="color: var(--primary); text-decoration: none;">Voir profil →</a>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
           </div>
-        ` : ''}
+          ${client.companyId ? `
+            <div style="flex-shrink: 0;">
+              <a href="https://app.hubspot.com/contacts/${HUBSPOT_PORTAL_ID}/company/${client.companyId}"
+                 target="_blank"
+                 class="hubspot-link"
+                 style="white-space: nowrap;">
+                🔗 Ouvrir dans HubSpot
+              </a>
+            </div>
+          ` : ''}
+        </div>
 
         <!-- Informations Entreprise -->
         <div class="modal-section">
@@ -2302,22 +2355,22 @@
               <div class="text-muted" style="font-size: 13px;">Health Score</div>
               <div>${renderHealthScore(client.healthScore)}</div>
             </div>
-            ${companyInfo.companyWebsite ? `
+            ${enrichedCompany.website || companyInfo.companyWebsite ? `
             <div>
               <div class="text-muted" style="font-size: 13px;">Site Web</div>
               <div style="font-weight: 600;">
-                <a href="${companyInfo.companyWebsite.startsWith('http') ? companyInfo.companyWebsite : 'https://' + companyInfo.companyWebsite}"
+                <a href="${(enrichedCompany.website || companyInfo.companyWebsite).startsWith('http') ? (enrichedCompany.website || companyInfo.companyWebsite) : 'https://' + (enrichedCompany.website || companyInfo.companyWebsite)}"
                    target="_blank"
                    style="color: var(--primary); text-decoration: none;">
-                  🌐 ${companyInfo.companyWebsite.replace(/^https?:\/\//,'')}
+                  🌐 ${(enrichedCompany.website || companyInfo.companyWebsite).replace(/^https?:\/\//,'')}
                 </a>
               </div>
             </div>
             ` : ''}
           </div>
-          ${companyInfo.companyDescription ? `
+          ${enrichedCompany.description || companyInfo.companyDescription ? `
             <div style="background: rgba(var(--primary-rgb), 0.05); padding: 16px; border-radius: var(--radius); border-left: 4px solid var(--primary);">
-              <div style="color: var(--text); font-size: 14px; line-height: 1.6;">${companyInfo.companyDescription}</div>
+              <div style="color: var(--text); font-size: 14px; line-height: 1.6;">${enrichedCompany.description || companyInfo.companyDescription}</div>
             </div>
           ` : ''}
         </div>

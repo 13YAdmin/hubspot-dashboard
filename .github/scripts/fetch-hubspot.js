@@ -79,7 +79,24 @@ async function main() {
       'business_type',
       'annualrevenue',
       'numberofemployees',
-      'hubspot_owner_id'
+      'hubspot_owner_id',
+      // Enrichissement company details
+      'description',
+      'about_us',
+      'phone',
+      'city',
+      'state',
+      'country',
+      'zip',
+      'address',
+      'address2',
+      'linkedin_company_page',
+      'linkedinbio',
+      'twitterhandle',
+      'facebook_company_page',
+      'founded_year',
+      'timezone',
+      'website'
     ]);
     const companies = {};
     let industriesFound = 0;
@@ -135,6 +152,21 @@ async function main() {
         revenue: parseFloat(company.properties.annualrevenue || 0),
         employees: parseInt(company.properties.numberofemployees || 0),
         ownerId: company.properties.hubspot_owner_id || '',
+        // Enrichissement company details
+        description: company.properties.description || company.properties.about_us || '',
+        phone: company.properties.phone || '',
+        city: company.properties.city || '',
+        state: company.properties.state || '',
+        country: company.properties.country || '',
+        zip: company.properties.zip || '',
+        address: company.properties.address || '',
+        address2: company.properties.address2 || '',
+        linkedin: company.properties.linkedin_company_page || company.properties.linkedinbio || '',
+        twitter: company.properties.twitterhandle || '',
+        facebook: company.properties.facebook_company_page || '',
+        foundedYear: company.properties.founded_year || '',
+        timezone: company.properties.timezone || '',
+        website: company.properties.website || company.properties.domain || '',
         parentCompanyIds: [], // Sera rempli après
         childCompanyIds: []   // Sera rempli après
       };
