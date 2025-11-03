@@ -2266,7 +2266,7 @@
       title.textContent = client.companyName;
 
       // Get all deals for this client to compute full stats
-      const clientDeals = filteredData.filter(d => d.companyId === client.companyId || d.companyName === client.companyName);
+      const clientDeals = allData.filter(d => d.companyId === client.companyId || d.companyName === client.companyName);
 
       body.innerHTML = `
         ${client.companyId ? `
