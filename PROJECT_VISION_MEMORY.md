@@ -1,0 +1,626 @@
+# 🧠 MÉMOIRE PERMANENTE - DASHBOARD HUBSPOT 13 YEARS
+
+> **RÈGLE ABSOLUE** : Ce fichier doit être lu par Claude à CHAQUE session avant toute modification du projet.
+> Il contient la vision, l'historique, les décisions et les principes qui guident ce projet.
+
+**Dernière mise à jour** : 3 novembre 2025, 13h00
+
+---
+
+## 🎯 VISION DU PROJET
+
+### Philosophie centrale : "Simple, Efficace, Fiable"
+
+**Le problème qu'on résout :**
+- Dashboard Account Management pour suivre le portefeuille clients HubSpot
+- Analyse CA par année, health scores, opportunités business
+- Utilisé quotidiennement par Account Managers, Managers et Direction
+
+**La solution :**
+- Dashboard statique ultra-simple (GitHub Pages + Actions)
+- Pas de backend, pas de base de données
+- Mise à jour automatique quotidienne via HubSpot API
+- Interface moderne et rapide
+
+**Pourquoi cette approche :**
+- 0€ de coût d'infrastructure
+- 99.9% uptime garanti
+- Aucune maintenance requise
+- Pas de complexité inutile
+
+---
+
+## ❌ CE QUI A ÉTÉ REJETÉ - À NE JAMAIS REFAIRE
+
+### Historique du pivot (31 octobre 2025)
+
+**Système v1.x (abandonné) :**
+- ❌ **16 agents IA autonomes** (Chef AI, Aiguilleur, Producteur, Visionnaire, RH, Publishing, Dev, QA, Debugger, etc.)
+- ❌ **Boucle automatique toutes les 5 minutes** - Trop d'appels API, instable
+- ❌ **58,000 lignes de code** - Impossible à maintenir, bugs constants
+- ❌ **Score QA bloqué à 39/100** - Qualité inacceptable malgré mode urgence
+- ❌ **Système auto-évolutif censé s'améliorer seul** - Augmentait la complexité
+- ❌ **15 workflows GitHub Actions** - Conflits et redondances
+- ❌ **Auto-healing sur 3 niveaux** - Over-engineered
+
+**Pourquoi ça a échoué :**
+1. Trop complexe - Impossible de débugger
+2. Bugs constants - Les agents cassaient le code
+3. Coût API élevé - Workflows trop fréquents
+4. Maintenance infinie - Toujours quelque chose à réparer
+5. Score QA catastrophique - La qualité empirait au lieu de s'améliorer
+
+**Décision du 31 octobre :** TOUT reconstruire from scratch
+
+---
+
+## ✅ PRINCIPES À RESPECTER - TOUJOURS
+
+### 1. Simplicité avant tout
+- Architecture simple : GitHub Pages + GitHub Actions uniquement
+- Pas de framework frontend (React, Vue, etc.)
+- Vanilla HTML/CSS/JS uniquement
+- Code lisible : ~3,500 lignes (vs 58,000 avant)
+
+### 2. Stabilité > Fonctionnalités
+- Ne JAMAIS sacrifier la stabilité pour ajouter une feature
+- Chaque modification doit être testée
+- Pas de bugs critiques tolérés
+
+### 3. Performance
+- Chargement < 2 secondes
+- data.json < 500 KB
+- Optimisations CSS/JS
+
+### 4. Workflow GitHub Actions
+- **1 fois par jour à 6h UTC** (24h) - PAS PLUS
+- Pas de push automatique sur main (éviter trop d'appels API)
+- Manual dispatch disponible si besoin
+- Concurrency: cancel-in-progress
+
+### 5. Design moderne mais sans excès
+- Dark theme vibrant
+- Glassmorphism et Bento Grid
+- Animations subtiles
+- Mobile-first responsive
+
+### 6. Code maintenable
+- Commentaires clairs
+- Fonctions bien nommées
+- Pas de duplication
+- Structure logique
+
+---
+
+## 🏗️ ARCHITECTURE ACTUELLE
+
+### Stack Technique
+
+**Backend (GitHub Actions) :**
+```
+Workflow : fetch-hubspot-data.yml
+├── Trigger : Quotidien à 6h UTC + Manual dispatch
+├── Steps :
+│   1. Create Custom Properties (si première exécution)
+│   2. Fetch HubSpot Data (fetch-hubspot.js)
+│   3. Push Calculated Scores to HubSpot (push-scores-to-hubspot.js)
+│   4. Deploy to GitHub Pages (branche gh-pages)
+```
+
+**Scripts Backend (.github/scripts/) :**
+```
+fetch-hubspot.js (497 lignes)
+├── Récupère TOUT de HubSpot :
+│   ├── 2000+ companies
+│   ├── 81 deals
+│   ├── Owners (Account Managers)
+│   ├── TOUTES les notes (sans limite)
+│   ├── Engagement history (emails, calls, meetings)
+│   └── Relations parent/child (typeId 13/14)
+├── Enrichissement :
+│   ├── calculateHealthScore() - Score 0-100
+│   ├── detectSegment() - Premium/Standard
+│   ├── detectIndustry() - AI-powered avec cache
+│   └── analyzeNotes() - Sentiment analysis
+└── Génère : public/data.json
+
+lib/
+├── api.js - Client HubSpot + pagination
+├── health-score.js - Calcul score avec 5 composantes
+├── segment-detector.js - Segmentation clients
+├── industry-detector.js - Détection secteur d'activité
+├── industry-cache.js - Cache 90 jours
+└── notes-analyzer.js - Analyse sentiment notes
+```
+
+**Frontend (public/index.html - 2914 lignes) :**
+```
+Structure :
+├── HTML : Structure sémantique
+├── CSS : Variables, Bento Grid, Glassmorphism
+└── JavaScript :
+    ├── Fetch data.json
+    ├── Render KPIs (5 cartes asymétriques)
+    ├── Render Charts (Chart.js 4.4.0)
+    ├── Render Tables (groupes, opportunités)
+    ├── Filters (année)
+    ├── Sorting (tri par colonne)
+    ├── Modals (détails clients)
+    └── Documentation inline
+```
+
+### Données traitées
+
+**Volume :**
+- 2000+ companies HubSpot
+- 81 deals actifs
+- ~10 Account Managers
+- Toutes les notes historiques
+- Tout l'engagement (emails, calls, meetings)
+
+**Custom Properties HubSpot créées :**
+- `health_score` (number) - Score 0-100
+- `segment` (string) - Premium ou Standard
+- `industry_detected` (string) - Secteur auto-détecté
+
+---
+
+## 📊 FONCTIONNALITÉS ESSENTIELLES
+
+### 1. KPIs (5 cartes - Bento Grid asymétrique)
+
+**Layout Vercel-style :**
+- CA Total (5 colonnes, 1 ligne)
+- CA 2025 (4 colonnes, 2 lignes)
+- Nombre Clients (3 colonnes, 1 ligne)
+- Health Score Moyen (5 colonnes, 1 ligne)
+- Opportunités White Space (3 colonnes, 1 ligne)
+
+**Design :**
+- Glassmorphism (backdrop-filter blur)
+- Gradients spécifiques par KPI
+- Glow effect au hover
+- Animation smooth
+
+### 2. Health Score (0-100)
+
+**Formule complète :**
+```
+Score = Base (15) + Notes (25) + Engagement (25) + Revenue Base (15) + Revenue Trend (20)
+```
+
+**Détail des composantes :**
+
+**Base : 15 points**
+- Tous les clients partent avec 15 points
+
+**Notes : 25 points max**
+- Quantité (12 pts) : Nb de notes (≥15 = 12pts, ≥10 = 8pts, ≥5 = 5pts)
+- Qualité (5 pts) : Longueur moyenne (>250 chars = 5pts, >120 = 3pts)
+- Récence (4 pts) : Notes récentes (+4pts) vs anciennes (-3pts)
+- Sentiment (4 pts) : Positive (+4pts) vs Negative (-8pts)
+
+**Engagement : 25 points max**
+- Emails (7 pts) : ≥15 = 7pts, ≥8 = 4pts, ≥3 = 2pts
+- Calls (9 pts) : ≥8 = 9pts, ≥4 = 6pts, ≥1 = 2pts
+- Meetings (9 pts) : ≥4 = 9pts, ≥2 = 6pts, ≥1 = 2pts
+
+**Revenue Base : 15 points max**
+- ≥1M€ = 15 pts
+- ≥500K€ = 12 pts
+- ≥200K€ = 9 pts
+- ≥100K€ = 6 pts
+- ≥50K€ = 3 pts
+
+**Revenue Trend : 20 points max (NOUVEAU - 31 oct)**
+- Analyse temporelle du CA pour récompenser la croissance
+- Croissance >200% : +20 pts
+- Croissance 100-200% : +18 pts
+- Croissance 50-100% : +15 pts
+- Croissance 20-50% : +12 pts
+- Croissance 0-20% : +8 pts
+- Stable (-10 à 0%) : +5 pts
+- Déclin -10 à -30% : 0 pt
+- Déclin -30 à -50% : -5 pts
+- Déclin -50 à -70% : -10 pts
+- Déclin <-70% : -15 pts
+
+**Affichage coloré :**
+- 🟢 Vert (70-100) : Compte sain
+- 🟠 Orange (50-69) : À surveiller
+- 🔴 Rouge (0-49) : Action requise
+
+### 3. Analyse Temporelle CA
+
+**Colonnes par année :**
+- 2022, 2023, 2024, 2025
+- Vraies valeurs en euros (pas de données inventées)
+- Format français : 13 450 € (espaces comme séparateurs)
+
+**Indicateurs de tendance :**
+- ↗️ Vert : Croissance > 10%
+- → Gris : Stable (-10% à +10%)
+- ↘️ Rouge : Décroissance > 10%
+
+**Tri :**
+- Alphabétique par défaut
+- Cliquable sur chaque colonne
+
+### 4. Groupes Parent/Filiales
+
+**Structure hiérarchique :**
+- Détection automatique relations HubSpot (typeId 13/14)
+- Expand/collapse interactif
+- CA agrégé = parent + toutes filiales
+- Badge compteur nombre de filiales
+
+**Exemple :**
+```
+LVMH (parent) - CA total groupe
+├── Dior (filiale) - CA propre
+└── Louis Vuitton (filiale) - CA propre
+```
+
+### 5. White Spaces (Opportunités)
+
+**Détection automatique :**
+- Filiales de clients SANS deals = opportunités
+- Potentiel estimé 5-15% CA parent
+- Priorité : HAUTE / MOYENNE / BASSE
+
+**Recommandations AM :**
+- HAUTE : Action immédiate, warm intro, 2-3 mois
+- MOYENNE : Prospection ciblée, 3-6 mois
+- BASSE : Veille passive, opportuniste
+
+### 6. Filtres
+
+**Par année :**
+- 2022, 2023, 2024, 2025, Toutes
+
+**IMPORTANT - Scope limité :**
+- Le filtre année affecte UNIQUEMENT le tableau groupes
+- Les KPIs et graphiques restent toujours sur "Toutes"
+- ⚠️ C'est volontaire, ne pas changer ce comportement
+
+### 7. Charts (Chart.js 4.4.0) - CLIQUABLES
+
+**2 graphiques interactifs :**
+- **CA par année** (line chart) - Clic sur une année → modal avec tous les deals de l'année
+- **Distribution secteurs** (doughnut chart) - Clic sur un secteur → modal avec toutes les entreprises du secteur
+
+**Modals riches :**
+- Stats KPI (CA total, nombre entreprises/deals)
+- Liste scrollable des entreprises triées par CA
+- Health scores affichés
+- Hover effects sur les cartes
+
+**Design :**
+- Fond transparent
+- Couleurs cohérentes avec le theme
+- Animations smooth
+- onClick handlers Chart.js
+
+---
+
+## 🎨 DESIGN SYSTEM
+
+### Couleurs (CSS Variables)
+
+```css
+/* Dark Theme */
+--bg: #09090b;
+--bg-secondary: #0f0f14;
+--bg-card: rgba(24, 24, 27, 0.6);
+--surface: #18181b;
+--border: rgba(63, 63, 70, 0.4);
+--text: #fafafa;
+--text-secondary: #a1a1aa;
+--text-muted: #71717a;
+
+/* Accents */
+--primary: #6366f1;      /* Indigo */
+--accent: #8b5cf6;       /* Purple */
+--secondary: #06b6d4;    /* Cyan */
+--success: #10b981;      /* Green */
+--danger: #f43f5e;       /* Rose */
+--warning: #f59e0b;      /* Amber */
+
+/* Gradients */
+--gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+--gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+--gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+--gradient-mesh: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                 radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                 radial-gradient(at 50% 50%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+```
+
+### Typographie
+
+```
+Font Stack: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Inter'
+
+Titres h1: 56px, 900 weight, -0.03em tracking
+Headers: 24px, 700 weight, -0.02em tracking
+Body: 16px, 400-600 weight
+Labels: 13px, 500-600 weight, uppercase
+```
+
+### Effets visuels
+
+- **Glassmorphism** : backdrop-filter blur(12px)
+- **Bento Grid** : Asymétrique comme Vercel
+- **Mesh Gradient** : Background overlay fixe
+- **Glow Effects** : Au hover sur cartes
+- **Animations** : cubic-bezier spring-like
+
+---
+
+## 🚫 CE QU'IL NE FAUT PAS FAIRE
+
+### JAMAIS faire :
+1. ❌ Réintroduire des agents IA autonomes
+2. ❌ Augmenter la fréquence du workflow (rester à 24h)
+3. ❌ Ajouter des frameworks (React, Vue, Angular, etc.)
+4. ❌ Complexifier l'architecture
+5. ❌ Modifier le scope du filtre année (c'est volontaire qu'il soit limité au tableau)
+6. ❌ Inventer des données (toujours utiliser les vraies valeurs HubSpot)
+7. ❌ Casser la stabilité pour une feature
+8. ❌ Sacrifier la performance
+
+### Toujours faire :
+1. ✅ Garder le code simple et lisible
+2. ✅ Tester avant de commit
+3. ✅ Respecter le design system
+4. ✅ Utiliser les vraies données
+5. ✅ Maintenir la performance < 2s
+6. ✅ Documenter les décisions importantes
+7. ✅ Mettre à jour CE fichier après chaque changement
+
+---
+
+## 📝 HISTORIQUE DES DÉCISIONS
+
+### 2025-10-31 - PIVOT MAJEUR : Reconstruction complète
+
+**Contexte :**
+- Système avec 16 agents IA cassait constamment
+- Score QA bloqué à 39/100 malgré mode urgence
+- 58,000 lignes de code impossible à maintenir
+- Bugs constants, instabilité
+
+**Décision :**
+- TOUT reconstruire from scratch
+- Abandon des agents IA
+- Architecture ultra-simple : GitHub Pages + Actions
+- Réduction à 3,500 lignes de code
+
+**Résultat :**
+- Dashboard stable et performant
+- Pas de bugs critiques
+- Utilisé quotidiennement par les équipes
+- Maintenance quasi-nulle
+
+**Commits clés :**
+- `9f7fd44` - Complete dashboard rebuild from scratch
+- `1696d4a` - Add comprehensive README for v2.0
+- `1671f54` - Change workflow schedule from 2h to 24h
+
+### 2025-10-31 16h - Ajout Revenue Trend (20 pts)
+
+**Contexte :**
+- Health scores statiques ne reflétaient pas l'évolution
+- Clients en croissance pas assez valorisés
+- Clients en déclin pas assez pénalisés
+
+**Décision :**
+- Ajout composante Revenue Trend (20 points)
+- Analyse temporelle du CA sur plusieurs années
+- Formule : ((dernière année - première année) / première année) × 100
+
+**Résultat :**
+- Health scores plus précis
+- Valorisation de la croissance
+- Détection du déclin
+
+**Commit :** `75c12cd` - Add Revenue Trend analysis (20 pts)
+
+### 2025-10-31 16h22 - Scope limité filtre année
+
+**Contexte :**
+- Utilisateurs confus quand filtre année changeait tous les KPIs
+- KPIs doivent toujours montrer la vue globale
+
+**Décision :**
+- Limiter scope filtre année au tableau groupes uniquement
+- KPIs et charts restent sur "Toutes" années
+
+**Résultat :**
+- UX plus claire
+- Pas de confusion sur les chiffres globaux
+
+**Commit :** `48bea3c` - Limit year filter scope to groups table only
+
+### 2025-10-31 19h07 - Design refresh complet
+
+**Contexte :**
+- Design initial trop "Excel"
+- Besoin d'un look moderne et professionnel
+
+**Décision :**
+- Refonte CSS complète sans toucher au JavaScript
+- Bento Grid asymétrique (Vercel-style)
+- Glassmorphism et mesh gradients
+- Glow effects et animations
+
+**Résultat :**
+- Look moderne et sexy
+- Aucun bug introduit (pas de changement JS)
+- +553 lignes CSS, -164 lignes
+
+**Commit :** `a697d70` - Design refresh: Modern Bento Grid layout with Glassmorphism
+
+---
+
+## 📅 JOURNAL DES MODIFICATIONS
+
+### Session du 3 novembre 2025
+
+**13h00 - Création de ce fichier**
+- Contexte : Reprise du projet après quelques jours
+- Problème : Risque de perdre la vision et refaire les erreurs du passé
+- Solution : Création fichier mémoire permanente PROJECT_VISION_MEMORY.md
+- Objectif : Documentation complète pour toujours se souvenir de la vision
+
+**14h30-17h00 - Améliorations UI majeures (6 modifications)**
+
+**1. Titre du dashboard**
+- Changé "Dashboard HubSpot" → "Dashboard Account Management 13 Years"
+- Modifié dans `<title>`, meta description, et `<h1>`
+- Raison : Meilleure identification du projet
+
+**2. Fix KPI CA 2025 (centrage vertical)**
+- Problème : Le KPI CA 2025 s'agrandissait bizarrement, valeur décalée
+- Solution : Ajout `justify-content: center` et `gap: 16px` sur `.kpi:nth-child(2)`
+- Résultat : Contenu parfaitement centré verticalement
+
+**3. Style Cyberpunk pour badges segments**
+- Premium/VIP : Gradient rose néon (#ec4899) → violet électrique (#8b5cf6) → indigo (#6366f1)
+- Standard : Gradient cyan néon (#06b6d4) → bleu océan (#3b82f6) → indigo foncé (#1e40af)
+- Prospect : Gradient jaune électrique (#fbbf24) → orange feu (#f97316) → rouge (#dc2626)
+- Effet hover amélioré : `scale(1.05)` + `brightness(1.1)`
+- Look moderne 2025, très punchy et vibrant
+
+**4. Gradient HSL continu pour scores santé**
+- Avant : 3 paliers fixes (rouge/orange/vert)
+- Après : Gradient mathématique fluide de rouge (0°) à vert (120°)
+- Formule : `hue = (score / 100) * 120`
+- Chaque score a sa couleur unique, transition super smooth
+- Exemple : Score 45 = Orange foncé, Score 75 = Vert-jaune
+
+**5. Mini-tendances année par année**
+- Ajout indicateurs ▲/▼/● sous chaque montant CA
+- Comparaison année N vs année N-1 (2022 vs 2021, 2023 vs 2022, etc.)
+- Nouvelle fonction `renderYearTrend(currentYear, previousYear)`
+- Seuil à 5% pour éviter le bruit : >5% = ▲ vert, <-5% = ▼ rouge, sinon ● gris
+- Ajout année 2021 dans `calculateYearlyRevenueAndTrend()` pour comparaison 2022
+- Police 10px, couleurs contextuelles
+
+**6. Graphiques cliquables avec modals riches**
+- **Chart Revenue (CA par année)** : Clic sur une année → modal avec tous les deals de l'année
+- **Chart Industry (Secteurs)** : Clic sur un secteur → modal avec toutes les entreprises du secteur
+- Nouvelles fonctions :
+  - `showIndustryModal(industry, totalRevenue)` : Modal avec liste entreprises du secteur triées par CA
+  - `showYearModal(year, totalRevenue)` : Modal avec liste entreprises actives l'année donnée
+- Stockage `window.globalData` et `window.companies` pour accès modal
+- Modals riches : Stats KPI + liste scrollable + health scores + hover effects
+
+**Fichiers modifiés :**
+- `public/index.html` : Toutes les modifications (CSS + JavaScript)
+- `PROJECT_VISION_MEMORY.md` : Ce fichier, documentation complète
+
+**Statistiques :**
+- ~250 lignes de code ajoutées/modifiées
+- 2 nouvelles fonctions modales (~140 lignes)
+- 1 nouvelle fonction tendance (~40 lignes)
+- 1 fonction gradient santé réécrite (~35 lignes)
+- Temps total : ~2h30
+
+---
+
+## 🎯 ÉTAT ACTUEL DU PROJET
+
+**Version :** 2.1.0 (stable)
+
+**Derniers commits :**
+- `a697d70` (31 oct 19h07) - Design refresh complet
+- `15b4cce` (31 oct 17h36) - Deploy improvements
+- `2c1fa4d` (31 oct 17h36) - Documentation section
+
+**Métriques :**
+- Lines of code: ~3,500 (vs 58,000 avant)
+- Chargement: < 2s
+- data.json: ~200KB
+- Uptime: 99.9% (GitHub Pages)
+- Bugs critiques: 0
+
+**Fonctionnalités :**
+- ✅ 5 KPIs temps réel
+- ✅ Health scores 0-100 (5 composantes)
+- ✅ Analyse temporelle CA (2022-2025)
+- ✅ Groupes parent/filiales
+- ✅ White spaces (opportunités)
+- ✅ Charts interactifs
+- ✅ Filtres et tri
+- ✅ Modals détaillées
+- ✅ Documentation inline
+- ✅ Design moderne (Bento Grid + Glassmorphism)
+
+**Ce qui fonctionne parfaitement :**
+- Architecture simple et stable
+- Performance excellente
+- Design moderne et professionnel
+- Données précises et à jour
+- UX fluide et intuitive
+
+**Améliorations possibles (à discuter) :**
+- Export Excel des tableaux ?
+- Filtres par segment (Premium/Standard) ?
+- Alertes email pour comptes critiques ?
+- Comparaison CA vs objectifs ?
+- Vue calendrier des opportunités ?
+
+**⚠️ Avant toute modification :**
+1. Lire CE fichier en entier
+2. Comprendre la vision et les principes
+3. Vérifier que la modification respecte la philosophie "Simple, Efficace, Fiable"
+4. Tester localement avant de commit
+5. Documenter la décision dans ce fichier
+
+---
+
+## 🤝 COMMENT UTILISER CE FICHIER
+
+### Pour Claude (IA) :
+
+**À chaque nouvelle session :**
+1. Lire ce fichier EN PREMIER
+2. Comprendre la vision et les principes
+3. Identifier ce qui a été rejeté (section ❌)
+4. Respecter les principes à respecter (section ✅)
+5. Consulter l'architecture actuelle
+
+**Avant toute modification :**
+1. Vérifier que ça respecte la philosophie
+2. Ne pas réintroduire ce qui a été rejeté
+3. Garder la simplicité
+4. Documenter la décision
+
+**Après chaque modification :**
+1. Mettre à jour le JOURNAL DES MODIFICATIONS
+2. Ajouter aux DÉCISIONS si c'est important
+3. Mettre à jour la date en haut du fichier
+
+### Pour Iliès (utilisateur) :
+
+**Quand tu reprends le projet :**
+1. Lis la section VISION pour te rappeler le "pourquoi"
+2. Lis la section CE QUI A ÉTÉ REJETÉ pour éviter de redemander
+3. Lis le JOURNAL DES MODIFICATIONS pour voir ce qui a été fait
+
+**Quand tu veux ajouter une feature :**
+1. Vérifie qu'elle respecte "Simple, Efficace, Fiable"
+2. Assure-toi qu'elle n'augmente pas la complexité
+3. Demande-toi si c'est vraiment nécessaire
+
+---
+
+**FIN DU FICHIER MÉMOIRE**
+
+**Version :** 1.0
+**Créé le :** 3 novembre 2025
+**Par :** Claude Code + Iliès Bahari
+
+---
+
+*Ce fichier est LA référence absolue pour toutes les sessions futures. Il doit être mis à jour après chaque modification importante du projet.*
