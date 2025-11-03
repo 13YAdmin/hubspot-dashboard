@@ -1447,11 +1447,12 @@
         // Build set of companies that have deals (clients)
         const companiesWithDeals = new Set(allData.map(deal => deal.companyId));
 
-        // OPTIMIZATION: Build index of companies with parents WHERE the parent has deals
+        // Build index of ALL companies with parents (regardless of parent's deal status)
         companiesWithParents = Object.values(companies).filter(c => {
           if (!c.parentCompanyIds || c.parentCompanyIds.length === 0) return false;
           const parentId = c.parentCompanyIds[0];
-          return companiesWithDeals.has(parentId);
+          // Check that parent company exists in HubSpot
+          return companies[parentId] !== undefined;
         });
 
         console.log(`✅ ${allData.length} deals chargés`);
