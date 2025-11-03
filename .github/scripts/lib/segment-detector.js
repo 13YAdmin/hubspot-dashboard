@@ -31,8 +31,20 @@ function detectSegment(companyData, notesAnalysis, healthScore) {
     };
   }
 
-  // STRATEGIC: High revenue, excellent health, many notes
-  const isStrategic = totalRevenue > 100000 && healthScore > 70 && notesAnalysis.totalNotes > 10;
+  // VIP: Very high revenue, good health (NEW! Top-tier segment)
+  const isVIP = totalRevenue > 500000 && healthScore > 55;
+
+  if (isVIP) {
+    return {
+      segment: 'VIP',
+      color: '#f59e0b',
+      priority: 1,
+      reason: `CA ${Math.round(totalRevenue / 1000)}k€, compte stratégique majeur`
+    };
+  }
+
+  // STRATEGIC: High revenue, good health (lowered threshold from 70 to 60)
+  const isStrategic = totalRevenue > 100000 && healthScore > 60 && notesAnalysis.totalNotes > 10;
 
   if (isStrategic) {
     return {
@@ -43,8 +55,8 @@ function detectSegment(companyData, notesAnalysis, healthScore) {
     };
   }
 
-  // KEY: Good revenue, good health
-  const isKey = totalRevenue > 50000 && healthScore > 60;
+  // KEY: Good revenue, good health (lowered threshold from 60 to 55)
+  const isKey = totalRevenue > 50000 && healthScore > 55;
 
   if (isKey) {
     return {

@@ -1,7 +1,8 @@
 /**
  * Health Score Calculator - Calculate 0-100 health score with Revenue Trend
  *
- * Score = Base (15) + Notes (25) + Engagement (25) + Revenue Base (15) + Revenue Trend (20)
+ * Score = Base (15) + Notes (25) + Engagement (25) + Revenue Base (25) + Strategic Bonus (10) + Revenue Trend (20)
+ * Max = 120 points, capped at 100
  */
 
 function calculateHealthScore(companyData, notesAnalysis, engagement) {
@@ -52,15 +53,21 @@ function calculateHealthScore(companyData, notesAnalysis, engagement) {
     else if (totalMeetings >= 2) score += 6;
     else if (totalMeetings >= 1) score += 2;
 
-    // 3. Revenue Base (15 points max) - Static revenue
+    // 3. Revenue Base (25 points max) - Static revenue (increased from 15)
     const revenue = companyData.totalRevenue || 0;
-    if (revenue >= 1000000) score += 15;
-    else if (revenue >= 500000) score += 12;
-    else if (revenue >= 200000) score += 9;
-    else if (revenue >= 100000) score += 6;
-    else if (revenue >= 50000) score += 3;
+    if (revenue >= 2000000) score += 25;      // 2M+: max points
+    else if (revenue >= 1000000) score += 20; // 1M-2M: 20 points
+    else if (revenue >= 500000) score += 15;  // 500k-1M: 15 points
+    else if (revenue >= 200000) score += 10;  // 200k-500k: 10 points
+    else if (revenue >= 100000) score += 6;   // 100k-200k: 6 points
+    else if (revenue >= 50000) score += 3;    // 50k-100k: 3 points
 
-    // 4. Revenue Trend (20 points max) - NEW! Dynamic temporal analysis
+    // 4. Strategic Account Bonus (10 points max) - NEW! Rewards high-value accounts
+    if (revenue >= 1000000) score += 10;      // 1M+: +10 bonus
+    else if (revenue >= 500000) score += 5;   // 500k-1M: +5 bonus
+    else if (revenue >= 200000) score += 2;   // 200k-500k: +2 bonus
+
+    // 5. Revenue Trend (20 points max) - Dynamic temporal analysis
     const trendScore = calculateRevenueTrend(companyData);
     score += trendScore;
 
