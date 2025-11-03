@@ -1405,6 +1405,7 @@
     let allData = [];
     let companies = {};
     let companiesWithParents = [];
+    let clientGroups = []; // Store client groups globally for white space extraction
     let currentFilter = { year: 'all' };
     let groupExpandedState = {};
     let sortState = {
@@ -1447,10 +1448,11 @@
         // Build set of companies that have deals (clients)
         const companiesWithDeals = new Set(allData.map(deal => deal.companyId));
 
-        // OPTIMIZATION: Build index of companies with parents WHERE the parent has deals
+        // Build index of companies with parents WHERE the parent is a CLIENT (has deals)
         companiesWithParents = Object.values(companies).filter(c => {
           if (!c.parentCompanyIds || c.parentCompanyIds.length === 0) return false;
           const parentId = c.parentCompanyIds[0];
+          // White space = subsidiary of an EXISTING client, not unknown companies
           return companiesWithDeals.has(parentId);
         });
 
@@ -1838,6 +1840,9 @@
       // Sort groups
       sortGroups(groups);
 
+      // Store groups globally for white space extraction
+      clientGroups = groups;
+
       // Update count
       document.getElementById('groups-count').textContent = `${groups.length} groupes`;
 
@@ -2103,40 +2108,25 @@
     function renderOpportunitiesTable(data) {
       const opportunities = [];
 
-      const companiesWithDeals = new Set(data.map(deal => deal.companyId));
+      // Extract white spaces directly from client groups (already calculated in renderGroupsTable)
+      clientGroups.forEach(group => {
+        // Only process groups with children (not standalone companies)
+        if (group.type !== 'group' || !group.children) return;
 
-      const parentDealsCache = {};
-      data.forEach(deal => {
-        if (!parentDealsCache[deal.companyId]) {
-          parentDealsCache[deal.companyId] = [];
-        }
-        parentDealsCache[deal.companyId].push(deal);
-      });
-
-      companiesWithParents.forEach(company => {
-        const parentId = company.parentCompanyIds[0];
-        const parentCompany = companies[parentId];
-        if (!parentCompany) return;
-
-        const hasDeals = companiesWithDeals.has(company.id);
-
-        if (!hasDeals) {
-          const parentDeals = parentDealsCache[parentId] || [];
-          const parentRevenue = parentDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
-          const parentHealth = parentDeals.length > 0
-            ? parentDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / parentDeals.length
-            : 50;
-
-          opportunities.push({
-            companyId: company.id,
-            companyName: company.name,
-            parentName: parentCompany.name,
-            parentId: parentId,
-            industry: company.industry || parentDeals[0]?.companyIndustry || 'Non spécifié',
-            parentRevenue: parentRevenue,
-            parentHealth: Math.round(parentHealth)
-          });
-        }
+        // For each white space child in this group
+        group.children.forEach(child => {
+          if (child.isWhiteSpace) {
+            opportunities.push({
+              companyId: child.companyId,
+              companyName: child.companyName,
+              parentName: group.companyName,
+              parentId: group.companyId,
+              industry: child.industry,
+              parentRevenue: group.revenue,
+              parentHealth: group.healthScore
+            });
+          }
+        });
       });
 
       // Count subsidiaries per parent
@@ -2270,6 +2260,8 @@
     // ========================================
     // SHOW CLIENT DETAILS (MODAL)
     // ========================================
+    let modalChart = null; // Store modal chart instance
+
     function showClientDetails(client) {
       const modal = document.getElementById('modal');
       const title = document.getElementById('modal-title');
@@ -2279,6 +2271,9 @@
 
       // Get all deals for this client to compute full stats
       const clientDeals = allData.filter(d => d.companyId === client.companyId || d.companyName === client.companyName);
+
+      // Get company info from first deal
+      const companyInfo = clientDeals.length > 0 ? clientDeals[0] : {};
 
       body.innerHTML = `
         ${client.companyId ? `
@@ -2291,138 +2286,84 @@
           </div>
         ` : ''}
 
-        <!-- Informations Générales -->
+        <!-- Informations Entreprise -->
         <div class="modal-section">
-          <div class="modal-section-title">📊 Vue d'Ensemble</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+          <div class="modal-section-title">🏢 À propos de ${client.companyName}</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;">
             <div>
-              <div class="text-muted" style="font-size: 13px;">Secteur</div>
+              <div class="text-muted" style="font-size: 13px;">Secteur d'activité</div>
               <div style="font-weight: 600;">${formatIndustry(client.industry)}</div>
             </div>
             <div>
-              <div class="text-muted" style="font-size: 13px;">Segment</div>
+              <div class="text-muted" style="font-size: 13px;">Segment Client</div>
               <div><span class="badge badge-${client.segment.toLowerCase()}">${client.segment}</span></div>
             </div>
             <div>
               <div class="text-muted" style="font-size: 13px;">Health Score</div>
               <div>${renderHealthScore(client.healthScore)}</div>
             </div>
+            ${companyInfo.companyWebsite ? `
             <div>
-              <div class="text-muted" style="font-size: 13px;">Nombre de Deals</div>
-              <div style="font-weight: 600;">${clientDeals.length}</div>
+              <div class="text-muted" style="font-size: 13px;">Site Web</div>
+              <div style="font-weight: 600;">
+                <a href="${companyInfo.companyWebsite.startsWith('http') ? companyInfo.companyWebsite : 'https://' + companyInfo.companyWebsite}"
+                   target="_blank"
+                   style="color: var(--primary); text-decoration: none;">
+                  🌐 ${companyInfo.companyWebsite.replace(/^https?:\/\//,'')}
+                </a>
+              </div>
             </div>
+            ` : ''}
           </div>
+          ${companyInfo.companyDescription ? `
+            <div style="background: rgba(var(--primary-rgb), 0.05); padding: 16px; border-radius: var(--radius); border-left: 4px solid var(--primary);">
+              <div style="color: var(--text); font-size: 14px; line-height: 1.6;">${companyInfo.companyDescription}</div>
+            </div>
+          ` : ''}
         </div>
 
-        <!-- CA par Année + Tendance -->
+        <!-- Évolution CA avec Graphique -->
         <div class="modal-section">
-          <div class="modal-section-title">💰 Chiffre d'Affaires</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px;">
-            ${client.years?.[2022] > 0 ? `
-              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
-                <div class="text-muted" style="font-size: 12px;">2022</div>
-                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2022])}</div>
-              </div>
-            ` : ''}
-            ${client.years?.[2023] > 0 ? `
-              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
-                <div class="text-muted" style="font-size: 12px;">2023</div>
-                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2023])}</div>
-              </div>
-            ` : ''}
-            ${client.years?.[2024] > 0 ? `
-              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
-                <div class="text-muted" style="font-size: 12px;">2024</div>
-                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2024])}</div>
-              </div>
-            ` : ''}
-            ${client.years?.[2025] > 0 ? `
-              <div style="background: rgba(var(--primary-rgb), 0.05); padding: 12px; border-radius: var(--radius);">
-                <div class="text-muted" style="font-size: 12px;">2025</div>
-                <div style="font-weight: 700; font-size: 16px;">${formatCurrency(client.years[2025])}</div>
-              </div>
-            ` : ''}
+          <div class="modal-section-title">📈 Évolution du Chiffre d'Affaires</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+            <div style="background: rgba(var(--accent-rgb), 0.1); padding: 16px; border-radius: var(--radius); text-align: center;">
+              <div class="text-muted" style="font-size: 13px; margin-bottom: 8px;">CA Total</div>
+              <div style="font-weight: 700; font-size: 28px; color: var(--accent);">${formatCurrency(client.revenue)}</div>
+            </div>
+            <div style="background: ${(client.trend || 0) >= 0 ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'}; padding: 16px; border-radius: var(--radius); text-align: center;">
+              <div class="text-muted" style="font-size: 13px; margin-bottom: 8px;">Tendance Globale</div>
+              <div style="font-size: 28px;">${renderTrend(client.trend || 0)}</div>
+            </div>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <div>
-              <div class="text-muted" style="font-size: 13px;">CA Total</div>
-              <div style="font-weight: 700; font-size: 24px; color: var(--accent);">${formatCurrency(client.revenue)}</div>
-            </div>
-            <div>
-              <div class="text-muted" style="font-size: 13px;">Tendance</div>
-              <div style="font-size: 20px;">${renderTrend(client.trend || 0)}</div>
-            </div>
+          <div style="background: var(--card-bg); padding: 16px; border-radius: var(--radius); border: 1px solid var(--border);">
+            <canvas id="modalRevenueChart" width="400" height="200"></canvas>
           </div>
         </div>
 
-        <!-- Engagement -->
-        ${clientDeals.length > 0 && clientDeals[0].engagementEmails !== undefined ? `
+        <!-- Sentiment Client -->
+        ${clientDeals.length > 0 && clientDeals[0].notesSentiment ? `
           <div class="modal-section">
-            <div class="modal-section-title">📬 Engagement</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
-              <div>
-                <div class="text-muted" style="font-size: 13px;">📧 Emails</div>
-                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].engagementEmails || 0}</div>
+            <div class="modal-section-title">💬 Sentiment Relation Client</div>
+            <div style="display: flex; align-items: center; justify-content: center; padding: 24px; background: ${
+              clientDeals[0].notesSentiment === 'positive' ? 'rgba(16, 185, 129, 0.1)' :
+              clientDeals[0].notesSentiment === 'negative' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(148, 163, 184, 0.1)'
+            }; border-radius: var(--radius); border-left: 4px solid ${
+              clientDeals[0].notesSentiment === 'positive' ? '#10b981' :
+              clientDeals[0].notesSentiment === 'negative' ? '#ef4444' : '#94a3b8'
+            };">
+              <div style="font-size: 48px; margin-right: 16px;">
+                ${clientDeals[0].notesSentiment === 'positive' ? '😊' :
+                  clientDeals[0].notesSentiment === 'negative' ? '😟' : '😐'}
               </div>
               <div>
-                <div class="text-muted" style="font-size: 13px;">📞 Appels</div>
-                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].engagementCalls || 0}</div>
-              </div>
-              <div>
-                <div class="text-muted" style="font-size: 13px;">🤝 Réunions</div>
-                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].engagementMeetings || 0}</div>
-              </div>
-              ${clientDeals[0].engagementLastActivity ? `
-                <div>
-                  <div class="text-muted" style="font-size: 13px;">Dernière Activité</div>
-                  <div style="font-weight: 600; font-size: 14px;">${new Date(clientDeals[0].engagementLastActivity).toLocaleDateString('fr-FR')}</div>
+                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">
+                  ${clientDeals[0].notesSentiment === 'positive' ? 'Positif' :
+                    clientDeals[0].notesSentiment === 'negative' ? 'Négatif' : 'Neutre'}
                 </div>
-              ` : ''}
-            </div>
-          </div>
-        ` : ''}
-
-        <!-- Notes -->
-        ${clientDeals.length > 0 && clientDeals[0].totalNotes !== undefined ? `
-          <div class="modal-section">
-            <div class="modal-section-title">📝 Notes</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
-              <div>
-                <div class="text-muted" style="font-size: 13px;">Nombre Total</div>
-                <div style="font-weight: 700; font-size: 18px;">${clientDeals[0].totalNotes || 0}</div>
-              </div>
-              <div>
-                <div class="text-muted" style="font-size: 13px;">Longueur Moyenne</div>
-                <div style="font-weight: 600; font-size: 14px;">${clientDeals[0].notesAvgLength || 0} caractères</div>
-              </div>
-              <div>
-                <div class="text-muted" style="font-size: 13px;">Sentiment</div>
-                <div style="font-weight: 600; font-size: 14px;">
-                  ${clientDeals[0].notesSentiment === 'positive' ? '😊 Positif' :
-                    clientDeals[0].notesSentiment === 'negative' ? '😟 Négatif' : '😐 Neutre'}
+                <div class="text-muted" style="font-size: 14px;">
+                  ${clientDeals[0].notesSentiment === 'positive' ? 'Relation client excellente' :
+                    clientDeals[0].notesSentiment === 'negative' ? 'Attention requise sur la relation' : 'Relation stable'}
                 </div>
-              </div>
-              ${clientDeals[0].latestNoteDate ? `
-                <div>
-                  <div class="text-muted" style="font-size: 13px;">Dernière Note</div>
-                  <div style="font-weight: 600; font-size: 14px;">${new Date(clientDeals[0].latestNoteDate).toLocaleDateString('fr-FR')}</div>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-        ` : ''}
-
-        <!-- Account Manager -->
-        ${clientDeals.length > 0 && clientDeals[0].ownerName ? `
-          <div class="modal-section">
-            <div class="modal-section-title">👤 Account Manager</div>
-            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: rgba(var(--primary-rgb), 0.05); border-radius: var(--radius);">
-              <div style="width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">
-                ${clientDeals[0].ownerName.charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <div style="font-weight: 700;">${clientDeals[0].ownerName}</div>
-                ${clientDeals[0].ownerEmail ? `<div class="text-muted" style="font-size: 13px;">${clientDeals[0].ownerEmail}</div>` : ''}
               </div>
             </div>
           </div>
@@ -2452,6 +2393,101 @@
       `;
 
       modal.classList.add('active');
+
+      // Destroy previous chart if exists
+      if (modalChart) {
+        modalChart.destroy();
+      }
+
+      // Prepare yearly revenue data for chart
+      const years = ['2021', '2022', '2023', '2024', '2025'];
+      const revenueData = years.map(year => {
+        const yearNum = parseInt(year);
+        return client.years?.[yearNum] || 0;
+      });
+
+      // Create Chart.js line chart for revenue evolution
+      const ctx = document.getElementById('modalRevenueChart');
+      if (ctx) {
+        modalChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: years,
+            datasets: [{
+              label: 'Chiffre d\'Affaires',
+              data: revenueData,
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              borderWidth: 3,
+              tension: 0.4,
+              fill: true,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              pointBackgroundColor: '#10b981',
+              pointBorderColor: '#fff',
+              pointBorderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                borderColor: '#10b981',
+                borderWidth: 1,
+                padding: 12,
+                displayColors: false,
+                callbacks: {
+                  label: function(context) {
+                    return formatCurrency(context.parsed.y);
+                  }
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  color: '#94a3b8',
+                  font: { size: 12 },
+                  callback: function(value) {
+                    if (value >= 1000000) {
+                      return (value / 1000000).toFixed(1) + 'M€';
+                    } else if (value >= 1000) {
+                      return (value / 1000).toFixed(0) + 'k€';
+                    }
+                    return value + '€';
+                  }
+                },
+                grid: {
+                  color: 'rgba(148, 163, 184, 0.1)',
+                  drawBorder: false
+                }
+              },
+              x: {
+                ticks: {
+                  color: '#94a3b8',
+                  font: { size: 12 }
+                },
+                grid: {
+                  color: 'rgba(148, 163, 184, 0.1)',
+                  drawBorder: false
+                }
+              }
+            },
+            interaction: {
+              intersect: false,
+              mode: 'index'
+            }
+          }
+        });
+      }
     }
 
     // ========================================
