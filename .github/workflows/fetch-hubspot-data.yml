@@ -1,13 +1,13 @@
 name: Fetch HubSpot Data
 
-# Déclenche le workflow automatiquement une fois par jour + manuellement
+# Déclenche le workflow automatiquement une fois par jour + manuellement + sur push
 on:
   schedule:
     - cron: '0 6 * * *'  # Tous les jours à 6h du matin (UTC)
   workflow_dispatch:  # Permet de lancer manuellement depuis GitHub
-  # push:  # TEMPORAIRE: Désactivé car trop de requêtes API (1962 companies)
-  #   branches:
-  #     - main
+  push:  # Se déclenche sur chaque push
+    branches:
+      - main
 
 concurrency:
   group: fetch-hubspot-data
