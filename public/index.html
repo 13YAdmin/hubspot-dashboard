@@ -1405,6 +1405,7 @@
     let allData = [];
     let companies = {};
     let companiesWithParents = [];
+    let clientGroups = []; // Store client groups globally for white space extraction
     let currentFilter = { year: 'all' };
     let groupExpandedState = {};
     let sortState = {
@@ -1447,12 +1448,12 @@
         // Build set of companies that have deals (clients)
         const companiesWithDeals = new Set(allData.map(deal => deal.companyId));
 
-        // Build index of ALL companies with parents (regardless of parent's deal status)
+        // Build index of companies with parents WHERE the parent is a CLIENT (has deals)
         companiesWithParents = Object.values(companies).filter(c => {
           if (!c.parentCompanyIds || c.parentCompanyIds.length === 0) return false;
           const parentId = c.parentCompanyIds[0];
-          // Check that parent company exists in HubSpot
-          return companies[parentId] !== undefined;
+          // White space = subsidiary of an EXISTING client, not unknown companies
+          return companiesWithDeals.has(parentId);
         });
 
         console.log(`✅ ${allData.length} deals chargés`);
@@ -1839,6 +1840,9 @@
       // Sort groups
       sortGroups(groups);
 
+      // Store groups globally for white space extraction
+      clientGroups = groups;
+
       // Update count
       document.getElementById('groups-count').textContent = `${groups.length} groupes`;
 
@@ -2104,40 +2108,25 @@
     function renderOpportunitiesTable(data) {
       const opportunities = [];
 
-      const companiesWithDeals = new Set(data.map(deal => deal.companyId));
+      // Extract white spaces directly from client groups (already calculated in renderGroupsTable)
+      clientGroups.forEach(group => {
+        // Only process groups with children (not standalone companies)
+        if (group.type !== 'group' || !group.children) return;
 
-      const parentDealsCache = {};
-      data.forEach(deal => {
-        if (!parentDealsCache[deal.companyId]) {
-          parentDealsCache[deal.companyId] = [];
-        }
-        parentDealsCache[deal.companyId].push(deal);
-      });
-
-      companiesWithParents.forEach(company => {
-        const parentId = company.parentCompanyIds[0];
-        const parentCompany = companies[parentId];
-        if (!parentCompany) return;
-
-        const hasDeals = companiesWithDeals.has(company.id);
-
-        if (!hasDeals) {
-          const parentDeals = parentDealsCache[parentId] || [];
-          const parentRevenue = parentDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
-          const parentHealth = parentDeals.length > 0
-            ? parentDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / parentDeals.length
-            : 50;
-
-          opportunities.push({
-            companyId: company.id,
-            companyName: company.name,
-            parentName: parentCompany.name,
-            parentId: parentId,
-            industry: company.industry || parentDeals[0]?.companyIndustry || 'Non spécifié',
-            parentRevenue: parentRevenue,
-            parentHealth: Math.round(parentHealth)
-          });
-        }
+        // For each white space child in this group
+        group.children.forEach(child => {
+          if (child.isWhiteSpace) {
+            opportunities.push({
+              companyId: child.companyId,
+              companyName: child.companyName,
+              parentName: group.companyName,
+              parentId: group.companyId,
+              industry: child.industry,
+              parentRevenue: group.revenue,
+              parentHealth: group.healthScore
+            });
+          }
+        });
       });
 
       // Count subsidiaries per parent
