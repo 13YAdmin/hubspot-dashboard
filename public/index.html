@@ -1817,8 +1817,16 @@
         const company = companies[companyId];
         if (!company) return;
 
+        // Vérifier si cette company a un parent (méthode 1: parentCompanyIds rempli)
         const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
         if (hasParent) return;
+
+        // Vérifier aussi si cette company est l'enfant de quelqu'un (méthode 2: dans les childCompanyIds d'un autre)
+        // Ceci gère le cas où la relation est unidirectionnelle dans les données
+        const isChildOfAnother = Object.values(companies).some(otherCompany =>
+          otherCompany.childCompanyIds && otherCompany.childCompanyIds.includes(Number(companyId))
+        );
+        if (isChildOfAnother) return;
 
         const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
         // Utilise les health scores calculés backend pour les standalone
