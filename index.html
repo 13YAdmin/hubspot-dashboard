@@ -1723,8 +1723,9 @@
       const groups = [];
       const processedCompanies = new Set();
 
-      // First pass: Process companies with children (mais PAS si elles-mêmes ont un parent!)
-      // Une entreprise ne peut être un "groupe parent" que si elle n'a pas de parent elle-même
+      // First pass: Process ALL companies with children (even if they have a parent)
+      // This ensures multi-level hierarchies are properly detected
+      // Example: LVMH SE → LVMH → Tiffany (all 3 levels processed correctly)
       Object.entries(companyDeals).forEach(([companyId, deals]) => {
         const company = companies[companyId];
         if (!company) return;
@@ -1732,8 +1733,9 @@
         const hasChildren = company.childCompanyIds && company.childCompanyIds.length > 0;
         const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
 
-        // FIX DOUBLONS: Ne traiter comme groupe parent QUE si pas de parent soi-même
-        if (hasChildren && !hasParent) {
+        // Process ALL companies with children, regardless of whether they have a parent
+        // This fixes the bug where LVMH's filiales weren't detected because LVMH itself has a parent
+        if (hasChildren) {
           const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
           // Utilise les health scores calculés backend
           const healthScore = calculateAverageHealthScore(deals);
