@@ -99,7 +99,7 @@ function validateData() {
   // 4. 🚨 VALIDATION CRITIQUE - WHITE SPACES
   log('\n🚨 VALIDATION CRITIQUE - WHITE SPACES:', 'cyan');
 
-  // Simuler la détection des white spaces (même logique que le frontend)
+  // Build companyDeals map
   const companyDeals = {};
   deals.forEach(deal => {
     if (!companyDeals[deal.companyId]) {
@@ -108,65 +108,9 @@ function validateData() {
     companyDeals[deal.companyId].push(deal);
   });
 
-  const companiesWithDeals = new Set(deals.map(deal => deal.companyId));
-  const processedCompanies = new Set();
-  let whiteSpaces = [];
-
-  // Pass 1: Extract children white spaces from groups
-  Object.entries(companyDeals).forEach(([companyId, companyDealsList]) => {
-    const company = companies[companyId];
-    if (!company) return;
-
-    const hasChildren = company.childCompanyIds && company.childCompanyIds.length > 0;
-
-    // 🚨 RÈGLE CRITIQUE: Ne PAS filtrer par hasParent
-    // Si cette condition change, ça cassera la détection multi-niveaux
-    if (hasChildren) {
-      company.childCompanyIds.forEach(childId => {
-        const childCompany = companies[childId];
-        if (!childCompany) return;
-
-        const childHasDeals = companiesWithDeals.has(childId);
-
-        if (!childHasDeals) {
-          whiteSpaces.push({
-            companyId: childId,
-            companyName: childCompany.name,
-            parentName: company.name,
-            parentId: companyId,
-            type: 'child'
-          });
-        }
-
-        processedCompanies.add(childId);
-      });
-    }
-  });
-
-  // Pass 2: Detect parent white spaces
-  companiesWithDeals.forEach(childCompanyId => {
-    const childCompany = companies[childCompanyId];
-    if (!childCompany || !childCompany.parentCompanyIds || childCompany.parentCompanyIds.length === 0) return;
-
-    childCompany.parentCompanyIds.forEach(parentId => {
-      if (companiesWithDeals.has(parentId)) return; // Parent has deals, not a white space
-
-      const parentCompany = companies[parentId];
-      if (!parentCompany) return;
-
-      // Check if not already added
-      const alreadyAdded = whiteSpaces.some(ws => ws.companyId === parentId);
-      if (alreadyAdded) return;
-
-      whiteSpaces.push({
-        companyId: parentId,
-        companyName: parentCompany.name,
-        parentName: childCompany.name,
-        parentId: childCompanyId,
-        type: 'parent'
-      });
-    });
-  });
+  // Use generic white space detector module
+  const { detectWhiteSpaces } = require('./lib/white-space-detector');
+  const whiteSpaces = detectWhiteSpaces(companies, companyDeals);
 
   log(`   📊 White spaces détectés: ${whiteSpaces.length}`);
 
