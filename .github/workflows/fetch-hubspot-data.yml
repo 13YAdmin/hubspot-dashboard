@@ -47,6 +47,12 @@ jobs:
         run: |
           node .github/scripts/push-scores-to-hubspot.js
 
+      - name: 🚨 Validate Data Quality (Critical)
+        run: |
+          echo "🔍 Validation critique de la qualité des données..."
+          node .github/scripts/validate-data-quality.js
+          echo "✅ Validation réussie - Données OK pour déploiement"
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

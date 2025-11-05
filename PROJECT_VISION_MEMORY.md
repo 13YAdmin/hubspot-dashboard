@@ -3,7 +3,7 @@
 > **RÈGLE ABSOLUE** : Ce fichier doit être lu par Claude à CHAQUE session avant toute modification du projet.
 > Il contient la vision, l'historique, les décisions et les principes qui guident ce projet.
 
-**Dernière mise à jour** : 3 novembre 2025, 18h45
+**Dernière mise à jour** : 5 novembre 2025, 12h00
 
 ---
 
@@ -89,6 +89,69 @@
 - Fonctions bien nommées
 - Pas de duplication
 - Structure logique
+
+---
+
+## 🚨 RÈGLES CRITIQUES - NE JAMAIS VIOLER
+
+### ⚠️ WHITE SPACES DETECTION - PRIORITÉ ABSOLUE
+
+**CONTEXTE:**
+Les White Spaces (opportunités business) sont LA fonctionnalité la plus critique du dashboard.
+Ils représentent les filiales/parents de clients existants qui n'ont pas encore de deals.
+Cette fonction s'est cassée 4 fois en 3 jours (1a91b39, 9658f2c, af1ff10, 09b717d).
+
+**RÈGLE #1 - Ne JAMAIS filtrer par `hasParent`:**
+```javascript
+// ❌ INTERDIT - Casse la détection multi-niveaux:
+if (hasChildren && !hasParent) { ... }
+
+// ✅ CORRECT - Permet hiérarchies multi-niveaux:
+if (hasChildren) { ... }
+```
+
+**POURQUOI:**
+- HubSpot a des hiérarchies multi-niveaux (LVMH SE → LVMH → Tiffany)
+- Si on filtre `!hasParent`, LVMH n'est pas traité car il a un parent
+- Ses 7 filiales (Tiffany, Sephora, etc.) ne sont jamais détectées
+- Résultat: perte de 15+ opportunités critiques
+
+**RÈGLE #2 - Toujours utiliser `clientGroups` comme source:**
+```javascript
+// ✅ CORRECT - Single source of truth:
+clientGroups.forEach(group => {
+  group.children.forEach(child => {
+    if (child.isWhiteSpace) { ... }
+  });
+});
+```
+
+**RÈGLE #3 - Tester après CHAQUE changement UI/UX:**
+Avant de push:
+1. Vérifier que le nombre de white spaces est stable (doit être 20+)
+2. Vérifier que LVMH montre bien 7 filiales
+3. Vérifier que Total Energies montre bien 8 filiales
+4. Si le nombre baisse → ANNULER le changement et investiguer
+
+**RÈGLE #4 - Ne JAMAIS casser le parsing de data pour du design:**
+- Les modifications UI (couleurs, layout, etc.) ne doivent PAS toucher:
+  - `renderGroupsTable()` (lignes 1713-1864)
+  - `renderOpportunitiesTable()` (lignes 2108-2265)
+  - La structure de `clientGroups`
+- Si un changement UI nécessite de modifier ces fonctions → REFUSER
+
+**VALIDATION AUTOMATIQUE:**
+Un script `.github/scripts/validate-white-spaces.js` DOIT vérifier:
+- Minimum 20 white spaces détectés
+- LVMH présent avec 7+ filiales
+- Total Energies présent avec 8+ filiales
+- Alerte si régression > 20%
+
+**HISTORIQUE DES BUGS (À NE JAMAIS REFAIRE):**
+1. **1a91b39** - Supprimé le filtre `companiesWithDeals.has(parentId)` → trop large, inclus non-clients
+2. **9658f2c** - Utilisé `clientGroups` mais cassé par commit suivant
+3. **af1ff10** - Ajouté détection parents mais pas fixé le vrai bug
+4. **09b717d** - FIX FINAL - Supprimé `&& !hasParent` restriction
 
 ---
 

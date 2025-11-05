@@ -2181,6 +2181,19 @@
       // Sort opportunities
       sortOpportunities(opportunities);
 
+      // 🚨 VALIDATION CRITIQUE - White Spaces Detection
+      // Cette validation détecte automatiquement les régressions
+      const MIN_EXPECTED_WHITE_SPACES = 15;
+      if (opportunities.length < MIN_EXPECTED_WHITE_SPACES) {
+        console.error(`🚨 ALERTE CRITIQUE: Seulement ${opportunities.length} white spaces détectés (attendu: ${MIN_EXPECTED_WHITE_SPACES}+)`);
+        console.error('⚠️ Possible régression dans renderGroupsTable() ou renderOpportunitiesTable()');
+        console.error('📋 Vérifier que hasChildren ne filtre PAS par hasParent');
+        console.warn('📊 clientGroups détectés:', clientGroups.length);
+        console.warn('🔍 White spaces extraits:', opportunities.length);
+      } else {
+        console.log(`✅ White spaces detection OK: ${opportunities.length} opportunités détectées`);
+      }
+
       // Update count
       document.getElementById('opportunities-count').textContent = `${opportunities.length} opportunités`;
 
