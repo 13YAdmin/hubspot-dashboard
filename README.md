@@ -82,7 +82,7 @@ Dashboard opérationnel conçu pour les **Account Managers**, **Managers** et la
 ```
 ┌──────────────────────────────────────────────┐
 │  GitHub Actions Workflow                     │
-│  Automatique toutes les 2 heures             │
+│  Automatique quotidien à 6h UTC              │
 └──────────────────────────────────────────────┘
                     ↓
 ┌──────────────────────────────────────────────┐
@@ -189,7 +189,7 @@ hubspot-dashboard/
 └── README.md                          # Cette documentation
 ```
 
-**Lignes de code**: ~3500 (vs 58,000 avant refonte)
+**Lignes de code**: ~4,000 (vs 58,000 avant refonte) + tests
 
 ---
 
@@ -198,19 +198,20 @@ hubspot-dashboard/
 ### Déclencheurs
 
 Le workflow `fetch-hubspot-data.yml` s'exécute :
-- ⏰ **Automatiquement** - Toutes les 2 heures (`0 */2 * * *`)
+- ⏰ **Automatiquement** - Quotidien à 6h UTC (`0 6 * * *`)
 - 🔘 **Manuellement** - Via GitHub Actions UI ou CLI
-- 📌 **Sur push** - Désactivé (pour éviter trop d'appels API)
+- 📌 **Sur push** - Activé avec paths-ignore (ignore docs/debug/images)
 
 ### Étapes détaillées
 
-1. **Setup** - Installation Node.js 18.x
+1. **Setup** - Installation Node.js 20.x + npm cache
 2. **Create properties** - Création custom properties HubSpot (1ère exec)
 3. **Fetch data** - Récupération companies, deals, owners, notes
 4. **Calculate** - Health scores, segments, opportunités
 5. **Generate JSON** - Fichier `public/data.json`
 6. **Push to HubSpot** - Enrichissement health scores
-7. **Deploy** - Copie vers branche `gh-pages`
+7. **Validate** - Validation data quality (white spaces, integrity)
+8. **Deploy** - Copie vers branche `gh-pages`
 
 **Durée moyenne** : 12-18 minutes (selon volume de données)
 
