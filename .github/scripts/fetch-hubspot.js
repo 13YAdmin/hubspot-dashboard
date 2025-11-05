@@ -202,17 +202,21 @@ async function main() {
         if (assocs.results && assocs.results.length > 0) {
           assocs.results.forEach(assoc => {
             const associatedCompanyId = assoc.toObjectId;
-            const associationType = assoc.associationTypes?.[0]?.typeId;
+            const associationTypes = assoc.associationTypes || [];
 
-            // Type 13 = Parent company to child company (cette company est parent)
-            // Type 14 = Child company to parent company (cette company est enfant)
-            if (associationType === 13) {
-              companies[companyId].childCompanyIds.push(associatedCompanyId);
-              relationsCount++;
-            } else if (associationType === 14) {
-              companies[companyId].parentCompanyIds.push(associatedCompanyId);
-              relationsCount++;
-            }
+            // Parcourir TOUS les types d'association (pas seulement le premier!)
+            // car HubSpot peut retourner plusieurs types (ex: typeId 13, 14, 450)
+            associationTypes.forEach(assocType => {
+              // Type 13 = Parent company to child company (cette company est parent)
+              // Type 14 = Child company to parent company (cette company est enfant)
+              if (assocType.typeId === 13 && !companies[companyId].childCompanyIds.includes(associatedCompanyId)) {
+                companies[companyId].childCompanyIds.push(associatedCompanyId);
+                relationsCount++;
+              } else if (assocType.typeId === 14 && !companies[companyId].parentCompanyIds.includes(associatedCompanyId)) {
+                companies[companyId].parentCompanyIds.push(associatedCompanyId);
+                relationsCount++;
+              }
+            });
           });
         }
       } catch (err) {
