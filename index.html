@@ -2107,8 +2107,9 @@
     // ========================================
     function renderOpportunitiesTable(data) {
       const opportunities = [];
+      const processedWhiteSpaces = new Set();
 
-      // Extract white spaces directly from client groups (already calculated in renderGroupsTable)
+      // 1. Extract white space CHILDREN from client groups (children without deals, parent has deals)
       clientGroups.forEach(group => {
         // Only process groups with children (not standalone companies)
         if (group.type !== 'group' || !group.children) return;
@@ -2125,7 +2126,42 @@
               parentRevenue: group.revenue,
               parentHealth: group.healthScore
             });
+            processedWhiteSpaces.add(child.companyId);
           }
+        });
+      });
+
+      // 2. Find white space PARENTS (parent without deals, but child has deals)
+      const companiesWithDeals = new Set(data.map(deal => deal.companyId));
+
+      companiesWithDeals.forEach(childCompanyId => {
+        const childCompany = companies[childCompanyId];
+        if (!childCompany || !childCompany.parentCompanyIds || childCompany.parentCompanyIds.length === 0) return;
+
+        childCompany.parentCompanyIds.forEach(parentId => {
+          // Skip if parent already processed or has deals
+          if (processedWhiteSpaces.has(parentId) || companiesWithDeals.has(parentId)) return;
+
+          const parentCompany = companies[parentId];
+          if (!parentCompany) return;
+
+          // Get child's data to compute parent's potential
+          const childDeals = data.filter(d => d.companyId === childCompanyId);
+          const childRevenue = childDeals.reduce((sum, d) => sum + (d.amount || 0), 0);
+          const childHealth = childDeals.length > 0
+            ? childDeals.reduce((sum, d) => sum + (d.healthScore || 0), 0) / childDeals.length
+            : 50;
+
+          opportunities.push({
+            companyId: parentId,
+            companyName: parentCompany.name,
+            parentName: childCompany.name, // The child is the "reference" here
+            parentId: childCompanyId,      // Reference is the child with deals
+            industry: parentCompany.industry || 'Non spécifié',
+            parentRevenue: childRevenue,   // Use child's revenue as potential
+            parentHealth: Math.round(childHealth)
+          });
+          processedWhiteSpaces.add(parentId);
         });
       });
 
