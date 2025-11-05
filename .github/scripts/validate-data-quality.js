@@ -47,10 +47,10 @@ function validateData() {
   log('\n🔍 VALIDATION DE LA QUALITÉ DES DONNÉES\n', 'cyan');
 
   // 1. Charger les données
-  const dataPath = path.join(__dirname, '../../public/hubspot_data.json');
+  const dataPath = path.join(__dirname, '../../public/data.json');
 
   if (!fs.existsSync(dataPath)) {
-    log('❌ ERREUR: hubspot_data.json introuvable', 'red');
+    log('❌ ERREUR: data.json introuvable', 'red');
     log(`   Path: ${dataPath}`, 'red');
     process.exit(1);
   }
