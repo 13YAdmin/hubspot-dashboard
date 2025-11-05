@@ -1817,8 +1817,16 @@
         const company = companies[companyId];
         if (!company) return;
 
+        // Vérifier si cette company a un parent (méthode 1: parentCompanyIds rempli)
         const hasParent = company.parentCompanyIds && company.parentCompanyIds.length > 0;
         if (hasParent) return;
+
+        // Vérifier aussi si cette company est l'enfant de quelqu'un (méthode 2: dans les childCompanyIds d'un autre)
+        // Ceci gère le cas où la relation est unidirectionnelle dans les données
+        const isChildOfAnother = Object.values(companies).some(otherCompany =>
+          otherCompany.childCompanyIds && otherCompany.childCompanyIds.includes(Number(companyId))
+        );
+        if (isChildOfAnother) return;
 
         const totalRevenue = deals.reduce((sum, d) => sum + (d.amount || 0), 0);
         // Utilise les health scores calculés backend pour les standalone
@@ -2180,6 +2188,19 @@
 
       // Sort opportunities
       sortOpportunities(opportunities);
+
+      // 🚨 VALIDATION CRITIQUE - White Spaces Detection
+      // Cette validation détecte automatiquement les régressions
+      const MIN_EXPECTED_WHITE_SPACES = 15;
+      if (opportunities.length < MIN_EXPECTED_WHITE_SPACES) {
+        console.error(`🚨 ALERTE CRITIQUE: Seulement ${opportunities.length} white spaces détectés (attendu: ${MIN_EXPECTED_WHITE_SPACES}+)`);
+        console.error('⚠️ Possible régression dans renderGroupsTable() ou renderOpportunitiesTable()');
+        console.error('📋 Vérifier que hasChildren ne filtre PAS par hasParent');
+        console.warn('📊 clientGroups détectés:', clientGroups.length);
+        console.warn('🔍 White spaces extraits:', opportunities.length);
+      } else {
+        console.log(`✅ White spaces detection OK: ${opportunities.length} opportunités détectées`);
+      }
 
       // Update count
       document.getElementById('opportunities-count').textContent = `${opportunities.length} opportunités`;
