@@ -183,7 +183,18 @@ async function main() {
     // Récupérer les associations parent/child pour chaque company
     console.log('🔗 Récupération des relations parent/child...');
     let relationsCount = 0;
+    let errorCount = 0;
+    let processedCount = 0;
+    const totalCompanies = Object.keys(companies).length;
+
     for (const companyId in companies) {
+      processedCount++;
+
+      // Log progression tous les 100 companies
+      if (processedCount % 100 === 0) {
+        console.log(`  ⏳ Progression: ${processedCount}/${totalCompanies} companies...`);
+      }
+
       try {
         // Récupérer les associations company→company
         const assocs = await fetchHubSpot(`/crm/v4/objects/companies/${companyId}/associations/companies`);
@@ -205,10 +216,15 @@ async function main() {
           });
         }
       } catch (err) {
-        // Pas d'associations, ce n'est pas une erreur
+        errorCount++;
+        // Logger les erreurs inhabituelles (pas 404 qui signifie "pas d'associations")
+        if (!err.message.includes('404')) {
+          console.log(`  ⚠️  Erreur company ${companies[companyId]?.name || companyId}: ${err.message}`);
+        }
       }
     }
-    console.log(`✅ ${relationsCount} relations parent/child détectées\n`);
+    console.log(`✅ ${relationsCount} relations parent/child détectées`);
+    console.log(`📊 ${processedCount} companies traitées, ${errorCount} erreurs\n`);
 
     // ÉTAPE 3 : Récupérer tous les deals
     console.log('💼 ÉTAPE 3/5 - Récupération des deals...');
