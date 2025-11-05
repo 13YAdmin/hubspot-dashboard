@@ -8,6 +8,13 @@ on:
   push:  # Se déclenche sur chaque push
     branches:
       - main
+    paths-ignore:  # Ignore docs/debug/assets changes
+      - '**.md'
+      - 'docs/**'
+      - '.github/scripts/debug/**'
+      - '*.png'
+      - '*.jpg'
+      - '*.csv'
 
 concurrency:
   group: fetch-hubspot-data
@@ -27,6 +34,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'  # Cache node_modules pour performance
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Create Custom Properties (first run)
         env:
