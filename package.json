@@ -1,12 +1,23 @@
 {
   "name": "hubspot-dashboard",
-  "version": "1.0.0",
+  "version": "2.1.0",
+  "description": "Dashboard Account Management HubSpot - GitHub Pages + Actions",
   "scripts": {
-    "test": "vitest",
-    "build:turbo": "turbo build"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "dev": "npx http-server public -p 8080"
   },
   "devDependencies": {
-    "vitest": "^1.0.0",
-    "turbo": "^1.10.0"
-  }
+    "vitest": "^2.0.0",
+    "@vitest/coverage-v8": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/13YAdmin/hubspot-dashboard.git"
+  },
+  "private": true
 }
