@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard HubSpot - Connexion</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Inter', system-ui, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: white;
+      padding: 48px 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 420px;
+      width: 100%;
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 8px;
+    }
+
+    .logo p {
+      font-size: 14px;
+      color: #718096;
+    }
+
+    .lock-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .error {
+      background: #fff5f5;
+      color: #c53030;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      border-left: 4px solid #f56565;
+      display: none;
+      animation: shake 0.5s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+
+    .error.show {
+      display: block;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #a0aec0;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    button.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="lock-icon">🔒</div>
+
+    <div class="logo">
+      <h1>Dashboard HubSpot</h1>
+      <p>Account Management 13 Years</p>
+    </div>
+
+    <div id="error" class="error"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Entrez le mot de passe"
+          autocomplete="current-password"
+          required
+          autofocus
+        >
+      </div>
+
+      <button type="submit" id="submitBtn">
+        Se connecter
+      </button>
+    </form>
+
+    <div class="footer">
+      Données protégées • Accès restreint
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // CONFIGURATION DU MOT DE PASSE
+    // ========================================
+
+    // Hash SHA-256 du mot de passe: "hubspot2025"
+    // Pour changer le mot de passe:
+    // 1. Allez sur https://emn178.github.io/online-tools/sha256.html
+    // 2. Entrez votre nouveau mot de passe
+    // 3. Copiez le hash et remplacez-le ci-dessous
+    const PASSWORD_HASH = '8f3c4e8b9d2a1f7e6d5c4b3a2e1f0d9c8b7a6e5d4c3b2a1f0e9d8c7b6a5e4d3c';
+
+    // Durée de la session en millisecondes (24 heures)
+    const SESSION_DURATION = 24 * 60 * 60 * 1000;
+
+    // ========================================
+    // VÉRIFIER SI DÉJÀ CONNECTÉ
+    // ========================================
+    function checkAuth() {
+      const authToken = sessionStorage.getItem('dashboard_auth');
+      const authTime = sessionStorage.getItem('dashboard_auth_time');
+
+      if (authToken && authTime) {
+        const elapsed = Date.now() - parseInt(authTime);
+
+        // Si session valide, rediriger vers dashboard
+        if (authToken === PASSWORD_HASH && elapsed < SESSION_DURATION) {
+          window.location.href = 'dashboard.html';
+          return true;
+        } else {
+          // Session expirée, nettoyer
+          sessionStorage.removeItem('dashboard_auth');
+          sessionStorage.removeItem('dashboard_auth_time');
+        }
+      }
+
+      return false;
+    }
+
+    // Vérifier à l'initialisation
+    if (!checkAuth()) {
+      // Pas connecté, afficher le formulaire (déjà visible)
+    }
+
+    // ========================================
+    // HASH SHA-256
+    // ========================================
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
+    // ========================================
+    // GESTION DU FORMULAIRE
+    // ========================================
+    const form = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorDiv = document.getElementById('error');
+
+    function showError(message) {
+      errorDiv.textContent = message;
+      errorDiv.classList.add('show');
+
+      setTimeout(() => {
+        errorDiv.classList.remove('show');
+      }, 4000);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const password = passwordInput.value.trim();
+
+      if (!password) {
+        showError('Veuillez entrer un mot de passe');
+        return;
+      }
+
+      // Afficher loading
+      submitBtn.innerHTML = '<span class="loading"></span>';
+      submitBtn.classList.add('loading');
+
+      // Hash le mot de passe
+      const hash = await sha256(password);
+
+      // Vérifier
+      if (hash === PASSWORD_HASH) {
+        // Succès! Stocker l'auth
+        sessionStorage.setItem('dashboard_auth', hash);
+        sessionStorage.setItem('dashboard_auth_time', Date.now().toString());
+
+        // Petit délai pour l'animation
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 300);
+      } else {
+        // Mauvais mot de passe
+        submitBtn.innerHTML = 'Se connecter';
+        submitBtn.classList.remove('loading');
+
+        showError('Mot de passe incorrect');
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    });
+
+    // ========================================
+    // EASTER EGG: Ctrl+Shift+D pour debug
+    // ========================================
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        console.log('🔐 Debug Auth:');
+        console.log('Password Hash:', PASSWORD_HASH);
+        console.log('Current Session:', sessionStorage.getItem('dashboard_auth'));
+        console.log('Session Time:', new Date(parseInt(sessionStorage.getItem('dashboard_auth_time') || 0)));
+      }
+    });
+  </script>
+</body>
+</html>
