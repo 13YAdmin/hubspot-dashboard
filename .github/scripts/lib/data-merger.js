@@ -119,7 +119,9 @@ class DataMerger {
    * Générer une clé de matching pour détecter les doublons
    */
   static generateMatchKey(name) {
-    return name
+    if (!name) return '';
+
+    return String(name)
       .toLowerCase()
       .trim()
       // Enlever les formes juridiques
