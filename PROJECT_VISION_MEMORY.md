@@ -1024,6 +1024,31 @@ queued  🚀 Enable push trigger... Fetch HubSpot Data  main  push  19043991903
 
 ---
 
+
+---
+
+### Session du 19 novembre 2025 - Protection par mot de passe
+
+**CONTEXTE:** Incident cybersécurité L'Oréal → Repo privé → Besoin accès chef → Solution protection mot de passe gratuite
+
+**IMPLÉMENTATION:**
+- Page login SHA-256 (mot de passe: "hubspot2025")
+- Protection dashboard + bouton déconnexion
+- Documentation: SECURITY.md, VERCEL_SETUP.md
+- Session 24h dans sessionStorage
+
+**PROBLÈMES RÉSOLUS:**
+1. Hash incorrect → Génération correct: 7d16796f26efc86f...
+2. Repo PRIVÉ → Flag --accept-visibility-change-consequences
+3. GitHub Pages config → Passage de main/docs à gh-pages/
+4. data.json 404 → git pull + force rebuild
+
+**RÉSULTAT:** ✅ Repo PUBLIC + Protection mot de passe + Coût 0€ + Conformité cybersécurité
+
+**FICHIERS CRÉÉS:** index.html (8.6KB), SECURITY.md (6.1KB), VERCEL_SETUP.md (5.2KB)
+
+**TEMPS TOTAL:** ~1h25 | **COMMITS:** 6 | **ARCHITECTURE:** gh-pages branch
+
 ## 🤝 COMMENT UTILISER CE FICHIER
 
 ### Pour Claude (IA) :

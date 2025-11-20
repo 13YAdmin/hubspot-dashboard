@@ -23,6 +23,20 @@ Dashboard opérationnel conçu pour les **Account Managers**, **Managers** et la
 - ❤️ Monitoring de la santé des comptes clients
 - 👨‍👩‍👧‍👦 Visualisation des groupes parent/filiales
 
+## 🔐 Sécurité & Protection
+
+**Accès protégé par mot de passe** - Dashboard public avec authentification sécurisée
+
+- ✅ **Protection SHA-256** - Hashing côté client, pas de mot de passe en clair
+- ✅ **Session 24h** - Authentification stockée dans sessionStorage
+- ✅ **Données sensibles protégées** - Conforme aux exigences de cybersécurité
+- 🔑 **Mot de passe par défaut** : `hubspot2025` (à changer après déploiement)
+
+**Voir [`SECURITY.md`](./SECURITY.md) pour:**
+- Comment changer le mot de passe
+- Niveaux de protection et limitations
+- Instructions de déploiement sécurisé
+
 ---
 
 ## ✨ Fonctionnalités Principales
@@ -112,7 +126,14 @@ Dashboard opérationnel conçu pour les **Account Managers**, **Managers** et la
 └──────────────────────────────────────────────┘
                     ↓
 ┌──────────────────────────────────────────────┐
-│  Déploiement GitHub Pages                    │
+│  Déploiement GitHub Pages (branche gh-pages) │
+│  • index.html (page de login protégée)      │
+│  • dashboard.html (dashboard protégé)        │
+│  • data.json (données HubSpot)               │
+└──────────────────────────────────────────────┘
+                    ↓
+┌──────────────────────────────────────────────┐
+│  🔐 Accès protégé par mot de passe           │
 │  https://13yadmin.github.io/hubspot-dashboard│
 └──────────────────────────────────────────────┘
 ```
@@ -120,9 +141,10 @@ Dashboard opérationnel conçu pour les **Account Managers**, **Managers** et la
 **Avantages de l'architecture**:
 - ✅ Pas de backend à maintenir
 - ✅ Coût : 0€ (GitHub gratuit)
-- ✅ Sécurité : API key jamais exposée
+- ✅ Sécurité : API key jamais exposée + données protégées par mot de passe
 - ✅ Performance : Chargement instantané
 - ✅ Fiabilité : 99.9% uptime GitHub Pages
+- ✅ Protection : Authentification SHA-256 côté client
 
 ---
 
