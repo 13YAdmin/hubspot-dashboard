@@ -1,0 +1,67 @@
+name: Enrich Subsidiaries
+
+on:
+  workflow_dispatch:  # Déclenchement manuel
+  schedule:
+    - cron: '0 9 1 * *'  # Le 1er de chaque mois à 9h UTC
+
+permissions:
+  contents: write  # Pour commit du CSV
+  actions: write   # Pour artifacts
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Enrich Subsidiaries from Pappers API
+        env:
+          HUBSPOT_ACCESS_TOKEN: ${{ secrets.HUBSPOT_ACCESS_TOKEN }}
+          PAPPERS_API_TOKEN: ${{ secrets.PAPPERS_API_TOKEN }}
+        run: |
+          echo "🚀 Lancement de l'enrichissement des filiales..."
+          node .github/scripts/enrich-subsidiaries.js
+
+      - name: Upload CSV artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: subsidiaries-csv-${{ github.run_number }}
+          path: public/subsidiaries_*.csv
+          retention-days: 90
+
+      - name: Commit CSV to repo
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/subsidiaries_*.csv
+          if git diff --staged --quiet; then
+            echo "✅ Aucune nouvelle filiale à commit"
+          else
+            git commit -m "🔍 Enrichissement filiales - $(date +'%Y-%m-%d')"
+            git push
+            echo "✅ CSV committé avec succès"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -f public/subsidiaries_*.csv ]; then
+            echo "✅ Enrichissement terminé"
+            echo "📊 Fichiers générés:"
+            ls -lh public/subsidiaries_*.csv
+            echo ""
+            echo "⬇️ Téléchargez le CSV depuis l'onglet Artifacts ci-dessus"
+          else
+            echo "❌ Aucun CSV généré"
+          fi
